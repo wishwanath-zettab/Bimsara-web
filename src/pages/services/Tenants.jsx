@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
+import { useIsMobile } from '../../hooks/useIsMobile'
+import MobileServiceLayout from '../../components/MobileServiceLayout'
 import arrowRight from '../../assets/images/arrow-right.png'
 import logo from '../../assets/images/logo.png'
 import tenantsHeroMini from '../../assets/images/tenants-hero-mini.webp'
@@ -141,10 +143,48 @@ const guideSteps = [
 
 export default function Tenants() {
   const { data } = useSiteData()
+  const isMobile = useIsMobile()
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
 
   const rentalsContact = data.contacts.find((c) => c.category === 'RENTALS') || {}
+
+  if (isMobile) {
+    return (
+      <MobileServiceLayout
+        heroTitle="Rent Occupying"
+        heading="It's Been Made Easy"
+        description="Finding you a great home, in a good neighbourhood, with the best possible terms and at the best possible rent, is what we do. We probably maintain the most comprehensive database of properties up for rent in the geographical areas of our operation. Our obligation is to make sure that your new residence is exactly what you're looking for. Our approach is simple, yet comprehensive."
+        servicesList={servicesList}
+        guideTitle="Rent Occupying a property"
+        guideName="Tenant's Guide"
+        guideSteps={guideSteps}
+        defaultContentTitle="Property Tenants"
+        breadcrumbLabel="For Tenants"
+        defaultContentBody={[
+          { italic: 'Dear Future Tenant' },
+          'Finding the right rental home is about more than square footage and location. It\'s about finding a space where you feel comfortable, secure and at home — and doing so without the stress of navigating the rental market alone.',
+          'Our rentals team works closely with tenants to understand not just what they need, but what they want. That distinction matters. We use that understanding to shortlist properties that are genuinely suitable, rather than showing you everything that\'s available.',
+          'With an extensive inventory of rental properties and strong relationships with landlords across Colombo and beyond, we can often surface opportunities that don\'t appear on public listing platforms.',
+          'We represent your interests throughout the rental process — from negotiating a fair monthly rate to reviewing the terms of the tenancy agreement before you sign anything.',
+          'Our team will walk you through every aspect of the lease — explaining your rights, highlighting your responsibilities and ensuring there are no surprises once you move in.',
+          'From the initial inquiry to the day you receive your keys, our rentals team is with you at every step — making the experience as smooth and stress-free as possible.',
+        ]}
+        renderAfterDefaultContent={() => rentalsContact.email ? (
+          <div className="mt-6 p-5 border border-crimson/30 rounded-[12px]">
+            <h4 className="font-lato text-[15px] font-bold text-ebony-clay mb-2">Rentals Division</h4>
+            <p className="font-lato text-[13px] text-scorpion mb-2">Reach our dedicated rentals team directly:</p>
+            <a href={`mailto:${rentalsContact.email}`} className="block font-lato text-[14px] text-royal-blue hover:text-crimson transition-colors mb-1">
+              {rentalsContact.email}
+            </a>
+            <a href={`tel:${rentalsContact.phone?.replace(/\s/g, '')}`} className="block font-lato text-[14px] text-ebony-clay hover:text-crimson transition-colors">
+              {rentalsContact.phone}
+            </a>
+          </div>
+        ) : null}
+      />
+    )
+  }
 
   return (
     <div>

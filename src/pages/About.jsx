@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSiteData } from '../context/SiteDataContext'
+import { useIsMobile } from '../hooks/useIsMobile'
 import aboutHero from '../assets/images/about-hero.webp'
 import aboutLogo from '../assets/images/about-logo.png'
 import isoCert from '../assets/images/iso-certificate.png'
@@ -23,7 +24,9 @@ function getImageUrl(filename) {
 
 export default function About() {
   const { data } = useSiteData()
+  const isMobile = useIsMobile()
   const [selectedMember, setSelectedMember] = useState(null)
+  const [mobileTeamIndex, setMobileTeamIndex] = useState(0)
 
   const teamMembers = data.teamMembers || []
 
@@ -57,6 +60,239 @@ export default function About() {
 
   // ISO cert: use uploaded file or default static import
   const isoCertSrc = data.isoCertificateImage ? getImageUrl(data.isoCertificateImage) : isoCert
+
+  // Current mobile team member
+  const mobileCurrentMember = teamMembers[mobileTeamIndex] || null
+
+  if (isMobile) {
+    return (
+      <div className="about-bg-lines overflow-x-hidden w-full">
+        {/* ═══ HERO ═══ */}
+        <section className="relative h-[55vh]">
+          <div className="absolute inset-0">
+            <img src={aboutHero} alt="Bimsara Real Estate office" className="w-full h-full object-cover object-bottom" />
+          </div>
+        </section>
+
+        {/* ═══ VALUE PROPS ═══ */}
+        <section className="py-8 px-[8%]">
+          <div className="flex flex-col items-center gap-1">
+            {['Trusted Advisor', 'Skilled Negotiator', 'Expert Facilitator'].map((title) => (
+              <p key={title} className="text-crimson font-lato text-[22px] font-semibold italic text-center">
+                {title}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══ WHO WE ARE ═══ */}
+        <section className="pt-6 px-[6%]">
+          <p className="font-lato text-[18px] text-royal-blue tracking-[0.95em] uppercase text-center">WHO WE ARE</p>
+
+          <div className="flex justify-center mt-6">
+            <img src={aboutLogo} alt="Bimsara Real Estate" className="w-[45%]" loading="lazy" />
+          </div>
+
+          <h2 className="font-lato text-[20px] font-bold text-ebony-clay leading-tight text-center mt-6">
+            Bimsara Real Estate is a premier broking brand at the forefront of Sri Lanka's real estate market.
+          </h2>
+
+          <p className="font-lato text-[15px] font-semibold leading-[26px] text-ebony-clay text-center mt-5">
+            With many successful transactions concluded, we possess an unparalleled, profound, insightful understanding of the property market in Sri Lanka. Attributed to our far-flung experience in the industry, we are capable of providing holistic, end-to-end options to the versatile demands and concerns of every client.
+          </p>
+
+          <p className="font-lato text-[14px] font-light leading-[24px] text-ebony-clay text-center mt-5">
+            The brand is put to the forefront by Safetynet (Private) Limited founded in 2006. The company has been in the industry for over a quindecennial and has extended mediation services under the guidance and close inspection of the founder and the Managing Director; Bimsara Gamage, to a wide spectrum of property sellers, landlords, buyers and tenants with myriad, diverse and unique needs and requirements.
+          </p>
+
+          <div className="mt-6 flex justify-center">
+            <a href="#" className="secondary-btn" style={{fontSize: '14px', padding: '10.5px 26px', gap: '14px'}}>
+              Download Company Profile Book
+              <img src={downloadIcon} alt="" className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
+
+        {/* ═══ VISION / MISSION / VALUES ═══ */}
+        <section className="pt-10 pb-6 px-[8%]">
+          <div className="flex flex-col items-center">
+            <div className="flex flex-col w-full gap-5">
+              <div className="gradient-border-card w-full" style={{borderRadius: '48px'}}>
+                <span className="gradient-border-card-inner block text-center" style={{borderRadius: '48px'}}>
+                  <p className="font-lato text-[20px] font-normal text-royal-blue py-[1.2px]">Vision</p>
+                  <p className="font-lato text-[15px] font-normal text-ebony-clay text-center leading-[24px] pb-[1.5px] px-[1.8px]">
+                    To be the most sought after Real Estate Broker in Sri Lanka
+                  </p>
+                </span>
+              </div>
+
+              <div className="gradient-border-card w-full" style={{borderRadius: '48px'}}>
+                <span className="gradient-border-card-inner block text-center" style={{borderRadius: '48px'}}>
+                  <p className="font-lato text-[20px] font-normal text-royal-blue py-[1.2px]">Mission</p>
+                  <p className="font-lato text-[15px] font-normal text-ebony-clay text-center leading-[24px] pb-[1.5px] px-[1.8px]">
+                    To set the benchmark for Sri Lankan Real Estate Broking by redefining the way the business is done.
+                  </p>
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-8 w-full">
+              <p className="font-lato text-[20px] font-normal text-royal-blue mb-4 pl-[20%] pt-[10.9%]">We Value,</p>
+              <div className="flex flex-col gap-5 w-[70%] mx-auto">
+                {values.map((v) => (
+                  <div key={v} className="gradient-border-card w-full" style={{borderRadius: '48px'}}>
+                    <span className="gradient-border-card-inner block text-center" style={{borderRadius: '48px'}}>
+                      <p className="font-lato text-[15px] font-normal text-ebony-clay text-center leading-[24px] py-[10px] px-[1.8px]">
+                        {v}
+                      </p>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ ISO CERTIFICATION ═══ */}
+        <section className="py-8 px-[6%] iso-section-bg">
+          <p className="font-lato text-[18px] tracking-[0.42em] text-royal-blue uppercase mb-3">WE LOVE TO FOLLOW<br />SYSTEMS</p>
+          <h2 className="font-lato text-[28.5px] font-bold leading-[1.62] mb-4 text-alto">
+            To ensure our framework of policies and processes are at internationally recognized standards.
+          </h2>
+          <p className="font-lato text-[18px] font-light leading-[28.8px] text-alto/80 text-justify mb-6">
+            In 2016, we adopted an internationally recognized quality management system and was awarded the ISO 9001:2008 standard. In 2019, we acquired the revised ISO 9001:2015 certificate from Bureau Veritas Certification Holding SAS-UK Branch, Accredited by UKAS Management Systems.
+          </p>
+          <div className="flex justify-center">
+            <img src={isoCertSrc} alt="ISO 9001:2015 Certificate" className="w-full rounded-lg shadow-xl" loading="lazy" />
+          </div>
+        </section>
+
+        {/* ═══ COMPANY OVERVIEW ═══ */}
+        <section className="pt-10 pb-8 px-[6%]">
+          <p className="font-lato text-[18px] text-royal-blue tracking-[0.95em] uppercase text-center">COMPANY<br />OVERVIEW</p>
+
+          <div className="company-overview-card mt-6 px-[6%] py-8">
+            <div className="flex justify-center mb-4">
+              <img src={safetynetLogo} alt="Safetynet" className="h-[60px]" loading="lazy" />
+            </div>
+            <p className="font-lato text-[19px] font-normal text-ebony-clay text-center mb-1">Safetynet (Private) Limited</p>
+            <p className="font-lato text-[17px] font-light text-ebony-clay text-center mb-5">Company Registration No: PV 1525</p>
+            <p className="font-lato text-[17px] font-light leading-[24px] text-ebony-clay text-center mb-8">
+              Safetynet (Private) Limited has been in business since its inception on the 19th June 2006 and the company is duly registered under the companies Act No. 7 of 2007 as a private company with limited liability with one director at present.
+            </p>
+
+            <div className="text-center mb-6">
+              <p className="font-lato text-[19px] text-royal-blue mb-1">Registered Office</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">199/58<br />Rajagiriya Road, Rajagiriya<br />Sri Lanka</p>
+            </div>
+            <div className="text-center mb-6">
+              <p className="font-lato text-[19px] text-royal-blue mb-1">Company Secretary</p>
+              <p className="font-lato text-[17px] font-normal text-ebony-clay">M C A Advisory Services (Pvt) Ltd</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">17/1, Charles Way, Colombo 03</p>
+            </div>
+            <div className="text-center mb-6">
+              <p className="font-lato text-[19px] text-royal-blue mb-1">Auditor</p>
+              <p className="font-lato text-[17px] font-normal text-ebony-clay">Thilak Jayathilaka & Co.</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Chartered Accountants<br />17/1, Charles Way, Colombo 03</p>
+            </div>
+            <div className="text-center">
+              <p className="font-lato text-[19px] text-royal-blue mb-1">Banker</p>
+              <p className="font-lato text-[17px] font-normal text-ebony-clay">Hatton National Bank PLC.</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Green Path Branch<br />38, Ananda Coomaradwamy Mawatha<br />Colombo 03</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ OUR TEAM ═══ */}
+        <section className="pt-8 pb-8 px-[6%]">
+          <p className="font-lato text-[18px] text-royal-blue tracking-[0.95em] uppercase text-center">OUR TEAM</p>
+
+          <h2 className="font-lato text-[20px] font-bold text-ebony-clay leading-[26px] mt-6 text-center">
+            We are an ever growing group of individuals in terms of number, proficiency and experiences.
+          </h2>
+          <p className="font-lato text-[14px] font-light text-ebony-clay leading-[24px] mt-4 text-center">
+            Through our collective efforts including sharing knowledge about diverse projects, we have made our journey far more than a success story.
+          </p>
+
+          {/* Stats */}
+          <div className="flex justify-center gap-12 mt-6">
+            <div className="text-center">
+              <span className="font-khand text-[40px] font-bold leading-none text-crimson block">{data.teamPositions}</span>
+              <p className="font-lato text-[18px] font-bold text-royal-blue leading-[18px] mt-1">Positions<br />and growing</p>
+            </div>
+            <div className="text-center">
+              <span className="font-khand text-[40px] font-bold leading-none text-crimson block">{data.serviceProviderCount}</span>
+              <p className="font-lato text-[18px] font-bold text-royal-blue leading-[18px] mt-1">Service<br />Providers</p>
+            </div>
+          </div>
+
+          {/* Team member carousel */}
+          {teamMembers.length > 0 && mobileCurrentMember && (
+            <div className="mt-8">
+              <div className="bg-concrete rounded-[20px] p-6 text-center">
+                <div className="flex items-center gap-8 mb-3">
+                  <img
+                    src={getImageUrl(mobileCurrentMember.image)}
+                    alt={mobileCurrentMember.name}
+                    className="w-[88px] h-[88px] rounded-full object-cover border-2 border-crimson-bg shrink-0"
+                  />
+                  <div className="text-left">
+                    <h4 className="font-lato text-[19px] font-bold text-crimson">{mobileCurrentMember.name}</h4>
+                    <p className="font-lato text-[15.5px] text-tundora mt-1">{mobileCurrentMember.position}</p>
+                  </div>
+                </div>
+                <p className="font-lato text-[15.5px] font-light text-crimson leading-[24px] mt-3 italic">"{mobileCurrentMember.quote}"</p>
+                <p className="font-lato text-[15.5px] font-light text-tundora leading-[24px] mt-3 text-center">
+                  {mobileCurrentMember.description}
+                </p>
+                {mobileCurrentMember.description2 && (
+                  <p className="font-lato text-[15.5px] font-light text-tundora leading-[24px] mt-2 text-center">
+                    {mobileCurrentMember.description2}
+                  </p>
+                )}
+              </div>
+
+              {/* Prev / Next arrows */}
+              <div className="flex justify-center gap-4 mt-5">
+                <button
+                  onClick={() => setMobileTeamIndex((mobileTeamIndex - 1 + teamMembers.length) % teamMembers.length)}
+                  className="w-[48px] h-[48px] rounded-[12px] border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M2 7L6.5 2.5M2 7L6.5 11.5" stroke="#333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+                <button
+                  onClick={() => setMobileTeamIndex((mobileTeamIndex + 1) % teamMembers.length)}
+                  className="w-[48px] h-[48px] rounded-[12px] border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="#333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* ═══ SERVICE PROVIDERS ═══ */}
+        <section className="bg-white pb-8 px-[6%]">
+          <h3 className="font-lato text-[18px] font-bold text-royal-blue text-center pb-6">Our Service Providers</h3>
+          <div className="grid grid-cols-2 gap-4 mx-auto w-[80%]">
+            {data.serviceProviders.map((sp, idx) => {
+              const logoSrc = sp.logo ? getImageUrl(sp.logo) : ''
+              const imgSrc = idx === 3 ? hitmediaLogo : logoSrc
+              return (
+                <div key={sp.id || sp.name} className="flex items-center justify-center h-[96px]">
+                  {imgSrc ? (
+                    <img src={imgSrc} alt={sp.name} className="max-h-[84px] max-w-[144px] object-contain" loading="lazy" />
+                  ) : (
+                    <span className="font-lato text-[12px] font-bold text-ebony-clay text-center">{sp.name}</span>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      </div>
+    )
+  }
 
   return (
     <div className="about-bg-lines overflow-x-hidden w-[100vw]">
@@ -109,7 +345,7 @@ export default function About() {
       <section id="about-mission" className="pt-[10vh] pb-[5%] px-[8%] lg:w-[90%]">
         <div className="flex flex-col items-center">
           {/* Vision & Mission — same width, sized to Mission content */}
-          <div className="flex flex-col w-fit">
+          <div className="flex flex-col w-fit gap-6">
             <div className="gradient-border-card w-full">
               <span className="gradient-border-card-inner block text-center">
                 <p className="font-lato text-[22px] lg:text-[26px] font-normal text-royal-blue py-[2.4vh] px-[10%]">

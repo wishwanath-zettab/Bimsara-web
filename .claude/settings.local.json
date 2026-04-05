@@ -13,7 +13,8 @@
       "Bash(wc -l /d/Work/ZettaB/Bimsara/bimsara-web/src/pages/*.jsx)",
       "mcp__Figma__get_metadata",
       "Bash(npx vite:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(wc:*)"
     ]
   }
 }

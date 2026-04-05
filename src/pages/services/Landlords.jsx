@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
+import { useIsMobile } from '../../hooks/useIsMobile'
+import MobileServiceLayout from '../../components/MobileServiceLayout'
 import arrowRight from '../../assets/images/arrow-right.png'
 import logo from '../../assets/images/logo.png'
 import landlordsHeroMini from '../../assets/images/landlords-hero-mini.webp'
@@ -220,11 +222,57 @@ const guideSteps = [
 
 export default function Landlords() {
   const { data } = useSiteData()
+  const isMobile = useIsMobile()
   const [expandedService, setExpandedService] = useState(0)
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
 
   const rentalsContact = data.contacts.find((c) => c.category === 'RENTALS') || {}
+
+  if (isMobile) {
+    return (
+      <MobileServiceLayout
+        heroTitle="Renting out your property"
+        servicesList={servicesList}
+        renderAfterServices={() => (
+          <div className="mt-6 w-[72%] mx-auto">
+            <h2 className="font-lato text-[24px] font-normal text-white mb-5 leading-snug text-center">
+              Experience Counts. Your Property is in Safe Hands.
+            </h2>
+            <p className="font-lato text-[15px] font-semibold text-white/70 leading-[1.8] text-center mb-10">
+              Knowing what you should do and what you should not do as a landlord is sometimes very difficult. Negotiating the right deal is not limited to agreement on the rent, security deposit or advance payment. Obtaining consent of the potential tenant to go with your terms and conditions too a part of negotiation. We can advise you on the terms and conditions you may want to include to the agreement of lease as a landlord or to answer any questions that you have.
+            </p>
+          </div>
+        )}
+        guideTitle="Renting out your property"
+        guideName="Landlord's Guide"
+        guideSteps={guideSteps}
+        defaultContentTitle="Property Landlords"
+        breadcrumbLabel="For Landlords"
+        defaultContentBody={[
+          { italic: 'Dear Property Owner' },
+          'Renting out your property is a significant financial decision, and finding the right tenant is one of the most important steps in protecting that investment.',
+          'Our rentals division brings a structured and professional approach to the entire rental process — from pricing and marketing your property to screening tenants and drafting airtight lease agreements.',
+          'We understand that as a landlord, your primary concerns are a reliable tenant, consistent rental income and a property returned in good condition. Every step of our process is designed with these priorities in mind.',
+          'Our tenant screening process is thorough. We verify identity, employment, income stability and rental history — significantly reducing the risk of defaulting or problematic tenancies.',
+          'We handle all the paperwork — from the lease agreement to the inventory checklist — so that both you and your tenant have complete clarity on obligations and expectations from day one.',
+          'Our rentals team is reachable at any stage of the process, and we continue to provide guidance even after the tenancy begins — whether it\'s a renewal, a dispute or an end-of-tenancy matter.',
+        ]}
+        renderAfterDefaultContent={() => rentalsContact.email ? (
+          <div className="mt-6 p-5 border border-crimson/30 rounded-[12px]">
+            <h4 className="font-lato text-[15px] font-bold text-ebony-clay mb-2">Rentals Division</h4>
+            <p className="font-lato text-[13px] text-scorpion mb-2">Get in touch with our dedicated rentals team directly:</p>
+            <a href={`mailto:${rentalsContact.email}`} className="block font-lato text-[14px] text-royal-blue hover:text-crimson transition-colors mb-1">
+              {rentalsContact.email}
+            </a>
+            <a href={`tel:${rentalsContact.phone?.replace(/\s/g, '')}`} className="block font-lato text-[14px] text-ebony-clay hover:text-crimson transition-colors">
+              {rentalsContact.phone}
+            </a>
+          </div>
+        ) : null}
+      />
+    )
+  }
 
   return (
     <div>

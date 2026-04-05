@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
+import { useIsMobile } from '../../hooks/useIsMobile'
+import MobileServiceLayout from '../../components/MobileServiceLayout'
 import arrowRight from '../../assets/images/arrow-right.png'
 import logo from '../../assets/images/logo.png'
 import buyersHeroMini from '../../assets/images/buyers-hero-mini.webp'
@@ -240,9 +242,36 @@ const guideSteps = [
 
 export default function Buyers() {
   const { data } = useSiteData()
+  const isMobile = useIsMobile()
   const [expandedService, setExpandedService] = useState(0)
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+
+  if (isMobile) {
+    return (
+      <MobileServiceLayout
+        heroTitle="Buying a property"
+        heading="Our Secret of Finding You the Property of Your Dreams"
+        description="Finding you a great property, in a good community, with the best possible terms and at the best possible price, is what we do. We probably maintain the most comprehensive database of properties up for sale in the geographical areas of our operation. Our logically structured buying program will ensure that your new residence is exactly what you are looking for."
+        servicesList={servicesList}
+        guideTitle="Buying your property"
+        guideName="Buyer's Guide"
+        guideSteps={guideSteps}
+        defaultContentTitle="Property Buyers"
+        breadcrumbLabel="For Buyers"
+        defaultContentBody={[
+          { italic: 'Dear Home Buyer' },
+          'Finding the right property can be one of the most significant decisions of your life. We understand that, and our role is to make that journey as informed, stress-free and rewarding as possible.',
+          'We begin by truly understanding what you are looking for — not just the number of bedrooms, but your lifestyle, your commute, your future plans. This deep understanding allows us to shortlist properties that are genuinely right for you, rather than simply what\'s available.',
+          'With our extensive network and access to both listed and off-market properties, we can often present opportunities that buyers searching independently would never find.',
+          'Our team performs thorough due diligence on every property you consider — verifying title deeds, checking for encumbrances, reviewing survey plans and identifying any legal or structural concerns before you commit.',
+          'When you\'re ready to proceed, we represent your interests in negotiations with complete professionalism. Our market knowledge ensures you pay a fair price, and our experience means we know how to structure an offer that gets results.',
+          'From the moment of agreement through to the final transfer, our Transaction Coordinator manages the entire process — so you can focus on planning your future in your new home.',
+          { bold: 'Our Fees', text: `${data.commissionRate} commission on the actual transaction value, payable by the seller. Buyers typically pay no direct fee to us. No advance payments or hidden costs.` },
+        ]}
+      />
+    )
+  }
 
   return (
     <div>

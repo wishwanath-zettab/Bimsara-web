@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
+import { useIsMobile } from '../../hooks/useIsMobile'
+import MobileServiceLayout from '../../components/MobileServiceLayout'
 import sellersHeroFull from '../../assets/images/sellers-hero-full.webp'
 import roundedArrow from '../../assets/images/rounded-arrow.png'
 import isoLogo from '../../assets/images/iso-logo.png'
@@ -194,9 +196,44 @@ const guideSteps = [
 
 export default function Sellers() {
   const { data } = useSiteData()
+  const isMobile = useIsMobile()
   const [expandedService, setExpandedService] = useState(0)
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+
+  if (isMobile) {
+    return (
+      <MobileServiceLayout
+        heroTitle="Selling your property"
+        servicesList={servicesList}
+        guideTitle="Selling your property"
+        guideName="Seller's Guide"
+        guideSteps={guideSteps}
+        defaultContentTitle="Property Sellers"
+        breadcrumbLabel="For Sellers"
+        renderAfterServices={() => (
+          <div className="mt-6 px-1 w-[80%] mx-auto">
+            <ul className="space-y-3">
+              {servicesList[0].items.map((item) => (
+                <li key={item} className="font-lato text-[16px] font-semibold text-white/75 leading-[1.7] text-center">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        defaultContentBody={[
+          { italic: 'Dear Home Seller' },
+          'We are glad to meet you at your home and answer whatever questions you may have concerning your sale. One of the biggest concerns you may have would be "What price?" We can conduct an obligation free appraisal of your home to determine the right asking price and the probable selling price.',
+          'Selling your house through us can entail a variety of marketing strategies. Much of our work will be quiet and unseen – yet significant. We will help distinguish your house in your local marketplace and attract buyers to your house. In addition, we will promote your house one to one basis to a large number of potential buyers who depend on us to find the right place for them. At a given moment, a considerable number of such buyers are working with us to find their dream home. We possess correct mechanisms to identify the genuine buyers of different budget categories in the market place.',
+          'This process involves working with contacts, matching your house specifications with the buyer\'s requirements (screening & qualifying), making appointments & showing your house to prospective buyers, the follow-ups, price negotiations and other outreach efforts - all are part of the process required to sell.',
+          'Not limiting our job to just in putting the two parties together, our services cover some important elements that would take care of your modern day\'s interests including attending to your documentation requirements when that matters. Our experts will professionally guide you through the entire process.',
+          'Our commitment is to sell at the best price possible in the shortest amount of time.',
+          { bold: 'Our Fees', text: `${data.commissionRate} commission on the actual transaction value. No advance payments or other hidden costs.` },
+        ]}
+      />
+    )
+  }
 
   return (
     <div>

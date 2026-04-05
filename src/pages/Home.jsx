@@ -280,7 +280,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-[31px]">
           <Link to="/sellers" className="dark-service-card group cursor-pointer h-[50px] md:h-[100px] lg:h-[140px] w-full lg:w-[1000px]">
             <span className="font-lato text-[18px] lg:text-[31px] font-bold text-white flex-1 text-center">
-              Property Owners who want to cell
+              Property Owners who want to Sell
             </span>
             <img src={arrowRight2} alt="" className="w-[28px] h-[24px] lg:w-[58px] lg:h-[48px] group-hover:translate-x-1 transition-transform" loading="lazy" />
           </Link>
