@@ -1,0 +1,14 @@
+node_modules
+dist
+server/bimsara.db
+server/bimsara.db-shm
+server/bimsara.db-wal
+server/uploads/*
+!server/uploads/.gitkeep
+.env
+.env.*
+*.log
+.git
+.gitignore
+figma-home.png
+AMENDMENTS-TASKS.md

@@ -1,0 +1,612 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSiteData } from '../../context/SiteDataContext'
+import arrowRight from '../../assets/images/arrow-right.png'
+import logo from '../../assets/images/logo.png'
+import buyersHeroMini from '../../assets/images/buyers-hero-mini.webp'
+import buyersIcon from '../../assets/images/buyers-icon.webp'
+
+const servicesList = [
+  {
+    title: 'Property Selection',
+    overlayTitle: 'Property Selection',
+    overlayBody: 'We will evaluate properties in our database to determine which of them meets your requirements. We then present you the specific properties that passed the initial selection. Here, you will receive an informative presentation and pictures of the actual setting out of the property including the access roads, neighbourhood.',
+  },
+  {
+    title: 'Fact Finding',
+    overlayTitle: 'Fact Finding',
+    overlayBody: 'We learn everything we need to know about you, what you need and want in a property, the price range to work on and when you want to move.',
+  },
+  {
+    title: 'Fees',
+    overlayTitle: 'Fees',
+    overlayBody: 'Our fees of 3% of the final selling price will be paid by the seller.',
+  },
+  {
+    title: 'Negotiations & Closing',
+    overlayTitle: 'Negotiations & Closing',
+    overlayBody: 'In this important and often emotional process, we will meticulously handle and monitor each step leading up to closing. We assure that you get the best possible deal.',
+  },
+]
+
+const guideSteps = [
+  {
+    title: 'Define - Prioritize Your Needs',
+    content: [
+      { topic: 'Define - Prioritize Your Needs' },
+      'Buying a home is a wise decision because property is one of the best and most secure investments available. Rarely, if ever, does real estate decrease in value. Buying a home may have significant tax advantages over home renting. Home equity is another consideration. The equity you build as your home appreciates in value will allow you to borrow for expenses like a new car or for business financing. Your home\'s equity is also the ideal down payment on the purchase of a second real estate property. Property is the most widely accepted collateral when it comes to lending.',
+      { bold: 'Emotional Advantages', text: 'Buying a home has several emotional advantages. The independence of ownership means that you\'ll no longer have to worry about rent increases and the demands of a landlord. Another advantage is a homeowner\'s power to personalize! When you own your own home, you can paint and decorate as much as you want and any way you like. It\'s your place!' },
+      { bold: 'Defining Your Housing Needs', text: 'What should your dream house look like? What are the features you must have at any cost? The bottom line is this: your housing needs will be unique. The house that you would eventually choose should depend on a host of factors – the size of your family, commuting time to work/ schools, availability of and access to infrastructural facilities such as, parks, shopping centres and hospitals etc.' },
+      'What people seek from homes often gets tempered with age, specifically the number of working year\'s left and budgetary constraints. This especially happens when other life goals such as children\'s education or retirement compete for limited financial resources. Family size and composition also play a significant role in determining the type of house an individual would like to live in. Another important criterion is security; 30 years ago this was a non-issue but today it is a non-negotiable.',
+      'Furthermore, with the emergence of the nuclear family, the emphasis seems to have shifted from the quantity to the quality of hassle-free services. People are increasingly opting for apartments primarily because they provide comprehensive services and have in-house leisure facilities that cater to the needs of children, adults and senior citizens.',
+      { bold: 'Prioritizing Your Housing Needs', text: 'You will no doubt have a long wish list of attributes for your house. However, you will not find a house that meets all your requirements. Since this is probably the biggest investment of your life, it pays to devote some time to identifying your needs and prioritize them.' },
+      'You have to classify your requirements as follows: essential, desirable and bonus. This would help you understand the trade-offs between various options. For instance, one home option may mean that your child\'s school would be nearby and the office commute for your spouse would be very less. However, your commuting time to your workplace might go up substantially. Another home option might offer you a Jacuzzi, which may not be a priority for you, while another cheaper option might offer features that are essential. Prioritizing needs will help make decision-making easier.',
+      { topic: 'Housing Needs Change' },
+      'Ideas and priorities related to housing needs change with age and individual circumstances. While the above exercise will help you in understand your specific needs better, it is also important to think about how your needs might change over time. Do this as an exercise: ask yourself what a man\'s housing needs would be when he\'s in his 20\'s, the 30\'s, the 40\'s and in retirement. Now think of yourself 10 years, 20 years from now and the circumstances you may find yourself in. Factor such things into your decision.',
+    ],
+  },
+  {
+    title: 'Identify Costs - Determine Affordability',
+    content: [
+      { topic: 'Identify Costs - Determine Affordability' },
+      { bold: 'THE COST', text: 'After you have defined your housing needs, you need to calculate the cost of fulfilling these. This will give you your buying budget and help you evaluate various housing options.' },
+      'To develop a broad understanding of the cost related to acquiring a home, we need to understand the major costs: down payment, closing costs like legal/registration and stamp duty, equated monthly installments (EMI) for home loan repayments, renovation expenses, fire insurance, mortgage protection insurance, maintenance and operation expenses etc. While down payment, closing costs, renovation expenses and insurance primarily determine the affordability of the house, you need to be aware of maintenance and operation expenses and the loan repayment costs, since they would impact your future finances.',
+    ],
+  },
+  {
+    title: 'Negotiate the Right Loan',
+    content: [
+      { topic: 'Negotiate the Right Loan' },
+      { bold: 'GET APPROVAL BEFORE HOUSE HUNTING', text: 'Most banks are lazy to offer this service. Some bank officers still have the mindset that they are doing you a favour by giving a mortgage loan. However, we have seen, in the recent times, few banks have realized the importance of this service to their customers and process the credit approval prior to selection of a property. Pre-approval from a lender is based on your actual income, debt and credit history. Getting pre-approval on a mortgage will save you the hassle of looking at properties you can\'t afford. You\'ll also be in a better position to make a serious offer when you do find the right house. This will also greatly reduce the closing time making your offer attractive to the seller in a competitive market.' },
+      { bold: 'LOAN TENURE', text: 'Loan tenures usually range from 5-20 years and you need to choose yours depending on factors like number of working years left, repayment ability and cash flow needs. The longer your tenure, the greater your total interest costs. Of course, a longer tenure does help in reducing the equated monthly installments (EMIs). Experts advice borrowers to aim at fully repaying the loan before they stop working so that the retirement income is not dented by repayment obligations. Therefore, the lesser number of years you have to retire, the shorter should be your loan tenure.' },
+      'INTEREST RATE CALCULATIONS A very important factor that differentiates one home loan from the next is the different ways in which interest rates are calculated and charged, for example the distinction between variable (floating) and fixed interest rates. You have to be mindful of these subtleties.',
+      { topic: 'Choose Carefully Between a fixed or variable rate mortgage' },
+      'Fixed rate loans, as the name indicates, are those whose rates are fixed for the entire tenure of the loan. In the case of floating rate loans, the rate is benchmarked to a retail lending rate of the lending institution and moves in tandem with it. Thus, the total interest you pay out during the tenure is dependent on the way interest rates move during the term. The rate is reviewed periodically (usually every six months) and re-set in relation to prevailing market conditions. A combination of both these elements are also on offer. Meaning, part of the loan tenure is at fixed rate and the balance term is at variable rate.',
+      'You should opt for a fixed rate loan only if interest rates in the economy are either rising or have stabilized. They are also useful if the tenure is small, such as 5 years. Conversely, if interest rates are falling either because of economic downturn or governmental intervention, and are likely to stabilise at a lower level by the end of your tenure, then opt for a variable (floating) rate.',
+      'All home loan providers claim that their home loans are the best for you. But how do you find out what is best for you? Get the answers to the following question from the lending institutions during shopping around.',
+      '1. Will your entire gross income be considered? Will the income of the spouse, parents and other family members be considered?',
+      '2. What is the rate of interest of the loan?',
+      '3. What is the nature of interest rate (floating or fixed rate) and how is it computed?',
+      '4. Will the interest be charged in advance or after the end of the month?',
+      '5. What is the loan tenure?',
+      '6. Will the lender levy commitment charges?',
+      '7. What security or collateral will be sought?',
+      '8. What percentage of the forced sale value of the property is granted as the loan. (Please be mindful. Some banks will promise you 90% of the forced sale value and later come up with disappointing valuations as a method of controlling credit)',
+      '9. What are the processing charges and what is included in them?',
+      '10. Would there be separate charges for legal and technical examination of the property?',
+      '11. Would there be a penalty for partial or full pre-settlement of loan?',
+      '12. Will the loan amount include closing costs like stamp duties and legal fees?',
+    ],
+  },
+  {
+    title: 'Retain Your Real Estate Professional',
+    content: [
+      { topic: 'Retain Your Real Estate Professional' },
+      { topic: 'Do i need a real estate professional?' },
+      'Many potential home buyers may wonder if they really need the help of a REAL ESTATE PROFESSIONAL? At some level we all think we know best about anything we have to decide on. But as professionals of one kind or another we know that we know more about our subject than non-professionals. Professionals make things painless. They help you navigate complex processes without hassle. A committed REAL ESTATE PROFESSIONAL will make purchasing a house simple and painless.',
+      { topic: 'Buyer Representation' },
+      'The buyer\'s Real Estate Professional works for the buyer and is morally obligated to look after buyer\'s best interests throughout the entire real estate transaction. This system has been first introduced in the USA and Canada in early 1990\'s. However, this is not practiced locally mainly due to real estate practices remain unregulated in Sri Lanka to date. In developed countries, the buyer\'s Real Estate Professional owes full fiduciary responsibilities, duties and loyalty to the real estate buyer.',
+      { topic: 'Who Pays The Broker?' },
+      'Sri Lanka\'s standard commission rate in real estate transactions is 3% of the sale value and this is normally paid by the seller. In order to establish the said relationship between the buyer and the Real Estate Professional, it is best for the buyer to agree to meet the commission involved in the transaction. If you disagree to meet the Real Estate Professionals\' commission, he could choose to show you only a limited number of properties listed with him by a fewer number of sellers. Your interests will naturally be overlooked in such a transaction.',
+      'When the buyer agrees to pay the commission, he can prevail upon the Real Estate Professional to make accessible all types of properties for sale including "No Brokers" and "For Sale by Owner" properties as well. The buyer must make it a point to disclose the nature of the commission understanding that exists with his Real Estate Professional to the seller since it is unethical for real estate intermediaries to earn commissions from both the buyer and the seller. This will avoid possible undue advantage possibly taken by some real estate intermediaries.',
+      'Your Real Estate Professional should be knowledgeable, experienced and be thoroughly conversant with:',
+      '1. Market conditions. 2. Procedures and documentation. 3. Financing and mortgage related matters. 4. What is negotiable in a contract and what is not. 5. Negotiating the best deal for you. 6. Preparing offer/counter-offers. 7. Facilitating home inspections. 8. An expert Real Estate Professional will also understand the complexities and importance of: i. Titles ii. Taxes iii. Surveys iv. Local authority and UDA regulations Insurance',
+      { topic: 'Here are some smart questions to ask:' },
+      'Before deciding on someone to represent your interests in the home buying process, here are some smart questions to ask:',
+      { bold: '1. How long have you been in the business?', text: 'Those in the business longer bring more practical experience to the table.' },
+      { bold: '2. How will you find a home that meets my needs?', text: 'Specifically, how will you find the listed properties for sale and match them with my requirements?' },
+      { bold: '3. How many sales have you completed during the last 6 months and will you provide those clients as references?', text: 'Ask if any of the references are related to them. Ask if you can call their references with additional questions.' },
+      { bold: '4. What separates you from your competition?', text: 'Key phrases to listen for: assertive, available by phone or e-mail, analytical, professional, reliable and endowed with good negotiating skills.' },
+      { bold: '5. How much do you charge?', text: 'It is important to know your obligations beforehand.' },
+      { bold: '6. What haven\'t I asked you that I need to know?', text: 'Pay close attention to how the real estate professional answers this question, because there is something you need to know always.' },
+      'Even though the internet and newspaper classifieds provide buyers with easy access to local home listings, buyers are better off using a professional real estate agent. With all the negotiations and house hunting involved, you\'ll need someone to coordinate the entire process. Look for an agent, who will have your best interests at heart and can help you with the negotiation process.',
+    ],
+  },
+  {
+    title: 'Spotting Your Dream Home',
+    content: [
+      { topic: 'Spotting Your Dream Home' },
+      { topic: 'Owning your own home is a universal and timeless dream' },
+      'You have now identified your needs and the budget, acquainted yourself with the home buying process and organized your financial resources.',
+      'You are now ready for the house-hunt. You can start your home search process by colleting information about housing options from various sources like internet, newspaper classifieds and your Real Estate Professional. Sooner or later you will come face to face with the following reality: over-the-phone descriptions given by an owner or broker is nothing more than sweet phrases to persuade you to visit.',
+      { bold: 'Do not get carried away.', text: '' },
+      'Get your checklist out and start asking questions. Be sure that the Real Estate Professional you work with has the knowledge and empathy to relate your requirements to a property. Keep in mind that the \'Dream Home\' that you discover can often be unaffordable. Don\'t give up. Stick to the basics. You will find the \'perfect fit\' in terms of your requirement(s) and budget.',
+      { bold: 'Criteria for buying', text: 'When looking for a home, you should seek out:' },
+      '1. A suitable location',
+      '2. A home that fits your needs',
+      '3. The best possible terms',
+      '4. The best possible price',
+      '5. All of the above in the most convenient way possible',
+    ],
+  },
+  {
+    title: 'Negotiate the Best Deal',
+    content: [
+      { topic: 'Negotiate the Best Deal' },
+      { topic: 'Do Your Homework Before Placing An Offer' },
+      'Your opening offer should be based on the sales trends of similar homes in the neighborhood. Consider sales of similar homes in the last three months before you proceed.',
+      'There are two logical systems or theories to base your offer. Either you could make a comparative offer based on the facts and information collected during your home buying process or you could simply make an offer based on your affordability. In the first instance your offer is scientific. In the second instance you expect luck to work for you to acquire a home that is of a far greater value than your offer. In either situation make your offer 5 -10% less than what you are really ready to pay for the property. Keep that margin to negotiate.',
+      'The most foolish but commonly adopted move by many buyers in the market today is to degrade and condemn the property and the surrounding you want to call home tomorrow but still make offers. Another foolish approach is to inquire as to what offers others have made. Do you really believe you can get the true picture from sellers? Every unwise move in the process will reduce your chances of buying what you really love to own. Be smarter than the next person. Be cautious. Be realistic.',
+      { bold: 'Consult Professionals', text: 'Almost all offers to buy are conditional on a satisfactory title clearance and resurvey. This ensures you are not buying someone else\'s problems. You should hire your own surveyor and notary with experience in the area where you are buying.' },
+      'Obtaining services of a structural/civil engineer and an architect too would be useful and indeed necessary if you wish to effect any structural/ architectural changes to the property under consideration. Their job will be to alert you to potential problems relating to the property. A little money spent in consulting professionals can save you substantially in the long run. If you wish to obtain professionals\' opinion on anything, it is best such consultation and inspections are arranged prior to offer and price negotiation.',
+      { topic: 'The Art of Counter-Offers and Negotiation' },
+      'Be prepared to compromise. "Win-win" doesn\'t mean both the buyer and the seller will get everything they want. It means both sides will win some and give some. Rather than approaching negotiations from an adversarial winner-take-all perspective, focus on your top priorities and don\'t let your emotions overrule your better judgment. A successful negotiation is one that leaves both you and the seller feeling satisfied with the outcome. This is a highly emotional time, so be sure to regularly "check your head". Ask yourself "How important is this particular detail to me? Am I willing to jeopardize the buy over this?"',
+      'Leave the talking to an expert and a seasoned negotiator. Your Real Estate Professional will help you every step of the way. Successful negotiating is more than a matter of luck or natural talent. It also encompasses the learned ability to use certain skills and techniques to bring about those coveted win-win results.',
+      'Happy negotiating and best of luck!',
+    ],
+  },
+  {
+    title: 'Obtain Title Clearance',
+    content: [
+      { topic: 'Obtain Title Clearance' },
+      'In the end it is up to you to safeguard your interests. When you keep this in mind during the home buying process you reduce the chances of stumbling while making one of your life\'s most important decisions.',
+      'Do not buy on trust. Just because the seller has been introduced by a family member or a common acquaintance doesn\'t mean that you should throw caution to the winds. Stick to the plan. Investigate the owner\'s title to the property.',
+      'Recommendation of Title for purchase is generally obtained through your attorney. It will be in your own interest to obtain this recommendation from your attorney in writing. Make sure that due diligence is observed by your legal professional in the title recommendation process.',
+      { bold: '1. Investigate seller\'s title to the property.', text: 'This could be done by examining the pedigree of the title to the property. Generally the title must be clear of encumbrances for the last 30 years preceding your transaction. The seller should provide copies of all plans and deeds and court rulings pertaining to the property for the last 30 years. Documents provided by the seller must tally with the title extracts obtained from the area land registry.' },
+      { bold: '2. Mortgage status.', text: 'If there is a current mortgage pending, the status of the mortgage will have to be called from the lender indicating the loan and capital outstanding as at date together with the closing costs. All previous mortgages must be duly cancelled and registered.' },
+      { bold: '3. Call for the latest local authority documents', text: 'such as Street /Building line Certificate, Ownership/Non-vesting Certificate, Assessment rate paid receipts.' },
+      { bold: '4. Ensure all approvals are in order;', text: 'Subdivision Approval, Building Plan and Permit, Certificate of Conformity.' },
+      { bold: '5. Ensure that the seller is in possession of all original documents.', text: 'This is essential since the title is generally approved based on the photocopies provided by the seller.' },
+    ],
+  },
+  {
+    title: 'Completing the Transaction',
+    content: [
+      { topic: 'Completing the Transaction' },
+      'You are now on the final stretch of your home buying process. At this stage, the final item on your buyer\'s agenda should be to complete all the legal formalities pertaining to the transaction.',
+      'Here is a closing checklist that will guide you trough the final steps:',
+      { bold: '1. Set up a closing date.', text: 'Consult the seller, the bank and your attorney (Notary Public)' },
+      { bold: '2. Ensure the draft deed of conveyance is approved', text: 'by the seller at least one day prior to the closing date.' },
+      { bold: '3. Obtain opinion of value for determination of Stamp Duty', text: '— Your final deed of conveyance must be submitted to the Inland Revenue Department of the relevant Provincial Council for determination of market value for the computation of Stamp Duty payable to the Provincial Council.' },
+      { bold: '4. Obtain loan termination cost /balance confirmation', text: '— If you are expected to settle a current mortgage at the point of sale.' },
+      { bold: '5. Set up the venue and the time.', text: 'Today, most transactions take place in banks. Most banks willingly facilitate these kinds of transactions by providing a special place, staff and cash counting machines etc. It is prudent to take this option especially if the full consideration or a part thereof is payable by cash. Banks provide the best and most secure environment for the purpose.' },
+      { bold: '6. Make prior arrangement with the bank', text: 'if a large amount of money is to be withdrawn. The bank will have your cash ready and disburse to you in private.' },
+      { bold: '7. The seller has the right to know the authenticity of the draft', text: 'by calling the issuing bank before placing his signature on the deed of conveyance if the consideration is fully or partly paid by a bank draft (Manager\'s cheque).' },
+      { bold: '8. The seller is expected to carry a large amount of cash with him/her', text: 'if the consideration is fully or partly paid in cash and the arrangements must be discussed and mutually agreed prior to the closing date.' },
+      { bold: '9. Witnesses Must be known to the Notary attesting the deed of transfer.', text: 'It is best if you could arrange two witnesses who can identify the seller as well as known to the notary.' },
+      { bold: '10. Keep cash ready', text: 'for the legal fees and stamp duty.' },
+      { bold: '11. Ensure that your lending institution is ready with the mortgage bond and the necessary bank drafts for loan disbursement.', text: '(if applicable)' },
+      { bold: '12. Obtain an acknowledgement from the seller', text: 'for the consideration paid.' },
+      { bold: '13. Obtain proof of identity', text: '(photocopy of NIC or Passport) from all signatories to the sale, including witnesses.' },
+      { bold: '14. Take over originals of all previous deeds and documents.', text: '' },
+      { bold: '15. Take over keys', text: 'and vacant possession of the home.' },
+    ],
+  },
+  {
+    title: 'Know Your Documents',
+    content: [
+      { topic: 'Know Your Documents' },
+      'Abstract of Title This constitutes a brief history of the transfers of a piece of land, including all claims that could be made against it.',
+      'An Abstract of Title is distinguished from an Opinion of Title. While the former states that all of the public record documents concerning the property in question are contained therein, the latter states the professional judgment of the person giving the opinion as to the vesting of the title and other matters concerning the status of the chain of title. Giving of an opinion of title is a practice of law, thus making it unprofessional for a non-attorney to do so.',
+      { topic: 'As-Built Drawings' },
+      'Drawings prepared after construction that describe the actual construction of a project.',
+      { topic: 'Assessment Notice' },
+      'Assessment Notice indicates the quarterly assessment rates payable to the local authority. Assessments rates are subject to revision periodically and charged for providing public amenities such as garbage disposal, maintenance of roads, drains and drainage, parks, reading rooms etc.',
+      { topic: 'Blocking-Out Plan' },
+      'A plan showing a subdivision with all dimensions, covenants, easements, etc. The subdivision survey plan, which legally must be prepared by a Licensed Surveyor, finalises the area and dimensions of the proposed lots. All subdivisions will have to be approved by the planning committee of the local authority in the area or the UDA. The applicant needs to send the subdivision survey plan to the planning division of the local authority/UDA together with the perfected application counter signed by the Surveyor. Upon payment of the specified fees by the applicant, a technical officer will make a site visit prior to forwarding the plan to the planning committee for approval.',
+      { topic: 'Building Plan & Building Permit' },
+      'This refers to the view of a building floor, looking down from above, showing its horizontal elements, such as, walls, doors, windows, cabinetry, etc., prepared by a qualified professional and submitted to the local authority for approval in three copies. Once approved, it is valid for one year and is renewable for two more years. In case the building remain incomplete after 3 years from the date of first approval, a fresh building plan needs to be approved following the same procedure. "The Building Permit" specifies the other terms and conditions to be adhered during construction.',
+      { topic: 'Certificate of Conformity (CoC)' },
+      'A certificate issued by the local authority confirming that the construction has been completed in conformity with the regulations in place and in accordance with the approved Building Plan and the Building Permit.',
+      { topic: 'Land Registry Extract' },
+      'Obtaining a Land Registry Extract has become a crucial part during the preparation process for the purchase of a real estate, since the land registry extract enjoys public faith. Due diligence requires that the buyer knows the status of the land registry. Not knowing it can also result in conflicts on the property. The extract must be stamped by the Land Registrar in order to be verified. You can apply for the Land Registry Extract of title of a property you are interested in by filling up an application and paying the specified fee. Usually a land registry extract can be obtained within a week.',
+      { topic: 'Non-Vesting Certificate' },
+      'The certificate of confirmation issued by the local authority that all assessments rates have been paid up to date. This also confirms that no vesting order has been served on the property for default in assessment rates.',
+      { topic: 'Ownership Certificate' },
+      'A certificate of title is a local authority-issued document that identifies the owner or owners of personal or real property. A certificate of title provides documentary evidence of the right of ownership. It is important for a real property owner to get his/her ownership registered at the council after acquiring ownership of a property through a deed transfer. A specified form called the AT form (Abstract of Title) to be filed through a notary requesting to register the new ownership in the council books.',
+      { topic: 'Power of attorney' },
+      'A power of attorney is a document that allows you to appoint a person or organization to handle your affairs while you\'re unavailable or unable to do so. The person or organization you appoint is referred to as an "Attorney".',
+      'A General Power of Attorney is very broad and provides extensive powers to the person or organization you appoint as your "Attorney". These powers usually include: Handling banking transactions, Entering safety deposit boxes, Buying and selling property, Settling claims, Entering into contracts, Exercising stock rights, Managing real estate, Filing tax returns, Handling matters related to government benefits. You also have the option to grant additional powers: Maintaining and operating business interests, Employing professional assistance, Making gifts.',
+      'A general power of attorney usually allows your "Attorney" to handle all of your affairs during a period of time when you are unable to do so; for example, when you are traveling out of the country or when you are physically unable to handle your affairs.',
+      'A Special Power of Attorney restricts your "Attorney" to act on your behalf in a specific purpose only. Nowadays, most property buyers insist on a Special Power of Attorney specifying the schedule of the real property as described in the owner\'s deed, whenever the seller cannot be physically present at the transaction.',
+      'It is obligatory for the "Attorney" to provide an affidavit confirming that the Power of Attorney has not been revoked or cancelled and the principal/grantor is still living whenever the Power of Attorney is used.',
+      { topic: 'Sale and Purchase Agreement' },
+      'The Sale & Purchase Agreement is an instrument used mainly to accommodate three situations (a) To allow time for the purchaser to arrange finances (b) To allow time for the seller to handover vacant possession of the property. (c) To accommodate both aforesaid situations. There are covenants for both parties to fulfil in a Sale & Purchase Agreement. There are exit clauses for both parties and penalties in the event of default. Therefore, a Sale and Purchase agreement is not a simple document where one party expresses the willingness to buy and the other party expresses the willingness to sell within a set timeframe. It is an agreement of commitment where the purchaser places a price tag for his confidence to raise the finances to complete the purchase and seller undertakes to fulfil certain obligations and eventually to transfer the property in vacant possession. Either party falling short of their respective commitments have consequences. Generally, it is an accepted norm for the seller\'s notary to draft and execute the Sale and Purchase Agreement where both parties bear the cost equally.',
+      { topic: 'Street/Building Line Certificate' },
+      'This certificate confirms whether the property is affected by a proposed road widening or any other reservations. The local authority generally issues a photocopy of the survey plan indicating the approximate position of the Street Line marked in red in case the property is affected by a Street Line. The Building Line is generally measured from the center of the road depending on the width of the roads the property is bounded by. The main purpose of imposing a Building Line is to maintain a reasonable distance between buildings to ensure privacy and sanitation of occupants.',
+      { topic: 'Survey Plan' },
+      'This refers to a plan prepared by a Licensed Surveyor from field survey data and previous survey plan data according to standards and directions of the Surveyor-General. It is an assessment of property lines to determine the exact extent of land that a homeowner owns. Surveys show any easements or encroachments on a property that is noted on the title of the property. It\'s important to get a property surveyed after an offer is made to make sure any issues with easements or encroachments are documented on the title and resolved before closing. Make sure that the property you are buying has been approved by the local authority for its purpose of use such as residential, commercial or mixed development.',
+      { topic: 'Tax Receipt' },
+      'The proof of payment of quarterly assessment rates as indicated in the Assessment Notice.',
+      { topic: 'Title Deed' },
+      'Title deeds are documents showing ownership as well as rights, obligations or mortgages on the property. Compulsory registration is required in the Land Registry of the relevant area for all properties mortgaged or transferred. The details of rights, obligations, and covenants referred to in deeds will be transferred to the register, describing the property ownership.',
+      { topic: 'Title Report' },
+      'A written analysis of the status of title to real property, including a property description, names of titleholders and how title is held, encumbrances (mortgages, liens, deeds of trusts, recorded judgments). The history of the title is called an "abstract." Generally a title report is prepared by an attorney who has substantial experience in notarial practice or in a legal firm.',
+      { topic: 'Valuation' },
+      'Real estate appraisal, property valuation or land valuation is the practice of developing an opinion of the value of real property, usually its Market Value. The need for appraisals arises from the heterogeneous nature of property as an investment class: no two properties are identical, and all properties differ from each other in their location – which is one of the most important determinants of their value. The absence of a market-based pricing mechanism determines the need for an expert appraisal/valuation of real estate/property.',
+      'A real estate appraisal is generally performed by a licensed or certified appraiser (in many countries known as a Property Valuer or Land Valuer). If the appraiser\'s opinion is based on Market Value, then it must also be based on the Highest and Best Use of the real property. In mortgage valuations, lending institutions base their lending criteria on the Forced Sale Value. The appraisal is most often reported on a standardized format. Appraisals of more complex property (e.g. — income producing, raw land) are usually reported in a narrative appraisal report.',
+    ],
+  },
+  {
+    title: 'Stamp Duty',
+    content: [
+      { topic: 'Stamp Duty on Purchasing a Property' },
+      { bold: 'Stamp duty payable to the relevant Provincial Councils under Stamp Duty Act No.43 of 1982 – Extraordinary Gazette No.1439/3 dated 03.04.2006', text: '' },
+      { bold: '[A] Deed of Transfer', text: '(except Gift and Conveyance by Executor, Administrator or Trustee to a Beneficiary or by an Order of Court in matrimonial proceedings)' },
+      { table: [
+        ['(i)', 'where the value of the property is Rs.100,000/- or less For every Rs.100/- or part thereof of the value', '3.00'],
+        ['(ii)', 'where the value of the property exceeds Rs.100,000/-<br/>For every Rs.100/- of the value not exceeding Rs.100,000/-', '3.00'],
+        ['', '<strong>And</strong><br/>For every Rs.100/- or part thereof of the value exceeding Rs.100,000/-', '4.00'],
+      ]},
+      { bold: '[B] Deed of Gift', text: '' },
+      { bold: '[C] Deed of Exchange', text: '' },
+      'Stamp Duty payable to the Central Government under Stamp Duty (Special Provisions) Act No.12 of 2006 – Extraordinary Gazette No.1465/19 dated 05.10.2006',
+      { bold: '[D] Indenture of Lease', text: '' },
+      { bold: '[E] Mortgage Bond', text: '' },
+      'where the mortgage is any commercial or specialized bank licensed by the Monetary Board under Banking Act No.30 of 1988, any finance company registered under the Finance Company Act No.78 of 1988, any institution registered under the Co-operative Societies Law No.5 of 1972, any public corporation, any provident fund approved by the Commissioner General of Inland Revenue for the purposes of the Inland Revenue Act No.4 of 1963 or No.28 of 1979 or No.38 of 2000 or No.10 of 2006 or any other institution approved by the Minister in charge of the subject of Housing.',
+    ],
+  },
+]
+
+export default function Buyers() {
+  const { data } = useSiteData()
+  const [expandedService, setExpandedService] = useState(0)
+  const [activeStep, setActiveStep] = useState(null)
+  const [selectedService, setSelectedService] = useState(null)
+
+  return (
+    <div>
+      {/* ═══ HERO ═══ */}
+      <section className="relative min-h-screen text-white overflow-hidden" style={{backgroundColor: '#0A0F20'}}>
+
+        {/* Logo top left */}
+        <div className="absolute top-0 left-0 z-20 px-[5%] lg:px-[8%] pt-6 lg:pt-8">
+          <img src={logo} alt="Bimsara Real Estate" className="h-[27px] lg:h-[39px] [transform:scaleX(1.05)] origin-left lg:pl-[30px]" />
+        </div>
+
+        <div className="relative z-10 w-full px-[3.15%] lg:px-[5.08%] pt-[80px] lg:pt-[100px] pb-[60px]">
+          {/* Breadcrumb */}
+          <p className="font-lato text-[13px] text-nobel mb-8">
+            <Link to="/services" className="hover:text-white transition-colors">Our Services</Link>
+            <span className="mx-2 text-nobel/50">/</span>
+            <span className="text-white">For Buyers</span>
+          </p>
+
+          <div className="flex flex-col lg:flex-row lg:items-start w-full gap-10 lg:gap-16">
+          {/* Left column */}
+          <div className="lg:w-[38%] shrink-0">
+            <h1 className="font-lato text-[32px] lg:text-[48px] font-normal text-white mb-8 leading-tight">
+              Buying a property
+            </h1>
+            <p className="font-lato text-[18px] lg:text-[23px] tracking-[0.84em] text-royal-blue uppercase mb-10 lg:pl-[20px]">
+              OUR SERVICES
+            </p>
+            <h2 className="font-lato text-[26px] lg:text-[34px] font-normal text-white mb-6 leading-snug">
+              Our Secret of Finding You the Property of Your Dreams
+            </h2>
+            <p className="font-lato text-[22px] lg:text-[23px] font-semibold text-white/70 leading-[1.73] text-justify">
+              Finding you a great property, in a good community, with the best possible terms and at the best possible price, is what we do. We probably maintain the most comprehensive database of properties up for sale in the geographical areas of our operation. Our logically structured buying program will ensure that your new residence is exactly what you are looking for.
+            </p>
+          </div>
+
+          {/* Right column — 2-col card grid */}
+          <div className="hidden lg:block lg:flex-1">
+            <style>{`
+              @keyframes rainbow-flow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+              }
+              .buyers-card {
+                background: linear-gradient(to right, #2e2e3e, #1a1a2e, #2e2e3e);
+                border-radius: 24px;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+              }
+              .buyers-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 24px;
+                background: linear-gradient(120deg, #f4a4c0, #c9a4f4, #a4c4f4, #a4f4e0, #f4a4c0);
+                background-size: 300% 300%;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                animation: rainbow-flow 4s ease infinite;
+              }
+              .buyers-card:hover::before {
+                opacity: 1;
+              }
+              .buyers-card-inner {
+                position: relative;
+                z-index: 1;
+                padding: 28px 32px;
+              }
+
+              /* Flip card */
+              .flip-card {
+                perspective: 1200px;
+                cursor: pointer;
+                border-radius: 24px;
+              }
+              .flip-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                min-height: 464px;
+                transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+                transform-style: preserve-3d;
+              }
+              .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+              }
+              .flip-card-front,
+              .flip-card-back {
+                position: absolute;
+                inset: 0;
+                border-radius: 24px;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                padding: 28px 32px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+              }
+              .flip-card-front {
+                background: linear-gradient(to right, #2e2e3e, #1a1a2e, #2e2e3e);
+              }
+              .flip-card-back {
+                background: linear-gradient(120deg, #f4a4c0, #c9a4f4, #a4c4f4, #a4f4e0);
+                transform: rotateY(180deg);
+                justify-content: center;
+              }
+            `}</style>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Property Selection — flip card, spans 2 rows */}
+              <div className="flip-card row-span-2" onClick={() => setSelectedService(servicesList[0])}>
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <p className="font-lato text-[29px] lg:text-[34px] font-extrabold text-white leading-snug">
+                      {servicesList[0].title}
+                    </p>
+                  </div>
+                  <div className="flip-card-back">
+                    <p className="font-lato text-[19px] lg:text-[22px] font-semibold text-royal-blue mb-3 leading-snug">
+                      {servicesList[0].overlayTitle}
+                    </p>
+                    <p className="font-lato text-[16px] lg:text-[18px] font-semibold text-ebony-clay/80 leading-[1.8]">
+                      {servicesList[0].overlayBody}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* Fact Finding */}
+              <div className="flip-card" onClick={() => setSelectedService(servicesList[1])}>
+                <div className="flip-card-inner" style={{minHeight: '204px'}}>
+                  <div className="flip-card-front">
+                    <p className="font-lato text-[29px] lg:text-[34px] font-extrabold text-white leading-snug">
+                      {servicesList[1].title}
+                    </p>
+                  </div>
+                  <div className="flip-card-back">
+                    <p className="font-lato text-[19px] lg:text-[22px] font-semibold text-royal-blue mb-3 leading-snug">
+                      {servicesList[1].overlayTitle}
+                    </p>
+                    <p className="font-lato text-[16px] lg:text-[18px] font-semibold text-ebony-clay/80 leading-[1.8]">
+                      {servicesList[1].overlayBody}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* Hero image */}
+              <div className="rounded-[24px] overflow-hidden" style={{height: '176px'}}>
+                <img
+                  src={buyersHeroMini}
+                  alt="Buyers"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Fees */}
+              <div className="flip-card" onClick={() => setSelectedService(servicesList[2])}>
+                <div className="flip-card-inner" style={{minHeight: '204px'}}>
+                  <div className="flip-card-front">
+                    <p className="font-lato text-[29px] lg:text-[34px] font-extrabold text-white leading-snug">
+                      {servicesList[2].title}
+                    </p>
+                  </div>
+                  <div className="flip-card-back">
+                    <p className="font-lato text-[19px] lg:text-[22px] font-semibold text-royal-blue mb-3 leading-snug">
+                      {servicesList[2].overlayTitle}
+                    </p>
+                    <p className="font-lato text-[16px] lg:text-[18px] font-semibold text-ebony-clay/80 leading-[1.8]">
+                      {servicesList[2].overlayBody}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* Negotiations & Closing */}
+              <div className="flip-card" onClick={() => setSelectedService(servicesList[3])}>
+                <div className="flip-card-inner" style={{minHeight: '204px'}}>
+                  <div className="flip-card-front">
+                    <p className="font-lato text-[29px] lg:text-[34px] font-extrabold text-white leading-snug">
+                      {servicesList[3].title}
+                    </p>
+                  </div>
+                  <div className="flip-card-back">
+                    <p className="font-lato text-[19px] lg:text-[22px] font-semibold text-royal-blue mb-3 leading-snug">
+                      {servicesList[3].overlayTitle}
+                    </p>
+                    <p className="font-lato text-[16px] lg:text-[18px] font-semibold text-ebony-clay/80 leading-[1.8]">
+                      {servicesList[3].overlayBody}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        {/* Service card overlay - slides in from right */}
+        <div
+          className={`fixed top-0 right-0 h-full w-1/2 z-50 transition-transform duration-500 ease-out ${selectedService ? 'translate-x-0' : 'translate-x-full'}`}
+          style={{background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)'}}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setSelectedService(null)}
+            className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 transition-colors flex items-center justify-center text-white text-lg font-light"
+          >
+            ×
+          </button>
+
+          {/* Content */}
+          <div className="h-full overflow-y-auto px-10 pt-32 pb-16 max-w-[75%]">
+            {selectedService && (
+              <>
+                <p className="font-lato text-[24px] text-royal-blue font-semibold mb-5 tracking-wide leading-snug">
+                  {selectedService.overlayTitle}
+                </p>
+                <p className="font-lato text-[21px] text-ebony-clay mb-4 leading-[1.7]">
+                  {selectedService.overlayTagline}
+                </p>
+                <p className="font-lato text-[21px] text-ebony-clay/80 leading-[1.7]">
+                  {selectedService.overlayBody}
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Overlay backdrop */}
+        {selectedService && (
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setSelectedService(null)}
+          />
+        )}
+
+      </section>
+
+      {/* ═══ BUYER'S GUIDE ═══ */}
+      <section className="py-[5%] px-[2.55%] lg:px-[4.08%] bg-white bg-lines">
+
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+          {/* Guide sidebar */}
+          <div className="lg:w-[429px] shrink-0 flex flex-col gap-5">
+            {/* Top row - title */}
+            <h2 className="font-lato text-[30px] lg:text-[36px] font-normal text-crimson">Buying your property</h2>
+
+            {/* Bottom row - gray content area */}
+            <div className="bg-gray-100 rounded-[16px] p-5">
+
+            <h3 className="font-lato text-[22px] font-bold text-ebony-clay mb-3">Buyer's Guide</h3>
+            <div className="space-y-0">
+              {guideSteps.map((step, i) => (
+                <button
+                  key={step.title}
+                  onClick={() => setActiveStep(activeStep === i ? null : i)}
+                  className={`w-full text-left flex items-center gap-3 py-3 border-b transition-colors ${
+                    activeStep === i
+                      ? 'border border-gray-300 rounded-[8px] px-3 bg-white'
+                      : 'border-transparent border-b-gray-200 px-0'
+                  }`}
+                >
+                  {/* Thumbnail placeholder with rainbow gradient */}
+                  <div className="w-10 h-10 rounded-[6px] shrink-0 overflow-hidden" style={{
+                    background: 'linear-gradient(135deg, #f4a4c0 0%, #c9a4f4 33%, #a4c4f4 66%, #a4f4e0 100%)',
+                    opacity: 0.7
+                  }} />
+                  <span className={`font-lato text-[19px] lg:text-[20px] leading-tight ${
+                    activeStep === i ? 'text-gray-400' : 'text-ebony-clay'
+                  }`}>
+                    {step.title}
+                  </span>
+                </button>
+              ))}
+            </div>
+            </div> {/* end gray area */}
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2" style={{scrollbarWidth: 'thin'}}>
+            {activeStep === null ? (
+              /* Property Buyers default content */
+              <>
+                <h3 className="font-lato text-[26px] lg:text-[34px] font-normal text-ebony-clay mb-4">Property Buyers</h3>
+
+                <div className="space-y-4">
+                  {[
+                    { italic: 'Dear Home Buyer' },
+                    'Finding the right property can be one of the most significant decisions of your life. We understand that, and our role is to make that journey as informed, stress-free and rewarding as possible.',
+                    'We begin by truly understanding what you are looking for — not just the number of bedrooms, but your lifestyle, your commute, your future plans. This deep understanding allows us to shortlist properties that are genuinely right for you, rather than simply what\'s available.',
+                    'With our extensive network and access to both listed and off-market properties, we can often present opportunities that buyers searching independently would never find.',
+                    'Our team performs thorough due diligence on every property you consider — verifying title deeds, checking for encumbrances, reviewing survey plans and identifying any legal or structural concerns before you commit.',
+                    'When you\'re ready to proceed, we represent your interests in negotiations with complete professionalism. Our market knowledge ensures you pay a fair price, and our experience means we know how to structure an offer that gets results.',
+                    'From the moment of agreement through to the final transfer, our Transaction Coordinator manages the entire process — so you can focus on planning your future in your new home.',
+                    { bold: 'Our Fees', rate: true, buyerNote: true },
+                  ].map((item, i) => {
+                    if (typeof item === 'object' && item.italic) {
+                      return <p key={i} className="font-lato text-[14px] font-light text-scorpion italic">{item.italic}</p>
+                    }
+                    if (typeof item === 'object' && item.bold) {
+                      return (
+                        <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
+                          <span className="font-bold">{item.bold}</span>{' '}{item.rate ? `${data.commissionRate} commission on the actual transaction value, payable by the seller. Buyers typically pay no direct fee to us. No advance payments or hidden costs.` : item.text}
+                        </p>
+                      )
+                    }
+                    return <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">{item}</p>
+                  })}
+                </div>
+              </>
+            ) : (
+              /* Guide step content */
+              <>
+                <h3 className="font-lato text-[26px] lg:text-[34px] font-normal text-ebony-clay mb-1">
+                  {guideSteps[activeStep].title}
+                </h3>
+                <div className="space-y-4 mt-4">
+                  {guideSteps[activeStep].content?.map((item, i) => {
+                    if (typeof item === 'object' && item.topic) {
+                      return <h4 key={i} className="font-lato text-[17px] lg:text-[19px] font-bold text-ebony-clay mt-6 mb-1">{item.topic}</h4>
+                    }
+                    if (typeof item === 'object' && item.table) {
+                      return (
+                        <div key={i} className="overflow-x-auto my-3 px-[20%]">
+                          <table className="w-full border-collapse font-lato text-[14px] lg:text-[15px] text-ebony-clay">
+                            <tbody>
+                              {item.table.map((row, ri) => (
+                                <tr key={ri} className="border border-gray-300">
+                                  {row.map((cell, ci) => (
+                                    <td key={ci} className={`border border-gray-300 px-3 py-2 leading-[1.6] ${ci === row.length - 1 ? 'text-center font-semibold w-[80px]' : ''} ${ci === 0 ? 'w-[50px] text-center' : ''}`}
+                                      dangerouslySetInnerHTML={{__html: cell}} />
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )
+                    }
+                    return (
+                      <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
+                        {typeof item === 'object' && item.bold
+                          ? <><span className="font-bold">{item.bold}</span>{' '}{item.text}</>
+                          : item}
+                      </p>
+                    )
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 flex flex-col sm:flex-row gap-4 items-start">
+          <Link to="/#contact" className="pill-btn">
+            Contact Us
+            <img src={arrowRight} alt="" className="w-5 h-5" />
+          </Link>
+          <Link to="/services" className="font-lato text-[14px] text-scorpion hover:text-ebony-clay transition-colors self-center">
+            ← Back to All Services
+          </Link>
+        </div>
+      </section>
+    </div>
+  )
+}

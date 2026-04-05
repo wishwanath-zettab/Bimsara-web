@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(curl:*)",
+      "Bash(ls -la figma-*-full.png)",
+      "Bash(ls:*)",
+      "Bash(grep -oE '.{0,20}circle-container.{0,500}' live-bundle.js)",
+      "Bash(grep -oE '.{0,20}inner-circle.{0,800}' live-bundle.js)",
+      "mcp__mcp-registry__search_mcp_registry",
+      "mcp__Figma__get_screenshot",
+      "mcp__Figma__get_design_context",
+      "Bash(wc -l /d/Work/ZettaB/Bimsara/bimsara-web/src/pages/*.jsx)",
+      "mcp__Figma__get_metadata",
+      "Bash(npx vite:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
