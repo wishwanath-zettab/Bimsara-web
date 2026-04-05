@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/bimsara-web/' : '/',
+  base: mode === 'production' ? '/Bimsara-web/' : '/',
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
