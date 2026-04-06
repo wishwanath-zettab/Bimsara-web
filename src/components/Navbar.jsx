@@ -85,7 +85,7 @@ export default function Navbar() {
             Services
           </Link>
           <div className="nav-flyout">
-            <div className="p-[30px]">
+            <div className="p-[36px]">
               <FlyoutLink img={sellersIcon} head="Sellers" sub="Our Services" onClick={() => goTo('/sellers')} />
               <FlyoutLink img={buyersIcon} head="Buyers" sub="What we offer" onClick={() => goTo('/buyers')} />
               <FlyoutLink img={landlordsIcon} head="Landlords" sub="Our Services" onClick={() => goTo('/landlords')} />
@@ -106,7 +106,7 @@ export default function Navbar() {
             Testimonials
           </button>
           <div className="nav-flyout">
-            <div className="p-[30px]">
+            <div className="p-[36px]">
               <FlyoutLink head="Reviews" sub="Google Reviews" onClick={() => goTo('/', 'testimonials')} />
               <FlyoutLink head="Video Testimonials" sub="Watch client stories" onClick={() => goTo('/', 'testimonials')} />
             </div>
@@ -119,7 +119,7 @@ export default function Navbar() {
             About
           </Link>
           <div className="nav-flyout">
-            <div className="p-[30px]">
+            <div className="p-[36px]">
               <FlyoutLink head="About" sub="" onClick={() => goTo('/about')} />
               <FlyoutLink head="Who we are" sub="About us" onClick={() => goTo('/about', 'about-who')} />
               <FlyoutLink head="Our Direction" sub="Vision, Mission, Values" onClick={() => goTo('/about', 'about-mission')} />
@@ -135,8 +135,8 @@ export default function Navbar() {
           <button onClick={() => goTo('/', 'contact')} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text cursor-pointer bg-transparent border-none ${location.pathname === '/' && location.hash === '#contact' ? 'text-crimson' : 'text-ebony-clay'}`}>
             Contact
           </button>
-          <div className="nav-flyout">
-            <div className="p-[30px]">
+          <div className="nav-flyout nav-flyout-bottom">
+            <div className="p-[36px]">
               <FlyoutLink head="Contact Us" sub="Contact the divisions" onClick={() => goTo('/', 'contact')} />
               <FlyoutLink head="Our Location" sub="Meet at office" onClick={() => goTo('/', 'contact')} />
               <div className="nav-flyout-divider" />

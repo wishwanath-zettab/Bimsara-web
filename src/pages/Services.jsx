@@ -73,7 +73,7 @@ export default function Services() {
         <h1 className="font-lato text-[38px] lg:text-[64px] font-bold text-white leading-tight mb-5 max-w-3xl">
           Our Services are <br className="hidden lg:block" />tailored for you.
         </h1>
-        <p className="font-lato text-[16px] lg:text-[18px] font-light text-nobel leading-[30px] max-w-2xl mb-8">
+        <p className="font-lato text-[17.6px] lg:text-[19.8px] font-light text-nobel leading-[33px] max-w-2xl mb-8">
           Whether you're selling, buying, renting out or renting in — Bimsara
           Real Estate has a dedicated team and a proven process for every need.
         </p>
@@ -104,8 +104,8 @@ export default function Services() {
               {/* number accent */}
               <div className="absolute top-6 left-6">
                 <span
-                  className="font-khand text-[64px] lg:text-[80px] font-bold leading-none opacity-30"
-                  style={{ color: s.accent }}
+                  className="font-khand text-[77px] lg:text-[96px] font-medium leading-none opacity-45 tracking-[0.01em]"
+                  style={{ color: s.accent, textShadow: '0 0 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6)' }}
                 >
                   {s.num}
                 </span>
@@ -119,22 +119,22 @@ export default function Services() {
 
               {/* content */}
               <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-4 lg:mb-2 justify-end lg:justify-start">
                   <img src={s.icon} alt="" className="w-7 h-7" />
-                  <span className="font-lato text-[12px] font-light text-white/60 tracking-[0.1em] uppercase">
+                  <span className="max-w-[60%] lg:max-w-none font-lato text-[13px] lg:text-[14.4px] font-medium text-white/80 tracking-[0.11em] uppercase" style={{ textShadow: '0 0 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6)' }}>
                     {s.sub}
                   </span>
                 </div>
-                <h2 className="font-lato text-[28px] lg:text-[34px] font-bold text-white mb-3 leading-tight">
+                <h2 className="font-lato text-[30.2px] lg:text-[40.8px] font-bold text-white mb-3 leading-tight">
                   {s.title}
                 </h2>
-                <p className="font-lato text-[14px] font-light text-white/75 leading-[24px] mb-5 max-w-sm">
+                <p className="font-lato text-[15.1px] lg:text-[16.8px] font-medium text-white/75 leading-[20.7px] lg:leading-[28.8px] mb-5 max-w-sm tracking-[0.01em]" style={{ textShadow: '0 0 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6)' }}>
                   {s.description}
                 </p>
                 <div className="flex items-center gap-3">
                   <span
-                    className="font-lato text-[13px] tracking-[0.25em] uppercase font-medium"
-                    style={{ color: s.accent }}
+                    className="font-lato text-[14px] lg:text-[15.6px] tracking-[0.275em] uppercase font-medium"
+                    style={{ color: s.accent, textShadow: '0 0 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.6)' }}
                   >
                     Learn More
                   </span>
