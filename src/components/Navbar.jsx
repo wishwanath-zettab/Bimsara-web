@@ -5,6 +5,11 @@ import sellersIcon from '../assets/images/sellers-icon.webp'
 import buyersIcon from '../assets/images/buyers-icon.webp'
 import landlordsIcon from '../assets/images/landlords-icon.webp'
 import tenantsIcon from '../assets/images/tenants-icon.webp'
+import fbIcon from '../assets/images/fb-icon.png'
+import googleIcon from '../assets/images/google-icon.png'
+import linkedinIcon from '../assets/images/linkedin-icon.png'
+import youtubeIcon from '../assets/images/youtube-icon.png'
+import instagramIcon from '../assets/images/instagram-icon.png'
 
 function FlyoutLink({ img, head, sub, onClick }) {
   return (
@@ -86,12 +91,12 @@ export default function Navbar() {
           </Link>
           <div className="nav-flyout">
             <div className="p-[36px]">
-              <FlyoutLink img={sellersIcon} head="Sellers" sub="Our Services" onClick={() => goTo('/sellers')} />
-              <FlyoutLink img={buyersIcon} head="Buyers" sub="What we offer" onClick={() => goTo('/buyers')} />
-              <FlyoutLink img={landlordsIcon} head="Landlords" sub="Our Services" onClick={() => goTo('/landlords')} />
-              <FlyoutLink img={tenantsIcon} head="Tenants" sub="What we offer" onClick={() => goTo('/tenants')} />
+              <FlyoutLink img={sellersIcon} head="Sellers" sub="Our services for property sellers" onClick={() => goTo('/sellers')} />
+              <FlyoutLink img={buyersIcon} head="Buyers" sub="What we offer to property buyers" onClick={() => goTo('/buyers')} />
+              <FlyoutLink img={landlordsIcon} head="Landlords" sub="Our services for landlords" onClick={() => goTo('/landlords')} />
+              <FlyoutLink img={tenantsIcon} head="Tenants" sub="What we offer to tenants" onClick={() => goTo('/tenants')} />
               <div className="nav-flyout-divider" />
-              <div className="nav-flyout-section-title">Guides</div>
+              <div className="nav-flyout-section-title">Read the Guides</div>
               <div className="nav-flyout-sub-link" onClick={() => goTo('/sellers')}>Seller's Guide</div>
               <div className="nav-flyout-sub-link" onClick={() => goTo('/buyers')}>Buyer's Guide</div>
               <div className="nav-flyout-sub-link" onClick={() => goTo('/landlords')}>Landlord's Guide</div>
@@ -118,14 +123,18 @@ export default function Navbar() {
           <Link to="/about" className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text ${isActive('/about') ? 'text-crimson' : 'text-ebony-clay'}`}>
             About
           </Link>
-          <div className="nav-flyout">
+          <div className="nav-flyout nav-flyout-bottom">
             <div className="p-[36px]">
-              <FlyoutLink head="About" sub="" onClick={() => goTo('/about')} />
               <FlyoutLink head="Who we are" sub="About us" onClick={() => goTo('/about', 'about-who')} />
               <FlyoutLink head="Our Direction" sub="Vision, Mission, Values" onClick={() => goTo('/about', 'about-mission')} />
               <FlyoutLink head="ISO Certification" sub="We love to follow systems" onClick={() => goTo('/about', 'about-iso')} />
               <FlyoutLink head="Company Overview" sub="The registered company" onClick={() => goTo('/about', 'about-overview')} />
               <FlyoutLink head="Our Team" sub="Who's behind the brand" onClick={() => goTo('/about', 'about-team')} />
+              <div className="nav-flyout-divider" />
+              <div className="nav-flyout-section-title">Download</div>
+              <a href="/assets/company-profile.pdf" target="_blank" rel="noopener noreferrer" className="nav-flyout-sub-link nav-download-link">
+                Company Profile Book
+              </a>
             </div>
           </div>
         </div>
@@ -141,11 +150,26 @@ export default function Navbar() {
               <FlyoutLink head="Our Location" sub="Meet at office" onClick={() => goTo('/', 'contact')} />
               <div className="nav-flyout-divider" />
               <div className="nav-flyout-section-title">Social Links</div>
-              <div className="flex gap-3 mt-2">
-                <a href="#" className="nav-flyout-sub-link">Facebook</a>
-                <a href="#" className="nav-flyout-sub-link">LinkedIn</a>
-                <a href="#" className="nav-flyout-sub-link">Instagram</a>
-              </div>
+              <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
+                <img src={fbIcon} alt="Facebook" className="nav-flyout-social-icon" />
+                <span>@bimsararealestate</span>
+              </a>
+              <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
+                <img src={googleIcon} alt="Google" className="nav-flyout-social-icon" />
+                <span>Bimsara Real Estate</span>
+              </a>
+              <a href="https://www.linkedin.com/company/safetynet-private-limited" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
+                <img src={linkedinIcon} alt="LinkedIn" className="nav-flyout-social-icon" />
+                <span>Safetynet (Private) Limited</span>
+              </a>
+              <a href="https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
+                <img src={youtubeIcon} alt="YouTube" className="nav-flyout-social-icon" />
+                <span>Bimsara Real Estate</span>
+              </a>
+              <a href="https://www.instagram.com/bimsara.realestate/" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
+                <img src={instagramIcon} alt="Instagram" className="nav-flyout-social-icon" />
+                <span>Bimsara Real Estate</span>
+              </a>
             </div>
           </div>
         </div>

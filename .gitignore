@@ -24,6 +24,13 @@ server/uploads/*
 .env.*
 !.env.example
 
+# Claude Code
+.claude/
+
+# Design references (large binaries)
+figma-*.png
+figma-*.jpg
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

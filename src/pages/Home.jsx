@@ -11,6 +11,11 @@ import testimonialsCover from '../assets/images/testimonials-cover.png'
 import playBtn from '../assets/images/play-btn.png'
 import phoneIcon from '../assets/images/phone-icon.png'
 import whatsappIcon from '../assets/images/whatsapp-icon.png'
+import fbIcon from '../assets/images/fb-icon.png'
+import googleIcon from '../assets/images/google-icon.png'
+import linkedinIcon from '../assets/images/linkedin-icon.png'
+import instagramIcon from '../assets/images/instagram-icon.png'
+import youtubeIcon from '../assets/images/youtube-icon.png'
 import dropdownBgWeb from '../assets/images/dropdown-bg-web.webp'
 import dropdownBgTablet from '../assets/images/dropdown-bg-tablet.webp'
 
@@ -387,10 +392,10 @@ export default function Home() {
 
 
 
-        {/* Phone / WhatsApp icons */}
+        {/* Phone / WhatsApp */}
         <div className="flex justify-center gap-5 mb-4">
           <a href="tel:+94117778777"><img src={phoneIcon} alt="Call us" className="w-10 h-10" loading="lazy" /></a>
-          <a href="#"><img src={whatsappIcon} alt="Message us on WhatsApp" className="w-10 h-10" loading="lazy" /></a>
+          <a href="https://wa.me/94777800606" target="_blank" rel="noopener noreferrer"><img src={whatsappIcon} alt="WhatsApp" className="w-10 h-10" loading="lazy" /></a>
         </div>
         <p className="font-lato text-[18px] lg:text-[25px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase text-center mb-8 lg:mb-10">
           GET IN TOUCH
@@ -411,25 +416,28 @@ export default function Home() {
 
         {/* Form + Map row */}
         <div className="flex flex-col lg:flex-row gap-10 justify-center items-center pt-[30px]">
-          {/* Map */}
+          {/* OUR PRESENCE */}
           <div className="flex-1 max-w-[600px]">
-            {/* ═══════════════════════════════════════════
-          SECTION 6 — OUR PRESENCE
-      ═══════════════════════════════════════════ */}
-            <section className="pt-12 lg:pt-[80px] pb-[20px] pl-[15px] pr-5 md:pr-10 lg:pr-[96px]">
-              <p className="font-lato text-[20px] lg:text-[28px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase mb-4">OUR PRESENCE</p>
-              <h4 className="font-lato text-[15px] lg:text-[20px] font-bold text-ebony-clay mb-1">OFFICE</h4>
-              <p className="font-lato text-[14px] lg:text-[18px] text-ebony-clay leading-[30px] whitespace-pre-line">
-                {'199/58,\u00A0\u00A0\u00A0\u00A0Rajagiriya Road,\u00A0\u00A0\u00A0\u00A0Rajagiriya,\u00A0\u00A0\u00A0\u00A0Sri Lanka'}
-              </p>
-            </section>
+            <p className="font-lato text-[20px] lg:text-[28px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase mb-4">OUR PRESENCE</p>
             <iframe
               title="Bimsara Real Estate Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798!2d79.8994!3d6.9066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963f4fa0475%3A0x3b5f03045c09eb5b!2sBimsara%20Real%20Estate!5e0!3m2!1sen!2slk!4v1"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3960.7648129039626!2d79.8930121!3d6.918696!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25995119a0d4b%3A0xb8478b32080b33cb!2sBimsara%20Real%20Estate!5e0!3m2!1sen!2slk!4v1652678023249!5m2!1sen!2slk"
               className="w-full h-[300px] lg:h-[400px] rounded-[20px] border-0"
               allowFullScreen
               loading="lazy"
             />
+            <p className="font-lato text-[16px] lg:text-[20px] text-crimson tracking-[0.2em] uppercase mt-6 mb-2">OFFICE</p>
+            <p className="font-lato text-[14px] lg:text-[18px] text-ebony-clay leading-[32px]">
+              199/58,<br />Rajagiriya Road,<br />Rajagiriya.
+            </p>
+            <p className="font-lato text-[16px] lg:text-[20px] text-crimson tracking-[0.2em] uppercase mt-6 mb-4">WE ARE SOCIAL</p>
+            <div className="flex gap-4">
+              <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer"><img src={fbIcon} alt="Facebook" className="w-10 h-10" loading="lazy" /></a>
+              <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer"><img src={googleIcon} alt="Google" className="w-10 h-10" loading="lazy" /></a>
+              <a href="https://www.linkedin.com/company/safetynet-private-limited" target="_blank" rel="noopener noreferrer"><img src={linkedinIcon} alt="LinkedIn" className="w-10 h-10" loading="lazy" /></a>
+              <a href="https://www.instagram.com/bimsara.realestate/" target="_blank" rel="noopener noreferrer"><img src={instagramIcon} alt="Instagram" className="w-10 h-10" loading="lazy" /></a>
+              <a href="https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured" target="_blank" rel="noopener noreferrer"><img src={youtubeIcon} alt="YouTube" className="w-10 h-10" loading="lazy" /></a>
+            </div>
           </div>
 
           {/* Contact Form — border-radius 68px per Figma */}

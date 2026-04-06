@@ -16,5 +16,6 @@
     { "category": "RENTALS", "email": "rentals@bimsara.com", "phone": "+94 77 741 0444" }
   ],
 
+  "officeAddress": "",
   "commissionRate": "3%"
 }

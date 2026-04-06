@@ -15,10 +15,11 @@ ln -s "$DATA_DIR/uploads" /app/server/uploads
 # SQLite will follow the symlink and create the file at the volume path
 ln -sf "$DATA_DIR/bimsara.db" /app/server/bimsara.db
 
-# Run seed on first start (DB file does not yet exist in the volume)
-if [ ! -f "$DATA_DIR/bimsara.db" ]; then
-  echo "No database found — running seed..."
+# Run seed on first start (marker absent = seed never completed successfully)
+if [ ! -f "$DATA_DIR/.seeded" ]; then
+  echo "No seed marker found — running seed..."
   node server/seed.js
+  touch "$DATA_DIR/.seeded"
 fi
 
 echo "Starting server..."

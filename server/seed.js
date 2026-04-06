@@ -20,8 +20,8 @@ const defaults = JSON.parse(
 const settingsData = {
   teamPositions: String(defaults.teamPositions),
   serviceProviderCount: String(defaults.serviceProviderCount),
-  officeAddress: defaults.officeAddress,
-  commissionRate: defaults.commissionRate,
+  officeAddress: defaults.officeAddress || '',
+  commissionRate: defaults.commissionRate || '',
   isoCertificateImage: '', // empty = use default
 }
 

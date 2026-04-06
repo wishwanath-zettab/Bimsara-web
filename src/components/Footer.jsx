@@ -75,11 +75,11 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-  { icon: fbIcon, alt: 'Facebook', href: '#' },
-  { icon: googleIcon, alt: 'Google', href: '#' },
-  { icon: linkedinIcon, alt: 'LinkedIn', href: '#' },
-  { icon: instagramIcon, alt: 'Instagram', href: '#' },
-  { icon: youtubeIcon, alt: 'YouTube', href: '#' },
+  { icon: fbIcon, alt: 'Facebook', href: 'https://www.facebook.com/bimsararealestate/' },
+  { icon: googleIcon, alt: 'Google', href: 'https://g.page/r/CcszCwgyi0e4EAE' },
+  { icon: linkedinIcon, alt: 'LinkedIn', href: 'https://www.linkedin.com/company/safetynet-private-limited' },
+  { icon: instagramIcon, alt: 'Instagram', href: 'https://www.instagram.com/bimsara.realestate/' },
+  { icon: youtubeIcon, alt: 'YouTube', href: 'https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured' },
 ]
 
 export default function Footer() {
@@ -130,6 +130,8 @@ export default function Footer() {
               <a
                 key={s.alt}
                 href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-[34px] h-[34px] flex items-center justify-center hover:opacity-80 transition-opacity"
               >
                 <img src={s.icon} alt={s.alt} className="w-[24px] h-[24px] object-contain" />

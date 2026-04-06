@@ -259,8 +259,7 @@ a {
 .nav-flyout {
   position: absolute;
   right: calc(100% + 12px);
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   background: #f7faff;
   border-radius: 8px 0 0 8px;
   width: 360px;
@@ -335,6 +334,30 @@ a {
 }
 .nav-flyout-sub-link:hover {
   color: #e5322d;
+}
+.nav-download-link { display: block; text-decoration: none; color: #303548; }
+.nav-download-link:hover { color: #e5322d; }
+.nav-flyout-social-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  cursor: pointer;
+  color: #303548;
+  font-family: var(--font-lato);
+  font-size: 15.6px;
+  font-weight: 300;
+  text-decoration: none;
+}
+.nav-flyout-social-row:hover span {
+  color: #e5322d;
+}
+.nav-flyout-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 .nav-flyout-bottom {
   top: auto;
