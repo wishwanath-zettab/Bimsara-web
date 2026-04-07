@@ -74,13 +74,12 @@ const guideSteps = [
       { bold: 'Can I go it alone? What it is like selling your property yourself? (For sale by owner)', text: 'The fact is most people who try to sell their own home end up using a broker in the end anyway. Before anybody decides to fly solo through this complex, time consuming and financially perilous process, they should consider the following questions:' },
       { bold: 'Will you really "save" the real estate commission?', text: 'You only pay the commission to the real estate broker if they successfully sell your house at the price acceptable to you. During the marketing time, the Real Estate Professional absorbs the marketing costs. When buyers see a home for sale \'by the owner\', they know the seller is exposed, fighting without a shield and it is easy to reach a bargain.' },
       { bold: 'Are you familiar with the procedures and documentation?', text: 'Nearly every phase of selling your home from advertising to closing is complicated. One wrong move and an entire deal can fall through.' },
-      { bold: 'How many potential buyers will you reach?', text: 'Selling a home takes much more than publishing an advertisement in the Property website, paper or social media. How will you promote your home? Will you write your own ads? How will you use property websites/social media platforms? Private sellers typically have limited exposure to qualified buyers. In contrast, real estate professionals receive a continuous stream of inquiries from active market participants. This broader reach significantly improves the probability of connecting with the right buyer within a shorter timeframe.' },
+      { bold: 'How many potential buyers will you reach?', text: 'Selling a home takes much more than publishing advertisements in the Property website, paper or social media. How will you promote your home? Will you write your own ads? How will you use property websites/social media platforms? Private sellers typically have limited exposure to qualified buyers. In contrast, real estate professionals receive a continuous stream of inquiries from active market participants. This broader reach significantly improves the probability of connecting with the right buyer within a shorter timeframe.' },
       'The longer a home is on the market the lower the selling price is. Why? Because most buyers think that if the home has not sold after a while there must be something wrong with it.',
       { bold: 'Do you have the time?', text: 'Promoting a home is a full-time job, and you may already have one. Will you be able to take calls at any time? How about screening the callers to figure out if they\'re qualified to buy your home? Not everybody who calls is even suitable to walk through your home, but how can you tell? You have no way to screen the home buyers who call and want to see your home. You may be compromising the safety of your family. These are not things you can afford to be complacent about.' },
       { bold: 'Do you know the market well enough to get the most for your home?', text: 'Often the price is incorrectly set and the best deal is not obtained. It could be set too low and a great deal missed, or else too high, driving away potential buyers.' },
       { bold: 'What about your selling skills?', text: 'If the personalities of prospective buyers rub you the wrong way, can you still deal with them effectively? What about your own defensiveness when you hear negative comments about your home? It is best that you don\'t have to deal with such issues and the best way of keeping things at arm\'s length through a Real Estate Professional. Accepting an offer for your home is one thing, ensuring a safe and successful closing of a real estate transaction is quite another. Real estate transactions sometimes have problems to be resolved near the closing. This is the time that your experienced Real Estate Professional can be the most helpful. Remember that lawyers are not Real Estate Professionals and vice versa. Each has a specific job. Lawyers act only upon the client\'s instructions; they are not paid to negotiate a deal. This is the Real Estate Professional\'s job.' },
       { bold: 'Do you have the negotiation skills to keep a deal on track?', text: 'When an offer comes in, emotions can run high with so much money on the line. This is why direct seller-to-buyer deals often end in disaster. Good Real Estate Professionals keep it professional and are indispensable when it comes to bargaining with buyers. Most buyers find it extremely awkward to negotiate or even to talk directly with sellers and therefore walk away without making offers for "For Sale by Owner" properties. The Real Estate Professionals know how to overcome objections and negotiate a successful home sale transaction.' },
-      { bold: '"Some people try to sell houses without brokers – not a strategy I would recommend. But if you are feeling up to it, by all means, be my guest. If you want to be your own broker, then the best piece of advice I have is: Act like a broker. To do so will require a lot of guts, a lot of brains, and lot of patience." — Donald J. Trump — "Think Like a Billionaire" (New York Times Bestseller)', text: '' },
       'Choosing to sell a property without a broker means assuming the full role of one – a task that requires market insight, strategic thinking, resilience, and patience. Without these capabilities, many properties simply remain part of the majority that stay on the market rather than the minority that successfully transact.',
     ],
   },
@@ -252,7 +251,7 @@ export default function Sellers() {
   return (
     <div>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen text-white overflow-hidden" style={{backgroundColor: '#0A0F20'}}>
+      <section className="relative min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#0A0F20' }}>
 
         {/* Logo top left */}
         <div className="absolute top-0 left-0 z-20 px-[5%] lg:px-[8%] pt-6 lg:pt-8">
@@ -268,17 +267,17 @@ export default function Sellers() {
           </p>
 
           <div className="flex flex-col lg:flex-row lg:items-start w-full">
-          {/* Left column */}
-          <div className="lg:w-[50%]">
-            <h1 className="font-lato text-[32px] lg:text-[48px] font-normal text-white mb-8 leading-tight">
-              Selling your property
-            </h1>
-            <p className="font-lato text-[18px] lg:text-[23px] tracking-[0.84em] text-royal-blue uppercase mb-10 lg:pl-[20px]">
-              OUR SERVICES
-            </p>
+            {/* Left column */}
+            <div className="lg:w-[50%]">
+              <h1 className="font-lato text-[32px] lg:text-[48px] font-normal text-white mb-8 leading-tight">
+                Selling your property
+              </h1>
+              <p className="font-lato text-[18px] lg:text-[23px] tracking-[0.84em] text-royal-blue uppercase mb-10 lg:pl-[20px]">
+                OUR SERVICES
+              </p>
 
-            {/* Service cards */}
-            <style>{`
+              {/* Service cards */}
+              <style>{`
               @keyframes rainbow-flow {
                 0% { background-position: 0% 50%; }
                 50% { background-position: 100% 50%; }
@@ -312,42 +311,42 @@ export default function Sellers() {
                 z-index: 1;
               }
             `}</style>
-            <div ref={cardsRef} className="space-y-8 lg:w-[120%]">
-              {servicesList.map((s) => (
-                <div key={s.title} className="service-card" onClick={() => setSelectedService(s)}>
-                  <div className="service-card-inner w-full pl-[42px] pr-8 lg:pl-[55px] lg:pr-[42px] pt-[26px] lg:pt-9 pb-10 lg:pb-[52px]">
-                    <p className="font-lato text-[26px] lg:text-[32px] font-normal text-white mb-4">
-                      {s.title}
-                    </p>
-                    <div className="w-[58px] h-[58px] rounded-full border-2 border-white/70 flex items-center justify-center">
-                      <svg width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+              <div ref={cardsRef} className="space-y-8 lg:w-[120%]">
+                {servicesList.map((s) => (
+                  <div key={s.title} className="service-card" onClick={() => setSelectedService(s)}>
+                    <div className="service-card-inner w-full pl-[42px] pr-8 lg:pl-[55px] lg:pr-[42px] pt-[26px] lg:pt-9 pb-10 lg:pb-[52px]">
+                      <p className="font-lato text-[26px] lg:text-[32px] font-normal text-white mb-4">
+                        {s.title}
+                      </p>
+                      <div className="w-[58px] h-[58px] rounded-full border-2 border-white/70 flex items-center justify-center">
+                        <svg width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Right column */}
-          <div className="hidden lg:flex lg:flex-1 flex-col gap-12 pt-[160px] items-center">
-            {/* Hero mini image */}
-            <img
-              src={sellersHeroMini}
-              alt="Sellers"
-              className="w-[59.3%] rounded-[32px] object-cover overflow-hidden"
-              style={{height: '182px', objectPosition: 'center', objectFit: 'cover'}}
-            />
-            {/* Items list from first service */}
-            <ul className="space-y-4">
-              {servicesList[0].items.map((item) => (
-                <li key={item} className="font-lato text-[17px] lg:text-[18px] text-white/80 leading-[1.8]">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Right column */}
+            <div className="hidden lg:flex lg:flex-1 flex-col gap-12 pt-[160px] items-center">
+              {/* Hero mini image */}
+              <img
+                src={sellersHeroMini}
+                alt="Sellers"
+                className="w-[59.3%] rounded-[32px] object-cover overflow-hidden"
+                style={{ height: '182px', objectPosition: 'center', objectFit: 'cover' }}
+              />
+              {/* Items list from first service */}
+              <ul className="space-y-4">
+                {servicesList[0].items.map((item) => (
+                  <li key={item} className="font-lato text-[17px] lg:text-[18px] text-white/80 leading-[1.8]">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
           </div>
         </div>
@@ -356,7 +355,7 @@ export default function Sellers() {
         <div
           ref={overlayRef}
           className={`fixed top-0 right-0 h-full w-1/2 z-50 transition-transform duration-500 ease-out ${selectedService ? 'translate-x-0' : 'translate-x-full'}`}
-          style={{background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)'}}
+          style={{ background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)' }}
         >
           {/* Close button */}
           <button
@@ -399,51 +398,48 @@ export default function Sellers() {
             {/* Bottom row - gray content area */}
             <div className="bg-gray-100 rounded-[16px] p-5">
 
-            {/* Property Sellers clickable item */}
-            <button
-              onClick={() => setActiveStep(null)}
-              className={`w-full text-left flex items-center gap-3 mb-4 rounded-[8px] border transition-colors ${
-                activeStep === null
-                  ? 'border border-gray-300 bg-white'
-                  : 'border border-gray-200 hover:bg-concrete'
-              }`}
-            >
-              <img src={sellersIcon} alt="" className="w-8 h-8 shrink-0" onError={(e) => { e.target.style.display='none' }} />
-              <span className={`font-lato text-[19px] lg:text-[20px] leading-[3.9] ${activeStep === null ? 'text-gray-400' : 'text-ebony-clay'}`}>
-                Property Sellers
-              </span>
-            </button>
-
-            <h3 className="font-lato text-[22px] font-bold text-ebony-clay mb-3">Seller's Guide</h3>
-            <div className="space-y-0">
-              {guideSteps.map((step, i) => (
-                <button
-                  key={step.title}
-                  onClick={() => setActiveStep(activeStep === i ? null : i)}
-                  className={`w-full text-left flex items-center gap-3 py-3 border-b transition-colors ${
-                    activeStep === i
-                      ? 'border border-gray-300 rounded-[8px] px-3 bg-white'
-                      : 'border-transparent border-b-gray-200 px-0'
+              {/* Property Sellers clickable item */}
+              <button
+                onClick={() => setActiveStep(null)}
+                className={`w-full text-left flex items-center gap-3 mb-4 rounded-[8px] border transition-colors ${activeStep === null
+                    ? 'border border-gray-300 bg-white'
+                    : 'border border-gray-200 hover:bg-concrete'
                   }`}
-                >
-                  {/* Thumbnail placeholder with rainbow gradient */}
-                  <div className="w-10 h-10 rounded-[6px] shrink-0 overflow-hidden" style={{
-                    background: 'linear-gradient(135deg, #f4a4c0 0%, #c9a4f4 33%, #a4c4f4 66%, #a4f4e0 100%)',
-                    opacity: 0.7
-                  }} />
-                  <span className={`font-lato text-[19px] lg:text-[20px] leading-tight ${
-                    activeStep === i ? 'text-gray-400' : 'text-ebony-clay'
-                  }`}>
-                    {step.title}
-                  </span>
-                </button>
-              ))}
-            </div>
+              >
+                <img src={sellersIcon} alt="" className="w-8 h-8 shrink-0" onError={(e) => { e.target.style.display = 'none' }} />
+                <span className={`font-lato text-[19px] lg:text-[20px] leading-[3.9] ${activeStep === null ? 'text-gray-400' : 'text-ebony-clay'}`}>
+                  Property Sellers
+                </span>
+              </button>
+
+              <h3 className="font-lato text-[22px] font-bold text-ebony-clay mb-3">Seller's Guide</h3>
+              <div className="space-y-0">
+                {guideSteps.map((step, i) => (
+                  <button
+                    key={step.title}
+                    onClick={() => setActiveStep(activeStep === i ? null : i)}
+                    className={`w-full text-left flex items-center gap-3 py-3 border-b transition-colors ${activeStep === i
+                        ? 'border border-gray-300 rounded-[8px] px-3 bg-white'
+                        : 'border-transparent border-b-gray-200 px-0'
+                      }`}
+                  >
+                    {/* Thumbnail placeholder with rainbow gradient */}
+                    <div className="w-10 h-10 rounded-[6px] shrink-0 overflow-hidden" style={{
+                      background: 'linear-gradient(135deg, #f4a4c0 0%, #c9a4f4 33%, #a4c4f4 66%, #a4f4e0 100%)',
+                      opacity: 0.7
+                    }} />
+                    <span className={`font-lato text-[19px] lg:text-[20px] leading-tight ${activeStep === i ? 'text-gray-400' : 'text-ebony-clay'
+                      }`}>
+                      {step.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div> {/* end gray area */}
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2" style={{scrollbarWidth: 'thin'}}>
+          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2">
             {activeStep === null ? (
               /* Property Sellers default content */
               <>

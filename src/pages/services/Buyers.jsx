@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
 import { useIsMobile } from '../../hooks/useIsMobile'
@@ -246,6 +246,19 @@ export default function Buyers() {
   const [expandedService, setExpandedService] = useState(0)
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+  const cardsRef = useRef(null)
+  const overlayRef = useRef(null)
+
+  useEffect(() => {
+    if (!selectedService) return
+    const handler = (e) => {
+      if (!overlayRef.current?.contains(e.target) && !cardsRef.current?.contains(e.target)) {
+        setSelectedService(null)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [selectedService])
 
   if (isMobile) {
     return (
@@ -382,7 +395,7 @@ export default function Buyers() {
                 justify-content: center;
               }
             `}</style>
-            <div className="grid grid-cols-2 gap-4">
+            <div ref={cardsRef} className="grid grid-cols-2 gap-4">
               {/* Property Selection — flip card, spans 2 rows */}
               <div className="flip-card row-span-2" onClick={() => setSelectedService(servicesList[0])}>
                 <div className="flip-card-inner">
@@ -471,6 +484,7 @@ export default function Buyers() {
 
         {/* Service card overlay - slides in from right */}
         <div
+          ref={overlayRef}
           className={`fixed top-0 right-0 h-full w-1/2 z-50 transition-transform duration-500 ease-out ${selectedService ? 'translate-x-0' : 'translate-x-full'}`}
           style={{background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)'}}
         >
@@ -500,13 +514,6 @@ export default function Buyers() {
           </div>
         </div>
 
-        {/* Overlay backdrop */}
-        {selectedService && (
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setSelectedService(null)}
-          />
-        )}
 
       </section>
 
@@ -551,7 +558,7 @@ export default function Buyers() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2" style={{scrollbarWidth: 'thin'}}>
+          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2">
             {activeStep === null ? (
               /* Property Buyers default content */
               <>

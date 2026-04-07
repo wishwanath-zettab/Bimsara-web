@@ -321,7 +321,7 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center lg:justify-start">
-              <a href="#" className="pill-btn mb-8 lg:mb-10 inline-flex mt-[50px] text-[10px] lg:text-[22px] [padding:10px_20px] lg:[padding:20px_42px] gap-[14px] lg:gap-[22px] border border-crimson">
+              <a href="https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1" target="_blank" rel="noopener noreferrer" className="pill-btn mb-8 lg:mb-10 inline-flex mt-[50px] text-[10px] lg:text-[22px] [padding:10px_20px] lg:[padding:20px_42px] gap-[14px] lg:gap-[22px] border border-crimson">
                 VIEW ALL GOOGLE REVIEWS
                 <img src={arrowRight} alt="" className="w-[18px] h-[18px] lg:w-[28px] lg:h-[28px]" />
               </a>
@@ -374,6 +374,7 @@ export default function Home() {
             ))}
           </div>
         </div>
+
       </section>
 
       {/* ═══════════════════════════════════════════

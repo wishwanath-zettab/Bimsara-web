@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,800;1,700&family=Khand:wght@700&family=League+Gothic&display=swap');
 @import "tailwindcss";
 
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 @theme {
   --color-crimson: #e5322d;
   --color-crimson-light: #ff9794;
@@ -258,15 +266,16 @@ a {
 /* Nav flyout panel — positioned to the left of the sidebar */
 .nav-flyout {
   position: absolute;
-  right: calc(100% + 12px);
+  right: 100%;
   top: 0;
   background: #f7faff;
   border-radius: 8px 0 0 8px;
-  width: 360px;
+  width: 372px;
   display: none;
   z-index: 60;
   max-height: 80vh;
   overflow-y: auto;
+  padding-right: 12px;
 }
 .nav-item-has-flyout {
   position: relative;

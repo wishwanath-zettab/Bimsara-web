@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
 import { useIsMobile } from '../../hooks/useIsMobile'
@@ -146,6 +146,22 @@ export default function Tenants() {
   const isMobile = useIsMobile()
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+  const cardsRef = useRef(null)
+  const overlayRef = useRef(null)
+
+  useEffect(() => {
+    function handleMouseDown(e) {
+      if (
+        overlayRef.current && overlayRef.current.contains(e.target)
+      ) return
+      if (
+        cardsRef.current && cardsRef.current.contains(e.target)
+      ) return
+      setSelectedService(null)
+    }
+    document.addEventListener('mousedown', handleMouseDown)
+    return () => document.removeEventListener('mousedown', handleMouseDown)
+  }, [])
 
   const rentalsContact = data.contacts.find((c) => c.category === 'RENTALS') || {}
 
@@ -266,7 +282,7 @@ export default function Tenants() {
                 justify-content: center;
               }
             `}</style>
-            <div className="grid grid-cols-2 gap-4">
+            <div ref={cardsRef} className="grid grid-cols-2 gap-4">
               {servicesList.map((s, i) => (
                 <div key={s.title} className="tenants-flip-card" onClick={() => setSelectedService(s)}>
                   <div className="tenants-flip-card-inner">
@@ -302,6 +318,7 @@ export default function Tenants() {
 
         {/* Service card overlay - slides in from right */}
         <div
+          ref={overlayRef}
           className={`fixed top-0 right-0 h-full w-1/2 z-50 transition-transform duration-500 ease-out ${selectedService ? 'translate-x-0' : 'translate-x-full'}`}
           style={{background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)'}}
         >
@@ -328,10 +345,6 @@ export default function Tenants() {
           </div>
         </div>
 
-        {/* Overlay backdrop */}
-        {selectedService && (
-          <div className="fixed inset-0 z-40" onClick={() => setSelectedService(null)} />
-        )}
 
       </section>
 
@@ -372,7 +385,7 @@ export default function Tenants() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2" style={{scrollbarWidth: 'thin'}}>
+          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2">
             {activeStep === null ? (
               <>
                 <h3 className="font-lato text-[26px] lg:text-[34px] font-normal text-ebony-clay mb-4">Property Tenants</h3>
