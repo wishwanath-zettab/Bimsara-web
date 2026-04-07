@@ -17,7 +17,7 @@ const services = [
     title: 'For Sellers',
     sub: 'Property owners who want to sell',
     description:
-      'We conduct obligation-free appraisals, market your property across premium portals, screen buyers and manage the full negotiation and documentation process.',
+      'Your property will be showcased in multiple renowned property portals and social media platforms to harness the best potential.',
     icon: sellersIcon,
     image: sellersHeroFull,
     href: '/sellers',

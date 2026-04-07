@@ -110,7 +110,7 @@ export default function Home() {
           <h1 className="font-poppins hero-headline">
             <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">Redefining</span>
             <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-semibold">Real Estate Brokering</span>
-            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">since 2006.</span>
+            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">for 20+ Years.</span>
           </h1>
         </div>
 
@@ -283,19 +283,19 @@ export default function Home() {
           Our Services are for...
         </h2>
         <div className="grid grid-cols-1 gap-[31px]">
-          <Link to="/sellers" className="dark-service-card group cursor-pointer h-[50px] md:h-[100px] lg:h-[140px] w-full lg:w-[1000px]">
-            <span className="font-lato text-[18px] lg:text-[31px] font-bold text-white flex-1 text-center">
-              Property Owners who want to Sell
-            </span>
-            <img src={arrowRight2} alt="" className="w-[28px] h-[24px] lg:w-[58px] lg:h-[48px] group-hover:translate-x-1 transition-transform" loading="lazy" />
-          </Link>
-          <Link to="/sellers" className="dark-service-card group cursor-pointer h-[50px] md:h-[100px] lg:h-[140px] w-full lg:w-[1000px]">
-            <span className="font-lato text-[18px] lg:text-[31px] font-bold text-white flex-1 text-center">
-              Landlords who want to rent out
-            </span>
-            <img src={arrowRight2} alt="" className="w-[28px] h-[24px] lg:w-[58px] lg:h-[48px] group-hover:translate-x-1 transition-transform" loading="lazy" />
-          </Link>
-
+          {[
+            { label: 'Sellers', path: '/sellers' },
+            { label: 'Landlords', path: '/landlords' },
+            { label: 'Buyers', path: '/buyers' },
+            { label: 'Tenants', path: '/tenants' },
+          ].map((item) => (
+            <Link key={item.label} to={item.path} className="dark-service-card group cursor-pointer h-[50px] md:h-[100px] lg:h-[140px] w-full lg:w-[1000px]">
+              <span className="font-lato text-[18px] lg:text-[31px] font-bold text-white flex-1 text-center">
+                {item.label}
+              </span>
+              <img src={arrowRight2} alt="" className="w-[28px] h-[24px] lg:w-[58px] lg:h-[48px] group-hover:translate-x-1 transition-transform" loading="lazy" />
+            </Link>
+          ))}
         </div>
       </section>
 

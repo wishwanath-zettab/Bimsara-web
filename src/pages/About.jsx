@@ -8,7 +8,6 @@ import isoLogo from '../assets/images/iso-logo.png'
 import downloadIcon from '../assets/images/download-icon.png'
 import safetynetLogo from '../assets/images/safetynet-logo.png'
 import linkedinIcon2 from '../assets/images/linkedin-icon.png'
-import hitmediaLogo from '../assets/images/hitmedia-logo.webp'
 
 const values = [
   'Upholding the highest ethical standards and fair practices in conducting business.',
@@ -188,17 +187,16 @@ export default function About() {
             <div className="text-center mb-6">
               <p className="font-lato text-[19px] text-royal-blue mb-1">Company Secretary</p>
               <p className="font-lato text-[17px] font-normal text-ebony-clay">M C A Advisory Services (Pvt) Ltd</p>
-              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">17/1, Charles Way, Colombo 03</p>
             </div>
             <div className="text-center mb-6">
               <p className="font-lato text-[19px] text-royal-blue mb-1">Auditor</p>
               <p className="font-lato text-[17px] font-normal text-ebony-clay">Thilak Jayathilaka & Co.</p>
-              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Chartered Accountants<br />17/1, Charles Way, Colombo 03</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Chartered Accountants</p>
             </div>
             <div className="text-center">
               <p className="font-lato text-[19px] text-royal-blue mb-1">Banker</p>
               <p className="font-lato text-[17px] font-normal text-ebony-clay">Hatton National Bank PLC.</p>
-              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Green Path Branch<br />38, Ananda Coomaradwamy Mawatha<br />Colombo 03</p>
+              <p className="font-lato text-[17px] font-light text-ebony-clay leading-[24px]">Green Path Branch</p>
             </div>
           </div>
         </section>
@@ -277,7 +275,7 @@ export default function About() {
           <div className="grid grid-cols-2 gap-4 mx-auto w-[80%]">
             {data.serviceProviders.map((sp, idx) => {
               const logoSrc = sp.logo ? getImageUrl(sp.logo) : ''
-              const imgSrc = idx === 3 ? hitmediaLogo : logoSrc
+              const imgSrc = logoSrc
               return (
                 <div key={sp.id || sp.name} className="flex items-center justify-center h-[96px]">
                   {imgSrc ? (
@@ -442,21 +440,16 @@ export default function About() {
             <div className="text-center mb-8 lg:mt-[80px]">
               <p className="font-lato text-[28px] text-royal-blue mb-1">Company Secretary</p>
               <p className="font-lato text-[28px] font-normal text-ebony-clay">M C A Advisory Services (Pvt) Ltd</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">17/1, Charles Way, Colombo 03</p>
             </div>
             <div className="text-center mb-8">
               <p className="font-lato text-[28px] text-royal-blue mb-1">Auditor</p>
               <p className="font-lato text-[28px] font-normal text-ebony-clay">Thilak Jayathilaka & Co.</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">
-                Chartered Accountants<br />17/1, Charles Way, Colombo 03
-              </p>
+              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">Chartered Accountants</p>
             </div>
             <div className="text-center">
               <p className="font-lato text-[28px] text-royal-blue mb-1">Banker</p>
               <p className="font-lato text-[28px] font-normal text-ebony-clay">Hatton National Bank PLC.</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">
-                Green Path Branch<br />38, Ananda Coomaradwamy Mawatha<br />Colombo 03
-              </p>
+              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">Green Path Branch</p>
             </div>
           </div>
         </div>
@@ -592,7 +585,7 @@ export default function About() {
           {data.serviceProviders.map((sp, idx) => {
             const logoSrc = sp.logo ? getImageUrl(sp.logo) : ''
             const imgSize = (idx === 2 || idx === 3) ? 'max-h-[225px] max-w-[225px]' : 'max-h-[150px] max-w-[150px]'
-            const imgSrc = idx === 3 ? hitmediaLogo : logoSrc
+            const imgSrc = logoSrc
             return (
               <div key={sp.id || sp.name} className="flex items-center justify-center h-[100px]">
                 {imgSrc ? (
