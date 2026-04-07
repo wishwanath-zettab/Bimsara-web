@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../../context/SiteDataContext'
 import { useIsMobile } from '../../hooks/useIsMobile'
@@ -201,6 +201,19 @@ export default function Sellers() {
   const [expandedService, setExpandedService] = useState(0)
   const [activeStep, setActiveStep] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+  const cardsRef = useRef(null)
+  const overlayRef = useRef(null)
+
+  useEffect(() => {
+    if (!selectedService) return
+    const handler = (e) => {
+      if (!overlayRef.current?.contains(e.target) && !cardsRef.current?.contains(e.target)) {
+        setSelectedService(null)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [selectedService])
 
   if (isMobile) {
     return (
@@ -299,7 +312,7 @@ export default function Sellers() {
                 z-index: 1;
               }
             `}</style>
-            <div className="space-y-8 lg:w-[120%]">
+            <div ref={cardsRef} className="space-y-8 lg:w-[120%]">
               {servicesList.map((s) => (
                 <div key={s.title} className="service-card" onClick={() => setSelectedService(s)}>
                   <div className="service-card-inner w-full pl-[42px] pr-8 lg:pl-[55px] lg:pr-[42px] pt-[26px] lg:pt-9 pb-10 lg:pb-[52px]">
@@ -341,6 +354,7 @@ export default function Sellers() {
 
         {/* Service card overlay - slides in from right */}
         <div
+          ref={overlayRef}
           className={`fixed top-0 right-0 h-full w-1/2 z-50 transition-transform duration-500 ease-out ${selectedService ? 'translate-x-0' : 'translate-x-full'}`}
           style={{background: 'linear-gradient(160deg, #f4a4c0 0%, #c9a4f4 35%, #a4c4f4 70%, #d0e8ff 100%)'}}
         >
@@ -370,13 +384,6 @@ export default function Sellers() {
           </div>
         </div>
 
-        {/* Overlay backdrop */}
-        {selectedService && (
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setSelectedService(null)}
-          />
-        )}
 
       </section>
 

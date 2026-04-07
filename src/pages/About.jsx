@@ -206,7 +206,7 @@ export default function About() {
           <p className="font-lato text-[18px] text-royal-blue tracking-[0.95em] uppercase text-center">OUR TEAM</p>
 
           <h2 className="font-lato text-[20px] font-bold text-ebony-clay leading-[26px] mt-6 text-center">
-            We are an ever growing group of individuals in terms of number, proficiency and experiences.
+            We should in a position to amend the no of positions and service providers.
           </h2>
           <p className="font-lato text-[14px] font-light text-ebony-clay leading-[24px] mt-4 text-center">
             Through our collective efforts including sharing knowledge about diverse projects, we have made our journey far more than a success story.

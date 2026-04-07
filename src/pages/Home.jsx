@@ -110,7 +110,7 @@ export default function Home() {
           <h1 className="font-poppins hero-headline">
             <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">Redefining</span>
             <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-semibold">Real Estate Brokering</span>
-            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">for 20+ Years.</span>
+            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">since 2006.</span>
           </h1>
         </div>
 
