@@ -479,7 +479,7 @@ export default function Sellers() {
                   {guideSteps[activeStep].content?.map((item, i) => {
                     if (typeof item === 'object' && item.topic) {
                       const isMainHeading = item.topic === 'Go it Alone, or Use a Professional?'
-                      return <h4 key={i} className={`font-lato font-bold text-ebony-clay mt-6 mb-1 ${isMainHeading ? 'text-[22px] lg:text-[26px]' : 'text-[17px] lg:text-[19px]'}`}>{item.topic}</h4>
+                      return <h4 key={i} className={`font-lato text-ebony-clay mt-6 mb-2 ${isMainHeading ? 'text-[30px] leading-[50px] font-normal' : 'text-[17px] lg:text-[19px] font-bold'}`}>{item.topic}</h4>
                     }
                     return (
                       <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
