@@ -621,7 +621,7 @@ export default function Buyers() {
                     return (
                       <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
                         {typeof item === 'object' && item.bold
-                          ? <><span className="font-bold">{item.bold}</span>{' '}{item.text}</>
+                          ? <><span className="font-bold">{item.bold}</span><br />{item.text}</>
                           : item}
                       </p>
                     )
