@@ -398,10 +398,10 @@ a {
 .team-circle {
   width: 100vh;
   height: 100vh;
-  max-width: 847px;
-  max-height: 847px;
-  min-width: 605px;
-  min-height: 605px;
+  max-width: 1300px;
+  max-height: 1300px;
+  min-width: 900px;
+  min-height: 900px;
   border: 2px solid hsla(2, 100%, 79%, 0.2);
   border-radius: 50%;
   list-style: none;

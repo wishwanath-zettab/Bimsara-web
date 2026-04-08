@@ -492,22 +492,24 @@ export default function About() {
             <ul className="team-circle">
               {/* Center: selected member details */}
               {selectedMember && (
-                <div className="absolute inset-0 flex items-center justify-center w-full">
-                  <div className="text-center px-[15%] max-h-[85%] mt-[-15%]">
-                    <div className="flex justify-center mb-3">
-                      <div className="relative">
-                        <img
-                          src={getImageUrl(selectedMember.image)}
-                          alt={selectedMember.name}
-                          className="center-member-img"
-                        />
-                        {selectedMember.linkedin_url && (
-                          <a href={selectedMember.linkedin_url} target="_blank" rel="noopener noreferrer" className="linkedin-icon-badge">
-                            <img src={linkedinIcon2} alt="LinkedIn" />
-                          </a>
-                        )}
-                      </div>
+                <div className="absolute inset-0 flex flex-col items-center pt-0 w-full">
+                  {/* Avatar — fixed position */}
+                  <div className="flex justify-center mb-3 shrink-0">
+                    <div className="relative">
+                      <img
+                        src={getImageUrl(selectedMember.image)}
+                        alt={selectedMember.name}
+                        className="center-member-img"
+                      />
+                      {selectedMember.linkedin_url && (
+                        <a href={selectedMember.linkedin_url} target="_blank" rel="noopener noreferrer" className="linkedin-icon-badge">
+                          <img src={linkedinIcon2} alt="LinkedIn" />
+                        </a>
+                      )}
                     </div>
+                  </div>
+                  {/* Text — scrolls without moving the avatar */}
+                  <div className="overflow-y-auto text-center px-[15%] w-full">
                     <h3 className="font-lato text-[29px] font-bold text-crimson">{selectedMember.name}</h3>
                     <p className="font-lato text-[23px] font-semibold text-tundora mt-1">{selectedMember.position}</p>
                     <p className="font-lato text-[21px] font-light text-crimson leading-[29px] mt-4 italic">{selectedMember.quote}</p>

@@ -389,14 +389,14 @@ export default function Sellers() {
       {/* ═══ SELLER'S GUIDE ═══ */}
       <section className="py-[5%] px-[2.55%] lg:px-[4.08%] bg-white bg-lines">
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 lg:items-start">
           {/* Guide sidebar */}
           <div className="lg:w-[429px] shrink-0 flex flex-col gap-5">
             {/* Top row - title */}
             <h2 className="font-lato text-[30px] lg:text-[36px] font-normal text-crimson">Selling your property</h2>
 
             {/* Bottom row - gray content area */}
-            <div className="bg-gray-100 rounded-[16px] p-5">
+            <div className="bg-gray-100 rounded-[16px] p-5 overflow-y-auto max-h-[100vh]">
 
               {/* Property Sellers clickable item */}
               <button
@@ -439,7 +439,7 @@ export default function Sellers() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto max-h-[80vh] pr-2">
+          <div className="flex-1 overflow-y-auto max-h-[100vh] pr-2">
             {activeStep === null ? (
               /* Property Sellers default content */
               <>
