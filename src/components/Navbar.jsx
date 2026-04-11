@@ -26,9 +26,19 @@ function FlyoutLink({ img, head, sub, onClick }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
   const [openFlyout, setOpenFlyout] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
+
+  const closeNav = () => {
+    setClosing(true)
+    setOpenFlyout(null)
+    setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, 500)
+  }
 
   const isActive = (path) => {
     if (path === '/') {
@@ -49,7 +59,7 @@ export default function Navbar() {
   }
 
   const goTo = (path, hash) => {
-    setOpen(false)
+    closeNav()
     setOpenFlyout(null)
     if (hash) {
       if (location.pathname === path) {
@@ -74,32 +84,24 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Mobile backdrop */}
-      {open && (
-        <div
-          className="lg:hidden fixed inset-0 bg-black/40 z-40"
-          onClick={() => setOpen(false)}
-        />
-      )}
 
-      {/* ═══ MOBILE HAMBURGER BUTTON (floating, no bar) ═══ */}
+      {/* ═══ MOBILE HAMBURGER BUTTON (floating, single toggle) ═══ */}
       <button
-        onClick={() => { setOpen(!open); setOpenFlyout(null) }}
-        className="lg:hidden fixed top-4 right-4 z-50 p-2"
+        onClick={() => { if (open || closing) closeNav(); else { setOpen(true); setOpenFlyout(null) } }}
+        className="sm:hidden fixed top-4 right-4 z-[60] p-2"
         aria-label="Toggle menu"
         aria-expanded={open}
       >
-        <img src={hamburgerLg} alt="Menu" className="hidden sm:block w-7 h-7 object-contain" />
-        <img src={hamburgerSm} alt="Menu" className="block sm:hidden w-7 h-7 object-contain" />
+        <img src={hamburgerSm} alt="Menu" />
       </button>
 
       {/* ═══ RIGHT SIDEBAR (always on desktop / slides in on mobile) ═══ */}
       <nav className={`fixed right-0 top-0 h-screen w-[80px] lg:w-[100px] z-50 flex-col items-center justify-between py-[2.5vh] nav-glass
-        ${open ? 'flex' : 'hidden'} lg:flex`}>
+        ${(open || closing) ? 'flex' : 'hidden'} sm:flex ${closing ? 'nav-slide-out' : ''}`}>
 
         {/* Home */}
         <div className="flex-1 flex items-center justify-center">
-          <Link to="/" onClick={() => setOpen(false)} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text ${isActive('/') ? 'text-crimson' : 'text-ebony-clay'}`}>
+          <Link to="/" onClick={closeNav} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text ${isActive('/') ? 'text-crimson' : 'text-ebony-clay'}`}>
             Home
           </Link>
         </div>

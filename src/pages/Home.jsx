@@ -96,8 +96,8 @@ export default function Home() {
           <img src={logo} alt="Bimsara Real Estate" className="h-[42px] w-[160px] object-contain origin-left" />
         </div>
 
-        {/* Mobile logo — above headline */}
-        <div className="lg:hidden relative z-10 flex justify-center pt-6 pb-2">
+        {/* Mobile logo — centered above headline */}
+        <div className="lg:hidden relative z-10 flex justify-start px-5 pt-6 pb-2">
           <img src={logo} alt="Bimsara Real Estate" style={{ width: '133px', height: '36px' }} className="object-contain" />
         </div>
 
