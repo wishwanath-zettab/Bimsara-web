@@ -8,7 +8,7 @@ function validate(data) {
   const errs = {}
   if (!data.name.trim())        errs.name    = 'Name is required.'
   if (!data.email.trim())       errs.email   = 'Email address is required.'
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = 'Enter a valid email address.'
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = 'Please use the format: name@example.com'
   if (!data.phone.trim())       errs.phone   = 'Contact number is required.'
   if (!data.purpose)            errs.purpose = 'Please select an option.'
   return errs
@@ -24,8 +24,15 @@ export default function InquiryForm({ inputClass = '', labelClass = '' }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setForm(prev => ({ ...prev, [name]: value }))
+    const sanitized = name === 'phone' ? value.replace(/\D/g, '') : value
+    setForm(prev => ({ ...prev, [name]: sanitized }))
     setErrors(prev => ({ ...prev, [name]: '' }))
+  }
+
+  const handleEmailBlur = () => {
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setErrors(prev => ({ ...prev, email: 'Please use the format: name@example.com' }))
+    }
   }
 
   const handleSubmit = (e) => {
@@ -102,7 +109,8 @@ export default function InquiryForm({ inputClass = '', labelClass = '' }) {
         {/* Email */}
         <div>
           <label className={lbl}>Email Address <span className="text-crimson">*</span></label>
-          <input type="email" name="email" value={form.email} onChange={handleChange}
+          <input type="email" name="email" value={form.email} onChange={handleChange} onBlur={handleEmailBlur}
+            placeholder="e.g. yourname@domain.com"
             className={`${field} ${errors.email ? 'border-crimson' : 'border-transparent'}`} />
           {err('email')}
         </div>

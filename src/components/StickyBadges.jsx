@@ -27,17 +27,23 @@ export default function StickyBadges() {
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 px-4 pb-4 sm:pb-0"
           onClick={(e) => e.target === e.currentTarget && setOpen(false)}
         >
-          <div className="bg-[#f0f0f0] rounded-[20px] w-full max-w-[480px] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={() => setOpen(false)}
-              className="float-right text-gray-400 hover:text-gray-600 text-2xl leading-none mb-1"
-            >
-              ×
-            </button>
-            <h2 className="font-lato text-[18px] sm:text-[20px] font-normal text-ebony-clay mb-6 clear-both">
-              I would like to know more about the services
-            </h2>
-            <InquiryForm />
+          <div className="bg-[#f0f0f0] rounded-[20px] w-full max-w-[480px] shadow-2xl max-h-[90vh] flex flex-col">
+            {/* Fixed header */}
+            <div className="flex items-start justify-between px-6 sm:px-8 pt-6 sm:pt-8 pb-4 shrink-0">
+              <h2 className="font-lato text-[18px] sm:text-[20px] font-normal text-ebony-clay">
+                I would like to know more about the services
+              </h2>
+              <button
+                onClick={() => setOpen(false)}
+                className="ml-4 shrink-0 text-gray-400 hover:text-gray-600 text-2xl leading-none"
+              >
+                ×
+              </button>
+            </div>
+            {/* Scrollable body */}
+            <div className="overflow-y-auto px-6 sm:px-8 pb-6 sm:pb-8">
+              <InquiryForm />
+            </div>
           </div>
         </div>
       )}
