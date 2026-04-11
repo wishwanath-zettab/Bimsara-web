@@ -27,7 +27,7 @@ export default function StickyBadges() {
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 px-4 pb-4 sm:pb-0"
           onClick={(e) => e.target === e.currentTarget && setOpen(false)}
         >
-          <div className="bg-[#f0f0f0] rounded-[20px] w-full max-w-[480px] shadow-2xl max-h-[90vh] flex flex-col">
+          <div className="popup-card bg-[#f0f0f0] rounded-[20px] w-full max-w-[480px] shadow-2xl max-h-[90vh] flex flex-col">
             {/* Fixed header */}
             <div className="flex items-start justify-between px-6 sm:px-8 pt-6 sm:pt-8 pb-4 shrink-0">
               <h2 className="font-lato text-[18px] sm:text-[20px] font-normal text-ebony-clay">

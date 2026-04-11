@@ -26,24 +26,28 @@ const testimonials = [
     quote: '\u201cHe is a trusted advisor, an excellent negotiator and a person with excellent communication skills.\u201d',
     role: 'Group Financial Consultant at Hijazi & Ghosheh Group',
     sub: 'Former Credit Risk Consultant at HSBC - Jordan',
+    video: 'https://www.youtube.com/watch?v=47Kw96zbUkA',
   },
   {
     name: 'Ushan & Piumie Liyanage',
     quote: '\u201cHe never influenced or pressurized us. Information was given, but it\u2019s our own decision.\u201d',
     role: 'Ushan Liyanage - General Manager HR & Admin at Lankem Ceylon PLC',
     sub: 'Sri Lanka',
+    video: 'https://www.youtube.com/watch?v=HoC-XXBEDvU',
   },
   {
     name: 'Atheek Marikar & Crystal',
     quote: '\u201cHe seems to understand what you want very fast. He takes a good brief from the client.\u201d',
     role: 'Atheek Marikar - Managing Director/CEO at PepperCube Consultants, Sri Lanka',
     sub: 'Crystal Nathan - Strategic Curator at PepperCube Consultants, Sri Lanka',
+    video: 'https://www.youtube.com/watch?v=xmjcmufaR6M',
   },
   {
     name: 'Damian Fernando',
     quote: '\u201cAt any stage of the sale process, he never pushed me.\u201d',
     role: 'Chief Operating Officer at NKAR Travels & Tours (Pvt) Ltd',
     sub: 'Senior Lecturer/Course Director at NSBM',
+    video: 'https://www.youtube.com/watch?v=5VG5JPTOJ0U&t',
   },
 ]
 
@@ -348,15 +352,21 @@ export default function Home() {
         <div className="glass-card rounded-[20px] lg:rounded-[30px] p-6 lg:p-[60px] mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-white/80 rounded-[20px] p-5 lg:p-6 backdrop-blur-sm">
+              <div key={t.name} className="bg-white/80 rounded-[20px] p-5 lg:p-6 backdrop-blur-sm flex flex-col">
                 <h4 className="font-lato text-[19px] lg:text-[26px] font-bold text-ebony-clay mb-2">{t.name}</h4>
                 <p className="font-lato text-[14px] lg:text-[22px] font-light text-ebony-clay leading-[25px] mb-3">{t.quote}</p>
                 <p className="font-lato text-[13px] lg:text-[16px] font-light text-scorpion">{t.role}</p>
                 <p className="font-lato text-[13px] lg:text-[16px] font-light text-scorpion">{t.sub}</p>
-                <button className="mt-3 flex items-center gap-2 font-lato text-[14px] lg:text-[22px] text-ebony-clay hover:text-crimson transition-colors">
-                  <img src={playBtn} alt="" className="w-5 h-5" />
-                  Watch Video
-                </button>
+                <div className="mt-auto pt-[5vh] flex justify-center">
+                  <a href={t.video} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-3 cursor-pointer font-lato text-[18px] font-normal text-crimson border border-crimson rounded-[40px] px-[41px] py-[12px] w-max hover:bg-crimson hover:text-white transition-colors group">
+                    <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M23.495 2.814a3.016 3.016 0 0 0-2.122-2.136C19.505 0 12 0 12 0S4.495 0 2.627.678A3.016 3.016 0 0 0 .505 2.814C0 4.686 0 9 0 9s0 4.314.505 6.186a3.016 3.016 0 0 0 2.122 2.136C4.495 18 12 18 12 18s7.505 0 9.373-.678a3.016 3.016 0 0 0 2.122-2.136C24 13.314 24 9 24 9s0-4.314-.505-6.186Z" className="fill-crimson group-hover:fill-white transition-colors" />
+                      <path d="M9.6 12.857 15.818 9 9.6 5.143v7.714Z" className="fill-white group-hover:fill-crimson transition-colors" />
+                    </svg>
+                    Watch Video
+                  </a>
+                </div>
               </div>
             ))}
           </div>
