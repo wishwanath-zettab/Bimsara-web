@@ -66,7 +66,7 @@ export default function Services() {
   return (
     <div>
       {/* ═══ HERO ═══ */}
-      <section className="services-hero-bg py-[80px] lg:py-[120px] px-5 lg:px-[8%]">
+      <section className="services-hero-bg py-[80px] lg:py-[120px] px-5 lg:px-[8%] lg:-mr-[100px]">
         <p className="font-lato text-[14px] lg:text-[16px] tracking-[0.35em] text-royal-blue uppercase mb-4">
           BIMSARA REAL ESTATE
         </p>
@@ -156,7 +156,7 @@ export default function Services() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
             {['Trusted Advisor', 'Skilled Negotiator', 'Expert Facilitator'].map((t) => (
-              <span key={t} className="font-lato text-[22px] lg:text-[32px] font-bold text-crimson whitespace-nowrap">
+              <span key={t} className="font-lato text-[24px] font-bold text-crimson w-full flex justify-center text-center mb-[4%]">
                 {t}
               </span>
             ))}

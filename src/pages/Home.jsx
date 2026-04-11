@@ -90,18 +90,23 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           SECTION 1 — HERO
       ═══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-lines">
+      <section className="relative overflow-hidden bg-lines lg:-mr-[100px]">
         {/* Logo */}
         <div className="hidden lg:block relative z-10 pt-6 lg:pt-[35px] pl-5 lg:pl-[63px]">
-          <img src={logo} alt="Bimsara Real Estate" className="h-[53px] lg:h-[77px] [transform:scaleX(1.05)] origin-left" />
+          <img src={logo} alt="Bimsara Real Estate" className="h-[42px] w-[160px] object-contain origin-left" />
+        </div>
+
+        {/* Mobile logo — above headline */}
+        <div className="lg:hidden relative z-10 flex justify-center pt-6 pb-2">
+          <img src={logo} alt="Bimsara Real Estate" style={{ width: '133px', height: '36px' }} className="object-contain" />
         </div>
 
         {/* Headline text */}
-        <div className="relative z-10 px-5 lg:pl-[113px] mt-[20px] lg:mt-[35px] pb-[40px] lg:pb-[100px] text-center lg:text-left">
+        <div className="relative z-10 px-5 lg:pl-[113px] mt-[8px] lg:mt-[35px] pb-[40px] lg:pb-[100px] text-center lg:text-left">
           <h1 className="font-poppins hero-headline">
-            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">Redefining</span>
-            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-semibold">Real Estate Brokering</span>
-            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[63px] font-normal">since 2006.</span>
+            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[47px] font-normal">Redefining</span>
+            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[47px] font-semibold">Real Estate Brokering</span>
+            <span className="block text-crimson text-[29px] md:text-[42px] lg:text-[47px] font-normal">since a quindecennial.</span>
           </h1>
         </div>
 
@@ -145,7 +150,7 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 z-[3] w-[50%] lg:w-[33%] h-[132%] hero-gradient-curve">
             {/* "I want to" + custom dropdown */}
             <div className="absolute top-[15%] right-[10%] lg:top-[18%] lg:right-[15%] text-white w-[232px] lg:w-[377px]">
-              <p className="font-lato text-[22px] lg:text-[34px] font-bold mb-[15px] lg:mb-[30px]">I want to</p>
+              <p className="font-lato text-[22px] lg:text-[26px] font-bold mb-[15px] lg:mb-[30px]">I want to</p>
               <div className="relative" ref={dropdownRef}>
                 {/* Background images for combobox */}
                 <img src={dropdownBgWeb} alt="" className="hidden lg:block absolute inset-0 w-full h-full object-cover rounded-[8px] pointer-events-none z-0" />
@@ -204,7 +209,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row justify-center gap-4 lg:gap-0 pt-[10px] lg:pt-[20px]">
           {['Trusted Advisor', 'Skilled Negotiator', 'Expert Facilitator'].map((title) => (
             <div key={title} className="text-center w-full sm:w-1/3">
-              <span className="font-lato text-[24px] lg:text-[50px] font-[1000] italic text-crimson tracking-[0.05em]">{title}</span>
+              <span className="font-lato text-[24px] lg:text-[38px] font-[1000] italic text-crimson tracking-[0.05em]">{title}</span>
             </div>
           ))}
         </div>
@@ -212,20 +217,20 @@ export default function Home() {
         {/* Main heading + description + stats */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-[200px] pt-[30px] lg:pt-[100px]">
           <div className="flex-1">
-            <h2 className="font-lato text-[21px] lg:text-[50px] font-bold text-ebony-clay leading-tight mb-6 lg:mb-8">
+            <h2 className="font-lato text-[21px] lg:text-[38px] font-bold text-ebony-clay leading-tight mb-6 lg:mb-8">
               Your go-to partner in selling and renting out your property.
             </h2>
-            <p className="font-lato text-[18px] lg:text-[30px] font-normal leading-[28px] lg:leading-[46px] text-ebony-clay text-justify mb-6 mt-[50px]">
+            <p className="font-lato text-[18px] lg:text-[22px] font-normal leading-[28px] lg:leading-[26px] text-ebony-clay text-justify mb-6 mt-[50px]">
               Bimsara Real Estate is the outcome of extensive research conducted by over
               several years to identify solutions for the issues most frequently encountered by
               both sellers and buyers in the Sri Lankan real-estate market.
             </p>
-            <p className="font-lato text-[18px] lg:text-[30px] font-light leading-[28px] lg:leading-[46px] text-ebony-clay text-justify mb-6 mt-[50px]">
+            <p className="font-lato text-[18px] lg:text-[22px] font-light leading-[28px] lg:leading-[26px] text-ebony-clay text-justify mb-6 mt-[50px]">
               Our unique approach and method of business is a solution-based and
               personalized effort to help buyers to find their dream home or
               property.
             </p>
-            <p className="font-lato text-[18px] lg:text-[30px] font-light leading-[28px] lg:leading-[46px] text-ebony-clay text-justify mb-6 mt-[50px]">
+            <p className="font-lato text-[18px] lg:text-[22px] font-light leading-[28px] lg:leading-[26px] text-ebony-clay text-justify mb-6 mt-[50px]">
               We believe buyer satisfaction is the key for the seller to
               obtain optimal price. Our pledge therefore is a sincere service to
               both buyers and sellers to ensure smooth transactions.
@@ -243,14 +248,14 @@ export default function Home() {
           {/* Stats column — labels in royal blue per Figma */}
           <div className="flex flex-row lg:flex-col items-start gap-8 lg:gap-4 shrink-0 w-[240px] text-center lg:text-left mx-auto lg:mx-0 pt-0 lg:pt-[70px]">
             <div className="text-center lg:text-left">
-              <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson">20+</span>
-              <p className="font-lato text-[17px] lg:text-[29px] font-bold text-royal-blue leading-[20px] lg:leading-[34px] mt-1">
+              <span className="font-khand text-[41px] lg:text-[74px] font-bold leading-none text-crimson">20+</span>
+              <p className="font-lato text-[17px] lg:text-[22px] font-bold text-royal-blue leading-[20px] lg:leading-[26px] mt-1">
                 Years of Industry<br />Experience
               </p>
             </div>
             <div className="text-center lg:text-left mt-0 lg:mt-4">
-              <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson">1000+</span>
-              <p className="font-lato text-[17px] lg:text-[29px] font-bold text-royal-blue leading-[20px] lg:leading-[34px] mt-1">
+              <span className="font-khand text-[41px] lg:text-[74px] font-bold leading-none text-crimson">1000+</span>
+              <p className="font-lato text-[17px] lg:text-[22px] font-bold text-royal-blue leading-[20px] lg:leading-[26px] mt-1">
                 Satisfied Customers
               </p>
             </div>
@@ -269,22 +274,22 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           SECTION 3 — OUR SERVICES (dark bg)
       ═══════════════════════════════════════════ */}
-      <section className="bg-ebony py-12 lg:py-[96px] px-5 md:px-10 lg:px-[96px] flex flex-col items-center">
-        <h2 className="font-lato text-[22px] lg:text-[60px] font-bold text-white mb-8 lg:mb-10 leading-tight">
+      <section className="bg-ebony py-12 lg:py-[96px] px-5 md:px-10 lg:px-[96px] flex flex-col items-center lg:-mr-[100px]">
+        <h2 className="font-lato text-[22px] lg:text-[40px] font-bold text-white mb-8 lg:mb-10 leading-tight">
           Our Services are for...
         </h2>
-        <div className="grid grid-cols-1 gap-[31px]">
+        <div className="flex flex-col items-center gap-[31px] mt-[40px] w-full max-w-[700px]">
           {[
             { label: 'Sellers', path: '/sellers' },
             { label: 'Landlords', path: '/landlords' },
             { label: 'Buyers', path: '/buyers' },
             { label: 'Tenants', path: '/tenants' },
           ].map((item) => (
-            <Link key={item.label} to={item.path} className="dark-service-card group cursor-pointer h-[50px] md:h-[100px] lg:h-[140px] w-full lg:w-[1000px]">
-              <span className="font-lato text-[18px] lg:text-[31px] font-bold text-white flex-1 text-center">
-                {item.label}
-              </span>
-              <img src={arrowRight2} alt="" className="w-[28px] h-[24px] lg:w-[58px] lg:h-[48px] group-hover:translate-x-1 transition-transform" loading="lazy" />
+            <Link key={item.label} to={item.path} className="dark-service-card group cursor-pointer">
+              <div className="dark-service-card-inner">
+                <span className="flex-1 text-center">{item.label}</span>
+                <img src={arrowRight2} alt="" className="w-[28px] h-[24px] group-hover:translate-x-1 transition-transform" loading="lazy" />
+              </div>
             </Link>
           ))}
         </div>
@@ -294,7 +299,7 @@ export default function Home() {
           SECTION 4 — TESTIMONIALS
       ═══════════════════════════════════════════ */}
       <section id="testimonials" className="pt-[53px] pb-12 lg:pt-[106px] lg:pb-[96px] px-5 md:px-10 lg:px-[96px]">
-        <p className="font-lato text-[22px] lg:text-[32px] tracking-[0.3em] lg:tracking-[0.6em] text-crimson uppercase mb-[41px] text-center lg:text-left">
+        <p className="font-lato text-[22px] lg:text-[24px] tracking-[0.3em] lg:tracking-[0.6em] text-crimson uppercase mb-[41px] text-center lg:text-left">
           CLIENT TESTIMONIALS
         </p>
 
@@ -302,10 +307,10 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-8 lg:mb-10">
           {/* Left: heading + description */}
           <div className="flex-1 text-center lg:text-left">
-            <h2 className="font-lato text-[21px] lg:text-[50px] font-bold text-ebony-clay leading-tight mb-[40px]">
+            <h2 className="font-lato text-[21px] lg:text-[38px] font-bold text-ebony-clay leading-tight mb-[40px]">
               Our client testimonials are proof of
             </h2>
-            <p className="font-lato text-[18px] lg:text-[30px] font-light text-ebony-clay leading-[28px] lg:leading-[42px] text-center lg:text-justify max-w-[922px] mx-auto lg:mx-0">
+            <p className="font-lato text-[18px] lg:text-[22px] font-light text-ebony-clay leading-[28px] lg:leading-[32px] text-center lg:text-justify max-w-[922px] mx-auto lg:mx-0">
               how well we have treated real estate market by not only setting the
               trends, but also uplifting the standards which were long standing and
               will be long lasting.
@@ -323,16 +328,16 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:flex lg:flex-col lg:items-start gap-4 shrink-0 lg:w-[300px]">
             {/* Left on mobile: 100+ */}
             <div>
-              <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson">100+</span>
-              <p className="font-lato text-[17px] lg:text-[29px] font-bold text-royal-blue leading-[20px] lg:leading-[34px] mt-1">
+              <span className="font-khand text-[41px] lg:text-[74px] font-bold leading-none text-crimson">100+</span>
+              <p className="font-lato text-[17px] lg:text-[22px] font-bold text-royal-blue leading-[20px] lg:leading-[26px] mt-1">
                 Google Reviews by<br />Satisfied Clients
               </p>
             </div>
             {/* Right on mobile: 4.9 + google image stacked */}
             <div className="flex flex-col items-start">
               <div className="flex items-end gap-2 lg:mt-[100px]">
-                <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson">4.9</span>
-                <span className="font-lato text-[24px] lg:text-[29px] font-bold text-royal-blue leading-[29px] lg:leading-[34px] mb-1">star Rated</span>
+                <span className="font-khand text-[41px] lg:text-[74px] font-bold leading-none text-crimson">4.9</span>
+                <span className="font-lato text-[24px] lg:text-[22px] font-bold text-royal-blue leading-[29px] lg:leading-[26px] mb-1">star Rated</span>
               </div>
               <img src={googleReviews} alt="Google Reviews 4.9 star rating" className="h-[86px] lg:h-[114px] lg:-mt-[15px] lg:pt-[10px]" loading="lazy" />
             </div>
@@ -351,7 +356,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {testimonials.map((t) => (
               <div key={t.name} className="bg-white/80 rounded-[20px] p-5 lg:p-6 backdrop-blur-sm flex flex-col">
-                <h4 className="font-lato text-[19px] lg:text-[26px] font-bold text-ebony-clay mb-2">{t.name}</h4>
+                <h4 className="font-lato text-[19px] lg:text-[20px] font-bold text-ebony-clay mb-2">{t.name}</h4>
                 <p className="font-lato text-[14px] lg:text-[22px] font-light text-ebony-clay leading-[25px] mb-3">{t.quote}</p>
                 <p className="font-lato text-[13px] lg:text-[16px] font-light text-scorpion">{t.role}</p>
                 <p className="font-lato text-[13px] lg:text-[16px] font-light text-scorpion">{t.sub}</p>
@@ -376,10 +381,10 @@ export default function Home() {
           SECTION 5 — CONTACT
       ═══════════════════════════════════════════ */}
       <section id="contact" className="py-12 lg:py-[96px] px-5 md:px-10 lg:px-[96px]">
-        <h2 className="font-lato text-[24px] lg:text-[60px] font-normal text-crimson text-center mb-3">
+        <h2 className="font-lato text-[24px] lg:text-[45px] font-normal text-crimson text-center mb-3">
           Contact Us
         </h2>
-        <p className="font-lato text-[21px] lg:text-[29px] font-light text-ebony-clay leading-[28px] lg:leading-[43px] text-center mb-8 max-w-[967px] mx-auto">
+        <p className="font-lato text-[21px] lg:text-[22px] font-light text-ebony-clay leading-[28px] lg:leading-[32px] text-center mb-8 max-w-[967px] mx-auto">
           Get in touch with us for all your real estate requirements.<br></br> We believe
           in building strong relationships that go long term with our clients.
         </p>
@@ -393,7 +398,7 @@ export default function Home() {
           <a href="tel:+94117778777"><img src={phoneIcon} alt="Call us" className="w-10 h-10" loading="lazy" /></a>
           <a href="https://wa.me/94777800606" target="_blank" rel="noopener noreferrer"><img src={whatsappIcon} alt="WhatsApp" className="w-10 h-10" loading="lazy" /></a>
         </div>
-        <p className="font-lato text-[18px] lg:text-[25px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase text-center mb-8 lg:mb-10">
+        <p className="font-lato text-[18px] lg:text-[19px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase text-center mb-8 lg:mb-10">
           GET IN TOUCH
         </p>
 
@@ -414,7 +419,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row gap-10 justify-center items-center pt-[30px]">
           {/* OUR PRESENCE */}
           <div className="flex-1 max-w-[600px]">
-            <p className="font-lato text-[20px] lg:text-[28px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase mb-4">OUR PRESENCE</p>
+            <p className="font-lato text-[20px] lg:text-[21px] text-crimson tracking-[0.3em] lg:tracking-[0.6em] uppercase mb-4">OUR PRESENCE</p>
             <iframe
               title="Bimsara Real Estate Location"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3960.7648129039626!2d79.8930121!3d6.918696!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25995119a0d4b%3A0xb8478b32080b33cb!2sBimsara%20Real%20Estate!5e0!3m2!1sen!2slk!4v1652678023249!5m2!1sen!2slk"
@@ -438,7 +443,7 @@ export default function Home() {
 
           {/* Contact Form — border-radius 68px per Figma */}
           <div className="flex-1 bg-concrete rounded-[20px] lg:rounded-[68px] p-5 lg:p-[40px] max-w-[600px]">
-            <p className="font-lato text-[22px] lg:text-[26px] font-black text-ebony-clay leading-[30px] mb-6 pt-[20px]">
+            <p className="font-lato text-[22px] lg:text-[20px] font-black text-ebony-clay leading-[30px] mb-6 pt-[20px]">
               I would like to know more about the services
             </p>
 

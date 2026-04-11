@@ -180,31 +180,33 @@ a {
 
 /* Dark service card on dark bg */
 .dark-service-card {
-  background: radial-gradient(ellipse at center, #0a0f20 0%, #2a2f45 70%);
-  border-radius: 40px;
-  padding: 30px 40px;
+  background: radial-gradient(60.66% 95.28% at 14.14% 58.13%, #0f64fa 0, rgba(156, 0, 182, .76) 80.16%, #e5322d 100%);
+  border-radius: 25px;
+  box-shadow: 0 2px 5px hsla(0, 10%, 52%, .5);
+  padding: 2px;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.dark-service-card:hover {
+  opacity: 0.85;
+}
+.dark-service-card-inner {
+  -webkit-backdrop-filter: blur(60px);
+  backdrop-filter: blur(60px);
+  background: linear-gradient(90.16deg, hsla(0, 0%, 100%, .2) .93%, rgba(98, 134, 205, .153) 47.11%, hsla(0, 0%, 100%, .1) 99.86%);
+  background-color: #0a0f20;
+  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.3s;
-  border: 1.5px solid transparent;
-  background-clip: padding-box;
-  position: relative;
-}
-.dark-service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 40px;
-  padding: 1.5px;
-  background: linear-gradient(90deg, #7b2ff7, #e5322d);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-.dark-service-card:hover {
-  background: radial-gradient(ellipse at center, #1a1f35 0%, #3a3f55 70%);
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  padding: 30px 40px;
+  color: #fff;
 }
 
 /* Company Overview glassmorphism card */
@@ -218,7 +220,7 @@ a {
 
 /* Hero headline */
 .hero-headline {
-  line-height: clamp(47px, 7.81vw, 99px);
+  line-height: clamp(34px, 5.5vw, 58px);
 }
 
 /* Hero bottom area */
@@ -253,7 +255,7 @@ a {
 /* Navbar link text — vertical rotated text */
 .nav-link-text {
   font-family: 'League Gothic', sans-serif;
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.15em;
   line-height: 1;
@@ -274,7 +276,7 @@ a {
 /* Large screens — bigger nav text */
 @media (min-width: 1440px) {
   .nav-link-text {
-    font-size: 25px;
+    font-size: 19px;
   }
 }
 
@@ -295,8 +297,49 @@ a {
 .nav-item-has-flyout {
   position: relative;
 }
-.nav-item-has-flyout:hover > .nav-flyout {
+.nav-item-has-flyout:hover > .nav-flyout,
+.nav-item-has-flyout.flyout-open > .nav-flyout {
   display: block;
+}
+
+@media (max-width: 1023px) {
+  .nav-flyout {
+    width: 240px;
+  }
+  .nav-flyout > div {
+    padding: 16px 14px;
+  }
+  .nav-flyout-thumb {
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+  }
+  .nav-flyout-link {
+    margin-bottom: 12px;
+  }
+  .nav-flyout-head {
+    font-size: 13px;
+  }
+  .nav-flyout-sub {
+    font-size: 11px;
+  }
+  .nav-flyout-section-title {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  .nav-flyout-sub-link {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .nav-flyout-social-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .nav-flyout-social-row {
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
 }
 .nav-flyout-link {
   display: flex;
@@ -407,6 +450,16 @@ a {
   background: linear-gradient(270deg, rgba(15,100,250,0.1), rgba(15,100,250,0.02) 127.96%);
   border-radius: 20px 0 0 20px;
   box-shadow: 0 4px 10px hsla(0,10%,52%,0.5);
+}
+
+/* Mobile sidebar — solid panel */
+@media (max-width: 1023px) {
+  .nav-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #f7faff;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* Team circle container */

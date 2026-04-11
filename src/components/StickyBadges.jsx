@@ -15,7 +15,7 @@ export default function StickyBadges() {
         <img src={safetynetLogo} alt="Safetynet (Private) Limited" className="hidden lg:block h-[50px] 2xl:h-[60px] object-contain" />
         <button
           onClick={() => setOpen(true)}
-          className="relative w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[60px] lg:h-[60px] 2xl:w-[80px] 2xl:h-[80px] cursor-pointer hover:scale-105 transition-transform"
+          className="relative w-[60px] h-[60px] cursor-pointer hover:scale-105 transition-transform"
         >
           <img src={roundBadge} alt="Enquire now" className="w-full h-full" />
         </button>

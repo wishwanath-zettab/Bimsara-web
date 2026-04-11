@@ -32,7 +32,7 @@ function App() {
         <ScrollToTop />
         <Navbar />
         <StickyBadges />
-        <main className="flex-1 mr-0 lg:mr-[100px] 2xl:mr-[137px]">
+        <main className="flex-1 mr-0 lg:mr-[100px]">
           <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
               <Route path="/" element={<Home />} />
