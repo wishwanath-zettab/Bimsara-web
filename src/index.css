@@ -52,33 +52,43 @@ a {
 
 /* Decorative vertical pink lines across pages */
 .bg-lines {
-  background:
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 5%,
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 57.14%,
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 64.52%,
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 71%,
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 78.43%,
-    linear-gradient(rgba(255,151,148,0.2) 0 0) 86.2%;
   background-color: #fff;
-  background-repeat: no-repeat;
-  background-size: 1.5px 100%;
+}
+@media (min-width: 1024px) {
+  .bg-lines {
+    background:
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 5%,
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 57.14%,
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 64.52%,
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 71%,
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 78.43%,
+      linear-gradient(rgba(255,151,148,0.2) 0 0) 86.2%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: 1.5px 100%;
+  }
 }
 
 /* About page vertical strips — 9 lines matching live site */
 .about-bg-lines {
-  background:
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 57.1428571429%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 56.2851782364%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 64.5161290323%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 63.6942675159%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.0059171598%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.7948717949%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 78.431372549%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 79.2253521127%,
-    linear-gradient(hsla(2,100%,79%,0.2) 0 0) 86.2068965517%;
   background-color: #fff;
-  background-repeat: no-repeat;
-  background-size: 1.5px 100%;
+}
+@media (min-width: 1024px) {
+  .about-bg-lines {
+    background:
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 57.1428571429%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 56.2851782364%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 64.5161290323%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 63.6942675159%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.0059171598%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.7948717949%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 78.431372549%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 79.2253521127%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 86.2068965517%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: 1.5px 100%;
+  }
 }
 
 /* Hero red curved shape */
@@ -232,7 +242,12 @@ a {
 
 /* Sticky badges position */
 .sticky-badges-pos {
-  right: calc(100px + 3vw);
+  right: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .sticky-badges-pos {
+    right: calc(100px + 3vw);
+  }
 }
 
 /* Navbar link text — vertical rotated text */

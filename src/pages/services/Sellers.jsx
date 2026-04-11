@@ -254,7 +254,7 @@ export default function Sellers() {
       <section className="relative min-h-screen text-white overflow-hidden" style={{ backgroundColor: '#0A0F20' }}>
 
         {/* Logo top left */}
-        <div className="absolute top-0 left-0 z-20 px-[5%] lg:px-[8%] pt-6 lg:pt-8">
+        <div className="hidden lg:block absolute top-0 left-0 z-20 px-[5%] lg:px-[8%] pt-6 lg:pt-8">
           <img src={logo} alt="Bimsara Real Estate" className="h-[27px] lg:h-[39px] [transform:scaleX(1.05)] origin-left lg:pl-[30px]" />
         </div>
 

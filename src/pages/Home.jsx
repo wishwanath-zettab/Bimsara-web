@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSiteData } from '../context/SiteDataContext'
+import InquiryForm from '../components/InquiryForm'
 
 import logo from '../assets/images/logo.png'
 import heroImage from '../assets/images/hero-image.png'
@@ -59,8 +60,6 @@ export default function Home() {
   const { data } = useSiteData()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [selectedPurpose, setSelectedPurpose] = useState('')
-  const [formData, setFormData] = useState({ name: '', email: '', countryCode: '+94', phone: '', purpose: '' })
-  const [formSubmitted, setFormSubmitted] = useState(false)
   const dropdownRef = useRef(null)
 
   useEffect(() => {
@@ -81,27 +80,15 @@ export default function Home() {
     }
   }
 
-  const handleFormChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!formData.name || !formData.email || !formData.phone || !formData.purpose) return
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 4000)
-  }
 
   return (
     <div className="bg-lines">
-
       {/* ═══════════════════════════════════════════
           SECTION 1 — HERO
       ═══════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-lines">
         {/* Logo */}
-        <div className="relative z-10 pt-6 lg:pt-[35px] pl-5 lg:pl-[63px]">
+        <div className="hidden lg:block relative z-10 pt-6 lg:pt-[35px] pl-5 lg:pl-[63px]">
           <img src={logo} alt="Bimsara Real Estate" className="h-[53px] lg:h-[77px] [transform:scaleX(1.05)] origin-left" />
         </div>
 
@@ -447,54 +434,7 @@ export default function Home() {
               I would like to know more about the services
             </p>
 
-            {formSubmitted ? (
-              <div className="text-center py-12">
-                <p className="font-lato text-[24px] font-bold text-crimson mb-2">Thank you!</p>
-                <p className="font-lato text-[20px] text-ebony-clay">We'll get back to you shortly.</p>
-              </div>
-            ) : (
-              <form className="space-y-4" onSubmit={handleSubmit} noValidate>
-                <div>
-                  <label className="block font-lato text-[13px] lg:text-[17px] font-bold text-ebony-75 mb-2">Name <span className="text-crimson">*</span></label>
-                  <input type="text" name="name" value={formData.name} onChange={handleFormChange} required className="w-full bg-white border-none rounded-[8px] h-[40px] px-3 outline-none" />
-                </div>
-                <div>
-                  <label className="block font-lato text-[13px] lg:text-[17px] font-bold text-ebony-75 mb-2">Email Address <span className="text-crimson">*</span></label>
-                  <input type="email" name="email" value={formData.email} onChange={handleFormChange} required className="w-full bg-white border-none rounded-[8px] h-[40px] px-3 outline-none" />
-                </div>
-                <div>
-                  <label className="block font-lato text-[13px] lg:text-[17px] font-bold text-ebony-75 mb-2">Contact Number <span className="text-crimson">*</span></label>
-                  <div className="flex mt-1">
-                    <input type="text" name="countryCode" value={formData.countryCode} onChange={handleFormChange} className="bg-white border-r border-ebony-75/50 rounded-l-[8px] h-[40px] w-[20%] px-3 outline-none text-[17px]" />
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleFormChange} required className="bg-white rounded-r-[8px] h-[40px] w-[80%] px-3 outline-none" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-lato text-[13px] lg:text-[17px] font-bold text-ebony-75 mb-2">I want to <span className="text-crimson">*</span></label>
-                  <div className="flex gap-6">
-                    <div className="flex flex-col gap-3">
-                      {['Sell', 'Rent Out'].map((o) => (
-                        <label key={o} className="flex items-center gap-2 cursor-pointer font-lato text-[13px] lg:text-[17px] text-ebony-75">
-                          <input type="radio" name="purpose" value={o} checked={formData.purpose === o} onChange={handleFormChange} className="cursor-pointer" /> {o}
-                        </label>
-                      ))}
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      {['Buy', 'Rent Occupy'].map((o) => (
-                        <label key={o} className="flex items-center gap-2 cursor-pointer font-lato text-[13px] lg:text-[17px] text-ebony-75">
-                          <input type="radio" name="purpose" value={o} checked={formData.purpose === o} onChange={handleFormChange} className="cursor-pointer" /> {o}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-center pt-[20px] lg:pt-[29px]">
-                  <button type="submit" className="glass-btn font-lato text-[15px] lg:text-[24px] font-bold text-ebony-clay px-[21px] lg:px-[40px] py-[8px] lg:py-[15px] cursor-pointer hover:bg-ebony-clay hover:text-white transition-all">
-                    Contact Me
-                  </button>
-                </div>
-              </form>
-            )}
+            <InquiryForm />
           </div>
         </div>
       </section>
