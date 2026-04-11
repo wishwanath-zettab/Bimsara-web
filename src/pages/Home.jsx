@@ -340,12 +340,10 @@ export default function Home() {
         </div>
 
 
+
         {/* Testimonial cover */}
-        <div className="relative rounded-[20px] overflow-hidden mb-10 lg:mb-12 cursor-pointer group">
+        <div className="relative rounded-[20px] overflow-hidden mb-10 lg:mb-12">
           <img src={testimonialsCover} alt="Watch our client testimonials video" className="w-full" loading="lazy" />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-            <img src={playBtn} alt="Play video" className="w-14 h-14 lg:w-20 lg:h-20 group-hover:scale-110 transition-transform" />
-          </div>
         </div>
 
         {/* Testimonial glass card */}
