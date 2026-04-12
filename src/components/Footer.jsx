@@ -121,8 +121,8 @@ export default function Footer() {
         </div>
 
         {/* Social */}
-        <div className="mt-10 flex items-center gap-4">
-          <span className="font-lato text-[12px] lg:text-[17px] font-bold tracking-wider">
+        {/* <div className="mt-10 flex items-center gap-4">
+          <span className="font-lato font-bold" style={{ color: '#0f64fa', fontSize: '18px', lineHeight: '33px' }}>
             WE ARE SOCIAL
           </span>
           <div className="flex gap-3">
@@ -138,7 +138,7 @@ export default function Footer() {
               </a>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom */}

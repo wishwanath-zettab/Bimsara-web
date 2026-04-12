@@ -12,7 +12,7 @@ import testimonialsCover from '../assets/images/testimonials-cover.png'
 import playBtn from '../assets/images/play-btn.png'
 import phoneIcon from '../assets/images/phone-icon.png'
 import whatsappIcon from '../assets/images/whatsapp-icon.png'
-import fbIcon from '../assets/images/fb-icon.png'
+import fbIcon from '../assets/images/vecteezy_facebook-social-media-logo-abstract-symbol-design-vector_8385647.jpg'
 import googleIcon from '../assets/images/google-icon.png'
 import linkedinIcon from '../assets/images/linkedin-icon.png'
 import instagramIcon from '../assets/images/instagram-icon.png'
@@ -431,13 +431,13 @@ export default function Home() {
             <p className="font-lato text-[14px] lg:text-[18px] text-ebony-clay leading-[32px]">
               199/58,<br />Rajagiriya Road,<br />Rajagiriya.
             </p>
-            <p className="font-lato text-[16px] lg:text-[20px] text-crimson tracking-[0.2em] uppercase mt-6 mb-4">WE ARE SOCIAL</p>
-            <div className="flex gap-4">
-              <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer"><img src={fbIcon} alt="Facebook" className="w-10 h-10" loading="lazy" /></a>
-              <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer"><img src={googleIcon} alt="Google" className="w-10 h-10" loading="lazy" /></a>
-              <a href="https://www.linkedin.com/company/safetynet-private-limited" target="_blank" rel="noopener noreferrer"><img src={linkedinIcon} alt="LinkedIn" className="w-10 h-10" loading="lazy" /></a>
-              <a href="https://www.instagram.com/bimsara.realestate/" target="_blank" rel="noopener noreferrer"><img src={instagramIcon} alt="Instagram" className="w-10 h-10" loading="lazy" /></a>
-              <a href="https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured" target="_blank" rel="noopener noreferrer"><img src={youtubeIcon} alt="YouTube" className="w-10 h-10" loading="lazy" /></a>
+            <p className="font-lato font-bold uppercase mt-6 mb-4" style={{ color: '#0f64fa', fontSize: '18px', lineHeight: '33px' }}>WE ARE ON SOCIAL</p>
+            <div className="flex items-center gap-4">
+              <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer"><img src={fbIcon} alt="Facebook" className="w-10 h-10 object-contain block" loading="lazy" /></a>
+              <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer"><img src={googleIcon} alt="Google" className="w-10 h-10 object-contain block" loading="lazy" /></a>
+              <a href="https://www.linkedin.com/company/safetynet-private-limited" target="_blank" rel="noopener noreferrer"><img src={linkedinIcon} alt="LinkedIn" className="w-10 h-10 object-contain block" loading="lazy" /></a>
+              <a href="https://www.instagram.com/bimsara.realestate/" target="_blank" rel="noopener noreferrer"><img src={instagramIcon} alt="Instagram" className="w-10 h-10 object-contain block" loading="lazy" /></a>
+              <a href="https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured" target="_blank" rel="noopener noreferrer"><img src={youtubeIcon} alt="YouTube" className="w-10 h-10 object-contain block" loading="lazy" /></a>
             </div>
           </div>
 
