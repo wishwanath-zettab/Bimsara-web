@@ -242,6 +242,26 @@ a {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile hero logo */
+.mobile-hero-logo {
+  width: 133px;
+  height: 36px;
+}
+
+/* "WE ARE ON SOCIAL" / "WE ARE SOCIAL" heading */
+.social-heading {
+  color: #0f64fa;
+  font-family: var(--font-lato);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 33px;
+}
+
+/* Dropdown option muted color */
+.dropdown-option-muted {
+  color: #b4b4b4;
+}
+
 /* Sticky badges position */
 .sticky-badges-pos {
   right: 1.5rem;

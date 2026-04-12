@@ -98,7 +98,7 @@ export default function Home() {
 
         {/* Mobile logo — centered above headline */}
         <div className="lg:hidden relative z-10 flex justify-start px-5 pt-6 pb-2">
-          <img src={logo} alt="Bimsara Real Estate" style={{ width: '133px', height: '36px' }} className="object-contain" />
+          <img src={logo} alt="Bimsara Real Estate" className="mobile-hero-logo object-contain" />
         </div>
 
         {/* Headline text */}
@@ -184,8 +184,7 @@ export default function Home() {
                       <Link
                         key={opt.label}
                         to={opt.path}
-                        className="block px-3 lg:px-4 py-2 lg:py-2.5 font-lato text-[12px] lg:text-[15px] hover:text-crimson hover:bg-concrete/50 cursor-pointer transition-colors"
-                        style={{ color: '#b4b4b4' }}
+                        className="block px-3 lg:px-4 py-2 lg:py-2.5 font-lato text-[12px] lg:text-[15px] hover:text-crimson hover:bg-concrete/50 cursor-pointer transition-colors dropdown-option-muted"
                         role="option"
                         aria-selected={selectedPurpose === opt.label}
                         onClick={() => { setSelectedPurpose(opt.label); setDropdownOpen(false) }}
@@ -337,7 +336,7 @@ export default function Home() {
             <div className="flex flex-col items-start">
               <div className="flex items-end gap-2 lg:mt-[100px]">
                 <span className="font-khand text-[41px] lg:text-[74px] font-bold leading-none text-crimson">4.9</span>
-                <span className="font-lato text-[24px] lg:text-[22px] font-bold text-royal-blue leading-[29px] lg:leading-[26px] mb-1">star Rated</span>
+                <span className="font-lato text-[24px] lg:text-[22px] font-bold text-royal-blue leading-[29px] lg:leading-[26px] mb-1">Star Rated</span>
               </div>
               <img src={googleReviews} alt="Google Reviews 4.9 star rating" className="h-[86px] lg:h-[114px] lg:-mt-[15px] lg:pt-[10px]" loading="lazy" />
             </div>
@@ -431,7 +430,7 @@ export default function Home() {
             <p className="font-lato text-[14px] lg:text-[18px] text-ebony-clay leading-[32px]">
               199/58,<br />Rajagiriya Road,<br />Rajagiriya.
             </p>
-            <p className="font-lato font-bold uppercase mt-6 mb-4" style={{ color: '#0f64fa', fontSize: '18px', lineHeight: '33px' }}>WE ARE ON SOCIAL</p>
+            <p className="social-heading uppercase mt-6 mb-4">WE ARE ON SOCIAL</p>
             <div className="flex items-center gap-4">
               <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer"><img src={fbIcon} alt="Facebook" className="w-10 h-10 object-contain block" loading="lazy" /></a>
               <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer"><img src={googleIcon} alt="Google" className="w-10 h-10 object-contain block" loading="lazy" /></a>
