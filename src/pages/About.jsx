@@ -513,11 +513,11 @@ export default function About() {
                     <h3 className="font-lato text-[22px] font-bold text-crimson">{selectedMember.name}</h3>
                     <p className="font-lato text-[17px] font-normal text-tundora mt-1">{selectedMember.position}</p>
                     <p className="font-lato text-[16px] font-normal text-crimson leading-[24px] mt-4">{selectedMember.quote}</p>
-                    <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-4 text-left">
+                    <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-4 text-center">
                       {selectedMember.description}
                     </p>
                     {selectedMember.description2 && (
-                      <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-3 text-left">
+                      <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-3 text-center">
                         {selectedMember.description2}
                       </p>
                     )}
