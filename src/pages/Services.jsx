@@ -151,12 +151,25 @@ export default function Services() {
         </div>
       </section>
 
+      {/* ═══ DARK CTA SECTION ═══ */}
+      <section className="iso-section-bg py-[60px] lg:py-[100px] px-5 lg:px-[8%] text-center">
+        <h2 className="services-dark-cta-heading mb-10 lg:mb-20 max-w-4xl mx-auto">
+          Want to go on the safe side with your property?
+        </h2>
+        <div className="flex justify-center">
+          <Link to="/#contact" className="pill-btn">
+            Talk to us
+            <img src={whiteArrow} alt="" className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
       {/* ═══ TRUSTED STRIP ═══ */}
       <section className="py-[50px] px-5 lg:px-[8%] bg-lines">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
             {['Trusted Advisor', 'Skilled Negotiator', 'Expert Facilitator'].map((t) => (
-              <span key={t} className="font-lato text-[24px] font-bold text-crimson w-full flex justify-center text-center mb-[4%]">
+              <span key={t} className="services-tagline w-full flex justify-center text-center">
                 {t}
               </span>
             ))}

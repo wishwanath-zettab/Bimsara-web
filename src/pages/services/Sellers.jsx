@@ -258,21 +258,14 @@ export default function Sellers() {
           <img src={logo} alt="Bimsara Real Estate" className="h-[42px] w-[160px] object-contain origin-left" />
         </div>
 
-        <div className="relative z-10 w-full px-[3.15%] lg:px-[5.08%] pt-[80px] lg:pt-[100px] pb-[60px]">
-          {/* Breadcrumb */}
-          <p className="font-lato text-[13px] text-nobel mb-8">
-            <Link to="/services" className="hover:text-white transition-colors">Our Services</Link>
-            <span className="mx-2 text-nobel/50">/</span>
-            <span className="text-white">For Sellers</span>
-          </p>
-
+        <div className="relative z-10 w-full px-[3.15%] lg:px-[5.08%] pt-[80px] lg:pt-[120px] pb-[60px]">
           <div className="flex flex-col lg:flex-row lg:items-start w-full">
             {/* Left column */}
             <div className="lg:w-[50%]">
-              <h1 className="font-lato text-[32px] lg:text-[48px] font-normal text-white mb-8 leading-tight">
+              <h1 className="font-lato text-[25px] lg:text-[42px] font-normal text-white leading-[50px] lg:leading-[90px] text-justify">
                 Selling your property
               </h1>
-              <p className="font-lato text-[18px] lg:text-[23px] tracking-[0.84em] text-royal-blue uppercase mb-10 lg:pl-[20px]">
+              <p className="font-lato text-[15px] lg:text-[21px] tracking-[0.4em] lg:tracking-[1em] font-normal text-royal-blue uppercase leading-[45px] lg:leading-[30px] text-justify mb-10 lg:ml-[14px]">
                 OUR SERVICES
               </p>
 
@@ -311,16 +304,16 @@ export default function Sellers() {
                 z-index: 1;
               }
             `}</style>
-              <div ref={cardsRef} className="space-y-8 lg:w-[120%]">
+              <div ref={cardsRef} className="space-y-5 lg:w-full lg:max-w-[600px]">
                 {servicesList.map((s) => (
                   <div key={s.title} className="service-card" onClick={() => setSelectedService(s)}>
-                    <div className="service-card-inner w-full pl-[42px] pr-8 lg:pl-[55px] lg:pr-[42px] pt-[26px] lg:pt-9 pb-10 lg:pb-[52px]">
-                      <p className="font-lato text-[26px] lg:text-[32px] font-normal text-white mb-4">
+                    <div className="service-card-inner w-full pl-[28px] pr-6 lg:pl-[36px] lg:pr-[28px] pt-[18px] lg:pt-[22px] pb-[20px] lg:pb-[24px]">
+                      <p className="font-lato text-[17px] lg:text-[20px] font-normal text-white mb-3">
                         {s.title}
                       </p>
-                      <div className="w-[58px] h-[58px] rounded-full border-2 border-white/70 flex items-center justify-center">
-                        <svg width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <div className="w-[44px] h-[44px] rounded-full border border-white/70 flex items-center justify-center">
+                        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                     </div>
@@ -330,18 +323,18 @@ export default function Sellers() {
             </div>
 
             {/* Right column */}
-            <div className="hidden lg:flex lg:flex-1 flex-col gap-12 pt-[160px] items-center">
+            <div className="hidden lg:flex lg:flex-1 flex-col gap-8 pt-0 items-start pl-[40px]">
               {/* Hero mini image */}
               <img
                 src={sellersHeroMini}
                 alt="Sellers"
-                className="w-[59.3%] rounded-[32px] object-cover overflow-hidden"
-                style={{ height: '182px', objectPosition: 'center', objectFit: 'cover' }}
+                className="w-[480px] max-w-full rounded-[25px] object-cover overflow-hidden"
+                style={{ height: '180px', objectPosition: 'center', objectFit: 'cover' }}
               />
               {/* Items list from first service */}
-              <ul className="space-y-4">
+              <ul className="space-y-1">
                 {servicesList[0].items.map((item) => (
-                  <li key={item} className="font-lato text-[17px] lg:text-[18px] text-white/80 leading-[1.8]">
+                  <li key={item} className="font-lato text-[16px] lg:text-[18px] font-light text-white leading-[50px]">
                     {item}
                   </li>
                 ))}
@@ -393,7 +386,7 @@ export default function Sellers() {
           {/* Guide sidebar */}
           <div className="lg:w-[429px] shrink-0 flex flex-col gap-5">
             {/* Top row - title */}
-            <h2 className="font-lato text-[30px] lg:text-[36px] font-normal text-crimson">Selling your property</h2>
+            <h2 className="font-lato text-[30px] lg:text-[40px] font-normal leading-tight text-crimson">Selling your property</h2>
 
             {/* Bottom row - gray content area */}
             <div className="bg-gray-100 rounded-[16px] p-5 overflow-y-auto max-h-[100vh]">
@@ -460,12 +453,12 @@ export default function Sellers() {
                     }
                     if (typeof item === 'object' && item.bold) {
                       return (
-                        <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
-                          <span className="font-bold">{item.bold}</span>{' '}{item.rate ? `${data.commissionRate} commission on the actual transaction value. No advance payments or other hidden costs.` : item.text}
+                        <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-tundora leading-[30px] text-justify">
+                          <span className="font-semibold">{item.bold}</span>{' '}{item.rate ? `${data.commissionRate} commission on the actual transaction value. No advance payments or other hidden costs.` : item.text}
                         </p>
                       )
                     }
-                    return <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">{item}</p>
+                    return <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-tundora leading-[30px] text-justify">{item}</p>
                   })}
                 </div>
               </>
@@ -482,9 +475,9 @@ export default function Sellers() {
                       return <h4 key={i} className={`font-lato text-ebony-clay mt-6 mb-2 ${isMainHeading ? 'text-[30px] leading-[50px] font-normal' : 'text-[17px] lg:text-[19px] font-bold'}`}>{item.topic}</h4>
                     }
                     return (
-                      <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-ebony-clay leading-[29px] text-justify">
+                      <p key={i} className="font-lato text-[18px] lg:text-[20px] font-light text-tundora leading-[30px] text-justify">
                         {typeof item === 'object' && item.bold
-                          ? <><span className="font-bold">{item.bold}</span><br />{item.text}</>
+                          ? <><span className="font-semibold">{item.bold}</span><br />{item.text}</>
                           : item}
                       </p>
                     )

@@ -9,7 +9,6 @@ import googleIcon from '../assets/images/google-icon.png'
 import linkedinIcon from '../assets/images/linkedin-icon.png'
 import youtubeIcon from '../assets/images/youtube-icon.png'
 import instagramIcon from '../assets/images/instagram-icon.png'
-import hamburgerLg from '../assets/images/hamburger-lg.webp'
 import hamburgerSm from '../assets/images/hamburger-sm.webp'
 
 function FlyoutLink({ img, head, sub, onClick }) {
@@ -96,7 +95,7 @@ export default function Navbar() {
       </button>
 
       {/* ═══ RIGHT SIDEBAR (always on desktop / slides in on mobile) ═══ */}
-      <nav className={`fixed right-0 top-0 h-screen w-[80px] lg:w-[100px] z-50 flex-col items-center justify-between py-[2.5vh] nav-glass
+      <nav className={`fixed right-0 top-0 h-screen w-[100px] z-50 flex-col items-center justify-between py-[2.5vh] nav-glass
         ${(open || closing) ? 'flex' : 'hidden'} sm:flex ${closing ? 'nav-slide-out' : ''}`}>
 
         {/* Home */}
@@ -112,12 +111,14 @@ export default function Navbar() {
             Services
           </button>
           <div className="nav-flyout">
-            <div className="p-[36px]">
+            <div className="pt-[30px] pb-[20px] pl-[30px]">
               <FlyoutLink img={sellersIcon} head="Sellers" sub="Our services for property sellers" onClick={() => goTo('/sellers')} />
               <FlyoutLink img={buyersIcon} head="Buyers" sub="What we offer to property buyers" onClick={() => goTo('/buyers')} />
               <FlyoutLink img={landlordsIcon} head="Landlords" sub="Our services for landlords" onClick={() => goTo('/landlords')} />
               <FlyoutLink img={tenantsIcon} head="Tenants" sub="What we offer to tenants" onClick={() => goTo('/tenants')} />
               <div className="nav-flyout-divider" />
+            </div>
+            <div className="pt-[20px] pb-[50px] pl-[30px]">
               <div className="nav-flyout-section-title">Read the Guides</div>
               <div className="nav-flyout-sub-link" onClick={() => goTo('/sellers')}>Seller's Guide</div>
               <div className="nav-flyout-sub-link" onClick={() => goTo('/buyers')}>Buyer's Guide</div>
@@ -133,7 +134,7 @@ export default function Navbar() {
             Testimonials
           </button>
           <div className="nav-flyout">
-            <div className="p-[36px]">
+            <div className="pt-[30px] pb-[20px] pl-[30px]">
               <FlyoutLink head="Reviews" sub="Google Reviews" onClick={() => goTo('/', 'testimonials')} />
               <FlyoutLink head="Video Testimonials" sub="Watch client stories" onClick={() => goTo('/', 'testimonials')} />
             </div>
@@ -146,13 +147,15 @@ export default function Navbar() {
             About
           </button>
           <div className="nav-flyout nav-flyout-bottom">
-            <div className="p-[36px]">
+            <div className="pt-[30px] pb-[20px] pl-[30px]">
               <FlyoutLink head="Who we are" sub="About us" onClick={() => goTo('/about', 'about-who')} />
               <FlyoutLink head="Our Direction" sub="Vision, Mission, Values" onClick={() => goTo('/about', 'about-mission')} />
               <FlyoutLink head="ISO Certification" sub="We love to follow systems" onClick={() => goTo('/about', 'about-iso')} />
               <FlyoutLink head="Company Overview" sub="The registered company" onClick={() => goTo('/about', 'about-overview')} />
               <FlyoutLink head="Our Team" sub="Who's behind the brand" onClick={() => goTo('/about', 'about-team')} />
               <div className="nav-flyout-divider" />
+            </div>
+            <div className="pt-[20px] pb-[60px] pl-[30px]">
               <div className="nav-flyout-section-title">Download</div>
               <a href="/assets/company-profile.pdf" target="_blank" rel="noopener noreferrer" className="nav-flyout-sub-link nav-download-link">
                 Company Profile Book
@@ -167,10 +170,12 @@ export default function Navbar() {
             Contact
           </button>
           <div className="nav-flyout nav-flyout-bottom">
-            <div className="p-[36px]">
+            <div className="p-[30px]">
               <FlyoutLink head="Contact Us" sub="Contact the divisions" onClick={() => goTo('/', 'contact')} />
               <FlyoutLink head="Our Location" sub="Meet at office" onClick={() => goTo('/', 'contact')} />
               <div className="nav-flyout-divider" />
+            </div>
+            <div className="pt-[20px] pb-[30px] px-[30px]">
               <div className="nav-flyout-section-title">Social Links</div>
               <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer" className="nav-flyout-social-row">
                 <img src={fbIcon} alt="Facebook" className="nav-flyout-social-icon" />

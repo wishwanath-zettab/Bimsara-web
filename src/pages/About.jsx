@@ -305,7 +305,7 @@ export default function About() {
       <section className="mt-[3.58%] mb-[1.8%] pr-[10%]">
         <div className="flex justify-center w-full">
           {['Trusted Advisor', 'Skilled Negotiator', 'Expert Facilitator'].map((title) => (
-            <div key={title} className="text-crimson font-lato text-[35px] lg:text-[44px] font-semibold italic text-center w-[26%] flex justify-center">
+            <div key={title} className="services-tagline text-center w-[26%] flex justify-center">
               {title}
             </div>
           ))}
@@ -314,16 +314,16 @@ export default function About() {
 
       {/* ═══════ WHO WE ARE ═══════ */}
       <section id="about-who" className="pt-[3.61%] px-[4%] lg:pl-[5%] lg:w-[80%]">
-        <p className="font-lato text-[30px] text-royal-blue tracking-[0.95em] uppercase">WHO WE ARE</p>
+        <p className="about-section-header">WHO WE ARE</p>
         <div className="flex flex-col lg:flex-row flex-1 w-[120%]">
           <div className="lg:w-[64.8%] mt-[3%]">
-            <h2 className="font-lato text-[36px] lg:text-[45px] font-bold text-ebony-clay leading-tight lg:mr-[2vw] text-justify">
+            <h2 className="about-heder-content lg:mr-[2vw]">
               Bimsara Real Estate is a premier broking brand at the forefront of Sri Lanka's real estate market.
             </h2>
-            <p className="font-lato text-[29px] font-normal leading-[50px] text-ebony-clay text-justify mt-[30px]">
+            <p className="about-sub-content text-ebony-clay mt-[30px]">
               With many successful transactions concluded, we possess an unparalleled, profound, insightful understanding of the property market in Sri Lanka. Attributed to our far-flung experience in the industry, we are capable of providing holistic, end-to-end options to the versatile demands and concerns of every client.
             </p>
-            <p className="font-lato text-[29px] font-light leading-[50px] text-ebony-clay text-justify mt-[30px]">
+            <p className="about-sub-content-two text-ebony-clay mt-[30px]">
               The brand is put to the forefront by Safetynet (Private) Limited founded in 2006. The company has been in the industry since then and has extended mediation services under the guidance and close inspection of the founder and the Managing Director; Bimsara Gamage, to a wide spectrum of property sellers, landlords, buyers and tenants with myriad, diverse and unique needs and requirements.
             </p>
             <div className="mt-[61px] pl-[3%]">
@@ -334,7 +334,7 @@ export default function About() {
             </div>
           </div>
           <div className="hidden lg:flex flex-col items-center mt-[3%] lg:w-[46%]">
-            <img src={aboutLogo} alt="Bimsara Real Estate" className="w-[77%]" loading="lazy" />
+            <img src={aboutLogo} alt="Bimsara Real Estate" className="w-auto max-w-full h-auto object-contain" loading="lazy" style={{ maxHeight: '110px' }} />
           </div>
         </div>
       </section>
@@ -390,19 +390,19 @@ export default function About() {
       </section>
 
       {/* ═══════ ISO CERTIFICATION ═══════ */}
-      <section id="about-iso" className="py-[3.5%] px-[4%] lg:pl-[5%] lg:pr-[20%] iso-section-bg">
-        <div className="flex flex-col lg:flex-row items-center gap-36">
-          <div className="lg:w-[65%] text-white">
-            <p className="font-lato text-[18px] lg:text-[25px] tracking-[0.42em] text-royal-blue uppercase mb-4">WE LOVE TO FOLLOW<br />SYSTEMS</p>
-            <h2 className="font-lato text-[41px] lg:text-[52px] font-bold leading-[1.31] mb-[30px] text-alto w-full">
+      <section id="about-iso" className="py-[3.5%] px-[4%] lg:pl-[5%] lg:pr-[8%] iso-section-bg">
+        <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
+          <div className="lg:w-[45%] text-white">
+            <p className="about-we-header mb-6">WE LOVE TO FOLLOW<br />SYSTEMS</p>
+            <h2 className="!text-alto mb-[30px] w-full !text-left font-lato font-bold text-[36px] lg:text-[40px] leading-[1.2]">
               To ensure our framework of policies and processes are at internationally recognized standards.
             </h2>
-            <p className="font-lato text-[29px] lg:text-[32px] font-light leading-[53px] text-alto/80 text-justify">
+            <p className="about-sub-content-two text-alto/80">
               In 2016, we adopted an internationally recognized quality management system and was awarded the ISO 9001:2008 standard. In 2019, we acquired the revised ISO 9001:2015 certificate from Bureau Veritas Certification Holding SAS-UK Branch, Accredited by UKAS Management Systems.
             </p>
           </div>
           <div className="flex-1 flex justify-center items-center">
-            <div className="lg:w-[518px]">
+            <div className="lg:w-[340px]">
               <img src={isoCertSrc} alt="ISO 9001:2015 Certificate" className="w-full rounded-lg shadow-xl" loading="lazy" />
             </div>
           </div>
@@ -411,25 +411,25 @@ export default function About() {
 
       {/* ═══════ COMPANY OVERVIEW ═══════ */}
       <section id="about-overview" className="pt-[5%] pb-[5%] pl-[5%] pr-[10%] w-full">
-        <p className="font-lato text-[30px] text-royal-blue tracking-[0.95em] uppercase">COMPANY OVERVIEW</p>
+        <p className="about-section-header">COMPANY OVERVIEW</p>
 
         {/* Glassmorphism card — matching live site */}
         <div className="company-overview-card flex flex-col lg:flex-row mt-[5%] w-full lg:w-[92%]">
           {/* Left column */}
           <div className="flex-1 lg:w-[60%] px-[5%] lg:px-[8%] py-[5%]">
             <img src={safetynetLogo} alt="Safetynet" className="h-[86px] mb-6 mx-auto" loading="lazy" />
-            <p className="font-lato text-[28px] font-normal leading-[46px] text-ebony-clay text-center mb-2">
+            <p className="font-lato text-[18px] font-normal leading-[29px] text-ebony-clay text-center mb-2">
               Safetynet (Private) Limited
             </p>
-            <p className="font-lato text-[28px] font-light leading-[46px] text-ebony-clay text-center mb-8">
+            <p className="font-lato text-[18px] font-light leading-[29px] text-ebony-clay text-center mb-8">
               Company Registration No: PV 1525
             </p>
-            <p className="font-lato text-[28px] font-light leading-[46px] text-ebony-clay text-center mt-[30px] mb-[30px]">
+            <p className="font-lato text-[18px] font-light leading-[29px] text-ebony-clay text-center mt-[30px] mb-[30px]">
               Safetynet (Private) Limited has been in business since its inception on the 19th June 2006 and the company is duly registered under the companies Act No. 7 of 2007 as a private company with limited liability with one director at present.
             </p>
             <div className="text-center mb-6">
-              <p className="font-lato text-[28px] text-royal-blue mb-1">Registered Office</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">
+              <p className="font-lato text-[18px] text-royal-blue mb-1">Registered Office</p>
+              <p className="font-lato text-[18px] font-light text-ebony-clay leading-[29px]">
                 199/58<br />Rajagiriya Road, Rajagiriya<br />Sri Lanka
               </p>
             </div>
@@ -438,18 +438,18 @@ export default function About() {
           {/* Right column */}
           <div className="lg:w-[40%] pl-0 pr-[10%] py-[5%]">
             <div className="text-center mb-8 lg:mt-[80px]">
-              <p className="font-lato text-[28px] text-royal-blue mb-1">Company Secretary</p>
-              <p className="font-lato text-[28px] font-normal text-ebony-clay">M C A Advisory Services (Pvt) Ltd</p>
+              <p className="font-lato text-[18px] text-royal-blue mb-1">Company Secretary</p>
+              <p className="font-lato text-[18px] font-normal text-ebony-clay">M C A Advisory Services (Pvt) Ltd</p>
             </div>
             <div className="text-center mb-8">
-              <p className="font-lato text-[28px] text-royal-blue mb-1">Auditor</p>
-              <p className="font-lato text-[28px] font-normal text-ebony-clay">Thilak Jayathilaka & Co.</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">Chartered Accountants</p>
+              <p className="font-lato text-[18px] text-royal-blue mb-1">Auditor</p>
+              <p className="font-lato text-[18px] font-normal text-ebony-clay">Thilak Jayathilaka & Co.</p>
+              <p className="font-lato text-[18px] font-light text-ebony-clay leading-[29px]">Chartered Accountants</p>
             </div>
             <div className="text-center">
-              <p className="font-lato text-[28px] text-royal-blue mb-1">Banker</p>
-              <p className="font-lato text-[28px] font-normal text-ebony-clay">Hatton National Bank PLC.</p>
-              <p className="font-lato text-[28px] font-light text-ebony-clay leading-[47px]">Green Path Branch</p>
+              <p className="font-lato text-[18px] text-royal-blue mb-1">Banker</p>
+              <p className="font-lato text-[18px] font-normal text-ebony-clay">Hatton National Bank PLC.</p>
+              <p className="font-lato text-[18px] font-light text-ebony-clay leading-[29px]">Green Path Branch</p>
             </div>
           </div>
         </div>
@@ -458,17 +458,17 @@ export default function About() {
       {/* ═══════ OUR TEAM ═══════ */}
       <section id="about-team" className="pt-[5vh] pb-[5%] px-[4%] lg:pl-[10%] lg:w-[80%]">
         <div className="flex w-[70%]">
-          <p className="font-lato text-[30px] text-royal-blue tracking-[0.95em] uppercase">OUR TEAM</p>
+          <p className="about-section-header">OUR TEAM</p>
         </div>
 
         {/* Two-column: text left, stats right */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-[300px] pt-[2%]">
           {/* Left: heading + description */}
           <div className="lg:w-[53%]">
-            <h2 className="font-lato text-[24px] font-bold text-ebony-clay leading-[29px] mt-[30px] text-justify">
+            <h2 className="about-heder-content mt-[30px]">
               We are an ever growing group of individuals in terms of number, proficiency and experiences.
             </h2>
-            <p className="font-lato text-[30px] font-light text-ebony-clay leading-[44px] mt-[30px] text-justify">
+            <p className="about-sub-content-two text-ebony-clay mt-[30px]">
               Through our collective efforts including sharing knowledge about diverse projects, we have made our journey far more than a success story.
             </p>
           </div>
@@ -476,12 +476,12 @@ export default function About() {
           {/* Right: stats */}
           <div className="flex flex-row lg:flex-col items-start gap-8 lg:gap-4 shrink-0 w-[240px] text-center lg:text-left mx-auto lg:mx-0">
             <div className="text-center lg:text-left">
-              <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson block">{data.teamPositions}</span>
-              <p className="font-lato text-[17px] lg:text-[29px] font-bold text-royal-blue leading-[20px] lg:leading-[34px] mt-1">Positions and<br />growing</p>
+              <span className="font-khand text-[41px] lg:text-[64px] font-bold leading-none text-crimson block">{data.teamPositions}</span>
+              <p className="font-lato text-[15px] lg:text-[18px] font-bold text-royal-blue leading-[20px] lg:leading-[24px] mt-1">Positions and<br />growing</p>
             </div>
             <div className="text-center lg:text-left mt-0 lg:mt-4">
-              <span className="font-khand text-[41px] lg:text-[99px] font-bold leading-none text-crimson block">{data.serviceProviderCount}</span>
-              <p className="font-lato text-[17px] lg:text-[29px] font-bold text-royal-blue leading-[20px] lg:leading-[34px] mt-1">Service Providers</p>
+              <span className="font-khand text-[41px] lg:text-[64px] font-bold leading-none text-crimson block">{data.serviceProviderCount}</span>
+              <p className="font-lato text-[15px] lg:text-[18px] font-bold text-royal-blue leading-[20px] lg:leading-[24px] mt-1">Service Providers</p>
             </div>
           </div>
         </div>
@@ -510,14 +510,14 @@ export default function About() {
                   </div>
                   {/* Text — scrolls without moving the avatar */}
                   <div className="overflow-y-auto text-center px-[15%] w-full">
-                    <h3 className="font-lato text-[29px] font-bold text-crimson">{selectedMember.name}</h3>
-                    <p className="font-lato text-[23px] font-semibold text-tundora mt-1">{selectedMember.position}</p>
-                    <p className="font-lato text-[21px] font-light text-crimson leading-[29px] mt-4 italic">{selectedMember.quote}</p>
-                    <p className="font-lato text-[19px] font-light text-tundora leading-[29px] mt-4 text-justify">
+                    <h3 className="font-lato text-[22px] font-bold text-crimson">{selectedMember.name}</h3>
+                    <p className="font-lato text-[17px] font-normal text-tundora mt-1">{selectedMember.position}</p>
+                    <p className="font-lato text-[16px] font-normal text-crimson leading-[24px] mt-4">{selectedMember.quote}</p>
+                    <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-4 text-left">
                       {selectedMember.description}
                     </p>
                     {selectedMember.description2 && (
-                      <p className="font-lato text-[19px] font-light text-tundora leading-[29px] mt-3 text-justify">
+                      <p className="font-lato text-[15px] font-normal text-tundora leading-[26px] mt-3 text-left">
                         {selectedMember.description2}
                       </p>
                     )}
@@ -582,7 +582,7 @@ export default function About() {
 
       {/* ═══════ SERVICE PROVIDERS ═══════ */}
       <section className="bg-white pb-[3%] w-full pr-[10%]">
-        <h3 className="font-lato text-[27px] font-bold text-royal-blue leading-[30px] text-center pb-[3%]">Our Service Providers</h3>
+        <h3 className="font-lato text-[20px] font-bold text-royal-blue leading-[30px] text-center pb-[3%]">Our Service Providers</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto w-[70%] pb-[3%]">
           {data.serviceProviders.map((sp, idx) => {
             const logoSrc = sp.logo ? getImageUrl(sp.logo) : ''
