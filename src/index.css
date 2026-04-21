@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,800;1,700&family=Khand:wght@700&family=League+Gothic&display=swap');
 @import "tailwindcss";
 
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+::-webkit-scrollbar {
+  width: 1px;
 }
-*::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
 }
 
 @theme {
@@ -31,6 +34,10 @@
   --font-lato: 'Lato', sans-serif;
   --font-khand: 'Khand', sans-serif;
   --font-league: 'League Gothic', sans-serif;
+
+  /* Breakpoints — Tailwind v4 defaults + 3xl (1920px).
+     Use modern range syntax in raw @media: (width >= 40rem), (width < 64rem), etc. */
+  --breakpoint-3xl: 120rem;
 }
 
 html {
@@ -39,10 +46,12 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-lato);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   color: var(--color-ebony-clay);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -50,19 +59,22 @@ a {
   text-decoration: none;
 }
 
-/* Decorative vertical pink lines across pages */
+/* Home page background — vertical pink strips matching About page (9 lines) */
 .bg-lines {
   background-color: #fff;
 }
-@media (min-width: 1024px) {
+@media (width >= 64rem) {
   .bg-lines {
     background:
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 5%,
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 57.14%,
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 64.52%,
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 71%,
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 78.43%,
-      linear-gradient(rgba(255,151,148,0.2) 0 0) 86.2%;
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 57.1428571429%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 56.2851782364%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 64.5161290323%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 63.6942675159%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.0059171598%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 71.7948717949%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 78.431372549%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 79.2253521127%,
+      linear-gradient(hsla(2,100%,79%,0.2) 0 0) 86.2068965517%;
     background-color: #fff;
     background-repeat: no-repeat;
     background-size: 1.5px 100%;
@@ -73,7 +85,7 @@ a {
 .about-bg-lines {
   background-color: #fff;
 }
-@media (min-width: 1024px) {
+@media (width >= 64rem) {
   .about-bg-lines {
     background:
       linear-gradient(hsla(2,100%,79%,0.2) 0 0) 57.1428571429%,
@@ -206,7 +218,7 @@ a {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  padding: 30px 40px;
+  padding: 25px 20px;
   color: #fff;
 }
 
@@ -263,13 +275,13 @@ a {
   color: #b4b4b4;
 }
 
-/* Sticky badges position */
+/* Sticky badges position — reference .top-content-arrow: right 15vw */
 .sticky-badges-pos {
   right: 1.5rem;
 }
-@media (min-width: 1024px) {
+@media (width >= 64rem) {
   .sticky-badges-pos {
-    right: calc(100px + 3vw);
+    right: 15vw;
   }
 }
 
@@ -319,7 +331,7 @@ a {
   display: block;
 }
 
-@media (max-width: 639px) {
+@media (width < 40rem) {
   .nav-flyout {
     width: 220px;
   }
@@ -492,7 +504,7 @@ a {
   to   { transform: translateX(100%); }
 }
 
-@media (max-width: 639px) {
+@media (width < 40rem) {
   .nav-glass {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -507,8 +519,8 @@ a {
   }
 }
 
-/* Extra-large screens (1919px+) — bigger nav */
-@media (min-width: 1919px) {
+/* 3xl (≥1920px / 120rem) — bigger nav */
+@media (width >= 120rem) {
   .nav-glass {
     width: 137px !important;
     border-radius: 40px 0 0 40px;
@@ -558,8 +570,9 @@ a {
   }
 }
 
-/* Smaller desktop (≤1366px) — tighter nav spacing */
-@media (max-width: 1366px) {
+/* Below 2xl (≤1535px / <96rem) — tighter nav spacing on laptops.
+   Promoted from the old 1366px cutoff to align with the Tailwind scale. */
+@media (width < 96rem) {
   .nav-glass .flex-1 {
     padding-bottom: 3vh;
   }
@@ -644,33 +657,33 @@ a {
 
 .dropdown-combobox-text {
   flex: 1;
-  padding: 13px 18px;
+  padding: 10px 14px;
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   color: rgba(48, 53, 72, 0.75);
 }
 
-@media (min-width: 1024px) {
+@media (width >= 64rem) {
   .dropdown-combobox-text {
-    padding: 20px 24px;
-    font-size: 20px;
+    padding: 10px 14px;
+    font-size: 14px;
   }
 }
 
 .dropdown-combobox-icon {
-  width: 46px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 0;
+  padding: 10px 0;
   border-left: 0.8px solid #e5322d;
 }
 
-@media (min-width: 1024px) {
+@media (width >= 64rem) {
   .dropdown-combobox-icon {
-    width: 58px;
-    padding: 20px 0;
+    width: 40px;
+    padding: 10px 0;
   }
 }
 

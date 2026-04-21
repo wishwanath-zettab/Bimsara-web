@@ -80,7 +80,7 @@ export default function InquiryForm({ inputClass = '', labelClass = '' }) {
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+    <form className="space-y-6" onSubmit={handleSubmit} noValidate>
 
         {/* Error banner */}
         {submitError && (
