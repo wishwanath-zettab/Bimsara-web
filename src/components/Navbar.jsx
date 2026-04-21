@@ -107,9 +107,9 @@ export default function Navbar() {
 
         {/* Services — with flyout */}
         <div className={`flex-1 flex items-center justify-center nav-item-has-flyout ${openFlyout === 'services' ? 'flyout-open' : ''}`}>
-          <button onClick={() => toggleFlyout('services')} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text bg-transparent border-none cursor-pointer ${isActive('/services') || isActive('/sellers') || isActive('/buyers') || isActive('/landlords') || isActive('/tenants') ? 'text-crimson' : 'text-ebony-clay'}`}>
+          <Link to="/services" onClick={closeNav} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text ${isActive('/services') || isActive('/sellers') || isActive('/buyers') || isActive('/landlords') || isActive('/tenants') ? 'text-crimson' : 'text-ebony-clay'}`}>
             Services
-          </button>
+          </Link>
           <div className="nav-flyout">
             <div className="pt-[30px] pb-[20px] pl-[30px]">
               <FlyoutLink img={sellersIcon} head="Sellers" sub="Our services for property sellers" onClick={() => goTo('/sellers')} />
@@ -143,9 +143,9 @@ export default function Navbar() {
 
         {/* About — with flyout */}
         <div className={`flex-1 flex items-center justify-center nav-item-has-flyout ${openFlyout === 'about' ? 'flyout-open' : ''}`}>
-          <button onClick={() => toggleFlyout('about')} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text bg-transparent border-none cursor-pointer ${isActive('/about') ? 'text-crimson' : 'text-ebony-clay'}`}>
+          <Link to="/about" onClick={closeNav} className={`block whitespace-nowrap transition-colors duration-200 hover:text-crimson nav-link-text ${isActive('/about') ? 'text-crimson' : 'text-ebony-clay'}`}>
             About
-          </button>
+          </Link>
           <div className="nav-flyout nav-flyout-bottom">
             <div className="pt-[30px] pb-[20px] pl-[30px]">
               <FlyoutLink head="Who we are" sub="About us" onClick={() => goTo('/about', 'about-who')} />
