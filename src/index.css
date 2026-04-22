@@ -664,10 +664,11 @@ a {
   color: rgba(48, 53, 72, 0.75);
 }
 
+/* Desktop: padding and font-size scale fluidly so the combobox grows taller on larger screens. */
 @media (width >= 64rem) {
   .dropdown-combobox-text {
-    padding: 10px 14px;
-    font-size: 14px;
+    padding: clamp(10px, 0.75vw, 18px) clamp(14px, 1.1vw, 22px);
+    font-size: clamp(14px, 1.05vw, 20px);
   }
 }
 
@@ -682,8 +683,8 @@ a {
 
 @media (width >= 64rem) {
   .dropdown-combobox-icon {
-    width: 40px;
-    padding: 10px 0;
+    width: clamp(40px, 2.8vw, 60px);
+    padding: clamp(10px, 0.75vw, 18px) 0;
   }
 }
 

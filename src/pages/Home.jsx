@@ -149,7 +149,7 @@ export default function Home() {
           {/* Red-to-purple gradient curved shape */}
           <div className="absolute bottom-0 left-0 z-[3] w-[50%] lg:w-[33%] h-[132%] hero-gradient-curve">
             {/* "I want to" + custom dropdown */}
-            <div className="absolute top-[15%] left-[8vw] lg:top-[18%] lg:left-[8vw] text-white w-[232px] lg:w-[377px]">
+            <div className="absolute top-[15%] left-[8vw] lg:top-[18%] lg:left-[8vw] text-white w-[200px] lg:w-[clamp(260px,_18vw,_400px)]">
               <p className="font-lato text-[22px] lg:text-[26px] font-bold mb-[15px] lg:mb-[30px]">I want to</p>
               <div className="relative" ref={dropdownRef}>
                 {/* Background images for combobox */}
@@ -184,7 +184,7 @@ export default function Home() {
                       <Link
                         key={opt.label}
                         to={opt.path}
-                        className="block px-[10px] font-lato text-[14px] font-normal leading-[35px] hover:text-crimson hover:bg-concrete/50 cursor-pointer transition-colors dropdown-option-muted"
+                        className="block px-[10px] lg:px-[clamp(10px,_1.1vw,_22px)] font-lato text-[14px] lg:text-[clamp(14px,_1.05vw,_20px)] font-normal leading-[35px] lg:leading-[clamp(35px,_2.6vw,_50px)] hover:text-crimson hover:bg-concrete/50 cursor-pointer transition-colors dropdown-option-muted"
                         role="option"
                         aria-selected={selectedPurpose === opt.label}
                         onClick={() => { setSelectedPurpose(opt.label); setDropdownOpen(false) }}
@@ -213,48 +213,48 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Main heading + description + stats */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-[40px] pt-[20px] lg:pt-[40px]">
-          <div className="flex-1">
-            <h2 className="font-lato text-[21px] lg:text-[38px] font-bold text-ebony-clay leading-tight mb-4 text-justify">
+        {/* Main heading + description + stats (3-col grid on desktop so stats align with "Expert Facilitator" column above) */}
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-[40px] pt-[20px] lg:pt-[40px]">
+          <div className="lg:col-span-2 lg:max-w-[46vw]">
+            <h2 className="font-lato text-[21px] lg:text-[32px] font-bold text-ebony-clay leading-tight mb-4 text-left">
               Your go-to partner in selling and renting out your property.
             </h2>
-            <p className="font-lato text-[18px] lg:text-[22px] font-normal leading-[28px] lg:leading-[32px] text-ebony-clay text-justify mb-4 mt-[20px]">
+            <p className="font-lato text-[16px] lg:text-[18px] font-normal leading-[26px] lg:leading-[28px] text-ebony-clay text-justify mb-4 mt-[20px]">
               Bimsara Real Estate is the outcome of extensive research conducted by over
               several years to identify solutions for the issues most frequently encountered by
               both sellers and buyers in the Sri Lankan real-estate market.
             </p>
-            <p className="font-lato text-[18px] lg:text-[22px] font-light leading-[28px] lg:leading-[32px] text-ebony-clay text-justify mb-4 mt-[20px]">
+            <p className="font-lato text-[16px] lg:text-[18px] font-light leading-[26px] lg:leading-[28px] text-ebony-clay text-justify mb-4 mt-[20px]">
               Our unique approach and method of business is a solution-based and
               personalized effort to help buyers to find their dream home or
               property.
             </p>
-            <p className="font-lato text-[18px] lg:text-[22px] font-light leading-[28px] lg:leading-[32px] text-ebony-clay text-justify mb-4 mt-[20px]">
+            <p className="font-lato text-[16px] lg:text-[18px] font-light leading-[26px] lg:leading-[28px] text-ebony-clay text-justify mb-4 mt-[20px]">
               We believe buyer satisfaction is the key for the seller to
               obtain optimal price. Our pledge therefore is a sincere service to
               both buyers and sellers to ensure smooth transactions.
             </p>
 
             {/* About Us link — per Figma, desktop only */}
-            <div className="hidden lg:block mt-[40px]">
-              <Link to="/about" className="pill-btn text-[25px] [padding:22px_47px] gap-[25px] border border-crimson">
+            <div className="hidden lg:block mt-[30px]">
+              <Link to="/about" className="pill-btn text-[14px] [padding:12px_26px] gap-[16px] border border-crimson">
                 About Us
-                <img src={arrowRight} alt="" className="w-[31px] h-[31px]" />
+                <img src={arrowRight} alt="" className="w-[18px] h-[18px]" />
               </Link>
             </div>
           </div>
 
-          {/* Stats column — labels in royal blue per Figma */}
-          <div className="flex flex-row lg:flex-col items-start gap-8 lg:gap-4 shrink-0 w-[240px] text-center lg:text-left mx-auto lg:mx-0 pt-0 lg:pt-[70px]">
+          {/* Stats column — labels in royal blue per Figma. On desktop this sits in grid col 3, horizontally centered so it aligns with "Expert Facilitator" above. */}
+          <div className="flex flex-row lg:flex-col items-start gap-8 lg:gap-4 w-[240px] text-center lg:text-left mx-auto pt-0 lg:pt-[70px]">
             <div className="text-center lg:text-left">
-              <span className="font-khand text-[40px] lg:text-[60px] font-bold leading-none text-crimson">20+</span>
-              <p className="font-lato text-[20px] lg:text-[16px] font-bold text-royal-blue leading-[30px] lg:leading-[normal] mt-[-10px]">
+              <span className="font-khand text-[36px] lg:text-[48px] font-bold leading-none text-crimson">20+</span>
+              <p className="font-lato text-[16px] lg:text-[14px] font-bold text-royal-blue leading-[24px] lg:leading-[normal] mt-[-6px]">
                 Years of Industry<br />Experience
               </p>
             </div>
             <div className="text-center lg:text-left mt-0 lg:mt-4">
-              <span className="font-khand text-[40px] lg:text-[60px] font-bold leading-none text-crimson">1000+</span>
-              <p className="font-lato text-[20px] lg:text-[16px] font-bold text-royal-blue leading-[30px] lg:leading-[normal] mt-[-10px]">
+              <span className="font-khand text-[36px] lg:text-[48px] font-bold leading-none text-crimson">1000+</span>
+              <p className="font-lato text-[16px] lg:text-[14px] font-bold text-royal-blue leading-[24px] lg:leading-[normal] mt-[-6px]">
                 Satisfied Customers
               </p>
             </div>
@@ -298,7 +298,7 @@ export default function Home() {
           SECTION 4 — TESTIMONIALS
       ═══════════════════════════════════════════ */}
       <section id="testimonials" className="pt-[53px] pb-12 lg:pt-[106px] lg:pb-[96px] px-5 md:px-10 lg:px-[8vw]">
-        <p className="font-lato text-[22px] lg:text-[24px] tracking-[0.3em] lg:tracking-[0.6em] text-crimson uppercase mb-[41px] text-center lg:text-left">
+        <p className="font-lato text-[18px] lg:text-[20px] tracking-[0.3em] lg:tracking-[0.5em] text-crimson uppercase mb-[32px] text-center lg:text-left">
           CLIENT TESTIMONIALS
         </p>
 
@@ -306,39 +306,39 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mb-8 lg:mb-10">
           {/* Left: heading + description */}
           <div className="flex-1 text-center lg:text-left">
-            <h2 className="font-lato text-[21px] lg:text-[38px] font-bold text-ebony-clay leading-tight mb-[40px]">
+            <h2 className="font-lato text-[21px] lg:text-[32px] font-bold text-ebony-clay leading-tight mb-[30px]">
               Our client testimonials are proof of
             </h2>
-            <p className="font-lato text-[18px] lg:text-[22px] font-light text-ebony-clay leading-[28px] lg:leading-[32px] text-center lg:text-justify max-w-[922px] mx-auto lg:mx-0 lg:pr-[15%]">
+            <p className="font-lato text-[16px] lg:text-[18px] font-light text-ebony-clay leading-[26px] lg:leading-[28px] text-center lg:text-justify max-w-[922px] mx-auto lg:mx-0 lg:max-w-[42vw]">
               how well we have treated real estate market by not only setting the
               trends, but also uplifting the standards which were long standing and
               will be long lasting.
             </p>
 
             <div className="flex justify-center lg:justify-start">
-              <a href="https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1" target="_blank" rel="noopener noreferrer" className="pill-btn mb-8 lg:mb-10 inline-flex mt-[50px] text-[10px] lg:text-[22px] [padding:10px_20px] lg:[padding:20px_42px] gap-[14px] lg:gap-[22px] border border-crimson">
+              <a href="https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1" target="_blank" rel="noopener noreferrer" className="pill-btn mb-8 lg:mb-10 inline-flex mt-[36px] text-[10px] lg:text-[14px] [padding:10px_20px] lg:[padding:12px_26px] gap-[12px] lg:gap-[16px] border border-crimson">
                 VIEW ALL GOOGLE REVIEWS
-                <img src={arrowRight} alt="" className="w-[18px] h-[18px] lg:w-[28px] lg:h-[28px]" />
+                <img src={arrowRight} alt="" className="w-[14px] h-[14px] lg:w-[18px] lg:h-[18px]" />
               </a>
             </div>
           </div>
 
-          {/* Right: stats + Google badge */}
-          <div className="grid grid-cols-2 lg:flex lg:flex-col lg:justify-between lg:items-start gap-4 shrink-0 lg:w-[300px] lg:self-stretch">
+          {/* Right: stats + Google badge — centered vertically with the paragraph */}
+          <div className="grid grid-cols-2 lg:flex lg:flex-col lg:justify-start lg:items-start gap-4 lg:gap-8 shrink-0 lg:w-[260px] lg:self-stretch">
             {/* Left on mobile: 100+ */}
             <div>
-              <span className="font-khand text-[41px] lg:text-[60px] font-bold leading-none text-crimson">100+</span>
-              <p className="font-lato text-[20px] lg:text-[16px] font-bold text-royal-blue leading-[30px] lg:leading-[normal] mt-[12px]">
+              <span className="font-khand text-[36px] lg:text-[48px] font-bold leading-none text-crimson">100+</span>
+              <p className="font-lato text-[16px] lg:text-[14px] font-bold text-royal-blue leading-[24px] lg:leading-[normal] mt-[10px]">
                 Google Reviews by<br />Satisfied Clients
               </p>
             </div>
             {/* Right on mobile: 4.9 + google image stacked */}
             <div className="flex flex-col items-start">
               <div className="flex items-end gap-2">
-                <span className="font-khand text-[41px] lg:text-[60px] font-bold leading-none text-crimson">4.9</span>
-                <span className="font-lato text-[24px] lg:text-[16px] font-bold text-royal-blue leading-[29px] lg:leading-[normal] mb-1">Star Rated</span>
+                <span className="font-khand text-[36px] lg:text-[48px] font-bold leading-none text-crimson">4.9</span>
+                <span className="font-lato text-[20px] lg:text-[14px] font-bold text-royal-blue leading-[24px] lg:leading-[normal] mb-1">Star Rated</span>
               </div>
-              <img src={googleReviews} alt="Google Reviews 4.9 star rating" className="h-[86px] lg:h-[114px] lg:-mt-[15px] lg:pt-[10px]" loading="lazy" />
+              <img src={googleReviews} alt="Google Reviews 4.9 star rating" className="h-[55px] lg:h-[65px] lg:-mt-[10px] lg:pt-[8px]" loading="lazy" />
             </div>
           </div>
         </div>
