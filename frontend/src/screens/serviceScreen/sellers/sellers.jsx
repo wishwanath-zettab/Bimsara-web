@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import image from "../../../assets/images/Bimsara Real Estate - Sellers Hero Mini.webp";
@@ -25,26 +26,22 @@ const Sellers = () => {
   const [modal, setModal] = useState(false);
   const [modalClosing, setModalClosing] = useState(false);
   const [num, setNum] = useState(1);
-  const [nextNum, setNextNum] = useState(null);
-  const [isSwitching, setIsSwitching] = useState(false);
+  const [commissionRate, setCommissionRate] = useState("3%");
 
-  // Handle popup switching when clicking different button while modal is open
   useEffect(() => {
-    if (nextNum !== null && modal && !modalClosing && !isSwitching) {
-      console.log('Switching popup from', num, 'to', nextNum);
-      setIsSwitching(true);
-      setModalClosing(true);
-      
-      setTimeout(() => {
-        // After closing animation, update content and reopen
-        console.log('Animation complete, showing popup', nextNum);
-        setNum(nextNum);
-        setNextNum(null);
-        setModalClosing(false);
-        setIsSwitching(false);
-      }, 300); // Match animation duration
-    }
-  }, [nextNum, modal, modalClosing, isSwitching]);
+    const fetchCommissionRate = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/other-settings");
+        if (response.data && response.data.commission_rate) {
+          setCommissionRate(response.data.commission_rate);
+        }
+      } catch (error) {
+        console.error("Error fetching commission rate:", error);
+      }
+    };
+
+    fetchCommissionRate();
+  }, []);
 
   // Close modal on scroll with animation
   useEffect(() => {
@@ -202,50 +199,30 @@ const Sellers = () => {
                       content="Plan & Carry Out Promotional Campaigns"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (modal && num !== 1) {
-                          // Modal is open and clicking different button - switch popup
-                          setNextNum(1);
-                        } else if (!modal) {
-                          // Modal is closed - open it
-                          setNum(1);
+                        setNum(1);
+                        if (!modal) {
                           setModal(true);
                         }
-                        // If modal is open and clicking same button - do nothing
                       }}
                     />
                     <SellerCard 
                       content="Help you to Make Selling Decisions"
                       onClick={(e) => {
                         e.stopPropagation();
-                        console.log('Clicked Button 2. Current state - modal:', modal, 'num:', num);
-                        if (modal && num !== 2) {
-                          // Modal is open and clicking different button - switch popup
-                          console.log('Triggering switch to popup 2');
-                          setNextNum(2);
-                        } else if (!modal) {
-                          // Modal is closed - open it
-                          console.log('Opening popup 2');
-                          setNum(2);
+                        setNum(2);
+                        if (!modal) {
                           setModal(true);
-                        } else {
-                          console.log('Already showing popup 2, doing nothing');
                         }
-                        // If modal is open and clicking same button - do nothing
                       }}
                     />
                     <SellerCard 
                       content="Facilitation of Price Negotiations"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (modal && num !== 3) {
-                          // Modal is open and clicking different button - switch popup
-                          setNextNum(3);
-                        } else if (!modal) {
-                          // Modal is closed - open it
-                          setNum(3);
+                        setNum(3);
+                        if (!modal) {
                           setModal(true);
                         }
-                        // If modal is open and clicking same button - do nothing
                       }}
                     />
                   </div>
@@ -326,7 +303,7 @@ const Sellers = () => {
       </div>
       {modal && (
         <GradientModal 
-          key={isSwitching ? 'switching' : num} 
+          key={num} 
           setModal={setModal} 
           content={getModalContent()} 
           externalClosing={modalClosing}
