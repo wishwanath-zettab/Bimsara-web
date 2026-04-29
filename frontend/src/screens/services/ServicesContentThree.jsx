@@ -17,12 +17,12 @@ const ServicesContentThree = () => {
           <div className="sub-content-two">
             how well we have treated real estate market by not only setting the
             trends, but also uplifting the standards which were long standing
-            and will be long lasting.
-            <div className="button-container" id="reviews_btn_1">
-              <a target="_blank" href="https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1,,, ">
-                <Button buttonText="VIEW ALL GOOGLE REVIEWS" primary />
-              </a>
-            </div>
+            and will be long-lasting.
+          </div>
+          <div className="button-container" id="reviews_btn_1">
+            <a target="_blank" rel="noreferrer" href="https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1,,, ">
+              <Button buttonText="VIEW ALL GOOGLE REVIEWS" primary />
+            </a>
           </div>
         </div>
         <div className="bottom-right-container">
