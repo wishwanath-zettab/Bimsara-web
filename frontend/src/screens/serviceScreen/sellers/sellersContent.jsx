@@ -47,7 +47,7 @@ const SellerContent = (props) => {
           <div className="margin-top" />
           <span className="bold-content">Our Fees</span>
           <br />
-          Our fee is 3% commission on the actual transaction value. No advance
+          Our fee is {props.commissionRate} commission on the actual transaction value. No advance
           payments or other hidden costs.
         </div>
       </div>

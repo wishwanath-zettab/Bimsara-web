@@ -8,10 +8,14 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
   const [members, setMembers] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [originalMemberData, setOriginalMemberData] = useState(null);
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, memberId: null });
   const [formData, setFormData] = useState({
     name: '',
     position: '',
+    description1: '',
+    description2: '',
+    linkedin_url: '',
     photo: null
   });
 
@@ -25,7 +29,14 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
         'http://localhost:5000/api/admin/team-members',
         getAuthHeaders()
       );
-      setMembers(response.data);
+      // Convert NULL values to empty strings for input fields
+      const membersWithDefaults = response.data.map(member => ({
+        ...member,
+        description1: member.description1 || '',
+        description2: member.description2 || '',
+        linkedin_url: member.linkedin_url || ''
+      }));
+      setMembers(membersWithDefaults);
     } catch (error) {
       toast.error('Failed to fetch team members');
     }
@@ -42,6 +53,9 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
     const data = new FormData();
     data.append('name', formData.name);
     data.append('position', formData.position);
+    data.append('description1', formData.description1);
+    data.append('description2', formData.description2);
+    data.append('linkedin_url', formData.linkedin_url);
     if (formData.photo) {
       data.append('photo', formData.photo);
     }
@@ -59,7 +73,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
         }
       );
       toast.success('Team member added successfully');
-      setFormData({ name: '', position: '', photo: null });
+      setFormData({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null });
       setShowAddForm(false);
       fetchMembers();
     } catch (error) {
@@ -73,6 +87,9 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
     const data = new FormData();
     data.append('name', member.name);
     data.append('position', member.position);
+    data.append('description1', member.description1 || '');
+    data.append('description2', member.description2 || '');
+    data.append('linkedin_url', member.linkedin_url || '');
 
     try {
       await axios.put(
@@ -88,6 +105,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
       );
       toast.success('Team member updated successfully');
       setEditingId(null);
+      setOriginalMemberData(null);
       fetchMembers();
     } catch (error) {
       toast.error('Failed to update team member');
@@ -146,6 +164,26 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
     ));
   };
 
+  const handleStartEdit = (id) => {
+    const member = members.find(m => m.id === id);
+    if (member) {
+      // Save original data for revert on cancel
+      setOriginalMemberData({ ...member });
+      setEditingId(id);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    if (originalMemberData && editingId) {
+      // Revert changes to original values
+      setMembers(members.map(m => 
+        m.id === editingId ? originalMemberData : m
+      ));
+    }
+    setEditingId(null);
+    setOriginalMemberData(null);
+  };
+
   return (
     <div className="tab-content">
       <ConfirmDialog
@@ -196,11 +234,44 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
                       placeholder="Position"
                     />
                   </div>
+                  <div className="form-group">
+                    <label>Description 1</label>
+                    <input
+                      type="text"
+                      value={member.description1 || ''}
+                      onChange={(e) => handleMemberChange(member.id, 'description1', e.target.value)}
+                      placeholder="Description 1"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Description 2</label>
+                    <input
+                      type="text"
+                      value={member.description2 || ''}
+                      onChange={(e) => handleMemberChange(member.id, 'description2', e.target.value)}
+                      placeholder="Description 2"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>LinkedIn Profile URL</label>
+                    <input
+                      type="url"
+                      value={member.linkedin_url || ''}
+                      onChange={(e) => handleMemberChange(member.id, 'linkedin_url', e.target.value)}
+                      placeholder="https://www.linkedin.com/in/..."
+                    />
+                  </div>
                 </>
               ) : (
                 <>
                   <div className="member-name">{member.name}</div>
                   <div className="member-position">{member.position}</div>
+                  {member.description1 && (
+                    <div className="member-description">{member.description1}</div>
+                  )}
+                  {member.description2 && (
+                    <div className="member-description">{member.description2}</div>
+                  )}
                 </>
               )}
             </div>
@@ -232,7 +303,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
                     Save
                   </button>
                   <button 
-                    onClick={() => setEditingId(null)}
+                    onClick={handleCancelEdit}
                     className="btn-edit"
                   >
                     Cancel
@@ -240,7 +311,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
                 </>
               ) : (
                 <button 
-                  onClick={() => setEditingId(member.id)}
+                  onClick={() => handleStartEdit(member.id)}
                   className="btn-edit"
                 >
                   Edit
@@ -282,6 +353,33 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
             />
           </div>
           <div className="form-group">
+            <label>Description 1</label>
+            <input
+              type="text"
+              value={formData.description1}
+              onChange={(e) => setFormData({ ...formData, description1: e.target.value })}
+              placeholder="Enter first description (optional)"
+            />
+          </div>
+          <div className="form-group">
+            <label>Description 2</label>
+            <input
+              type="text"
+              value={formData.description2}
+              onChange={(e) => setFormData({ ...formData, description2: e.target.value })}
+              placeholder="Enter second description (optional)"
+            />
+          </div>
+          <div className="form-group">
+            <label>LinkedIn Profile URL</label>
+            <input
+              type="url"
+              value={formData.linkedin_url}
+              onChange={(e) => setFormData({ ...formData, linkedin_url: e.target.value })}
+              placeholder="Enter LinkedIn URL (optional)"
+            />
+          </div>
+          <div className="form-group">
             <label>Photo</label>
             <input
               type="file"
@@ -295,7 +393,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
               type="button" 
               onClick={() => {
                 setShowAddForm(false);
-                setFormData({ name: '', position: '', photo: null });
+                setFormData({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null });
               }}
               className="btn-secondary"
             >

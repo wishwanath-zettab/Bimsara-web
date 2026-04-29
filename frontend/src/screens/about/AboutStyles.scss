@@ -2,7 +2,7 @@
 
 .About {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
     linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
     linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
@@ -33,7 +33,9 @@
 
         .logo-container {
           padding-top: 3%;
-          padding-left: 8%;
+          padding-left: 5%;
+          display: flex;
+          justify-content: center;
 
           .logo {
             height: 42px;
@@ -47,7 +49,7 @@
         display: flex;
         margin-top: 2.5%;
         margin-bottom: 1.8%;
-        justify-content: center;
+        justify-content: left;
 
         .top-content {
           width: 26%;
@@ -137,9 +139,11 @@
   }
 
   .AboutContentTwo {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 5%;
-    padding-left: 10%;
+    padding-left: 0;
     height: max-content;
 
     .who-header {
@@ -226,15 +230,18 @@
   }
 
   .AboutContentThree {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 10vh;
     padding-bottom: 5%;
-    padding-left: 20%;
+    padding-left: 0;
     height: max-content;
 
     .inner-content-three {
       display: block;
-      margin-right: 30%;
+      margin: 0 auto;
+      max-width: 1100px;
 
       .card {
         font-size: 20px !important;
@@ -245,12 +252,15 @@
 
         .div-content {
           display: flex;
-          flex: 1;
+          flex: 0 1 100%;
+          justify-content: center;
+          gap: 30px;
           margin-top: -3vh;
 
           .inner-div {
-            flex: 1;
+            flex: 0 1 30%;
             padding: 1.5%;
+            max-width: 360px;
           }
         }
       }
@@ -278,7 +288,9 @@
 
     .inner-content-four {
       display: flex;
-      width: 100%;
+      width: 85%;
+      max-width: 1200px;
+      margin: 0 auto;
 
       .left-inner-content {
         width: 50%;
@@ -289,7 +301,9 @@
           font-weight: normal;
           font-size: 25px;
           text-transform: uppercase;
-          padding-left: 20%;
+          padding-left: 0;
+          display: flex;
+          justify-content: center;
           background: linear-gradient(180deg, #0f64fa -50.56%, #ffffff 178.33%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -299,10 +313,13 @@
         }
 
         .bottom-left-container {
-          width: 68%;
+          width: 80%;
+          max-width: 600px;
           height: 70%;
           margin-top: 8%;
-          padding-left: 20%;
+          margin-left: auto;
+          margin-right: auto;
+          padding-left: 0;
 
           .button-container {
             margin-top: 40px;
@@ -324,7 +341,7 @@
             font-weight: 300;
             font-size: 18px;
             line-height: 29px;
-            text-align: justify;
+            text-align: center; /* center the paragraph inside this block */
             margin-top: 30px;
             color: #dddddd;
           }
@@ -333,24 +350,51 @@
 
       .right-inner-content {
         width: 25%;
-        //height: 100%;
+        min-width: 520px;
+        height: 620px;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
         text-align: center;
+        padding: 20px 0;
 
         .iso-image {
-          position: absolute;
-          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
           width: auto;
-          right: 0;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          cursor: pointer;
+        }
+
+        .iso-certificate-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          padding: 24px;
+          box-sizing: border-box;
+          text-decoration: none;
+          color: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(6px);
         }
       }
     }
   }
 
   .AboutContentFive {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 5%;
-    padding-left: 10%;
+    padding-left: 0;
     height: max-content;
     padding-bottom: 5%;
 
@@ -476,15 +520,18 @@
   }
 
   .AboutContentSix {
-    width: 80%;
-    padding-left: 10%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 0;
     height: max-content;
     padding-bottom: 5%;
     padding-top: 5vh;
 
     .top-container {
-      width: 70%;
+      width: 100%;
       display: flex;
+      justify-content: left;
 
       .top-content {
         color: $primary-blue;
@@ -502,11 +549,13 @@
       display: flex;
       padding-top: 2%;
       padding-bottom: 2vh;
+      justify-content: space-between;
+      align-items: flex-start;
 
       .bottom-left-container {
-        width: 50%;
+        width: 60%;
         height: 70%;
-        padding-right: 20%;
+        padding-right: 5%;
 
         .sub-content {
           font-family: "Lato";
@@ -514,7 +563,7 @@
           font-weight: 300;
           font-size: 18px;
           line-height: 29px;
-          text-align: justify;
+          text-align: left;
           margin-top: 30px;
         }
 
@@ -524,16 +573,16 @@
           font-weight: 700;
           font-size: 24px;
           line-height: 29px;
-          text-align: justify;
+          text-align: left;
           margin-top: 30px;
         }
       }
 
       .bottom-right-container {
-        width: 45%;
+        width: 30%;
 
         .margin-top {
-          margin-top: -8.5%;
+          margin-top: 0;
         }
       }
     }
@@ -692,6 +741,7 @@
 
             .about-content-two-left {
               width: 100%;
+              margin: 5%;
 
               .bottom-left-container {
                 padding-right: 0;
@@ -789,15 +839,36 @@
             }
 
             .right-inner-content {
-              width: 82%;
-              margin: auto;
-              margin-top: 10%;
-              margin-bottom: 10%;
+              width: 100%;
+              margin: 0% ;
+              aspect-ratio: 16 / 9;
+              display: flex;
+              align-items: left;
+              justify-content: left;
+              overflow: hidden;
+              padding: 0%;
+              
+              
 
               .iso-image {
                 position: initial;
-                width: 80vw;
-                height: auto;
+                display: block;
+                width: 70%;
+                height: 70%;
+                max-width: 80%;
+                max-height: 80%;
+                object-fit: contain;
+                margin: 0%;
+              }
+
+              .iso-certificate-link {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 18px 12px;
               }
             }
           }
@@ -1188,11 +1259,11 @@
             .right-inner-content {
               width: 35%;
               display: flex;
-              align-items: center;
+              align-items: left;
 
               .iso-image {
                 height: auto;
-                width: 100%;
+                width: 60%;
                 vertical-align: middle;
               }
             }

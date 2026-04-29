@@ -2,6 +2,12 @@ import React from "react";
 import iso from "../../assets/images/Bimsara Real Estate - ISO Certificate.webp";
 import "./AboutStyles.scss";
 const AboutContentFour = (props) => {
+  const certificateUrl = props.certificatePath
+    ? `http://localhost:5000${props.certificatePath}`
+    : iso;
+
+  const isPdf = props.certificatePath && props.certificatePath.toLowerCase().endsWith('.pdf');
+
   return (
     <div className="AboutContentFour" id="about-iso">
       <div className="inner-content-four">
@@ -22,14 +28,20 @@ const AboutContentFour = (props) => {
           </div>
         </div>
         <div className="right-inner-content">
-          <img
-            alt=""
-            src={iso}
-            className="iso-image"
-            onClick={() => {
-              props.setModal(true);
-            }}
-          />
+          {isPdf ? (
+            <a href={certificateUrl} target="_blank" rel="noreferrer" className="iso-certificate-link">
+              View ISO Certificate
+            </a>
+          ) : (
+            <img
+              alt="ISO Certificate"
+              src={certificateUrl}
+              className="iso-image"
+              onClick={() => {
+                props.setModal(true);
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
