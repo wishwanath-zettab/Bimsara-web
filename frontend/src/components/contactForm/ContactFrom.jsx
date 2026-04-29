@@ -476,9 +476,9 @@ const ContactFrom = (props) => {
             <span>Your message successfully received!</span>
           </div>
         )}
-        <div onClick={onSubmit} className="contact-btn btn btn-push-animate">
+        <button type="button" onClick={onSubmit} className="contact-btn btn btn-push-animate">
           {loading ? <div className="loader" /> : " Contact Me"}
-        </div>
+        </button>
       </div>
     </div >
   );

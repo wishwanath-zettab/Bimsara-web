@@ -207,7 +207,7 @@ const Buyers = () => {
                         backContent="We learn everything we need to know about you, what you need and want in a property, the price range to work on and when you want to move."
                       />
                     </div>
-                    <div className="img-container" onclick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
+                <div className="img-container" onClick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
                       <img alt="" src={image} />
                     </div>
                     <div className="div-b">

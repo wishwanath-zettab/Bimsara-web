@@ -190,7 +190,7 @@ const Sellers = () => {
         <div className="sellersContentOne">
           <div className="sellersContentOne-inner">
             <div className="top-containr">
-              <div class="img-cont" style={thumb_css}>
+                  <div className="img-cont" style={thumb_css}>
                 <img alt="" src={sellerImg} className="img-c" />
               </div>
               <div className="top-conatiner-left">
@@ -252,7 +252,7 @@ const Sellers = () => {
                 </div>
               </div>
               <div className="top-conatiner-right">
-                <div className="img-container" onclick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
+                <div className="img-container" onClick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
                   <img alt="" src={image} />
                 </div>
                 <div className="right-content">

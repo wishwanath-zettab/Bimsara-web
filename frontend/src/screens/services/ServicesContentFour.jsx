@@ -67,6 +67,7 @@ const ServicesContentFour = () => {
           {data.map((item) => {
             return (
               <ClientCard
+                key={item.name}
                 name={item.name}
                 rev={item.rev}
                 link={item.link}
@@ -79,7 +80,7 @@ const ServicesContentFour = () => {
         <div className="single-container">
           {data.map((item) => {
             return (
-              <div className="mySlides">
+              <div className="mySlides" key={item.name}>
                 <ClientCard
                   name={item.name}
                   rev={item.rev}
