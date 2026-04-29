@@ -33,8 +33,8 @@
     animation: popout 1s ease;
     -webkit-animation: popout 1s ease;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
 
     img {
       display: block;
@@ -89,7 +89,7 @@
       top: 20%;
       width: 92vw;
       max-height: 72vh;
-      padding: 12px;
+      padding: 0px;
       box-sizing: border-box;
 
       img {
