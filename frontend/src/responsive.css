@@ -1412,3 +1412,710 @@
     padding-right: 16px !important;
   }
 }
+
+/* Full mobile alignment, transition, and overlap authority. */
+@media screen and (max-width: 1199px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: hidden !important;
+  }
+
+  img,
+  video,
+  canvas,
+  iframe,
+  svg {
+    max-width: 100%;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  a,
+  button,
+  .GradientButton,
+  .Button,
+  .SecondaryButton,
+  .service-Card-mini,
+  .guide-Card-mini,
+  .sellerCardContainer {
+    min-height: 44px;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .Services,
+  .About,
+  .Sellers,
+  .buyers,
+  .landlords,
+  .tenants,
+  .admin-login-container,
+  .admin-dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .Services .Services-background,
+  .About .about-background,
+  .Sellers .sellers-background,
+  .buyers .buyers-background,
+  .landlords .landlords-background,
+  .tenants .tenants-background,
+  .Sellers .sellersContentOne-inner,
+  .buyers .buyersContentOne-inner,
+  .landlords .landlordsContentOne-inner,
+  .tenants .tenantsContentOne-inner {
+    width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .Services .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: none !important;
+  }
+
+  .Services .topper-image,
+  .Services .service-img-container,
+  .Services .contact-component,
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentFive,
+  .ServicesContentSeven,
+  .AboutContentTwo,
+  .AboutContentThree,
+  .AboutContentFour,
+  .AboutContentFive,
+  .Members_component {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .ServicesContentTwo .heder-content,
+  .ServicesContentTwo .sub-content,
+  .ServicesContentTwo .sub-content-two,
+  .ServicesContentFour .heder-content,
+  .ServicesContentFour .sub-content-two,
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content,
+  .Sellers .content-text,
+  .buyers .content-text,
+  .landlords .content-text,
+  .tenants .content-text,
+  .About .sub-content,
+  .About .sub-content-two {
+    text-align: left !important;
+    word-spacing: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ServicesContentTwo .top-content,
+  .ServicesContentFour .top-content,
+  .ServicesContentSeven .presennse-header,
+  .Sellers .sub,
+  .buyers .sub,
+  .landlords .sub,
+  .tenants .sub {
+    letter-spacing: clamp(0.12em, 2.4vw, 0.45em) !important;
+    overflow-wrap: anywhere;
+  }
+
+  .GradientButton {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .GradientButton span {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 52px;
+    padding: 14px 18px !important;
+    line-height: 1.25 !important;
+  }
+
+  .GradientButton img {
+    float: none !important;
+    flex: 0 0 auto;
+    padding: 0 !important;
+  }
+
+  .ServicesContentThree .inner-container {
+    width: min(100%, 760px) !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    padding: clamp(36px, 7vw, 64px) var(--page-gutter) !important;
+  }
+
+  .ServicesContentThree .inner-container .header {
+    grid-column: auto !important;
+    margin-bottom: 8px;
+    font-size: clamp(24px, 6vw, 40px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .ServicesContentThree .inner-container a {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .Services .service-img-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 24px auto 0 !important;
+    padding: 0 var(--page-gutter) !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .Services .service-img-container img {
+    width: min(100%, 680px) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+
+  .serviceCard,
+  .sellerCardContainer,
+  .flip-card,
+  .clientCard,
+  .Rate-card,
+  .service-Card-mini,
+  .guide-Card-mini,
+  .Collapsible,
+  .Collapsible .sing-cont {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card-compo,
+  .cnt-form-div,
+  .ServicesContentThree .inner-container,
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container,
+  .ServicesContentSeven .inner-presense {
+    min-width: 0;
+  }
+
+  .contactForm,
+  .contactForm .form,
+  .contactForm .input-container,
+  .contactForm .phone-input,
+  .contactForm .custom-select {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contactForm input,
+  .contactForm select,
+  .contactForm textarea {
+    font-size: 16px;
+  }
+
+  .contactForm .phone-input {
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  .contactForm .phone-input .input-1 {
+    flex: 0 0 86px !important;
+    width: 86px !important;
+  }
+
+  .contactForm .phone-input .input-2 {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .contactForm .contact-btn {
+    width: min(100%, 340px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .modal-container .modal-content,
+  .contact-modal-container .contact-modal-content,
+  .gradient-modal-container .gradient-modal-content,
+  .confirm-dialog__panel {
+    width: min(92vw, 620px) !important;
+    max-width: 92vw !important;
+    max-height: 90dvh !important;
+    overflow: auto !important;
+  }
+
+  .side-bar .main-nav {
+    max-width: 94vw !important;
+  }
+
+  .side-bar .hovercontent,
+  .side-bar .hovercontent-3 {
+    max-width: 100% !important;
+  }
+
+  .admin-login-box,
+  .admin-content,
+  .admin-tab-content,
+  .tab-content,
+  .section,
+  .provider-card,
+  .member-row,
+  .category-card-row,
+  .add-member-form {
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-header-content,
+  .admin-header-actions,
+  .provider-info,
+  .member-actions {
+    flex-wrap: wrap !important;
+    min-width: 0;
+  }
+
+  .admin-header-actions button,
+  .member-actions button,
+  .button-group button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-logout,
+  .btn-add-member {
+    min-height: 44px;
+    white-space: normal !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .GradientButton,
+  .GradientButton:hover,
+  .Button:hover,
+  .SecondaryButton:hover,
+  .sellerCardContainer:hover,
+  .serviceCard:hover,
+  .clientCard:hover,
+  .Rate-card:hover,
+  .flip-card:hover,
+  .provider-card:hover,
+  .member-row:hover,
+  .category-card-row:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-danger:hover,
+  .btn-logout:hover,
+  .btn-add-member:hover {
+    transform: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container,
+  .ServicesContentSeven .inner-presense,
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr,
+  .Sellers .sellers-background-bottom .top-containr,
+  .buyers .buyers-background-bottom .top-containr,
+  .landlords .landlords-background-bottom .top-containr,
+  .tenants .tenants-background-bottom .top-containr {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven,
+  .contact-component,
+  .Sellers .sellers-background-bottom,
+  .buyers .buyers-background-bottom,
+  .landlords .landlords-background-bottom,
+  .tenants .tenants-background-bottom {
+    padding-left: var(--page-gutter) !important;
+    padding-right: var(--page-gutter) !important;
+  }
+
+  .Rate-card,
+  .ServicesContentFour .Rate-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentFour .button-container,
+  .ServicesContentFour .button-container a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentSeven .presennse-header {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    grid-template-columns: repeat(5, minmax(32px, 1fr)) !important;
+  }
+
+  .admin-header-content {
+    gap: 16px;
+  }
+
+  .admin-header-actions,
+  .member-actions,
+  .button-group {
+    width: 100% !important;
+  }
+
+  .admin-header-actions button,
+  .member-actions button,
+  .button-group button {
+    flex: 1 1 140px;
+  }
+
+  .provider-form-row,
+  .settings-row,
+  .category-card-row,
+  .form-row,
+  .member-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .provider-info {
+    display: grid !important;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Services .topper-text .want-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .Services .topper-text .want-inner {
+    grid-template-columns: minmax(0, 1fr) 22px !important;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven,
+  .contact-component {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    max-width: 320px;
+    gap: 12px !important;
+  }
+
+  .admin-login-container,
+  .admin-content {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .admin-tab-content,
+  .tab-content,
+  .section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .provider-info {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .Services .topper-image,
+  .Services .topper-image .bg {
+    left: 0 !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+
+  .Services .topper-image {
+    overflow: hidden !important;
+  }
+
+  .footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .footer .inner-footer,
+  .footer .designer-foot {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .Sellers .img-cont,
+  .buyers .img-cont,
+  .landlords .img-cont,
+  .tenants .img-cont {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+
+  .Sellers .img-cont .img-c,
+  .buyers .img-cont .img-c,
+  .landlords .img-cont .img-c,
+  .tenants .img-cont .img-c {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+  }
+
+  .Sellers .seller-card-container,
+  .buyers .buyer-card-container,
+  .buyers .card-compo,
+  .landlords .landloards-card-container,
+  .tenants .card-compo {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
+    gap: clamp(14px, 3vw, 24px) !important;
+    overflow: visible !important;
+  }
+
+  .Sellers .seller-card-container > *,
+  .buyers .buyer-card-container > *,
+  .buyers .card-compo > *,
+  .landlords .landloards-card-container > *,
+  .tenants .card-compo > *,
+  .sellerCard,
+  .sellerCardContainer {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  .sellerCard .content,
+  .sellerCardContainer .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .secondary-button-styles,
+  .SecondaryButton,
+  .About .secondary-button-styles {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .secondary-button-styles,
+  .secondary-button-styles * {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Final desktop/laptop QA corrections from full viewport audit. */
+@media screen and (min-width: 1200px) {
+  .ham-bar-div,
+  .hamburgerIcon {
+    display: none !important;
+  }
+
+  .Nav-bar,
+  .nav-bar-div,
+  .about-nav-bar,
+  .right-bar-div,
+  .about-right-bar,
+  .sellers-right-bar,
+  .buyers-right-bar,
+  .landlords-right-bar,
+  .tenants-right-bar {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .ServicesContentThree .inner-container {
+    width: min(100%, calc(100vw - 100px)) !important;
+    max-width: 1500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 5vw, 96px) !important;
+    padding-right: clamp(120px, 8vw, 160px) !important;
+    overflow: hidden !important;
+  }
+
+  .ServicesContentThree .button-grid {
+    width: 100% !important;
+    max-width: 1100px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .ServicesContentThree .button-grid a,
+  .ServicesContentThree .GradientButton {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .ServicesContentThree .GradientButton span {
+    min-height: 92px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    line-height: 1.25 !important;
+    padding: 22px 28px !important;
+  }
+
+  .ServicesContentThree .GradientButton img {
+    float: none !important;
+    padding: 0 !important;
+    flex: 0 0 auto;
+  }
+
+  .contactComponent {
+    width: min(calc(100% - 160px), 1100px) !important;
+    max-width: calc(100% - 160px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow: visible !important;
+  }
+
+  .contactComponent .contactForm {
+    max-width: min(600px, 52vw) !important;
+  }
+
+  .Members_component .inner-content:not(.mySlides):not(.mySlides1) {
+    width: min(100%, 1120px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(120px, 18vw, 300px) !important;
+    padding-right: clamp(120px, 18vw, 300px) !important;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1366px) {
+  .Services .top-content-arrow,
+  .About .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: none !important;
+  }
+
+  .contactComponent {
+    width: min(calc(100% - 120px), 1040px) !important;
+    max-width: calc(100% - 120px) !important;
+  }
+
+  .contactComponent .contactForm {
+    max-width: 520px !important;
+  }
+
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr,
+  .Sellers .sellers-background-bottom .top-containr,
+  .buyers .buyers-background-bottom .top-containr,
+  .landlords .landlords-background-bottom .top-containr,
+  .tenants .tenants-background-bottom .top-containr {
+    width: calc(100% - 120px) !important;
+    max-width: calc(100% - 120px) !important;
+    margin-left: 0 !important;
+    margin-right: 120px !important;
+    box-sizing: border-box !important;
+  }
+
+  .Sellers .sellersContentOne .top-conatiner-right,
+  .buyers .buyersContentOne .top-conatiner-right,
+  .landlords .landlordsContentOne .top-conatiner-right,
+  .tenants .tenantsContentOne .top-conatiner-right {
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .ServicesContentThree .GradientButton {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .ServicesContentThree .GradientButton span {
+    min-height: 118px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

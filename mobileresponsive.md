@@ -106,8 +106,25 @@ Interaction checks:
 
 ## Verification Status
 
-- `npm run build`: passing.
+- `npm run build`: passing with production assets `main.3c2dcd4b.js` and `main.ece5c99b.css`.
+- Local production server check: `http://127.0.0.1:3000` is serving the current build.
 - In-app browser route pass at `http://127.0.0.1:3000`: `/`, `/about`, `/sellers`, `/buyers`, `/landlords`, `/tenants`, and `/admin` all loaded successfully from the production build.
+- Viewport overflow audit passed with no detected horizontal scroll or offscreen content on `/`, `/about`, `/sellers`, `/buyers`, `/landlords`, `/tenants`, and `/admin` at:
+  - `320x640`
+  - `360x740`
+  - `390x844`
+  - `414x896`
+  - `480x900`
+  - `768x1024`
+  - `820x1180`
+  - `1024x768`
+- Mobile drawer interaction audit passed at `390x844`:
+  - hamburger visible
+  - drawer opens
+  - Services panel expands
+  - Sellers link is visible
+  - Contact panel expands
+  - drawer closes cleanly
 - Browser console pass: no current React warnings/errors for invalid props, `javascript:` links, missing list keys, or invalid DOM attributes on the verified production routes.
 - Source sweep: no remaining `javascript:void(0)`, JSX `class=`, lowercase iframe props, or lowercase JSX `onclick=` issues in `frontend/src`.
 - Internal routes were also verified by direct route loads because the in-app browser had coordinate translation trouble clicking some deep-scrolled footer links on the long homepage.
