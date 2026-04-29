@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import image from "../../../assets/images/Bimsara Real Estate - Landlords Hero Mini.webp";
@@ -21,9 +21,48 @@ import Sidebar from "../../../components/sidebar/sidebar";
 const Landlords = () => {
   const [selected, setSelected] = useState(1);
   const [modal, setModal] = useState(false);
+  const [modalClosing, setModalClosing] = useState(false);
   const [num, setNum] = useState(1);
+  const [nextNum, setNextNum] = useState(null);
+  const [isSwitching, setIsSwitching] = useState(false);
   const [contactModal, setContactModal] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+
+  // Handle popup switching when clicking different button while modal is open
+  useEffect(() => {
+    if (nextNum !== null && modal && !modalClosing && !isSwitching) {
+      console.log('Switching popup from', num, 'to', nextNum);
+      setIsSwitching(true);
+      setModalClosing(true);
+      
+      setTimeout(() => {
+        // After closing animation, update content and reopen
+        console.log('Animation complete, showing popup', nextNum);
+        setNum(nextNum);
+        setNextNum(null);
+        setModalClosing(false);
+        setIsSwitching(false);
+      }, 300); // Match animation duration
+    }
+  }, [nextNum, modal, modalClosing, isSwitching, num]);
+
+  // Close modal on scroll with animation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (modal && !modalClosing) {
+        setModalClosing(true);
+        setTimeout(() => {
+          setModal(false);
+          setModalClosing(false);
+        }, 300); // Match animation duration
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [modal, modalClosing]);
 
   const data = [
     {
@@ -181,32 +220,68 @@ const Landlords = () => {
                       content="Comprehensive Advertising & Promotion"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setNum(1);
-                        setModal(true);
+                        console.log('Clicked Button 1. Current state - modal:', modal, 'num:', num);
+                        if (modal && num !== 1) {
+                          console.log('Triggering switch to popup 1');
+                          setNextNum(1);
+                        } else if (!modal) {
+                          console.log('Opening popup 1');
+                          setNum(1);
+                          setModal(true);
+                        } else {
+                          console.log('Already showing popup 1, doing nothing');
+                        }
                       }}
                     />
                     <SellerCard 
                       content="Reference on Tenant"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setNum(2);
-                        setModal(true);
+                        console.log('Clicked Button 2. Current state - modal:', modal, 'num:', num);
+                        if (modal && num !== 2) {
+                          console.log('Triggering switch to popup 2');
+                          setNextNum(2);
+                        } else if (!modal) {
+                          console.log('Opening popup 2');
+                          setNum(2);
+                          setModal(true);
+                        } else {
+                          console.log('Already showing popup 2, doing nothing');
+                        }
                       }}
                     />
                     <SellerCard 
                       content="Full Inventory & Schedule of Condition"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setNum(3);
-                        setModal(true);
+                        console.log('Clicked Button 3. Current state - modal:', modal, 'num:', num);
+                        if (modal && num !== 3) {
+                          console.log('Triggering switch to popup 3');
+                          setNextNum(3);
+                        } else if (!modal) {
+                          console.log('Opening popup 3');
+                          setNum(3);
+                          setModal(true);
+                        } else {
+                          console.log('Already showing popup 3, doing nothing');
+                        }
                       }}
                     />
                     <SellerCard 
                       content="All - Inclusive Fees"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setNum(4);
-                        setModal(true);
+                        console.log('Clicked Button 4. Current state - modal:', modal, 'num:', num);
+                        if (modal && num !== 4) {
+                          console.log('Triggering switch to popup 4');
+                          setNextNum(4);
+                        } else if (!modal) {
+                          console.log('Opening popup 4');
+                          setNum(4);
+                          setModal(true);
+                        } else {
+                          console.log('Already showing popup 4, doing nothing');
+                        }
                       }}
                     />
                   </div>
@@ -277,10 +352,13 @@ const Landlords = () => {
           <RightBar />
         </div>
       </div>
-      {modal ? (
-        <GradientModal setModal={setModal} content={getModalContent()} />
-      ) : (
-        ""
+      {modal && (
+        <GradientModal 
+          setModal={setModal} 
+          content={getModalContent()} 
+          externalClosing={modalClosing}
+          contentKey={num}
+        />
       )}
       {contactModal ? <ContactModal setContactModal={setContactModal} /> : ""}
     </div>
