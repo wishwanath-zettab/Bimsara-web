@@ -1,0 +1,186 @@
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+  height: 100%;
+
+  .content {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    margin: 10px 20px;
+  }
+}
+
+.flip-card-inner {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background: linear-gradient(90.16deg,
+      rgba(255, 255, 255, 0.2) 0.93%,
+      rgba(98, 134, 205, 0.153326) 47.11%,
+      rgba(255, 255, 255, 0.1) 99.86%);
+  box-shadow: 0px 2px 8px rgba(145, 120, 120, 0.5);
+  backdrop-filter: blur(60px);
+  border-radius: 25px;
+  height: 100%;
+  width: 100%;
+}
+
+.flip-card-back {
+  background: linear-gradient(149.93deg,
+      #ffdcdb 13.72%,
+      #d9e7ff 53.99%,
+      #f8ffdc 100%);
+  box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
+  backdrop-filter: blur(60px);
+  color: #434343;
+  transform: rotateY(180deg);
+  width: 100%;
+  border-radius: 25px;
+  justify-content: center;
+
+  .back-content {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    margin-right: 25px;
+    color: #434343;
+    text-align: left;
+  }
+
+  .header-back {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    color: #0f64fa;
+    margin: 10px 20px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .flip-card-back {
+    display: block;
+
+    .content-back {
+      font-size: 20px;
+      line-height: 40px;
+    }
+
+    .header-back {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 50px;
+      display: block;
+      text-align: start;
+      color: #000;
+      margin-top: 18px;
+      margin-left: 24px;
+      margin-bottom: 13px;
+    }
+  }
+}
+
+@media screen and (min-width:1441px) and (max-width: 1720px) {
+  .flip-card-back {
+    .back-content {
+      font-size: 18px;
+      line-height: 30px;
+      margin-left: 33px;
+      margin-right: 19px;
+    }
+  }
+}
+
+@media screen and (min-width:1720px) {
+  .flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+    height: 100%;
+
+    .content {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 35px;
+      line-height: 80px;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      font-weight: 600;
+      margin-left: 44px;
+      margin-top: 49px;
+    }
+  }
+
+  .flip-card-inner {
+    position: relative;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    border-radius: 40px;
+  }
+
+  .flip-card-back {
+    border-radius: 40px;
+
+    .back-content {
+      font-size: 30px;
+      line-height: 40px;
+      margin-left: 33px;
+      margin-right: 19px;
+    }
+
+    .header-back {
+      display: none;
+    }
+  }
+}

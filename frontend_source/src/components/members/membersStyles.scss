@@ -1,0 +1,303 @@
+@import "../../colors.scss";
+.Members_component {
+  @mixin on-circle($item-count, $circle-size, $item-size, $single) {
+    position: relative;
+    width: $circle-size;
+    height: $circle-size;
+    padding: 0;
+    border-radius: 50%;
+    list-style: none;
+
+    > * {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: $item-size;
+      height: $item-size;
+      margin: -($item-size / 2);
+
+      $angle: (360 / 14);
+      $rot: 0;
+
+      @for $i from 1 through $item-count {
+        &:nth-of-type(#{$i}) {
+          transform: rotate($rot * 1deg)
+            translate($circle-size / 1.9)
+            rotate($rot * -1deg);
+        }
+        $rot: $rot + 21;
+      }
+      @for $i from 1 through $item-count {
+        &:nth-of-type(5) {
+          transform: rotate($rot * 1deg)
+            translate($circle-size / 2)
+            rotate($rot * -1deg);
+        }
+        $rot: $rot + $angle;
+      }
+    }
+  }
+  .circle-container {
+    @include on-circle(
+      $item-count: 5,
+      $circle-size: 100vh,
+      $item-size: 6em,
+      $single: 1
+    );
+    margin: auto;
+    border: solid 2px $background-line;
+    position: relative;
+
+    img {
+      display: block;
+      max-width: 100%;
+      border-radius: 50%;
+      transition: 0.15s;
+      height: 80px;
+      width: 80px;
+      background: $background-line;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  
+  }
+  .inner-circle {
+    position: absolute;
+    height: 160px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+   
+    
+
+    .inner-content {
+      display: block;
+      padding-left: 25%;
+      padding-right: 25%;
+      .inner-circle-main {
+        height: 100%;
+        border-radius: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        
+        img {
+          height: 140px;
+          border-radius: 50%;
+          width: 140px;
+          border: solid 2px $background-line;
+          object-fit: cover;
+        }
+        .linked {
+          border: none;
+          position: absolute;
+          height: 40px;
+          width: 40px;
+          margin-top: 100px;
+          margin-left: -40px;
+          cursor: pointer;
+        }
+      }
+      .member-name {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        color: $primary-red;
+      }
+      .member-designation {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 8px;
+        color: $dark-text;
+    
+      }
+      .member-quote {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 15px;
+        text-align: center;
+        color: $primary-red;
+        line-height: 28px;
+        margin: auto;
+        margin-top: 30px;
+        width: 40vw;
+      }
+      .member-description {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        text-align: center;
+        color: $dark-text;
+        line-height: 28px;
+        width: 90%;
+        margin: auto;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .Members_component .inner-circle {
+    width: 100%;
+    .inner-content {
+      .member-description {
+        width: 150%;
+      }
+      .member-quote {
+        width: 60vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1439px) {
+  .Members_component .inner-circle {
+    .inner-content {
+      .member-description {
+        width: 90%;
+      }
+      .member-quote {
+        //width: 45vw;
+        width: 85vh;
+        line-height: 22px;
+      }
+      .member-description {
+        //width: 38vw;
+        width: 75vh;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .Members_component {
+    @mixin on-circle($item-count, $circle-size, $item-size, $single) {
+      position: relative;
+      width: $circle-size;
+      height: $circle-size;
+      padding: 0;
+      border-radius: 50%;
+      list-style: none;
+
+      > * {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: $item-size;
+        height: $item-size;
+        margin: -($item-size / 2);
+
+        $angle: (360 / 14);
+        $rot: 0;
+
+        @for $i from 1 through $item-count {
+          &:nth-of-type(#{$i}) {
+            transform: rotate($rot * 1deg)
+              translate($circle-size / 1.9)
+              rotate($rot * -1deg);
+          }
+          $rot: $rot + 21;
+        }
+        @for $i from 1 through $item-count {
+          &:nth-of-type(5) {
+            transform: rotate($rot * 1deg)
+              translate($circle-size / 1.9)
+              rotate($rot * -1deg);
+          }
+          $rot: $rot + $angle;
+        }
+      }
+    }
+    .circle-container {
+      @include on-circle(
+        $item-count: 5,
+        $circle-size: 100vh,
+        $item-size: 6em,
+        $single: 1
+      );
+      margin: auto;
+      border: solid 2px $background-line;
+      position: relative;
+
+      img {
+        display: block;
+        max-width: 100%;
+        border-radius: 50%;
+        border: solid 2px $background-line;
+        transition: 0.15s;
+        height: 10vh;
+        width: 10vh;
+        background: $background-line;
+        object-fit: cover;
+      }
+    }
+    .inner-circle {
+      position: absolute;
+      height: 240px;
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      .inner-content {
+        display: block;
+        padding-left: 25%;
+        padding-right: 25%;
+        .inner-circle-main {
+          height: 65%;
+          border-radius: 50%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          img {
+            height: 20vh;
+            border-radius: 50%;
+            width: 20vh;
+            border: solid 2px $background-line;
+            object-fit: cover;
+          }
+          .linked {
+            border: none;
+            position: absolute;
+            height: 6vh;
+            width: 6vh;
+            margin-top: 15vh;
+            margin-left: 80px;
+          }
+        }
+        .member-name {
+          font-size: 30px;
+          line-height: 45px;
+          margin-top: 19px;
+        }
+        .member-designation {
+          font-size: 23px;
+          line-height: 40px;
+          margin-top: 0;
+        }
+        .member-quote {
+          font-size: 20px;
+          line-height: 25px;
+          margin-top: 3vh;
+          width: 48vw;
+        }
+        .member-description {
+          font-size: 18px;
+          line-height: 23px;
+          margin-top: 19px;
+          width: 38vw;
+        }
+      }
+    }
+  }
+}

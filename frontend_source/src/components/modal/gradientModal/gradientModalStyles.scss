@@ -1,0 +1,197 @@
+.gradient-modal-container {
+  .gradient-modal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 50vw;
+    top: 0;
+    width: 50%;
+    /* Half width - only cover right side */
+    height: 100vh;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+  }
+
+  .gradient-modal-content {
+    overflow: auto;
+    position: fixed;
+    z-index: 1;
+    margin-left: 50vw;
+    left: 0;
+    right: 0;
+    top: 0vh;
+    -webkit-animation: right-to-left-desktop 0.3s linear forwards;
+    animation: right-to-left-desktop 0.3s linear forwards;
+    background: linear-gradient(149.93deg,
+        #ffdcdb 13.72%,
+        #d9e7ff 53.99%,
+        #f8ffdc 100%);
+    width: 50vw;
+    padding: 10% 5%;
+    height: 100vh;
+
+    .close-icon {
+      height: 20px;
+      width: 20px;
+      display: none;
+      float: right;
+      margin-bottom: 20px;
+    }
+  }
+
+  @keyframes popout {
+    from {
+      transform: scale(0);
+    }
+
+    80% {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes popout {
+    from {
+      -webkit-transform: scale(0);
+    }
+
+    80% {
+      -webkit-transform: scale(1);
+    }
+
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes right-to-left-desktop {
+    from {
+      -webkit-transform: scale(0);
+      margin-left: 80vw;
+    }
+
+    to {
+      -webkit-transform: scale(1);
+      margin-left: 50vw;
+    }
+  }
+
+  @keyframes right-to-left-desktop {
+    from {
+      transform: scale(0);
+      margin-left: 80vw;
+    }
+
+    to {
+      transform: scale(1);
+      margin-left: 50vw;
+    }
+  }
+
+  @-webkit-keyframes right-to-left {
+    from {
+      -webkit-transform: scale(0);
+      right: -100vw;
+    }
+
+    to {
+      -webkit-transform: scale(1);
+      left: 0;
+    }
+  }
+
+  @keyframes right-to-left {
+    from {
+      transform: scale(0);
+      right: -100vw;
+    }
+
+    to {
+      transform: scale(1);
+      left: 0;
+    }
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 70vw;
+      height: 60vh;
+      min-height: auto;
+      margin: auto;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+
+      .close-icon {
+        display: block;
+        margin-bottom: 1vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 680px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      height: 70vh;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 60vw;
+      height: 60vh;
+      min-height: auto;
+      margin: auto;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+
+      .close-icon {
+        height: 30px;
+        width: 30px;
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (min-width:481px) and (max-width: 800px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 70vw;
+      height: 70vh;
+      min-height: auto;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+    }
+
+    .close-icon {
+      margin-bottom: 1vh;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 40%;
+    }
+  }
+}

@@ -1,0 +1,139 @@
+@import "../../colors.scss";
+
+.Rate-card {
+  display: block;
+  width: 160px;
+  margin-bottom: 5vh;
+
+  .rate {
+    font-family: "Khand";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    color: $primary-red;
+  }
+
+  .description {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: $primary-blue;
+    margin-top: -10px;
+  }
+
+  .googlerate {
+    display: flex;
+
+    .rate-g {
+      font-family: "Khand";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 60px;
+      color: $primary-red;
+    }
+
+    .description-g {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      color: $primary-blue;
+      margin-top: 44px;
+      padding-left: 5px;
+    }
+  }
+
+  .img-g {
+    margin-top: -2vh;
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Rate-card {
+    text-align: center;
+    margin-top: 0vh;
+    width: 40vw;
+
+    .rate {
+      font-size: 40px;
+      line-height: 45px;
+    }
+
+    .description {
+      font-size: 20px;
+      line-height: 30px;
+    }
+
+    .googlerate {
+      display: block;
+
+      .description-g {
+        margin-top: -10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        line-height: 30px;
+      }
+
+      .rate-g {
+        font-size: 40px;
+        line-height: 45px;
+      }
+    }
+
+    .img-g {
+      margin-top: 0vh;
+      width: 117px;
+      height: 48px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Rate-card {
+    .description {
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .Rate-card {
+    width: max-content;
+    margin-top: 0vh;
+
+    .rate {
+      font-size: 100px;
+      line-height: 45px;
+    }
+
+    .img-g {
+      margin-top: 0vh;
+      width: 261px;
+      height: 109px;
+    }
+
+    .description {
+      font-size: 30px;
+      line-height: 30px;
+      margin-top: 32px;
+      width: 262px;
+    }
+
+    .googlerate {
+      .description-g {
+        font-size: 30px;
+        line-height: 30px;
+        margin-top: 32px;
+      }
+
+      .rate-g {
+        font-size: 100px;
+        line-height: 45px;
+      }
+    }
+  }
+}

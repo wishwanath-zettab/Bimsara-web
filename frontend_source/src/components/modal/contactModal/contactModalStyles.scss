@@ -1,0 +1,104 @@
+.contact-modal-container {
+  .contact-modal {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100vh;
+    /* Full height */
+    overflow: hidden;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  .contact-modal-content {
+    position: fixed;
+    z-index: 1;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 5vh;
+    animation: popout 1s ease;
+    -webkit-animation: popout 1s ease;
+    width: 40vw;
+  }
+
+  @keyframes popout {
+    from {
+      transform: scale(0);
+    }
+
+    80% {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes popout {
+    from {
+      -webkit-transform: scale(0);
+    }
+
+    80% {
+      -webkit-transform: scale(1);
+    }
+
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .contact-modal-container {
+    .contact-modal-content {
+      width: 90vw;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) and (min-height: 800px) {
+  .contact-modal-container {
+    .contact-modal-content {
+      top: 15vh;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .contact-modal-container {
+    .contact-modal-content {
+      width: 100vw;
+      height: 100vh;
+      top: 20vh;
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .contact-modal-container {
+    .contact-modal-content {
+      width: 30vw;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1500px) {
+  .contact-modal-container {
+    .contact-modal-content {
+      width: 35vw;
+    }
+  }
+}

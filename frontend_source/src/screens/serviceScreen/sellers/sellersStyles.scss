@@ -1,0 +1,1091 @@
+@import "../../../colors.scss";
+
+.Sellers {
+  height: 100%;
+  width: 100vw;
+  background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
+    linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
+    linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
+    linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
+    linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
+    linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
+    linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
+    linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
+    linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
+  background-size: 1.5px 100%;
+  /* Control the width here*/
+  background-repeat: no-repeat;
+  background-color: $background;
+
+  .gradient-cont {
+    width: 50%;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: $dark-text;
+    align-self: center;
+    height: 80%;
+    padding-bottom: 5vh;
+
+    .head {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 30px;
+      color: $primary-blue;
+    }
+
+    .margin-top-40 {
+      margin-top: 40px;
+    }
+
+    .margin-top-20 {
+      margin-top: 20px;
+    }
+  }
+
+  .sellers-background {
+    .ham-bar-div {
+      display: none;
+    }
+
+    .logo-container {
+      padding-top: 3%;
+      padding-left: 8vw;
+      position: absolute;
+      z-index: 2;
+
+      .logo {
+        height: 42px;
+        width: 160px;
+      }
+    }
+
+    .sellersContentOne {
+      height: 100%;
+
+      .sellersContentOne-inner {
+        background: #0a0f20;
+        height: auto;
+        width: 100%;
+
+        .top-containr {
+          display: flex;
+          width: 100%;
+
+          .img-cont {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
+            transition: visibility 0s, opacity 0.3s linear;
+
+            .img-c {
+              width: 100vw;
+              height: 100vh;
+              object-fit: cover;
+            }
+          }
+
+          .top-conatiner-left {
+            width: 50%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 100px;
+              margin-top: 70px;
+
+              .header {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 42px;
+                line-height: 90px;
+                text-align: justify;
+
+                color: $white;
+              }
+
+              .sub {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 21px;
+                line-height: 30px;
+                text-align: justify;
+                letter-spacing: 1em;
+                color: $primary-blue;
+                margin-left: 14px;
+              }
+
+              .seller-card-container {
+                margin-top: 38px;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            width: 50%;
+            height: 100%;
+            padding-top: 94px;
+
+            .img-container {
+              height: 104px;
+              width: 480px;
+              border-radius: 25px;
+
+              img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 25px;
+              }
+            }
+
+            .right-content {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 18px;
+              line-height: 50px;
+              color: #ffffff;
+              margin-top: 30px;
+              width: 480px;
+
+              .dots {
+                text-align: center;
+                padding-left: 180px;
+                font-size: 25px;
+                letter-spacing: 0.1em;
+              }
+            }
+
+            .white-arrow {
+              height: 35px;
+              width: 35px;
+              transform: rotate(90deg);
+              margin-top: 81px;
+            }
+          }
+        }
+
+        .top-content-arrow {
+          width: 20vw;
+          color: $primary-red;
+          display: flex;
+          justify-content: center;
+          font-family: "Lato";
+          font-style: italic;
+          font-size: 30px;
+          position: fixed;
+          right: 15vw;
+          bottom: 2vh;
+          z-index: 1;
+
+          .iso {
+            margin-top: 10px;
+            height: 50px;
+            margin-right: 2vw;
+          }
+
+          .safetynet {
+            margin-top: 10px;
+            height: 50px;
+            margin-right: 2vw;
+          }
+
+          .circle {
+            position: relative;
+            height: 60px;
+            width: 60px;
+          }
+
+          .arrow {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .sellers-background-bottom {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .left-in {
+      .top-containr {
+        display: flex;
+        width: 100%;
+        margin-right: -100px;
+        margin-top: 35px;
+
+        .top-conatiner-left {
+          width: 35%;
+          height: 100%;
+
+          .left-inner {
+            padding-left: 100px;
+
+            .header {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 40px;
+              line-height: 90px;
+              text-align: justify;
+              width: max-content;
+              color: $primary-red;
+            }
+
+            .cnt-form-div {
+              display: none;
+            }
+          }
+        }
+
+        .top-conatiner-right {
+          width: 46%;
+          margin-top: 120px;
+          margin-left: 37px;
+          padding-bottom: 5%;
+          height: 95vh;
+          overflow-y: scroll;
+          padding-right: 12%;
+          mask-image: linear-gradient(to bottom,
+              black calc(100% - 48px),
+              transparent 100%);
+
+          .content {
+            .topic {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: normal;
+              font-size: 30px;
+              line-height: 50px;
+              color: #303548;
+              margin-bottom: 8px;
+            }
+
+            .margin-top {
+              margin-top: 20px;
+            }
+
+            .margin-top-40 {
+              margin-top: 40px;
+            }
+
+            .margin-top-60 {
+              margin-top: 60px;
+            }
+
+            .content-text {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 300;
+              font-size: 18px;
+              line-height: 30px;
+              text-align: justify;
+              color: #434343;
+            }
+
+            .bold-content {
+              font-weight: 600;
+            }
+
+            .conent-form {
+              width: 70%;
+              margin: auto;
+              margin-top: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:480px) {
+  .Sellers {
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    background: $background;
+
+    .gradient-cont {
+      width: 80%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 30px;
+      color: $dark-text;
+      align-self: center;
+      overflow-y: scroll;
+      height: 100%;
+      mask-image: linear-gradient(to bottom,
+          black calc(100% - 48px),
+          transparent 100%);
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 30px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .sellers-background {
+      height: 100%;
+      background-color: #0a0f20;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 41px;
+        padding-left: 23px;
+        position: static;
+
+        .logo {
+          height: 36px;
+          width: 133px;
+        }
+      }
+
+      .sellersContentOne {
+        height: 100%;
+
+        .sellersContentOne-inner {
+          width: 100%;
+          background-color: #0a0f20;
+          height: max-content;
+
+          .top-content-arrow {
+            width: 0;
+
+            .iso {
+              display: none;
+            }
+
+            .safetynet {
+              display: none;
+            }
+          }
+
+          .top-containr {
+            display: block;
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 100%;
+              height: 100%;
+              margin-top: 3vh;
+
+              .left-inner {
+                padding-left: 0px;
+                margin-top: 0;
+
+                .header {
+                  font-size: 25px;
+                  line-height: 50px;
+                  padding-left: 10vw;
+                }
+
+                .sub {
+                  font-size: 15px;
+                  line-height: 45px;
+                  letter-spacing: 0.4em;
+                  margin-left: 0;
+                  padding-left: 10vw;
+                }
+
+                .seller-card-container {
+                  margin-top: 15px;
+                  width: 80%;
+                  margin-left: auto;
+                  margin-right: auto;
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 70%;
+              padding: 0;
+              padding-top: 20px;
+              margin: auto;
+              height: 100%;
+              padding-bottom: 62px;
+
+              .img-container {
+                display: none;
+              }
+
+              .right-content {
+                width: 100%;
+                font-size: 15px;
+                line-height: 20px;
+                text-align: center;
+
+                .dots {
+                  padding-left: 0;
+                  font-size: 15px;
+                  line-height: 20px;
+                  letter-spacing: 0;
+                }
+
+                .margin-top-15 {
+                  margin-bottom: 25px;
+                }
+              }
+
+              .white-arrow {
+                margin-top: 0;
+                position: absolute;
+                top: 95vh;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 24px;
+                height: 24px;
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .sellers-background-bottom {
+      height: max-content;
+      display: block;
+
+      .left-in {
+        .top-containr {
+          display: block;
+
+          .top-conatiner-left {
+            width: 100%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 37px;
+
+              .header {
+                font-size: 25px;
+                line-height: 50px;
+              }
+
+              .seller-service-card {
+                display: none;
+              }
+
+              .cnt-form-div {
+                display: block;
+                width: 98%;
+                margin-left: -15px;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:481px) and (max-width: 1024px) {
+  .Sellers {
+    height: 100%;
+    width: 100vw;
+    background: $background;
+    background-size: 1.5px 100%;
+    /* Control the width here*/
+    background-repeat: no-repeat;
+    background-color: $background;
+
+    .gradient-cont {
+      width: 80%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      color: $dark-text;
+      align-self: center;
+      overflow-y: scroll;
+      height: auto;
+      padding-bottom: 3vh;
+      mask-image: linear-gradient(to bottom,
+          black calc(100% - 48px),
+          transparent 100%);
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .sellers-background {
+      height: 100%;
+      background-color: #0a0f20;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 5%;
+        position: static;
+
+        .logo {
+          height: auto;
+          width: 200px;
+        }
+      }
+
+      .sellersContentOne {
+        height: 100%;
+
+        .sellersContentOne-inner {
+          width: 100vw;
+          background-size: 1.5px 100%;
+          /* Control the width here*/
+          background-color: #0a0f20;
+          background-repeat: no-repeat;
+          height: max-content;
+
+          .top-containr {
+            display: block;
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 100%;
+              height: 100%;
+
+              .left-inner {
+                padding-left: 12vw;
+                margin-top: 38px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 50px;
+                }
+
+                .sub {
+                  font-size: 25px;
+                  line-height: 45px;
+                  letter-spacing: 1em;
+                  margin-left: 0;
+                  margin-top: 15px;
+                }
+
+                .seller-card-container {
+                  padding-top: 39px;
+                  margin: auto;
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 83%;
+              padding: 0;
+              margin: auto;
+              height: 100%;
+              padding-bottom: 62px;
+
+              .img-container {
+                display: none;
+              }
+
+              .right-content {
+                width: 100%;
+                font-size: 25px;
+                line-height: 60px;
+                text-align: center;
+                padding-top: 30px;
+
+                .landlord-hed {
+                  font-size: 40px;
+                  line-height: 60px;
+                  text-align: center;
+                }
+
+                .margin-top-15 {
+                  margin-bottom: 15px;
+                }
+              }
+
+              .white-arrow {
+                margin-top: 0;
+                position: absolute;
+                top: 81vh;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 40px;
+                height: 40px;
+                display: none;
+              }
+            }
+          }
+
+          .top-content-arrow {
+            width: auto;
+            right: 5vw;
+            bottom: 3vh;
+
+            .iso {
+              margin-top: 15px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .safetynet {
+              margin-top: 15px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .circle {
+              width: 10vw;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+
+    .sellers-background-bottom {
+      height: max-content;
+      display: block;
+
+      .left-in {
+        .top-containr {
+          display: block;
+
+          .top-conatiner-left {
+            width: 100%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 76px;
+              margin-top: 6vh;
+
+              .header {
+                font-size: 45px;
+                line-height: 50px;
+              }
+
+              .seller-service-card {
+                display: none;
+              }
+
+              .cnt-form-div {
+                display: block;
+                width: 85%;
+                margin-left: -15px;
+                padding-left: 4%;
+                margin-top: 48px;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1025px) and (max-width: 1200px) {
+  .Sellers {
+    height: 100%;
+    width: 100vw;
+
+    .gradient-cont {
+      width: 80%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;
+      color: $dark-text;
+      align-self: center;
+      overflow-y: scroll;
+      height: 100%;
+      mask-image: linear-gradient(to bottom,
+          black calc(100% - 48px),
+          transparent 100%);
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 30px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .sellers-background {
+      height: 100%;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 41px;
+        padding-left: 44px;
+        position: static;
+        z-index: 2222;
+
+        .logo {
+          width: 220px;
+          height: 50px;
+        }
+      }
+
+      .sellersContentOne {
+        height: 100%;
+
+        .sellersContentOne-inner {
+          width: 100vw;
+          height: max-content;
+
+          .top-containr {
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 100%;
+              height: 100%;
+
+              .left-inner {
+                padding-left: 83px;
+                margin-top: 31px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 50px;
+                }
+
+                .sub {
+                  font-size: 25px;
+                  line-height: 45px;
+                  letter-spacing: 1em;
+                  margin-left: 0;
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 80%;
+              padding: 0;
+              margin: auto;
+              height: 100%;
+              margin-top: 194px;
+
+              .right-content {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 50px;
+                color: #ffffff;
+                margin-top: 30px;
+                width: 480px;
+
+                .dots {
+                  text-align: center;
+                  padding-left: 180px;
+                  font-size: 25px;
+                  letter-spacing: 0.1em;
+                }
+              }
+            }
+          }
+
+          .top-content-arrow {
+            top: 75%;
+            right: -2%;
+          }
+        }
+      }
+    }
+
+    .sellers-background-bottom {
+      height: max-content;
+      display: block;
+
+      .left-in {
+        .top-containr {
+          .top-conatiner-left {
+            width: 40%;
+
+            .left-inner {
+              padding-left: 76px;
+              margin-top: 39px;
+
+              .header {
+                font-size: 33px;
+                line-height: 70px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1441px) {
+  .Sellers {
+    background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
+      linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
+      linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
+      linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
+      linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
+      linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
+      linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
+      linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
+      linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
+    background-size: 1.5px 100%;
+    /* Control the width here*/
+    background-repeat: no-repeat;
+    background-color: $background;
+    overflow-x: hidden;
+
+    .gradient-cont {
+      font-size: 18px;
+
+      .head {
+        font-size: 18px;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .sellers-background {
+      .ham-bar-div {
+        display: none;
+      }
+
+      .sellersContentOne {
+        height: 100%;
+
+        .sellersContentOne-inner {
+          .top-containr {
+            .top-conatiner-left {
+              width: 50%;
+              height: 100%;
+
+              .left-inner {
+                padding-left: 100px;
+                margin-top: 110px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 120px;
+                }
+
+                .sub {
+                  font-size: 23px;
+                  line-height: 45px;
+                }
+
+                .seller-card-container {
+                  margin-top: 38px;
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 50%;
+              height: 100%;
+
+              .img-container {
+                //width: 638px;
+                height: 171px;
+                border-radius: 40px;
+
+                img {
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  border-radius: 40px;
+                }
+              }
+
+              .right-content {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 300;
+                font-size: 18px;
+                //line-height: 70px;
+                color: #ffffff;
+                margin-top: 34px;
+                width: 675px;
+
+                .dots {
+                  font-weight: 300;
+                  font-size: 50px;
+                  line-height: 80px;
+                }
+              }
+
+              .white-arrow {
+                height: 50px;
+                width: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .sellers-background-bottom {
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      .left-in {
+        .top-containr {
+          display: flex;
+          width: 100%;
+          margin-right: 0;
+          margin-top: 35px;
+
+          .top-conatiner-left {
+            width: 40%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 100px;
+
+              .header {
+                font-size: 48px;
+                line-height: 120px;
+                text-align: left;
+                padding-left: 13px;
+                color: $primary-red;
+              }
+
+              .cnt-form-div {
+                display: none;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            width: 46%;
+            margin-top: 120px;
+            margin-left: 37px;
+            padding-bottom: 5%;
+            height: 95vh;
+            overflow-y: scroll;
+            padding-right: 12%;
+            mask-image: linear-gradient(to bottom,
+                black calc(100% - 48px),
+                transparent 100%);
+
+            .content {
+              .topic {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 36px;
+                color: #303548;
+              }
+
+              .margin-top {
+                margin-top: 40px;
+              }
+
+              .margin-top-40 {
+                margin-top: 60px;
+              }
+
+              .margin-top-60 {
+                margin-top: 80px;
+              }
+
+              .content-text {
+                font-size: 18px;
+                line-height: 40px;
+              }
+
+              .bold-content {
+                font-weight: 600;
+              }
+
+              .conent-form {
+                width: 70%;
+                margin: auto;
+                margin-top: 100px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
