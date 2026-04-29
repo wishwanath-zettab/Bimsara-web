@@ -1,0 +1,147 @@
+.admin-dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.admin-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  border-bottom: none;
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.admin-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.admin-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secondary,
+.btn-logout {
+  padding: 8px 16px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+  background: white;
+  color: #1e3c72;
+}
+
+.btn-secondary:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.admin-content {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+  background: white;
+  padding: 0;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.tab-btn {
+  padding: 14px 24px;
+  background: white;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 0;
+  font-weight: 500;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: #1e3c72;
+  background: #f8f9fa;
+}
+
+.tab-btn.active {
+  color: #1e3c72;
+  border-bottom-color: #1e3c72;
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+.admin-tab-content {
+  background: white;
+  padding: 25px;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+  .admin-header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .admin-tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  .tab-btn {
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    text-align: left;
+  }
+
+  .tab-btn.active {
+    border-bottom: none;
+    border-left-color: #667eea;
+  }
+
+  .admin-tab-content {
+    padding: 20px;
+  }
+}
