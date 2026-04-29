@@ -31,6 +31,7 @@ const ServiceCard = (props) => {
       {props.data.map((value, index) => {
         return (
           <div
+            key={value.name}
             className={`guide-Card-mini ${
               props.selected === index + selectedIndex ? "border" : ""
             }`}

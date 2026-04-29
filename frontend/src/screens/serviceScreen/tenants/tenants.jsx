@@ -240,7 +240,7 @@ const Tenants = () => {
                     }}
                   />
                 </div>
-                <div className="img-container" onclick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
+                <div className="img-container" onClick={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseEnter={e => img_thumb({ visibility: 'visible', opacity: '1' })} onMouseLeave={e => img_thumb({ visibility: 'hidden', opacity: '0' })}>
                   <img alt="" src={image} />
                 </div>
               </div>

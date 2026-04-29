@@ -724,7 +724,7 @@ const BuyersContent = (props) => {
           powers to the person or organization you appoint as your “Attorney”.
           These powers usually include:
           <div className="margin-top" />
-          <ul class="a">
+          <ul className="a">
             <li>Handling banking transactions</li>
             <li>Entering safety deposit boxes</li>
             <li>Buying and selling property</li>

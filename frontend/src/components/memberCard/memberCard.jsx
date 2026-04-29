@@ -77,17 +77,8 @@ const MemberCard = () => {
       {data.map((item) => {
         return (
           <div className="inner-content mySlides" key={item.id}>
-            <div className="img-div">
-              <a href={item.link || '#'} target="_blank" rel="noreferrer">
-                <img alt={item.name} src={item.img} className="img-div" />
-              </a>
-              {item.link ? (
-                <a href={item.link} target="_blank" rel="noreferrer">
-                  <img alt="LinkedIn profile" src={linked} className="linked" />
-                </a>
-              ) : null}
-            </div>
-            <div className="member-name"><a href={item.link || '#'} target="_blank" rel="noreferrer">{item.name}</a></div>
+            <div className="img-div"><a href={item.link} target="_blank" rel="noopener noreferrer"><img alt="" src={item.img} className="img-div" /></a></div>
+            <div className="member-name"><a href={item.link} target="_blank" rel="noopener noreferrer">{item.name}</a></div>
             <div className="designation">{item.pos}</div>
             <div className="quote">{item.quote}</div>
             <div className="about-text">{item.des}<br></br>{item.des2}</div>

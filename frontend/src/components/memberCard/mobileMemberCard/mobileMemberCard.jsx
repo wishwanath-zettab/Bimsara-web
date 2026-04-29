@@ -74,13 +74,10 @@ const MobileMemberCard = () => {
             <div className="inner-content mySlides1" key={item.id}>
               <div className="img-container">
                 <div className="img-div">
-                    <a href={item.link || '#'} target="_blank" rel="noreferrer"><img alt={item.name} src={item.img} /></a>
-                    {item.link ? (
-                      <a href={item.link} target="_blank" rel="noreferrer"><img alt="LinkedIn profile" src={linked} className="linked" /></a>
-                    ) : null}
+                  <a href={item.link} target="_blank" rel="noopener noreferrer"><img alt="" src={item.img} className="img-div" /></a>
                 </div>
                 <div className="cont">
-                    <a href={item.link || '#'} target="_blank" rel="noreferrer"><div className="member-name">{item.name}</div></a>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer"><div className="member-name">{item.name}</div></a>
                   <div className="designation">{item.pos}</div>
                 </div>
               </div>

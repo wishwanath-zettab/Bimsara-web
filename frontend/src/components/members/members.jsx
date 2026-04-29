@@ -69,7 +69,7 @@ const Members = () => {
           <div className="inner-circle-main">
             <img src={selected.img} alt="" />
             {selected.link !== "" ? (
-              <a href={selected.link} target="_blank" style={{ cursor: "pointer", zIndex: "1" }}>
+              <a href={selected.link} target="_blank" rel="noopener noreferrer" style={{ cursor: "pointer", zIndex: "1" }}>
                 <img alt="" src={linked} className="linked" />
               </a>
             ) : (
