@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.54c2fcfa.css",
-    "main.js": "/static/js/main.5486d344.js",
+    "main.js": "/static/js/main.d86519f7.js",
     "static/js/488.c7159a06.chunk.js": "/static/js/488.c7159a06.chunk.js",
     "static/media/Bimsara Real Estate - Tenants Hero.webp": "/static/media/Bimsara Real Estate - Tenants Hero.3860c9261dfc149fc8f9.webp",
     "static/media/Bimsara Real Estate - Home Testimonials Cover.webp": "/static/media/Bimsara Real Estate - Home Testimonials Cover.bd2afea9eba5656ce944.webp",
@@ -72,11 +72,11 @@
     "static/media/hamburger.webp": "/static/media/hamburger.ffd63166461122f616fd.webp",
     "static/media/Company Profile Book.pdf": "/static/media/Company Profile Book.5443418b6260f4becf21.pdf",
     "main.54c2fcfa.css.map": "/static/css/main.54c2fcfa.css.map",
-    "main.5486d344.js.map": "/static/js/main.5486d344.js.map",
+    "main.d86519f7.js.map": "/static/js/main.d86519f7.js.map",
     "488.c7159a06.chunk.js.map": "/static/js/488.c7159a06.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.54c2fcfa.css",
-    "static/js/main.5486d344.js"
+    "static/js/main.d86519f7.js"
   ]
 }
