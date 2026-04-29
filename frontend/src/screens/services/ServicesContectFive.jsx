@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import facebook from "../../assets/icons/fb.webp";
 import google from "../../assets/icons/gl.webp";
 import linkedin from "../../assets/icons/lin.webp";
@@ -6,6 +7,25 @@ import instagram from "../../assets/icons/insta.webp";
 import youtube from "../../assets/icons/yt.webp";
 import "./ServicesStyles.scss";
 const ServicesContentFive = () => {
+  const [officeAddress, setOfficeAddress] = useState('');
+
+  useEffect(() => {
+    const fetchOfficeAddress = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/contact-details');
+        setOfficeAddress(response.data.office_address || '');
+      } catch (error) {
+        setOfficeAddress('199/58, Rajagiriya Road, Rajagiriya.');
+      }
+    };
+
+    fetchOfficeAddress();
+  }, []);
+
+  const officeLines = officeAddress
+    ? officeAddress.split(/,|\n/).map((line) => line.trim()).filter(Boolean)
+    : [];
+
   return (
     <div className="ServicesContentSeven" id="home-location">
       <div className="presennse-header">OUR PRESENCE</div>
@@ -14,10 +34,12 @@ const ServicesContentFive = () => {
           <div className="offices-container">
             <div className="header-office">OFFICE</div>
             <div className="content-office">
-              199/58,
-              <br />
-              Rajagiriya Road,
-              <br /> Rajagiriya.
+              {officeLines.length > 0 ? officeLines.map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < officeLines.length - 1 ? <br /> : null}
+                </span>
+              )) : 'Loading...'}
             </div>
           </div>
           <div className="social-container">

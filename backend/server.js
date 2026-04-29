@@ -83,6 +83,15 @@ app.get('/api/admin/contact-details', authenticateToken, (req, res) => {
     res.json(row || { office_address: '' });
   });
 });
+// Public contact details for frontend rendering
+app.get('/api/contact-details', (req, res) => {
+  db.get('SELECT * FROM contact_details ORDER BY id DESC LIMIT 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(row || { office_address: '' });
+  });
+});
 
 // Update contact details
 app.put('/api/admin/contact-details', authenticateToken, (req, res) => {
@@ -102,6 +111,15 @@ app.put('/api/admin/contact-details', authenticateToken, (req, res) => {
 
 // Get contact categories
 app.get('/api/admin/contact-categories', authenticateToken, (req, res) => {
+  db.all('SELECT * FROM contact_categories ORDER BY display_order', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+// Public contact categories for frontend rendering
+app.get('/api/contact-categories', (req, res) => {
   db.all('SELECT * FROM contact_categories ORDER BY display_order', (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
