@@ -1,7 +1,16 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,7 +20,44 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden !important;
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip !important;
+  text-size-adjust: 100%;
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
 }
 
 code {
@@ -36,4 +82,19 @@ code {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

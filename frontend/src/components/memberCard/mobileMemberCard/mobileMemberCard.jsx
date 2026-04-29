@@ -111,13 +111,13 @@ const MobileMemberCard = () => {
       <div className="inner-mobile-Card">
         {data.map((item) => {
           return (
-            <div className="inner-content mySlides1">
+            <div className="inner-content mySlides1" key={item.id}>
               <div className="img-container">
                 <div className="img-div">
-                  <a href={item.link} target="_blank"><img alt="" src={item.img} className="img-div" /></a>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer"><img alt="" src={item.img} className="img-div" /></a>
                 </div>
                 <div className="cont">
-                  <a href={item.link} target="_blank"><div className="member-name">{item.name}</div></a>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer"><div className="member-name">{item.name}</div></a>
                   <div className="designation">{item.pos}</div>
                 </div>
               </div>

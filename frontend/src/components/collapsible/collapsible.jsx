@@ -13,7 +13,7 @@ const Collapsible = (props) => {
   const [sellers, setSellers] = useState(true);
   const [guides, setGuides] = useState(false);
   const [visible, setVisible] = useState(true);
-  //const [selectedCard, setSelectedCard] = useState(0);
+  const [selectedCard, setSelectedCard] = useState(0);
   const selectedIndex = props.type === "Seller" ? 2 : 1;
 
   const getContent = () => {
@@ -109,6 +109,7 @@ const Collapsible = (props) => {
               {props.data.map((value, index) => {
                 return (
                   <div
+                    key={value.name}
                     className={`guide-Card-mini ${
                       props.selected === index + selectedIndex && !visible? "border" : ""
                     }`}

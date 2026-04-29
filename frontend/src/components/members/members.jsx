@@ -101,7 +101,7 @@ const Members = () => {
           <div className="inner-circle-main">
             <img src={selected.img} alt="" />
             {selected.link !== "" ? (
-              <a href={selected.link} target="_blank" style={{ cursor: "pointer", zIndex: "1" }}>
+              <a href={selected.link} target="_blank" rel="noopener noreferrer" style={{ cursor: "pointer", zIndex: "1" }}>
                 <img alt="" src={linked} className="linked" />
               </a>
             ) : (
@@ -120,14 +120,14 @@ const Members = () => {
           </div>
         </div>
       </div>
-      <ul class="circle-container">
+          <ul className="circle-container">
         {data
           .filter((member) => {
             return member.id !== selected.id;
           })
           .map((memb) => {
             return (
-              <li>
+              <li key={memb.id}>
                 <img src={memb.img} alt="" onClick={() => setSelected(memb)} />
               </li>
             );

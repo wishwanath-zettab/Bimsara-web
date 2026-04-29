@@ -11,7 +11,7 @@ const ClientCard = (props) => {
         <div className="client-des">{props.des2}</div>
       </div>
 
-      <a className="play" href={props.link} target="_blank">
+    <a className="play" href={props.link} target="_blank" rel="noopener noreferrer">
         <img alt="" src={play} />
         Watch Video
       </a>
