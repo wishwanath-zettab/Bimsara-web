@@ -234,7 +234,7 @@ app.get('/api/admin/team-members', authenticateToken, (req, res) => {
 
 // Create team member
 app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (req, res) => {
-  const { name, position } = req.body;
+  const { name, position, description1, description2 } = req.body;
   const photo_path = req.file ? `/uploads/${req.file.filename}` : null;
 
   // Get max display_order
@@ -242,8 +242,8 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
     const display_order = (row && row.max_order) ? row.max_order + 1 : 1;
 
     db.run(
-      'INSERT INTO team_members (name, position, photo_path, display_order) VALUES (?, ?, ?, ?)',
-      [name, position, photo_path, display_order],
+      'INSERT INTO team_members (name, position, photo_path, display_order, description1, description2) VALUES (?, ?, ?, ?, ?, ?)',
+      [name, position, photo_path, display_order, description1 || null, description2 || null],
       function(err) {
         if (err) {
           return res.status(500).json({ error: err.message });
@@ -254,6 +254,8 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
           position,
           photo_path,
           display_order,
+          description1: description1 || null,
+          description2: description2 || null,
           message: 'Team member created successfully' 
         });
       }
@@ -264,11 +266,11 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
 // Update team member
 app.put('/api/admin/team-members/:id', authenticateToken, upload.single('photo'), (req, res) => {
   const { id } = req.params;
-  const { name, position } = req.body;
+  const { name, position, description1, description2 } = req.body;
 
   db.run(
-    'UPDATE team_members SET name = ?, position = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-    [name, position, id],
+    'UPDATE team_members SET name = ?, position = ?, description1 = ?, description2 = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [name, position, description1 || null, description2 || null, id],
     function(err) {
       if (err) {
         return res.status(500).json({ error: err.message });

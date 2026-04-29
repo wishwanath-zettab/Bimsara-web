@@ -65,7 +65,43 @@ function initializeDatabase() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
-  `);
+  `, (err) => {
+    if (err) {
+      console.error('Error creating team_members table:', err.message);
+      return;
+    }
+    
+    // Safe migration: Add description columns if they don't exist
+    db.all("PRAGMA table_info(team_members)", (err, columns) => {
+      if (err) {
+        console.error('Error checking team_members schema:', err.message);
+        return;
+      }
+      
+      const hasDescription1 = columns.some(col => col.name === 'description1');
+      const hasDescription2 = columns.some(col => col.name === 'description2');
+      
+      if (!hasDescription1) {
+        db.run("ALTER TABLE team_members ADD COLUMN description1 TEXT", (err) => {
+          if (err) {
+            console.error('Error adding description1 column:', err.message);
+          } else {
+            console.log('Added description1 column to team_members table');
+          }
+        });
+      }
+      
+      if (!hasDescription2) {
+        db.run("ALTER TABLE team_members ADD COLUMN description2 TEXT", (err) => {
+          if (err) {
+            console.error('Error adding description2 column:', err.message);
+          } else {
+            console.log('Added description2 column to team_members table');
+          }
+        });
+      }
+    });
+  });
 
   // Initialize default data
   db.get('SELECT COUNT(*) as count FROM contact_details', (err, row) => {
