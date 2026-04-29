@@ -251,8 +251,8 @@ const BuyersContent = (props) => {
           <div className="margin-top-40" />
           <div className="topic">Who Pays The Broker?</div>
           <div className="margin-top" />
-          Sri Lanka’s standard commission rate in real estate transactions is 3%
-          of the sale value and this is normally paid by the seller. In order to
+          Sri Lanka's standard commission rate in real estate transactions is {props.commissionRate} 
+          &nbsp; of the sale value and this is normally paid by the seller. In order to
           establish the said relationship between the buyer and the Real Estate
           Professional, it is best for the buyer to agree to meet the commission
           involved in the transaction. If you disagree to meet the Real Estate

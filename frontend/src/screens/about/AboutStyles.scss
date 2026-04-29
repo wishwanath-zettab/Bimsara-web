@@ -333,15 +333,40 @@
 
       .right-inner-content {
         width: 25%;
-        //height: 100%;
+        min-width: 520px;
+        height: 620px;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
         text-align: center;
+        padding: 20px 0;
 
         .iso-image {
-          position: absolute;
-          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
           width: auto;
-          right: 0;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          cursor: pointer;
+        }
+
+        .iso-certificate-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          padding: 24px;
+          box-sizing: border-box;
+          text-decoration: none;
+          color: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(6px);
         }
       }
     }
@@ -789,15 +814,38 @@
             }
 
             .right-inner-content {
-              width: 82%;
-              margin: auto;
-              margin-top: 10%;
-              margin-bottom: 10%;
+              width: 88%;
+              margin: 8% auto 0;
+              aspect-ratio: 16 / 9;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+              padding: 8px;
+              box-sizing: border-box;
+              border: 1px solid rgba(255, 255, 255, 0.12);
+              border-radius: 14px;
+              background: rgba(255, 255, 255, 0.04);
 
               .iso-image {
                 position: initial;
-                width: 80vw;
-                height: auto;
+                display: block;
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                margin: 0 auto;
+              }
+
+              .iso-certificate-link {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 18px 12px;
               }
             }
           }

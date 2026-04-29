@@ -61,6 +61,7 @@ function initializeDatabase() {
       name TEXT NOT NULL,
       position TEXT NOT NULL,
       photo_path TEXT,
+      linkedin_url TEXT,
       display_order INTEGER,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -80,6 +81,7 @@ function initializeDatabase() {
       
       const hasDescription1 = columns.some(col => col.name === 'description1');
       const hasDescription2 = columns.some(col => col.name === 'description2');
+      const hasLinkedinUrl = columns.some(col => col.name === 'linkedin_url');
       
       if (!hasDescription1) {
         db.run("ALTER TABLE team_members ADD COLUMN description1 TEXT", (err) => {
@@ -97,6 +99,16 @@ function initializeDatabase() {
             console.error('Error adding description2 column:', err.message);
           } else {
             console.log('Added description2 column to team_members table');
+          }
+        });
+      }
+
+      if (!hasLinkedinUrl) {
+        db.run("ALTER TABLE team_members ADD COLUMN linkedin_url TEXT", (err) => {
+          if (err) {
+            console.error('Error adding linkedin_url column:', err.message);
+          } else {
+            console.log('Added linkedin_url column to team_members table');
           }
         });
       }

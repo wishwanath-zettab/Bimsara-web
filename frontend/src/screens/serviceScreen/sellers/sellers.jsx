@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import image from "../../../assets/images/Bimsara Real Estate - Sellers Hero Mini.webp";
@@ -24,6 +25,23 @@ const Sellers = () => {
   const [sidebar, setSidebar] = useState(false);
   const [modal, setModal] = useState(false);
   const [num, setNum] = useState(1);
+  const [commissionRate, setCommissionRate] = useState('3%');
+
+  // Fetch commission rate from backend
+  useEffect(() => {
+    const fetchCommissionRate = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/other-settings');
+        if (response.data && response.data.commission_rate) {
+          setCommissionRate(response.data.commission_rate);
+        }
+      } catch (error) {
+        console.error('Error fetching commission rate:', error);
+        // Keep default 3% if API fails
+      }
+    };
+    fetchCommissionRate();
+  }, []);
 
   const data = [
     {
@@ -250,7 +268,7 @@ const Sellers = () => {
               </div>
             </div>
             <div className="top-conatiner-right">
-              <SellerContent selected={selected} />
+              <SellerContent selected={selected} commissionRate={commissionRate} />
             </div>
           </div>
           <Footer />
