@@ -1,25 +1,30 @@
 .gradient-modal-container {
-  .gradient-modal {
-    display: block;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 50vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  
+  .gradient-modal-backdrop {
+    position: absolute;
     top: 0;
-    width: 50%;
-    /* Half width - only cover right side */
-    height: 100vh;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  &.closing .gradient-modal-backdrop {
+    animation: fadeOut 0.3s ease-in-out;
   }
 
   .gradient-modal-content {
     overflow: auto;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     margin-left: 50vw;
     left: 0;
     right: 0;
@@ -33,6 +38,7 @@
     width: 50vw;
     padding: 10% 5%;
     height: 100vh;
+    pointer-events: auto;
 
     .close-icon {
       height: 20px;
@@ -40,6 +46,51 @@
       display: none;
       float: right;
       margin-bottom: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &.closing .gradient-modal-content {
+    animation: left-to-right-desktop 0.3s linear forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes left-to-right-desktop {
+    from {
+      transform: scale(1);
+      margin-left: 50vw;
+    }
+    to {
+      transform: scale(0);
+      margin-left: 80vw;
+    }
+  }
+
+  @-webkit-keyframes left-to-right-desktop {
+    from {
+      -webkit-transform: scale(1);
+      margin-left: 50vw;
+    }
+    to {
+      -webkit-transform: scale(0);
+      margin-left: 80vw;
     }
   }
 
