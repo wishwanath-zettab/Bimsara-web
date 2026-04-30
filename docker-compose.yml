@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - app-data:/app/data
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
+    restart: unless-stopped
+
+volumes:
+  app-data:

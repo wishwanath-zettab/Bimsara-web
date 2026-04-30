@@ -24,22 +24,26 @@
 
     .AboutContentOne {
       .AboutContentOne-inner {
-        background-image: url("../../assets/images/Bimsara Real Estate - About Hero.webp");
+        background-image: url("../../assets/images/coffeimg.webp");
         height: 95vh;
         background-repeat: no-repeat;
         width: 100%;
         background-size: cover;
         background-position: bottom;
+        position: relative;
 
         .logo-container {
+          position: absolute;
+          top: 0;
+          left: 0;
           padding-top: 3%;
-          padding-left: 5%;
-          display: flex;
-          justify-content: center;
+          padding-left: 8%;
+          z-index: 10;
 
           .logo {
             height: 42px;
             width: 160px;
+            cursor: pointer;
           }
         }
       }
@@ -1073,13 +1077,19 @@
 
         .AboutContentOne-inner {
           height: 50vh;
+          position: relative;
 
           .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             padding-top: 5%;
+            z-index: 10;
 
             .logo {
               height: auto;
               width: 200px;
+              cursor: pointer;
             }
           }
         }
@@ -1597,19 +1607,25 @@
 
       .AboutContentOne {
         .AboutContentOne-inner {
-          background-image: url("../../assets/images/Bimsara Real Estate - About Hero.webp");
+          background-image: url("../../assets/images/coffeimg.webp");
           height: 80vh;
           background-repeat: no-repeat;
           width: 100%;
           background-position: center;
+          position: relative;
 
           .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             padding-top: 35px;
             padding-left: 63px;
+            z-index: 10;
 
             .logo {
               width: 270px;
               height: 73px;
+              cursor: pointer;
             }
           }
         }
