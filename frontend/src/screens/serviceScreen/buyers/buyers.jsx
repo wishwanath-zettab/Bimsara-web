@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import circle from "../../../assets/icons/round.webp";
@@ -25,6 +26,23 @@ const Buyers = () => {
   const [sidebar, setSidebar] = useState(false);
   const [modal, setModal] = useState(false);
   const [num, setNum] = useState(1);
+  const [commissionRate, setCommissionRate] = useState('3%');
+
+  // Fetch commission rate from backend
+  useEffect(() => {
+    const fetchCommissionRate = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/other-settings');
+        if (response.data && response.data.commission_rate) {
+          setCommissionRate(response.data.commission_rate);
+        }
+      } catch (error) {
+        console.error('Error fetching commission rate:', error);
+        // Keep default 3% if API fails
+      }
+    };
+    fetchCommissionRate();
+  }, []);
 
   const data = [
     {
@@ -129,7 +147,7 @@ const Buyers = () => {
         <div className="gradient-cont">
           <div className="head">Fees</div>
           <div className="margin-top-40" />
-          Our fees of 3% of the final selling price will be paid by the seller.
+          Our fees of {commissionRate} of the final selling price will be paid by the seller.
         </div>
       );
     }
@@ -196,7 +214,7 @@ const Buyers = () => {
                     <div className="div-b">
                       <FilpCard
                         content="Fees"
-                        backContent="Our fees of 3% of the final selling price will be paid by the seller."
+                        backContent={`Our fees of ${commissionRate} of the final selling price will be paid by the seller.`}
                       />
                     </div>
                   </div>
@@ -291,7 +309,7 @@ const Buyers = () => {
               </div>
             </div>
             <div className="top-conatiner-right">
-              <BuyersContent selected={selected} />
+              <BuyersContent selected={selected} commissionRate={commissionRate} />
             </div>
           </div>
           <div>

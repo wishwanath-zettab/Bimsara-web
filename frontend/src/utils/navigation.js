@@ -4,8 +4,18 @@ export const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export const scrollToId = (id) => {
+  if (!id || id === "root") {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
+    return;
+  }
+
   const element = document.getElementById(id);
   if (!element) {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     return;
   }
   element.scrollIntoView({

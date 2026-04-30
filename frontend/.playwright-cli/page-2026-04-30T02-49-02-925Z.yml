@@ -1,0 +1,476 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic:
+      - navigation "Primary navigation":
+        - generic [ref=e6]:
+          - link "Home" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - button "Services" [ref=e12] [cursor=pointer]
+          - button "Testimonials" [ref=e15] [cursor=pointer]
+          - link "About" [ref=e18] [cursor=pointer]:
+            - /url: /about
+          - button "Contact" [ref=e21] [cursor=pointer]
+    - generic [ref=e23]:
+      - generic [ref=e24]: Redefining
+      - generic [ref=e25]: Real Estate Brokering
+      - generic [ref=e26]: since 2006.
+    - generic [ref=e31]:
+      - generic [ref=e32]: I want to
+      - generic [ref=e34] [cursor=pointer]: Choose your purpose
+  - generic [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]: Trusted Advisor
+        - generic [ref=e42]: Skilled Negotiator
+        - generic [ref=e43]: Expert Facilitator
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]: Your go-to partner in selling and renting out your property.
+          - generic [ref=e47]: Bimsara Real Estate is the outcome of extensive research conducted by over several years to identify solutions for the issues most frequently encountered by both sellers and buyers in the Sri Lankan real-estate market.
+          - generic [ref=e48]: Our unique approach and method of business is a solution-based and personalized effort to help buyers to find their dream home or property.
+          - generic [ref=e49]: We believe buyer satisfaction is the key for the seller to obtain optimal price. Our pledge therefore is a sincere service to both buyers and sellers to ensure smooth transactions.
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: 20+
+            - generic [ref=e53]: Years of Industry Experience
+          - generic [ref=e54]:
+            - generic [ref=e55]: 1000+
+            - generic [ref=e56]: Satisfied Customers
+      - link "About Us" [ref=e58] [cursor=pointer]:
+        - /url: /about
+        - generic [ref=e60]: About Us
+    - generic [ref=e62]:
+      - generic [ref=e63]: Our Services are for...
+      - generic [ref=e64]:
+        - link "Sellers" [ref=e65] [cursor=pointer]:
+          - /url: /sellers
+          - generic [ref=e67]: Sellers
+        - link "Landlords" [ref=e68] [cursor=pointer]:
+          - /url: /landlords
+          - generic [ref=e70]: Landlords
+        - link "Buyers" [ref=e71] [cursor=pointer]:
+          - /url: /buyers
+          - generic [ref=e73]: Buyers
+        - link "Tenants" [ref=e74] [cursor=pointer]:
+          - /url: /tenants
+          - generic [ref=e76]: Tenants
+    - generic [ref=e77]:
+      - generic [ref=e79]: CLIENT TESTIMONIALS
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: Our client testimonials are proof of
+          - generic [ref=e83]: how well we have treated real estate market by not only setting the trends, but also uplifting the standards which were long standing and will be long lasting.
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 100+
+            - generic [ref=e87]: Google Reviews by Satisfied Clients
+          - generic [ref=e89]:
+            - generic [ref=e90]: "4.9"
+            - generic [ref=e91]: Star Rated
+      - link "VIEW ALL GOOGLE REVIEWS" [ref=e93] [cursor=pointer]:
+        - /url: "https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1,,, "
+        - generic [ref=e95]: VIEW ALL GOOGLE REVIEWS
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: Dudley Leelananda
+          - generic [ref=e103]: “He is a trusted advisor, an excellent negotiator and a person with excellent communication skills.”
+          - generic [ref=e104]: Group Financial Consultant at Hijazi & Ghosheh
+          - generic [ref=e105]: Group Former Credit Risk Consultant at HSBC - Jordan
+        - link "Watch Video" [ref=e106] [cursor=pointer]:
+          - /url: https://www.youtube.com/watch?v=47Kw96zbUkA
+      - generic [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]: Ushan & Piumie Liyanage
+          - generic [ref=e110]: “He never influenced or preasurized us. Information was given, but it’s our own decision.”
+          - generic [ref=e111]: Ushan Liyanage - General Manager HR & Admin at Lankem Ceylon PLC
+          - generic [ref=e112]: Sri Lanka
+        - link "Watch Video" [ref=e113] [cursor=pointer]:
+          - /url: https://www.youtube.com/watch?v=HoC-XXBEDvU&t=10s
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: Atheek Marikar & Crystal
+          - generic [ref=e117]: “He seems to understand what you want very fast. He takes a good brief from the client.”
+          - generic [ref=e118]: Atheek Marikar - Managing Director/CEO at PepperCube Consultants, Sri Lanka
+          - generic [ref=e119]: Crystal Nathan - Strategic Curator at PepperCube Consultants, Sri Lanka
+        - link "Watch Video" [ref=e120] [cursor=pointer]:
+          - /url: https://www.youtube.com/watch?v=xmjcmufaR6M
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e123]: Damian Fernando
+          - generic [ref=e124]: “At any stage of the sale process, he never pushed me.”
+          - generic [ref=e125]: Chief Operating Officer at NKAR Travels & Tours (Pvt) Ltd, Senior Lecturer/Course
+          - generic [ref=e126]: Director at National School of Business Managment (NSBM)
+        - link "Watch Video" [ref=e127] [cursor=pointer]:
+          - /url: https://www.youtube.com/watch?v=5VG5JPTOJ0U&t=3s
+    - generic [ref=e129]:
+      - generic [ref=e130]: Contact Us
+      - generic [ref=e131]:
+        - text: Get in touch with us for all your real estate requirements.
+        - text: We believe in building strong relationships that go long term with our clients.
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e135]:
+            - generic [ref=e136]: GENERAL INQUIRIES
+            - generic [ref=e137]: info@bimsara.com
+            - generic [ref=e138]: +94 11 777 8 777
+          - generic [ref=e139]:
+            - generic [ref=e141]:
+              - generic [ref=e142]: LANDS
+              - generic [ref=e143]: lands@bimsara.com
+              - generic [ref=e144]: +94 77 108 2211
+            - generic [ref=e146]:
+              - generic [ref=e147]: APARTMENTS
+              - generic [ref=e148]: apartments@bimsara.com
+              - generic [ref=e149]: +94 77 106 6251
+            - generic [ref=e151]:
+              - generic [ref=e152]: HOUSES
+              - generic [ref=e153]: houses@bimsara.com
+              - generic [ref=e154]: +94 77 003 1007
+            - generic [ref=e156]:
+              - generic [ref=e157]: RENTALS
+              - generic [ref=e158]: rentals@bimsara.com
+              - generic [ref=e159]: +94 77 741 0444
+        - generic [ref=e162]:
+          - generic [ref=e163]: I would like to know more about the services
+          - generic [ref=e164]:
+            - generic [ref=e165]:
+              - generic [ref=e166]: Name
+              - textbox [ref=e167]
+            - generic [ref=e168]:
+              - generic [ref=e169]: Email Address
+              - textbox [ref=e170]
+            - generic [ref=e171]:
+              - generic [ref=e172]: Contact Number
+              - generic [ref=e173]:
+                - combobox [ref=e174] [cursor=pointer]:
+                  - option "+94" [selected]
+                  - option "+93"
+                  - option "+355"
+                  - option "+213"
+                  - option "+1684"
+                  - option "+376"
+                  - option "+244"
+                  - option "+1264"
+                  - option "+672"
+                  - option "+1268"
+                  - option "+54"
+                  - option "+374"
+                  - option "+297"
+                  - option "+61"
+                  - option "+43"
+                  - option "+994"
+                  - option "+1242"
+                  - option "+973"
+                  - option "+880"
+                  - option "+1246"
+                  - option "+375"
+                  - option "+32"
+                  - option "+501"
+                  - option "+229"
+                  - option "+1441"
+                  - option "+975"
+                  - option "+591"
+                  - option "+387"
+                  - option "+267"
+                  - option "+55"
+                  - option "+246"
+                  - option "+1284"
+                  - option "+673"
+                  - option "+359"
+                  - option "+226"
+                  - option "+257"
+                  - option "+855"
+                  - option "+237"
+                  - option "+1"
+                  - option "+238"
+                  - option "+1345"
+                  - option "+236"
+                  - option "+235"
+                  - option "+56"
+                  - option "+86"
+                  - option "+61"
+                  - option "+61"
+                  - option "+57"
+                  - option "+269"
+                  - option "+682"
+                  - option "+506"
+                  - option "+385"
+                  - option "+53"
+                  - option "+599"
+                  - option "+357"
+                  - option "+420"
+                  - option "+243"
+                  - option "+45"
+                  - option "+253"
+                  - option "+1767"
+                  - option "+1809"
+                  - option "+670"
+                  - option "+593"
+                  - option "+20"
+                  - option "+503"
+                  - option "+240"
+                  - option "+291"
+                  - option "+372"
+                  - option "+251"
+                  - option "+500"
+                  - option "+298"
+                  - option "+679"
+                  - option "+358"
+                  - option "+33"
+                  - option "+689"
+                  - option "+241"
+                  - option "+220"
+                  - option "+995"
+                  - option "+49"
+                  - option "+233"
+                  - option "+350"
+                  - option "+30"
+                  - option "+299"
+                  - option "+1473"
+                  - option "+1671"
+                  - option "+502"
+                  - option "+44-1481"
+                  - option "+224"
+                  - option "+245"
+                  - option "+592"
+                  - option "+509"
+                  - option "+504"
+                  - option "+852"
+                  - option "+36"
+                  - option "+354"
+                  - option "+91"
+                  - option "+62"
+                  - option "+98"
+                  - option "+964"
+                  - option "+353"
+                  - option "+44-1624"
+                  - option "+972"
+                  - option "+39"
+                  - option "+225"
+                  - option "+1876"
+                  - option "+81"
+                  - option "+44-1534"
+                  - option "+962"
+                  - option "+7"
+                  - option "+254"
+                  - option "+686"
+                  - option "+383"
+                  - option "+965"
+                  - option "+996"
+                  - option "+856"
+                  - option "+371"
+                  - option "+961"
+                  - option "+266"
+                  - option "+231"
+                  - option "+218"
+                  - option "+423"
+                  - option "+370"
+                  - option "+352"
+                  - option "+853"
+                  - option "+389"
+                  - option "+261"
+                  - option "+265"
+                  - option "+60"
+                  - option "+960"
+                  - option "+223"
+                  - option "+356"
+                  - option "+692"
+                  - option "+222"
+                  - option "+230"
+                  - option "+262"
+                  - option "+52"
+                  - option "+691"
+                  - option "+373"
+                  - option "+377"
+                  - option "+976"
+                  - option "+382"
+                  - option "+1664"
+                  - option "+212"
+                  - option "+258"
+                  - option "+95"
+                  - option "+264"
+                  - option "+674"
+                  - option "+977"
+                  - option "+31"
+                  - option "+599"
+                  - option "+687"
+                  - option "+64"
+                  - option "+505"
+                  - option "+227"
+                  - option "+234"
+                  - option "+683"
+                  - option "+850"
+                  - option "+1670"
+                  - option "+47"
+                  - option "+968"
+                  - option "+92"
+                  - option "+680"
+                  - option "+970"
+                  - option "+507"
+                  - option "+675"
+                  - option "+595"
+                  - option "+51"
+                  - option "+63"
+                  - option "+64"
+                  - option "+48"
+                  - option "+351"
+                  - option "+1787"
+                  - option "+974"
+                  - option "+242"
+                  - option "+262"
+                  - option "+40"
+                  - option "+7"
+                  - option "+250"
+                  - option "+590"
+                  - option "+290"
+                  - option "+1869"
+                  - option "+1758"
+                  - option "+590"
+                  - option "+508"
+                  - option "+1784"
+                  - option "+685"
+                  - option "+378"
+                  - option "+239"
+                  - option "+966"
+                  - option "+221"
+                  - option "+381"
+                  - option "+248"
+                  - option "+232"
+                  - option "+65"
+                  - option "+1721"
+                  - option "+421"
+                  - option "+386"
+                  - option "+677"
+                  - option "+252"
+                  - option "+27"
+                  - option "+82"
+                  - option "+211"
+                  - option "+34"
+                  - option "+249"
+                  - option "+597"
+                  - option "+47"
+                  - option "+268"
+                  - option "+46"
+                  - option "+41"
+                  - option "+963"
+                  - option "+886"
+                  - option "+992"
+                  - option "+255"
+                  - option "+66"
+                  - option "+228"
+                  - option "+690"
+                  - option "+676"
+                  - option "+1868"
+                  - option "+216"
+                  - option "+90"
+                  - option "+993"
+                  - option "+1649"
+                  - option "+688"
+                  - option "+1340"
+                  - option "+256"
+                  - option "+380"
+                  - option "+971"
+                  - option "+44"
+                  - option "+1"
+                  - option "+598"
+                  - option "+998"
+                  - option "+678"
+                  - option "+379"
+                  - option "+58"
+                  - option "+84"
+                  - option "+681"
+                  - option "+212"
+                  - option "+967"
+                  - option "+260"
+                  - option "+263"
+                - textbox [ref=e175]
+            - generic [ref=e176]:
+              - generic [ref=e177]: I want to
+              - generic [ref=e178]:
+                - generic [ref=e179] [cursor=pointer]:
+                  - radio "Sell" [ref=e180]
+                  - generic [ref=e181]: Sell
+                - generic [ref=e182] [cursor=pointer]:
+                  - radio "Rent Out" [ref=e183]
+                  - generic [ref=e184]: Rent Out
+              - generic [ref=e185]:
+                - generic [ref=e186] [cursor=pointer]:
+                  - radio "Buy" [ref=e187]
+                  - generic [ref=e188]: Buy
+                - generic [ref=e189] [cursor=pointer]:
+                  - radio "Rent Occupy" [ref=e190]
+                  - generic [ref=e191]: Rent Occupy
+            - combobox [ref=e193] [cursor=pointer]:
+              - option "Property Type" [selected]
+              - option "House"
+              - option "Land"
+              - option "Apartment"
+              - option "Commercial Property"
+            - button "Contact Me" [ref=e194] [cursor=pointer]
+    - generic [ref=e195]:
+      - generic [ref=e196]: OUR PRESENCE
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - generic [ref=e199]:
+            - generic [ref=e200]: OFFICE
+            - generic [ref=e201]:
+              - text: 199/58,
+              - text: Rajagiriya Road,
+              - text: Rajagiriya.
+          - generic [ref=e203]: WE ARE SOCIAL
+        - iframe [ref=e207]:
+          
+    - contentinfo [ref=e208]:
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - img "Safetynet Private Limited" [ref=e211]
+          - paragraph [ref=e212]: Safetynet (Private) Limited DBA Bimsara Real Estate is a licensed Real Estate Broker and an Auctioneer based in Sri Lanka.
+        - generic [ref=e213]:
+          - button "For Sellers" [ref=e214] [cursor=pointer]
+          - button "Our Services" [ref=e215] [cursor=pointer]
+          - button "Seller's Guide" [ref=e216] [cursor=pointer]
+        - generic [ref=e217]:
+          - button "For Buyers" [ref=e218] [cursor=pointer]
+          - button "What we offer" [ref=e219] [cursor=pointer]
+          - button "Buyer's Guide" [ref=e220] [cursor=pointer]
+        - generic [ref=e221]:
+          - button "For Landlords" [ref=e222] [cursor=pointer]
+          - button "Our Services" [ref=e223] [cursor=pointer]
+          - button "Landlord's Guide" [ref=e224] [cursor=pointer]
+        - generic [ref=e225]:
+          - button "For Tenants" [ref=e226] [cursor=pointer]
+          - button "What we offer" [ref=e227] [cursor=pointer]
+          - button "Tenant's Guide" [ref=e228] [cursor=pointer]
+        - generic [ref=e229]:
+          - button "Testimonials" [ref=e230] [cursor=pointer]
+          - link "Reviews" [ref=e231] [cursor=pointer]:
+            - /url: https://www.google.com/search?q=Bimsara+Real+Estate&oq=bim&aqs=chrome.0.69i59j69i57j69i59l2j0i512l3j46i512j46i175i199i512j0i512.1528j0j15&sourceid=chrome&ie=UTF-8#lrd=0x3ae25995119a0d4b:0xb8478b32080b33cb,1,,,
+          - button "Video Testimonials" [ref=e232] [cursor=pointer]
+        - generic [ref=e233]:
+          - button "About" [ref=e234] [cursor=pointer]
+          - button "Who we are" [ref=e235] [cursor=pointer]
+          - button "Our direction" [ref=e236] [cursor=pointer]
+          - button "ISO Certification" [ref=e237] [cursor=pointer]
+          - button "Company Overview" [ref=e238] [cursor=pointer]
+          - button "Our Team" [ref=e239] [cursor=pointer]
+        - generic [ref=e240]:
+          - button "Contact" [ref=e241] [cursor=pointer]
+          - button "Contact Us" [ref=e242] [cursor=pointer]
+          - button "Our Location" [ref=e243] [cursor=pointer]
+        - generic [ref=e244]:
+          - generic [ref=e245]: Downloads
+          - link "Seller's Checklist" [ref=e246] [cursor=pointer]:
+            - /url: /static/media/Company Profile Book.5443418b6260f4becf21.pdf
+          - link "Buyer's Checklist" [ref=e247] [cursor=pointer]:
+            - /url: /static/media/Company Profile Book.5443418b6260f4becf21.pdf
+          - link "Landlord's Checklist" [ref=e248] [cursor=pointer]:
+            - /url: /static/media/Company Profile Book.5443418b6260f4becf21.pdf
+          - link "Tenant's Checklist" [ref=e249] [cursor=pointer]:
+            - /url: /static/media/Company Profile Book.5443418b6260f4becf21.pdf
+          - generic [ref=e250]: Tools
+          - generic "Coming Soon" [ref=e251]: Land Grading Tool
+      - generic [ref=e252]:
+        - text: All rights reserved © 2023 Safetynet (Private) Limited.
+        - link "Developed by Millionyse (Pvt) Ltd." [ref=e253] [cursor=pointer]:
+          - /url: https://millionyse.com?ref=bimsara.lk

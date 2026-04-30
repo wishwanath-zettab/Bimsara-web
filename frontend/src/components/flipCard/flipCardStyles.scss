@@ -173,8 +173,8 @@
     border-radius: 40px;
 
     .back-content {
-      font-size: 30px;
-      line-height: 40px;
+      font-size: clamp(20px, 1.15vw, 24px);
+      line-height: 1.45;
       margin-left: 33px;
       margin-right: 19px;
     }

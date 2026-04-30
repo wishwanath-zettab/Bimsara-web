@@ -61,11 +61,59 @@ function initializeDatabase() {
       name TEXT NOT NULL,
       position TEXT NOT NULL,
       photo_path TEXT,
+      linkedin_url TEXT,
       display_order INTEGER,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
-  `);
+  `, (err) => {
+    if (err) {
+      console.error('Error creating team_members table:', err.message);
+      return;
+    }
+    
+    // Safe migration: Add description columns if they don't exist
+    db.all("PRAGMA table_info(team_members)", (err, columns) => {
+      if (err) {
+        console.error('Error checking team_members schema:', err.message);
+        return;
+      }
+      
+      const hasDescription1 = columns.some(col => col.name === 'description1');
+      const hasDescription2 = columns.some(col => col.name === 'description2');
+      const hasLinkedinUrl = columns.some(col => col.name === 'linkedin_url');
+      
+      if (!hasDescription1) {
+        db.run("ALTER TABLE team_members ADD COLUMN description1 TEXT", (err) => {
+          if (err) {
+            console.error('Error adding description1 column:', err.message);
+          } else {
+            console.log('Added description1 column to team_members table');
+          }
+        });
+      }
+      
+      if (!hasDescription2) {
+        db.run("ALTER TABLE team_members ADD COLUMN description2 TEXT", (err) => {
+          if (err) {
+            console.error('Error adding description2 column:', err.message);
+          } else {
+            console.log('Added description2 column to team_members table');
+          }
+        });
+      }
+
+      if (!hasLinkedinUrl) {
+        db.run("ALTER TABLE team_members ADD COLUMN linkedin_url TEXT", (err) => {
+          if (err) {
+            console.error('Error adding linkedin_url column:', err.message);
+          } else {
+            console.log('Added linkedin_url column to team_members table');
+          }
+        });
+      }
+    });
+  });
 
   // Initialize default data
   db.get('SELECT COUNT(*) as count FROM contact_details', (err, row) => {

@@ -82,7 +82,7 @@ const Sidebar = ({ setSidebar }) => {
                 <div className="service-cont">
                   <div className="div-c">
                     {serviceLinks.map((item) => (
-                      <Link className="service-layout" to={item.path} onClick={close} key={item.path}>
+                      <button type="button" className="service-layout text-button" onClick={() => goAndClose(item.path)} key={item.path}>
                         <div className="img-cont">
                           <img alt="" src={item.icon} />
                         </div>
@@ -90,7 +90,7 @@ const Sidebar = ({ setSidebar }) => {
                           <div className="head">{item.label}</div>
                           <div className="sub-n">{item.desc}</div>
                         </div>
-                      </Link>
+                      </button>
                     ))}
                   </div>
                   <div className="line" />

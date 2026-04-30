@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ContactCard from "../../components/contactCard/ContactCard";
 import ContactFrom from "../../components/contactForm/ContactFrom";
 import wa from "../../assets/icons/wa.webp";
@@ -7,6 +8,29 @@ import phone from "../../assets/icons/phone.webp";
 import "./contactComponentStyles.scss";
 
 const ContactComponent = (props) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/contact-categories');
+        setCategories(response.data || []);
+      } catch (error) {
+        setCategories([
+          { id: 1, category_name: 'GENERAL INQUIRIES', email: 'info@bimsara.com', phone: '+94 11 777 8 777' },
+          { id: 2, category_name: 'LANDS', email: 'lands@bimsara.com', phone: '+94 77 108 2211' },
+          { id: 3, category_name: 'APARTMENTS', email: 'apartments@bimsara.com', phone: '+94 77 106 6251' },
+          { id: 4, category_name: 'HOUSES', email: 'houses@bimsara.com', phone: '+94 77 003 1007' },
+          { id: 5, category_name: 'RENTALS', email: 'rentals@bimsara.com', phone: '+94 77 741 0444' }
+        ]);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const [generalContact, ...otherContacts] = categories;
+
   return (
     <div
       className="contactComponent"
@@ -25,44 +49,31 @@ const ContactComponent = (props) => {
             <div style={{ height: 0 }}></div>
           )}
 
-          <div className="contct-m">
-            <ContactCard
-              header="GENERAL INQUIRIES"
-              email="info@bimsara.com"
-              phone="+94 11 777 8 777"
-              general
-            />
-          </div>
-          <div className="contct">
-            <div className="contct-c">
+          {generalContact ? (
+            <div className="contct-m">
               <ContactCard
-                header="LANDS"
-                email="lands@bimsara.com"
-                phone="+94 77 108 2211"
+                header={generalContact.category_name}
+                email={generalContact.email}
+                phone={generalContact.phone}
+                general
               />
             </div>
-            <div className="contct-c">
-              <ContactCard
-                header="APARTMENTS"
-                email="apartments@bimsara.com"
-                phone="+94 77 106 6251"
-              />
+          ) : null}
+
+          {otherContacts.length > 0 ? (
+            <div className="contct">
+              {otherContacts.map((contact) => (
+                <div className="contct-c" key={contact.id}>
+                  <ContactCard
+                    header={contact.category_name}
+                    email={contact.email}
+                    phone={contact.phone}
+                  />
+                </div>
+              ))}
             </div>
-            <div className="contct-c">
-              <ContactCard
-                header="HOUSES"
-                email="houses@bimsara.com"
-                phone="+94 77 003 1007"
-              />
-            </div>
-            <div className="contct-c">
-              <ContactCard
-                header="RENTALS"
-                email="rentals@bimsara.com"
-                phone="+94 77 741 0444"
-              />
-            </div>
-          </div>
+          ) : null}
+
           <div className="wa">
             <img alt="" src={phone} className="ph" onClick={() => window.open("tel:+94117778777", "_blank")} style={{ cursor: "pointer" }} />
             <img alt="" src={wa} className="wapp" onClick={() => window.open("https://wa.me/94777800606", "_blank")} style={{ cursor: "pointer" }} />

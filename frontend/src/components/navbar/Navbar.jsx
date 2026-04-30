@@ -58,7 +58,7 @@ const Navbar = () => {
     <div className="service-cont">
       <div className="div-c">
         {serviceLinks.map((item) => (
-          <Link className="service-layout" to={item.path} key={item.path}>
+          <button type="button" className="service-layout text-button" onClick={() => navigateAndScroll(navigate, item.path)} key={item.path}>
             <div className="img-cont">
               <img alt="" src={item.icon} />
             </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
               <div className={`head ${location.pathname === item.path ? "active" : ""}`} id={item.id}>{item.label}</div>
               <div className="sub">{item.desc}</div>
             </div>
-          </Link>
+          </button>
         ))}
       </div>
       <div className="line" />
