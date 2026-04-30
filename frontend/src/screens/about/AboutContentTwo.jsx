@@ -2,10 +2,13 @@ import React from "react";
 import logo from "../../assets/images/Bimsara Real Estate - About Logo.webp";
 import SecondaryButton from "../../components/button/secondaryButton/SecondaryButton";
 import config from "../../config";
-import CompanyProfileBook from "../../assets/pdf/Company Profile Book.pdf";
 import "./AboutStyles.scss";
 
-const AboutContentTwo = () => {
+const AboutContentTwo = ({ companyProfilePath }) => {
+  const companyProfileUrl = companyProfilePath
+    ? `http://localhost:5000${companyProfilePath}`
+    : null;
+
   return (
     <div className="AboutContentTwo" id="about-who">
       <div className="who-header">WHO WE ARE</div>
@@ -33,15 +36,17 @@ const AboutContentTwo = () => {
               needs and requirements.
             </div>
 
-            <div className="button-container">
-              <a
-                href={CompanyProfileBook}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SecondaryButton buttonText="Download Company Profile Book" />
-              </a>
-            </div>
+            {companyProfileUrl && (
+              <div className="button-container">
+                <a
+                  href={companyProfileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SecondaryButton buttonText="Download Company Profile Book" />
+                </a>
+              </div>
+            )}
           </div>
         </div>
         <div className="about-content-two-right">

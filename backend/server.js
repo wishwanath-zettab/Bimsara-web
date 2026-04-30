@@ -10,7 +10,13 @@ dotenv.config();
 
 const db = require('./database');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '127.0.0.1';
+const JWT_SECRET = process.env.JWT_SECRET || 'bimsara-admin-dev-secret';
+
+if (!process.env.JWT_SECRET) {
+  console.warn('JWT_SECRET is not set. Using the built-in development secret. Set JWT_SECRET in .env for production.');
+}
 
 // Middleware
 app.use(cors());
@@ -39,6 +45,16 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
+const certificateUpload = multer({
+  storage: storage,
+  limits: { fileSize: 20 * 1024 * 1024 } // 20MB limit
+});
+
+const pdfUpload = multer({
+  storage: storage,
+  limits: { fileSize: 50 * 1024 * 1024 } // 50MB limit
+});
+
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -48,7 +64,7 @@ const authenticateToken = (req, res, next) => {
     return res.status(401).json({ error: 'Access denied' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ error: 'Invalid token' });
     }
@@ -65,7 +81,7 @@ app.post('/api/admin/login', (req, res) => {
 
   // Simple authentication (username: admin, password: admin)
   if (username === 'admin' && password === 'admin') {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
     res.json({ token, message: 'Login successful' });
   } else {
     res.status(401).json({ error: 'Invalid credentials' });
@@ -280,7 +296,7 @@ app.get('/api/other-settings', (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.json(row || { commission_rate: '3%', iso_certificate_path: null });
+    res.json(row || { commission_rate: '3%', iso_certificate_path: null, company_profile_pdf_path: null });
   });
 });
 
@@ -320,17 +336,31 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
 app.put('/api/admin/team-members/:id', authenticateToken, upload.single('photo'), (req, res) => {
   const { id } = req.params;
   const { name, position, description1, description2, linkedin_url } = req.body;
+  const photo_path = req.file ? `/uploads/${req.file.filename}` : null;
 
-  db.run(
-    'UPDATE team_members SET name = ?, position = ?, description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-    [name, position, description1 || null, description2 || null, linkedin_url || null, id],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ message: 'Team member updated successfully' });
+  db.get('SELECT photo_path FROM team_members WHERE id = ?', [id], (selectErr, row) => {
+    if (selectErr) {
+      return res.status(500).json({ error: selectErr.message });
     }
-  );
+
+    if (photo_path && row && row.photo_path) {
+      const oldFilePath = path.join(__dirname, row.photo_path);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+    }
+
+    db.run(
+      'UPDATE team_members SET name = ?, position = ?, photo_path = COALESCE(?, photo_path), description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [name, position, photo_path, description1 || null, description2 || null, linkedin_url || null, id],
+      function(err) {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Team member updated successfully', photo_path: photo_path || (row && row.photo_path) || null });
+      }
+    );
+  });
 });
 
 // Update team member order
@@ -386,7 +416,7 @@ app.get('/api/admin/other-settings', authenticateToken, (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.json(row || { commission_rate: '', iso_certificate_path: null });
+    res.json(row || { commission_rate: '', iso_certificate_path: null, company_profile_pdf_path: null });
   });
 });
 
@@ -407,7 +437,7 @@ app.put('/api/admin/other-settings/commission', authenticateToken, (req, res) =>
 });
 
 // Upload ISO certificate
-app.post('/api/admin/other-settings/iso-certificate', authenticateToken, upload.single('certificate'), (req, res) => {
+app.post('/api/admin/other-settings/iso-certificate', authenticateToken, certificateUpload.single('certificate'), (req, res) => {
   const certificate_path = req.file ? `/uploads/${req.file.filename}` : null;
 
   if (!certificate_path) {
@@ -434,6 +464,38 @@ app.post('/api/admin/other-settings/iso-certificate', authenticateToken, upload.
         res.json({ 
           iso_certificate_path: certificate_path,
           message: 'ISO certificate uploaded successfully' 
+        });
+      }
+    );
+  });
+});
+
+// Upload company profile PDF
+app.post('/api/admin/other-settings/company-profile-pdf', authenticateToken, pdfUpload.single('pdf'), (req, res) => {
+  const pdf_path = req.file ? `/uploads/${req.file.filename}` : null;
+
+  if (!pdf_path) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+
+  db.get('SELECT company_profile_pdf_path FROM other_settings WHERE id = 1', (err, row) => {
+    if (!err && row && row.company_profile_pdf_path) {
+      const oldFilePath = path.join(__dirname, row.company_profile_pdf_path);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+    }
+
+    db.run(
+      'UPDATE other_settings SET company_profile_pdf_path = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
+      [pdf_path],
+      function(updateErr) {
+        if (updateErr) {
+          return res.status(500).json({ error: updateErr.message });
+        }
+        res.json({
+          company_profile_pdf_path: pdf_path,
+          message: 'Company profile PDF uploaded successfully'
         });
       }
     );
@@ -469,6 +531,32 @@ app.delete('/api/admin/other-settings/iso-certificate', authenticateToken, (req,
   });
 });
 
+// Delete company profile PDF
+app.delete('/api/admin/other-settings/company-profile-pdf', authenticateToken, (req, res) => {
+  db.get('SELECT company_profile_pdf_path FROM other_settings WHERE id = 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (row && row.company_profile_pdf_path) {
+      const filePath = path.join(__dirname, row.company_profile_pdf_path);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    db.run(
+      'UPDATE other_settings SET company_profile_pdf_path = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
+      function(updateErr) {
+        if (updateErr) {
+          return res.status(500).json({ error: updateErr.message });
+        }
+        res.json({ message: 'Company profile PDF removed successfully' });
+      }
+    );
+  });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
@@ -482,6 +570,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
