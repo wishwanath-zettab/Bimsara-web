@@ -122,3 +122,57 @@ Final acceptance result:
 - Wide and ultra-wide service buttons stay inside the viewport.
 
 Note: the Codex in-app browser still showed one stale console entry from an old `http://localhost:3000/static/js/bundle.js` dev-server session. The active app being served from `http://127.0.0.1:3000` uses the current production build and passed the production Playwright console checks.
+
+## Follow-Up Hotfix: Review CTA Overlap
+
+After the final QA pass, a remaining overlap was reported in the home testimonial section where the `VIEW ALL GOOGLE REVIEWS` CTA could sit on top of the testimonial paragraph at a desktop-like narrow viewport.
+
+Fix applied in `frontend/src/responsive.css`:
+
+- Made the testimonial CTA container participate in normal layout flow with clear top/bottom spacing.
+- Hid the duplicate desktop/mobile CTA variant per breakpoint so only the correct button is visible.
+- Kept the mobile CTA full-width safe and the desktop CTA below the copy with no collision.
+- Preserved the desktop full-bleed testimonial image behavior and mobile centered image behavior.
+
+Retest screenshots:
+
+- `qa-screenshots/responsive-final/review-button-fix/user-shot-size.png`
+- `qa-screenshots/responsive-final/review-button-fix/mobile.png`
+- `qa-screenshots/responsive-final/review-button-fix/tablet.png`
+- `qa-screenshots/responsive-final/review-button-fix/laptop.png`
+- `qa-screenshots/responsive-final/review-button-fix/wide.png`
+
+Retest status: pass. The CTA no longer overlaps the paragraph on the reported viewport, mobile, tablet, laptop, or wide desktop checks.
+
+## Follow-Up Hotfix: Desktop Review Image Width
+
+The review/testimonial image section was still visually constrained by the old `.service-img-container` desktop width. The container now expands to the full viewport on tablet/desktop widths while mobile keeps its centered responsive image behavior.
+
+Fix applied in `frontend/src/responsive.css`:
+
+- Set `.Services .service-img-container` to `100vw` from `769px` and up.
+- Centered the full-bleed section with `calc(50% - 50vw)` margins so it does not left-align inside the page column.
+- Kept the image block-level at `100vw` with safe overflow handling.
+
+Retest screenshot:
+
+- `qa-screenshots/responsive-final/image-fullscreen-fix/home-1440-full.png`
+
+Retest status: pass. The testimonial image now spans the full page width on desktop.
+
+## Follow-Up Hotfix: Mobile Footer Text
+
+The mobile footer links were inheriting overly wide letter spacing, which made labels such as `Contact Us`, checklist downloads, and `Land Grading Tool` appear broken letter-by-letter.
+
+Fix applied in `frontend/src/responsive.css`:
+
+- Reset footer link `letter-spacing`, `word-spacing`, and text shadows below `1200px`.
+- Tightened stacked footer group spacing and line-height.
+- Kept footer headings bold while making footer links readable and touch-safe.
+- Kept the desktop footer visual behavior unchanged.
+
+Retest screenshot:
+
+- `qa-screenshots/responsive-final/footer-text-fix/about-mobile-full.png`
+
+Retest status: pass. Mobile footer labels are now readable, compact, and no longer spaced apart.

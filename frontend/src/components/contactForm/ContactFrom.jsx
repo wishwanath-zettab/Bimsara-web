@@ -399,7 +399,7 @@ const ContactFrom = (props) => {
         <div className="radio-container">
           <div className="label">I want to</div>
           <div className="radio-cont">
-            <div className="container">
+            <label className="container">
               <input
                 type="radio"
                 value="sell"
@@ -409,8 +409,8 @@ const ContactFrom = (props) => {
               />
               <span className="checkmark"></span>
               <span className="lbl">Sell</span>
-            </div>
-            <div className="container">
+            </label>
+            <label className="container">
               <input
                 type="radio"
                 value="rentOut"
@@ -420,10 +420,10 @@ const ContactFrom = (props) => {
               />
               <span className="checkmark"></span>
               <span className="lbl">Rent Out</span>
-            </div>
+            </label>
           </div>
           <div className="radio-cont">
-            <div className="container">
+            <label className="container">
               <input
                 type="radio"
                 value="buy"
@@ -433,8 +433,8 @@ const ContactFrom = (props) => {
               />
               <span className="checkmark"></span>
               <span className="lbl">Buy</span>
-            </div>
-            <div className="container">
+            </label>
+            <label className="container">
               <input
                 type="radio"
                 value="rentOccupy"
@@ -444,7 +444,7 @@ const ContactFrom = (props) => {
               />
               <span className="checkmark"></span>
               <span className="lbl">Rent Occupy</span>
-            </div>
+            </label>
           </div>
         </div>
         <div className="custom-select">
@@ -477,7 +477,7 @@ const ContactFrom = (props) => {
           </div>
         )}
         <button type="button" onClick={onSubmit} className="contact-btn btn btn-push-animate">
-          {loading ? <div className="loader" /> : " Contact Me"}
+          {loading ? <div className="loader" /> : "Contact Me"}
         </button>
       </div>
     </div >
