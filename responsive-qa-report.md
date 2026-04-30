@@ -176,3 +176,21 @@ Retest screenshot:
 - `qa-screenshots/responsive-final/footer-text-fix/about-mobile-full.png`
 
 Retest status: pass. Mobile footer labels are now readable, compact, and no longer spaced apart.
+
+## Follow-Up Hotfix: About Desktop Card Centering
+
+The desktop About page Vision, Mission, and value cards were too large and not visually centered in the available content area beside the right navigation rail.
+
+Fix applied in `frontend/src/responsive.css`:
+
+- Centered `AboutContentThree` within the desktop content area while reserving room for the right navigation.
+- Reduced Vision/Mission card width and normalized inner padding.
+- Converted the three value cards to a balanced desktop grid with shorter card height.
+- Improved desktop card text line-height and sizing so the cards read as content panels instead of tall columns.
+
+Retest screenshots:
+
+- `qa-screenshots/responsive-final/about-card-center-fix/about-1200-full.png`
+- `qa-screenshots/responsive-final/about-card-center-fix/about-1440-full.png`
+
+Retest status: pass. The cards are centered and proportioned more cleanly on laptop/desktop widths.

@@ -2160,6 +2160,102 @@
     padding-left: clamp(120px, 18vw, 300px) !important;
     padding-right: clamp(120px, 18vw, 300px) !important;
   }
+
+  .AboutContentThree {
+    width: 100% !important;
+    max-width: calc(100% - 120px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: clamp(70px, 7vw, 120px) 120px clamp(60px, 6vw, 96px) 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .AboutContentThree .inner-content-three {
+    width: min(100%, 980px) !important;
+    max-width: 980px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(28px, 3vw, 44px);
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard {
+    width: min(100%, 860px) !important;
+    margin: 0 !important;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard span {
+    min-height: 132px !important;
+    padding: 26px 42px !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    box-sizing: border-box;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard .content-styles {
+    font-size: clamp(20px, 1.65vw, 28px) !important;
+    line-height: 1.35 !important;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .AboutContentThree .bottm-content {
+    width: 100% !important;
+    margin-top: clamp(10px, 1vw, 20px) !important;
+  }
+
+  .AboutContentThree .bottm-content > span,
+  .AboutContentThree .bottm-content .gradient-text {
+    display: block;
+    width: min(100%, 860px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .AboutContentThree .div-content {
+    width: min(100%, 860px) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 28px !important;
+  }
+
+  .AboutContentThree .inner-div {
+    padding: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard {
+    height: 100% !important;
+    min-height: 220px !important;
+    margin: 0 !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard span,
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    height: auto !important;
+    min-height: 220px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .AboutContentThree .inner-div .gradientCard span {
+    padding: 28px 30px !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    font-size: clamp(18px, 1.35vw, 24px) !important;
+    line-height: 1.45 !important;
+    max-width: 100%;
+  }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1366px) {
@@ -2210,6 +2306,33 @@
   .tenants .right-content {
     max-width: 100% !important;
     overflow-wrap: anywhere !important;
+  }
+
+  .AboutContentThree {
+    max-width: calc(100% - 100px) !important;
+    padding-right: 100px !important;
+  }
+
+  .AboutContentThree .inner-content-three {
+    width: min(100%, 880px) !important;
+    max-width: 880px !important;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard,
+  .AboutContentThree .div-content,
+  .AboutContentThree .bottm-content > span,
+  .AboutContentThree .bottm-content .gradient-text {
+    width: min(100%, 800px) !important;
+  }
+
+  .AboutContentThree .div-content {
+    gap: 22px !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard,
+  .AboutContentThree .inner-div .gradientCard span,
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    min-height: 190px !important;
   }
 }
 
