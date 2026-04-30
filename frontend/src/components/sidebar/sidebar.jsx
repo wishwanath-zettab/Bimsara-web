@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import img from "../../assets/images/Bimsara Real Estate - Sellers Icon.webp";
 import buyer from "../../assets/images/Bimsara Real Estate - Buyers Icon.webp";
 import img2 from "../../assets/images/Bimsara Real Estate - Landlords Icon.webp";
@@ -11,7 +12,6 @@ import yt from "../../assets/icons/YouTube.webp";
 import inst from "../../assets/icons/Instagram.webp";
 import ham from "../../assets/images/Bimsara Real Estate - Hamburger 1.webp";
 import ham2 from "../../assets/images/Bimsara Real Estate - Hamburger 2.webp";
-import CompanyProfileBook from "../../assets/pdf/Company Profile Book.pdf";
 import { navigateAndScroll, openExternal } from "../../utils/navigation";
 import "./sidebarStyles.scss";
 
@@ -41,6 +41,7 @@ const socialLinks = [
 
 const Sidebar = ({ setSidebar }) => {
   const [openPanel, setOpenPanel] = useState("");
+  const [companyProfilePath, setCompanyProfilePath] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,6 +49,23 @@ const Sidebar = ({ setSidebar }) => {
     document.body.classList.add("drawer-open");
     return () => document.body.classList.remove("drawer-open");
   }, []);
+
+  useEffect(() => {
+    const fetchCompanyProfilePath = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/other-settings");
+        setCompanyProfilePath(response.data.company_profile_pdf_path || null);
+      } catch (error) {
+        setCompanyProfilePath(null);
+      }
+    };
+
+    fetchCompanyProfilePath();
+  }, []);
+
+  const companyProfileUrl = companyProfilePath
+    ? `http://localhost:5000${companyProfilePath}`
+    : null;
 
   const close = () => setSidebar(false);
   const goAndClose = (path, target = "root", delay = 100) => {
@@ -135,7 +153,9 @@ const Sidebar = ({ setSidebar }) => {
                   <div className="line" />
                   <div className="div-b">
                     <div className="hdr">Download</div>
-                    <a className="sub-2" href={CompanyProfileBook} target="_blank" rel="noopener noreferrer">Company Profile Book</a>
+                    {companyProfileUrl && (
+                      <a className="sub-2" href={companyProfileUrl} target="_blank" rel="noopener noreferrer">Company Profile Book</a>
+                    )}
                   </div>
                 </div>
               </div>

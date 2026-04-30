@@ -25,8 +25,30 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+    const phoneRegex = /^(\+94 7\d \d{3} \d{3}|\+947\d{7}|0\d{8})$/;
     return phoneRegex.test(phone) || phone === '';
+  };
+
+  const capitalizeCategoryName = (value) => {
+    if (!value) {
+      return '';
+    }
+
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  };
+
+  const validateCategoryFields = (categoryData) => {
+    const categoryErrors = {};
+
+    if (!validateEmail(categoryData.email)) {
+      categoryErrors.email = 'Wrong email address';
+    }
+
+    if (categoryData.phone && !validatePhoneNumber(categoryData.phone)) {
+      categoryErrors.phone = 'Enter the Valid phone number';
+    }
+
+    return categoryErrors;
   };
 
   const validateOfficeAddress = (address) => {
@@ -85,21 +107,24 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const handleUpdateCategory = async (id, categoryData) => {
-    const categoryErrors = {};
-
-    if (!validateEmail(categoryData.email)) {
-      categoryErrors.email = 'Please enter a valid email address';
-    }
-
-    if (categoryData.phone && !validatePhoneNumber(categoryData.phone)) {
-      categoryErrors.phone = 'Please enter a valid phone number';
-    }
+    const categoryErrors = validateCategoryFields(categoryData);
 
     if (Object.keys(categoryErrors).length > 0) {
-      setErrors({ [`category_${id}`]: categoryErrors });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [`category_${id}_email`]: categoryErrors.email,
+        [`category_${id}_phone`]: categoryErrors.phone
+      }));
       toast.error('Please fix the validation errors');
       return;
     }
+
+    setErrors((prevErrors) => {
+      const nextErrors = { ...prevErrors };
+      delete nextErrors[`category_${id}_email`];
+      delete nextErrors[`category_${id}_phone`];
+      return nextErrors;
+    });
 
     try {
       await axios.put(
@@ -117,15 +142,19 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   const handleCategoryChange = (id, field, value) => {
     let updatedValue = value;
     if (field === 'category_name') {
-      updatedValue = value.charAt(0).toUpperCase() + value.slice(1);
+      updatedValue = capitalizeCategoryName(value);
     }
     setCategories(categories.map(cat => 
       cat.id === id ? { ...cat, [field]: updatedValue } : cat
     ));
-    // Clear errors for this field
-    const categoryErrors = { ...errors };
-    delete categoryErrors[`category_${id}_${field}`];
-    setErrors(categoryErrors);
+
+    if (field === 'email' || field === 'phone') {
+      setErrors((prevErrors) => {
+        const nextErrors = { ...prevErrors };
+        delete nextErrors[`category_${id}_${field}`];
+        return nextErrors;
+      });
+    }
   };
 
   const handleAddCategory = async (e) => {
@@ -138,11 +167,11 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
     }
 
     if (!validateEmail(newCategory.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = 'Wrong email address';
     }
 
     if (newCategory.phone && !validatePhoneNumber(newCategory.phone)) {
-      newErrors.phone = 'Please enter a valid phone number';
+      newErrors.phone = 'Phone number must be "+94 7# ### ###", "+947#######" or "0########"';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -251,7 +280,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
             <div className="form-group">
               <label>Email</label>
               <input
-                type="email"
+                type="text"
                 value={category.email}
                 onChange={(e) => handleCategoryChange(category.id, 'email', e.target.value)}
                 placeholder="Email address"
@@ -267,7 +296,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={category.phone}
                 onChange={(e) => handleCategoryChange(category.id, 'phone', e.target.value)}
-                placeholder="Phone number"
+                placeholder='+94 7# ### ###, +947####### or 0########'
                 style={{ borderColor: errors[`category_${category.id}_phone`] ? '#dc3545' : '' }}
               />
               {errors[`category_${category.id}_phone`] && (
@@ -304,7 +333,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 <input
                   type="text"
                   value={newCategory.category_name}
-                  onChange={(e) => setNewCategory({ ...newCategory, category_name: e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1) })}
+                  onChange={(e) => setNewCategory({ ...newCategory, category_name: capitalizeCategoryName(e.target.value) })}
                   placeholder="Enter category name"
                   required
                 />
@@ -312,7 +341,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
               <div className="form-group">
                 <label>Email</label>
                 <input
-                  type="email"
+                  type="text"
                   value={newCategory.email}
                   onChange={(e) => setNewCategory({ ...newCategory, email: e.target.value })}
                   placeholder="Enter email"
@@ -329,7 +358,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={newCategory.phone}
                 onChange={(e) => setNewCategory({ ...newCategory, phone: e.target.value })}
-                placeholder="Enter phone number"
+                placeholder='+94 7# ### ###, +947####### or 0########'
                 style={{ borderColor: newCategoryErrors.phone ? '#dc3545' : '' }}
               />
               {newCategoryErrors.phone && (

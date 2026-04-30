@@ -21,14 +21,17 @@ const About = () => {
   const [contactModal, setContactModal] = useState(false);
   const [sidebar, setSidebar] = useState(false);
   const [certificatePath, setCertificatePath] = useState(null);
+  const [companyProfilePath, setCompanyProfilePath] = useState(null);
 
   useEffect(() => {
     const fetchCertificate = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/other-settings');
         setCertificatePath(response.data.iso_certificate_path || null);
+        setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {
         setCertificatePath(null);
+        setCompanyProfilePath(null);
       }
     };
 
@@ -60,7 +63,7 @@ const About = () => {
       </div>
       <div className="about-bottom-container">
         <div className="left-about-container">
-          <AboutContentTwo />
+          <AboutContentTwo companyProfilePath={companyProfilePath} />
           <AboutContentThree />
           <AboutContentFour setModal={setModal} certificatePath={certificatePath} />
           <AboutContentFive />

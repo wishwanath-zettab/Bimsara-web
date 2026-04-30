@@ -39,6 +39,16 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
+const certificateUpload = multer({
+  storage: storage,
+  limits: { fileSize: 20 * 1024 * 1024 } // 20MB limit
+});
+
+const pdfUpload = multer({
+  storage: storage,
+  limits: { fileSize: 50 * 1024 * 1024 } // 50MB limit
+});
+
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -280,7 +290,7 @@ app.get('/api/other-settings', (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.json(row || { commission_rate: '3%', iso_certificate_path: null });
+    res.json(row || { commission_rate: '3%', iso_certificate_path: null, company_profile_pdf_path: null });
   });
 });
 
@@ -320,17 +330,31 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
 app.put('/api/admin/team-members/:id', authenticateToken, upload.single('photo'), (req, res) => {
   const { id } = req.params;
   const { name, position, description1, description2, linkedin_url } = req.body;
+  const photo_path = req.file ? `/uploads/${req.file.filename}` : null;
 
-  db.run(
-    'UPDATE team_members SET name = ?, position = ?, description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-    [name, position, description1 || null, description2 || null, linkedin_url || null, id],
-    function(err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ message: 'Team member updated successfully' });
+  db.get('SELECT photo_path FROM team_members WHERE id = ?', [id], (selectErr, row) => {
+    if (selectErr) {
+      return res.status(500).json({ error: selectErr.message });
     }
-  );
+
+    if (photo_path && row && row.photo_path) {
+      const oldFilePath = path.join(__dirname, row.photo_path);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+    }
+
+    db.run(
+      'UPDATE team_members SET name = ?, position = ?, photo_path = COALESCE(?, photo_path), description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [name, position, photo_path, description1 || null, description2 || null, linkedin_url || null, id],
+      function(err) {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: 'Team member updated successfully', photo_path: photo_path || (row && row.photo_path) || null });
+      }
+    );
+  });
 });
 
 // Update team member order
@@ -386,7 +410,7 @@ app.get('/api/admin/other-settings', authenticateToken, (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.json(row || { commission_rate: '', iso_certificate_path: null });
+    res.json(row || { commission_rate: '', iso_certificate_path: null, company_profile_pdf_path: null });
   });
 });
 
@@ -407,7 +431,7 @@ app.put('/api/admin/other-settings/commission', authenticateToken, (req, res) =>
 });
 
 // Upload ISO certificate
-app.post('/api/admin/other-settings/iso-certificate', authenticateToken, upload.single('certificate'), (req, res) => {
+app.post('/api/admin/other-settings/iso-certificate', authenticateToken, certificateUpload.single('certificate'), (req, res) => {
   const certificate_path = req.file ? `/uploads/${req.file.filename}` : null;
 
   if (!certificate_path) {
@@ -440,6 +464,38 @@ app.post('/api/admin/other-settings/iso-certificate', authenticateToken, upload.
   });
 });
 
+// Upload company profile PDF
+app.post('/api/admin/other-settings/company-profile-pdf', authenticateToken, pdfUpload.single('pdf'), (req, res) => {
+  const pdf_path = req.file ? `/uploads/${req.file.filename}` : null;
+
+  if (!pdf_path) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+
+  db.get('SELECT company_profile_pdf_path FROM other_settings WHERE id = 1', (err, row) => {
+    if (!err && row && row.company_profile_pdf_path) {
+      const oldFilePath = path.join(__dirname, row.company_profile_pdf_path);
+      if (fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+    }
+
+    db.run(
+      'UPDATE other_settings SET company_profile_pdf_path = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
+      [pdf_path],
+      function(updateErr) {
+        if (updateErr) {
+          return res.status(500).json({ error: updateErr.message });
+        }
+        res.json({
+          company_profile_pdf_path: pdf_path,
+          message: 'Company profile PDF uploaded successfully'
+        });
+      }
+    );
+  });
+});
+
 // Delete ISO certificate
 app.delete('/api/admin/other-settings/iso-certificate', authenticateToken, (req, res) => {
   // Get certificate path before deleting
@@ -464,6 +520,32 @@ app.delete('/api/admin/other-settings/iso-certificate', authenticateToken, (req,
           return res.status(500).json({ error: err.message });
         }
         res.json({ message: 'ISO certificate removed successfully' });
+      }
+    );
+  });
+});
+
+// Delete company profile PDF
+app.delete('/api/admin/other-settings/company-profile-pdf', authenticateToken, (req, res) => {
+  db.get('SELECT company_profile_pdf_path FROM other_settings WHERE id = 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (row && row.company_profile_pdf_path) {
+      const filePath = path.join(__dirname, row.company_profile_pdf_path);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    db.run(
+      'UPDATE other_settings SET company_profile_pdf_path = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
+      function(updateErr) {
+        if (updateErr) {
+          return res.status(500).json({ error: updateErr.message });
+        }
+        res.json({ message: 'Company profile PDF removed successfully' });
       }
     );
   });
