@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import logo from "../../assets/images/Safetynet Private Limited - Logo.webp";
-import CompanyProfileBook from "../../assets/pdf/Company Profile Book.pdf";
 import { navigateAndScroll } from "../../utils/navigation";
 import "./footerStyles.scss";
 
@@ -60,6 +60,24 @@ const FooterButton = ({ children, onClick, className = "sub" }) => (
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [companyProfilePath, setCompanyProfilePath] = useState(null);
+
+  useEffect(() => {
+    const fetchCompanyProfilePath = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/other-settings");
+        setCompanyProfilePath(response.data.company_profile_pdf_path || null);
+      } catch (error) {
+        setCompanyProfilePath(null);
+      }
+    };
+
+    fetchCompanyProfilePath();
+  }, []);
+
+  const companyProfileUrl = companyProfilePath
+    ? `http://localhost:5000${companyProfilePath}`
+    : null;
 
   const go = (path, target = "root", delay = 120) => navigateAndScroll(navigate, path, target, delay);
   const goHomeSection = (target) => go("/", target, 420);
@@ -117,8 +135,8 @@ const Footer = () => {
 
         <section className="footer-group">
           <div className="hed">Downloads</div>
-          {["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
-            <a className="sub footer-link hover-red" href={CompanyProfileBook} target="_blank" rel="noopener noreferrer" key={label}>
+          {companyProfileUrl && ["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
+            <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>
               {label}
             </a>
           ))}

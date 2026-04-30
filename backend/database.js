@@ -50,9 +50,35 @@ function initializeDatabase() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       commission_rate TEXT,
       iso_certificate_path TEXT,
+      company_profile_pdf_path TEXT,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  db.run('PRAGMA table_info(other_settings)', (err) => {
+    if (err) {
+      console.error('Error checking other_settings schema:', err.message);
+      return;
+    }
+
+    db.all('PRAGMA table_info(other_settings)', (schemaErr, columns) => {
+      if (schemaErr) {
+        console.error('Error reading other_settings schema:', schemaErr.message);
+        return;
+      }
+
+      const hasPdfPath = columns.some(col => col.name === 'company_profile_pdf_path');
+      if (!hasPdfPath) {
+        db.run('ALTER TABLE other_settings ADD COLUMN company_profile_pdf_path TEXT', (alterErr) => {
+          if (alterErr) {
+            console.error('Error adding company_profile_pdf_path column:', alterErr.message);
+          } else {
+            console.log('Added company_profile_pdf_path column to other_settings table');
+          }
+        });
+      }
+    });
+  });
 
   // Team Members Table
   db.run(`
@@ -140,7 +166,7 @@ function initializeDatabase() {
 
   db.get('SELECT COUNT(*) as count FROM other_settings', (err, row) => {
     if (!err && row.count === 0) {
-      db.run(`INSERT INTO other_settings (commission_rate) VALUES ('5%')`);
+      db.run(`INSERT INTO other_settings (commission_rate, iso_certificate_path, company_profile_pdf_path) VALUES ('5%', NULL, NULL)`);
     }
   });
 }

@@ -9,6 +9,10 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
   const [newProvider, setNewProvider] = useState({ company_name: '', logo: null });
   const [loading, setLoading] = useState(false);
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, providerId: null });
+  const [errors, setErrors] = useState({});
+
+  const MAX_COMPANY_NAME_LENGTH = 100;
+  const MAX_LOGO_SIZE = 3 * 1024 * 1024; // 3MB
 
   useEffect(() => {
     fetchProviders();
@@ -28,11 +32,21 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
 
   const handleCreateProvider = async (e) => {
     e.preventDefault();
+    const newErrors = {};
     
     if (!newProvider.company_name) {
       toast.error('Please enter company name');
       return;
     }
+
+    if (newProvider.company_name.length > MAX_COMPANY_NAME_LENGTH) {
+      newErrors.company_name = `Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`;
+      setErrors(newErrors);
+      toast.error(newErrors.company_name);
+      return;
+    }
+
+    setErrors({});
 
     setLoading(true);
     const formData = new FormData();
@@ -85,11 +99,17 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    const newErrors = { ...errors };
+    
     if (file) {
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error('File size should be less than 5MB');
+      if (file.size > MAX_LOGO_SIZE) {
+        newErrors.logo = `Company logo must be less than 3MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
+        setErrors(newErrors);
+        toast.error(newErrors.logo);
         return;
       }
+      delete newErrors.logo;
+      setErrors(newErrors);
       setNewProvider({ ...newProvider, logo: file });
     }
   };
@@ -114,10 +134,25 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
             <input
               type="text"
               value={newProvider.company_name}
-              onChange={(e) => setNewProvider({ ...newProvider, company_name: e.target.value })}
+              onChange={(e) => {
+                const newErrors = { ...errors };
+                if (e.target.value.length > MAX_COMPANY_NAME_LENGTH) {
+                  newErrors.company_name = `Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`;
+                } else {
+                  delete newErrors.company_name;
+                }
+                setErrors(newErrors);
+                setNewProvider({ ...newProvider, company_name: e.target.value });
+              }}
               placeholder="Enter company name"
+              maxLength={MAX_COMPANY_NAME_LENGTH}
+              style={{ borderColor: errors.company_name ? '#dc3545' : '' }}
               required
             />
+            {errors.company_name && (
+              <small style={{ color: '#dc3545' }}>{errors.company_name}</small>
+            )}
+            <small style={{ color: '#666' }}>{newProvider.company_name.length}/{MAX_COMPANY_NAME_LENGTH} characters</small>
           </div>
           <div className="form-group">
             <label>Company Logo</label>
@@ -125,7 +160,12 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
+              style={{ borderColor: errors.logo ? '#dc3545' : '' }}
             />
+            {errors.logo && (
+              <small style={{ color: '#dc3545' }}>{errors.logo}</small>
+            )}
+            <small style={{ color: '#666' }}>Maximum 3MB</small>
           </div>
           <div className="form-group button-group">
             <label>&nbsp;</label>

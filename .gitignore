@@ -10,6 +10,7 @@
 /backend/upload
 # Production
 /build
+/frontend/build
 
 # Misc
 .DS_Store
