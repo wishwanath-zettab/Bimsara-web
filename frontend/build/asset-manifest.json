@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.b5383d9d.css",
+    "main.css": "/static/css/main.a2b0d8b5.css",
     "main.js": "/static/js/main.ed720363.js",
     "static/js/488.c7159a06.chunk.js": "/static/js/488.c7159a06.chunk.js",
     "static/media/Bimsara Real Estate - Tenants Hero.webp": "/static/media/Bimsara Real Estate - Tenants Hero.3860c9261dfc149fc8f9.webp",
@@ -8,8 +8,8 @@
     "static/media/Bimsara Real Estate - Sellers Hero.webp": "/static/media/Bimsara Real Estate - Sellers Hero.1e525d712ac3c540567f.webp",
     "static/media/Bimsara Real Estate - Landlords Hero.webp": "/static/media/Bimsara Real Estate - Landlords Hero.f7a064ef55c694c17c09.webp",
     "static/media/Bimsara Real Estate - Buyers Hero.webp": "/static/media/Bimsara Real Estate - Buyers Hero.455f7b1538b33952b5e7.webp",
-    "static/media/Bimsara Real Estate - About Hero.webp": "/static/media/Bimsara Real Estate - About Hero.9dde69d033fd47b21e13.webp",
     "static/media/Bimsara Real Estate - Home Hero.webp": "/static/media/Bimsara Real Estate - Home Hero.9dde69d033fd47b21e13.webp",
+    "static/media/coffeimg.webp": "/static/media/coffeimg.a8850f051ea0c5a66223.webp",
     "static/media/Bimsara Real Estate - ISO Certificate.webp": "/static/media/Bimsara Real Estate - ISO Certificate.4efcbe1e5ac0e1d9955f.webp",
     "static/media/member-5.webp": "/static/media/member-5.f861b7e35da099f3dd12.webp",
     "static/media/member-6.webp": "/static/media/member-6.fbea0076b18cf626205f.webp",
@@ -71,12 +71,12 @@
     "static/media/Bimsara Real Estate - Hamburger 2.webp": "/static/media/Bimsara Real Estate - Hamburger 2.b0ae7db46da91e1a0970.webp",
     "static/media/hamburger.webp": "/static/media/hamburger.ffd63166461122f616fd.webp",
     "static/media/Company Profile Book.pdf": "/static/media/Company Profile Book.5443418b6260f4becf21.pdf",
-    "main.b5383d9d.css.map": "/static/css/main.b5383d9d.css.map",
+    "main.a2b0d8b5.css.map": "/static/css/main.a2b0d8b5.css.map",
     "main.ed720363.js.map": "/static/js/main.ed720363.js.map",
     "488.c7159a06.chunk.js.map": "/static/js/488.c7159a06.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5383d9d.css",
+    "static/css/main.a2b0d8b5.css",
     "static/js/main.ed720363.js"
   ]
 }
