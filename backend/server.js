@@ -10,7 +10,13 @@ dotenv.config();
 
 const db = require('./database');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '127.0.0.1';
+const JWT_SECRET = process.env.JWT_SECRET || 'bimsara-admin-dev-secret';
+
+if (!process.env.JWT_SECRET) {
+  console.warn('JWT_SECRET is not set. Using the built-in development secret. Set JWT_SECRET in .env for production.');
+}
 
 // Middleware
 app.use(cors());
@@ -58,7 +64,7 @@ const authenticateToken = (req, res, next) => {
     return res.status(401).json({ error: 'Access denied' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ error: 'Invalid token' });
     }
@@ -75,7 +81,7 @@ app.post('/api/admin/login', (req, res) => {
 
   // Simple authentication (username: admin, password: admin)
   if (username === 'admin' && password === 'admin') {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
     res.json({ token, message: 'Login successful' });
   } else {
     res.status(401).json({ error: 'Invalid credentials' });
@@ -564,6 +570,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
