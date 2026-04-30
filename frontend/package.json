@@ -4,6 +4,12 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@fontsource/khand": "^5.2.8",
+    "@fontsource/lato": "^5.2.7",
+    "@fontsource/league-gothic": "^5.2.8",
+    "@fontsource/league-script": "^5.2.8",
+    "@fontsource/m-plus-2": "^5.2.8",
+    "@fontsource/poppins": "^5.2.7",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
