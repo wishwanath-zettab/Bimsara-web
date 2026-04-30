@@ -29,7 +29,7 @@ RUN chmod +x entrypoint.sh
 # Ensure uploads dir exists at build time
 RUN mkdir -p uploads
 
-EXPOSE 5000
+EXPOSE 3001
 
 ENV NODE_ENV=production
 
