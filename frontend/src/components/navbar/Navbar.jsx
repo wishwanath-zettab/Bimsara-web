@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import img from "../../assets/images/Bimsara Real Estate - Sellers Icon.webp";
 import buyer from "../../assets/images/Bimsara Real Estate - Buyers Icon.webp";
 import img2 from "../../assets/images/Bimsara Real Estate - Landlords Icon.webp";
@@ -9,7 +10,6 @@ import gl from "../../assets/icons/Google.webp";
 import ln from "../../assets/icons/LinkedIn.webp";
 import yt from "../../assets/icons/YouTube.webp";
 import inst from "../../assets/icons/Instagram.webp";
-import CompanyProfileBook from "../../assets/pdf/Company Profile Book.pdf";
 import { navigateAndScroll, openExternal } from "../../utils/navigation";
 import "./NavbarStyles.scss";
 
@@ -52,6 +52,25 @@ const NavAction = ({ children, className = "hover-red", id, onClick }) => (
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [companyProfilePath, setCompanyProfilePath] = useState(null);
+
+  useEffect(() => {
+    const fetchCompanyProfilePath = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/other-settings");
+        setCompanyProfilePath(response.data.company_profile_pdf_path || null);
+      } catch (error) {
+        setCompanyProfilePath(null);
+      }
+    };
+
+    fetchCompanyProfilePath();
+  }, []);
+
+  const companyProfileUrl = companyProfilePath
+    ? `http://localhost:5000${companyProfilePath}`
+    : null;
+
   const serviceActive = ["/sellers", "/buyers", "/landlords", "/tenants"].includes(location.pathname);
 
   const servicesPanel = (
@@ -103,11 +122,13 @@ const Navbar = () => {
       <div className="line" />
       <div className="div-b">
         <div className="hdr">Download</div>
-        <div className="sub-2">
-          <a href={CompanyProfileBook} target="_blank" rel="noopener noreferrer" className="hover-red">
-            Company Profile Book
-          </a>
-        </div>
+        {companyProfileUrl && (
+          <div className="sub-2">
+            <a href={companyProfileUrl} target="_blank" rel="noopener noreferrer" className="hover-red">
+              Company Profile Book
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
