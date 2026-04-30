@@ -1,0 +1,178 @@
+.sellerCardContainer {
+  cursor: pointer;
+  
+  .sellerCard {
+    background: linear-gradient(90.16deg,
+        rgba(255, 255, 255, 0.2) 0.93%,
+        rgba(98, 134, 205, 0.153326) 47.11%,
+        rgba(255, 255, 255, 0.1) 99.86%);
+    box-shadow: 0px 2px 8px rgba(145, 120, 120, 0.5);
+    backdrop-filter: blur(60px);
+    border-radius: 25px;
+    padding: 10px 30px;
+    width: 380px;
+    padding-left: 50px;
+
+    .content {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 50px;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    img {
+      height: 28px;
+      width: 28px;
+    }
+
+    margin-bottom: 40px;
+  }
+
+  .sellerCard:hover {
+    background: linear-gradient(90.16deg,
+        #ff8f8c 0.93%,
+        #88b3ff 47.11%,
+        #e8ff8c 99.86%);
+    background-size: 200% 200%;
+    animation: gradientCardAnim 1s ease infinite;
+  }
+
+  @keyframes gradientCardAnim {
+    0% {
+      background-position: 0% 25%;
+    }
+
+    50% {
+      background-position: 50% 25%;
+    }
+
+    100% {
+      background-position: 10% 50%;
+    }
+  }
+}
+
+@media screen and (max-width:480px) {
+  .sellerCardContainer {
+    .sellerCard {
+      height: 51px;
+      //width: 273px;
+      width: auto;
+      display: flex;
+      padding: 6px 20px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      margin-left: auto;
+      margin-right: auto;
+
+      .content {
+        font-size: 15px;
+        line-height: 20px;
+        width: 233px;
+      }
+
+      img {
+        height: 30px;
+        width: 30px;
+        align-self: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width:481px) and (max-width: 1024px) {
+  .sellerCardContainer {
+    .sellerCard {
+      width: 66vw;
+      height: 110px;
+      display: flex;
+      border-radius: 35px;
+      margin-bottom: 30px;
+
+      .content {
+        font-size: 25px;
+        //line-height: 15px;
+        width: 500px;
+      }
+
+      img {
+        height: 40px;
+        width: 40px;
+        align-self: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width: 1200px) {
+  .sellerCardContainer {
+    .sellerCard {
+      width: 480px;
+      height: 110px;
+      border-radius: 35px;
+      margin-bottom: 30px;
+      padding: 0;
+      padding-left: 30px;
+      padding-top: 30px;
+
+      .content {
+        font-size: 25px;
+        line-height: 15px;
+        width: 500px;
+        display: flex;
+        align-self: center;
+      }
+
+      img {
+        height: 35px;
+        width: 35px;
+        align-self: center;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+/*@media screen and (min-width:1200px) and (max-width: 1690px) {
+  .sellerCardContainer {
+    .sellerCard {
+      width: 480px;
+      .content {
+        font-size: 25px;
+        line-height: 100px;
+      }
+      img {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}*/
+@media screen and (min-width:1690px) {
+  .sellerCardContainer {
+    .sellerCard {
+      width: 638px;
+      height: 172px;
+      border-radius: 40px;
+      padding-left: 62px;
+      padding-top: 16px;
+
+      .content {
+        font-size: 30px;
+        line-height: 80px;
+      }
+
+      img {
+        height: 60px;
+        width: 60px;
+      }
+
+      margin-bottom: 40px;
+    }
+
+  }
+}

@@ -1,0 +1,23 @@
+.gradientText {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  //text-align: center;
+  padding-left: 1vw;
+  background-color: #5C97FF;
+  /*background: linear-gradient(
+    180deg,
+    rgba(229, 50, 45, 0.5) 0%,
+    rgba(156, 67, 115, 0.5) 34.17%,
+    rgba(15, 100, 250, 0.5) 100%
+  );*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 2vh;
+}
+@media screen and (min-width:1441px) {
+  .gradientText {
+    line-height: 60px;
+  }
+}

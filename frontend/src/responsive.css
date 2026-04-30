@@ -1,0 +1,2442 @@
+/* Device-wide responsive safety layer. Loaded after component Sass. */
+:root {
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-tablet-wide: 1024px;
+  --bp-laptop: 1200px;
+  --page-gutter: clamp(18px, 5vw, 72px);
+  --content-max: 1180px;
+}
+
+.nav-action,
+.text-button,
+.footer-link,
+.social-action,
+.drawer-close,
+.mobile-nav-backdrop {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: inherit;
+}
+
+.Nav-bar .active,
+.Nav-bar .head.active,
+.side-bar .active {
+  color: #e5322d !important;
+}
+
+.Nav-bar .text-button,
+.side-bar .text-button {
+  width: 100%;
+  color: inherit;
+}
+
+.Nav-bar .service-layout,
+.side-bar .service-layout {
+  text-decoration: none;
+}
+
+.Nav-bar .social-action,
+.side-bar .sub-2 {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.mobile-nav-backdrop {
+  display: none;
+}
+
+.responsive-footer {
+  width: min(var(--content-max), calc(100% - 160px));
+  margin: 0 auto;
+  padding-left: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(220px, 1.4fr) repeat(4, minmax(130px, 1fr));
+  gap: clamp(22px, 3vw, 52px);
+}
+
+.footer-brand,
+.footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.footer-brand {
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.7;
+  color: #303548;
+}
+
+.footer-brand .logo {
+  width: clamp(150px, 18vw, 243px);
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.footer-group .hed,
+.footer-group .sub {
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+  color: #303548;
+}
+
+.footer-group .hed {
+  font-family: "Lato";
+  font-size: clamp(16px, 1.5vw, 25px);
+  font-weight: 700;
+}
+
+.footer-group .sub {
+  font-family: "Lato";
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 300;
+}
+
+.footer-muted {
+  color: #777;
+}
+
+.tools-title {
+  margin-top: 16px !important;
+}
+
+.designer-foot {
+  width: min(var(--content-max), calc(100% - 160px));
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+}
+
+.contactForm .contact-btn {
+  min-height: 48px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.contactForm input,
+.contactForm select,
+.contactForm textarea {
+  min-height: 44px;
+}
+
+.contactForm input[type="radio"] {
+  min-height: 0;
+}
+
+.modal-container .modal,
+.contact-modal-container .contact-modal,
+.gradient-modal-container .gradient-modal {
+  z-index: 40;
+}
+
+.modal-container .modal-content,
+.contact-modal-container .contact-modal-content,
+.gradient-modal-container .gradient-modal-content {
+  z-index: 41;
+  max-width: 92vw;
+  max-height: 90dvh;
+  overflow: auto;
+}
+
+.modal-container .modal-content img {
+  max-height: 86dvh;
+  object-fit: contain;
+}
+
+.Services,
+.About,
+.Sellers,
+.sellers,
+.buyers,
+.landlords,
+.tenants {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.Services img,
+.About img,
+.Sellers img,
+.sellers img,
+.buyers img,
+.landlords img,
+.tenants img {
+  max-width: 100%;
+}
+
+.Services .service-img-container img,
+.ServicesContentSeven iframe {
+  width: 100%;
+}
+
+.admin-login-box,
+.admin-tab-content,
+.provider-form,
+.provider-form-row,
+.category-card-row,
+.member-row {
+  max-width: 100%;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .flip-card:hover .flip-card-inner {
+    transform: none !important;
+  }
+
+  .btn-primary:hover,
+  .btn-danger:hover,
+  .btn-secondary:hover,
+  .btn-logout:hover,
+  .provider-card:hover,
+  .member-row:hover,
+  .category-card-row:hover,
+  .btn-add-member:hover {
+    transform: none !important;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .Nav-bar,
+  .nav-bar-div,
+  .about-nav-bar,
+  .right-bar-div,
+  .about-right-bar,
+  .sellers-right-bar,
+  .buyers-right-bar,
+  .landlords-right-bar,
+  .tenants-right-bar {
+    display: none !important;
+  }
+
+  .ham-bar-div {
+    display: block !important;
+  }
+
+  .hamburgerIcon {
+    z-index: 35 !important;
+  }
+
+  .mobile-nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: rgba(10, 15, 32, 0.28);
+  }
+
+  .side-bar .main-nav {
+    z-index: 50 !important;
+    right: 0 !important;
+    left: auto;
+    width: min(84vw, 360px) !important;
+    height: 100dvh !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 18px 0 0 18px !important;
+    animation: drawerIn 0.22s ease-out both !important;
+  }
+
+  @keyframes drawerIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .side-bar ul.nav {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .side-bar ul.nav li {
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  .side-bar .drawer-close {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .side-bar .nv {
+    transform: none !important;
+    writing-mode: horizontal-tb !important;
+    float: none !important;
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+    min-height: 46px;
+    padding: 10px 8px;
+    text-align: left !important;
+    font-size: clamp(18px, 5vw, 24px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .side-bar .hovercontent,
+  .side-bar .hovercontent-3 {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 12px !important;
+    margin: 4px 0 14px;
+    right: auto !important;
+    bottom: auto !important;
+    overflow: visible;
+  }
+
+  .side-bar .service-cont .div-c,
+  .side-bar .service-cont .div-b {
+    padding: 16px !important;
+  }
+
+  .side-bar .service-layout {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px !important;
+  }
+
+  .side-bar .service-layout .img-cont,
+  .side-bar .service-layout .img-cont img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .side-bar .head {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+  }
+
+  .side-bar .sub-n,
+  .side-bar .sub-2 {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .side-bar .div-b > .sub-2 {
+    display: block !important;
+    width: max-content;
+    max-width: 100%;
+    min-height: 28px;
+    margin-top: 14px !important;
+    white-space: nowrap;
+  }
+
+  .side-bar .bt {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(34px, 1fr)) !important;
+    gap: 10px;
+  }
+
+  .side-bar .bt .sub-2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .side-bar .bt .span-t {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Services .Services-background,
+  .About .about-background,
+  .Sellers .sellers-background,
+  .sellers .sellers-background,
+  .buyers .buyers-background,
+  .landlords .landlords-background,
+  .tenants .tenants-background {
+    min-height: auto;
+    height: auto !important;
+  }
+
+  .Services .logo-container,
+  .About .logo-container,
+  .Sellers .logo-container,
+  .sellers .logo-container,
+  .buyers .logo-container,
+  .landlords .logo-container,
+  .tenants .logo-container {
+    padding-left: var(--page-gutter) !important;
+  }
+
+  .Services-bottom-container,
+  .about-bottom-container,
+  .sellers-background-bottom,
+  .buyers-background-bottom,
+  .landlords-background-bottom,
+  .tenants-background-bottom {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .Services-bottom-container .left-b,
+  .about-bottom-container .left-about-container,
+  .sellers-background-bottom .left-in,
+  .buyers-background-bottom .left-in,
+  .landlords-background-bottom .left-in,
+  .tenants-background-bottom .left-in {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .sellersContentOne .top-containr,
+  .buyersContentOne .top-containr,
+  .landlordsContentOne .top-containr,
+  .tenantsContentOne .top-containr,
+  .sellers-background-bottom .top-containr,
+  .buyers-background-bottom .top-containr,
+  .landlords-background-bottom .top-containr,
+  .tenants-background-bottom .top-containr {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+    width: min(100% - 2 * var(--page-gutter), 900px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .sellersContentOne .top-conatiner-left,
+  .sellersContentOne .top-conatiner-right,
+  .buyersContentOne .top-conatiner-left,
+  .buyersContentOne .top-conatiner-right,
+  .landlordsContentOne .top-conatiner-left,
+  .landlordsContentOne .top-conatiner-right,
+  .tenantsContentOne .top-conatiner-left,
+  .tenantsContentOne .top-conatiner-right,
+  .sellers-background-bottom .top-conatiner-left,
+  .sellers-background-bottom .top-conatiner-right,
+  .buyers-background-bottom .top-conatiner-left,
+  .buyers-background-bottom .top-conatiner-right,
+  .landlords-background-bottom .top-conatiner-left,
+  .landlords-background-bottom .top-conatiner-right,
+  .tenants-background-bottom .top-conatiner-left,
+  .tenants-background-bottom .top-conatiner-right {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .grid-component {
+    display: none !important;
+  }
+
+  .card-compo,
+  .cnt-form-div {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+
+  .serviceCard {
+    width: 100% !important;
+  }
+
+  .serviceCard .guide-Card-mini,
+  .serviceCard .service-Card-mini,
+  .Collapsible .guide-Card-mini,
+  .Collapsible .service-Card-mini,
+  .Collapsible .sing-cont {
+    min-height: 48px;
+  }
+
+  .contact-modal-container .contact-modal-content {
+    top: 4dvh !important;
+    width: min(92vw, 560px) !important;
+    height: auto !important;
+  }
+
+  .gradient-modal-container .gradient-modal-content {
+    width: min(92vw, 560px) !important;
+    height: auto !important;
+    top: 8dvh !important;
+  }
+
+  .responsive-footer {
+    width: min(100% - 2 * var(--page-gutter), 900px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .designer-foot {
+    width: min(100% - 2 * var(--page-gutter), 900px);
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Services .topper-container,
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container,
+  .ServicesContentSeven .inner-presense {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .Services .topper-text,
+  .Services .topper-image,
+  .ServicesContentTwo,
+  .ServicesContentFour,
+  .ServicesContentSeven {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: var(--page-gutter) !important;
+    padding-right: var(--page-gutter) !important;
+  }
+
+  .Services .header-text {
+    padding: 0 var(--page-gutter) !important;
+    font-size: clamp(28px, 8vw, 44px) !important;
+    line-height: 1.18 !important;
+    text-align: left !important;
+  }
+
+  .Services .topper-image .bg {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .ServicesContentThree .inner-container {
+    padding: 36px var(--page-gutter) !important;
+  }
+
+  .ServicesContentThree .button-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ServicesContentFive {
+    width: min(100% - 2 * var(--page-gutter), 640px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .ServicesContentSeven .inner-presense-left,
+  .ServicesContentSeven .inner-presense-right,
+  .ServicesContentSeven .map {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .ServicesContentSeven .map iframe {
+    height: 320px !important;
+  }
+
+  .contactForm {
+    width: 100% !important;
+    max-width: 560px;
+    padding: 24px !important;
+    border-radius: 22px !important;
+  }
+
+  .contactForm .radio-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+
+  .contactForm .radio-container .label,
+  .contactForm .radio-cont {
+    width: 100% !important;
+  }
+
+  .contactForm .contact-btn {
+    width: 100% !important;
+  }
+
+  .admin-header-content {
+    align-items: stretch !important;
+  }
+
+  .admin-header-actions,
+  .member-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .admin-header-actions button,
+  .member-actions button {
+    flex: 1 1 120px;
+  }
+
+  .admin-tabs {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    border-radius: 8px !important;
+  }
+
+  .tab-btn {
+    flex: 0 0 max-content;
+    min-height: 46px;
+    white-space: nowrap;
+    border-left: 0 !important;
+    border-bottom: 3px solid transparent !important;
+  }
+
+  .tab-btn.active {
+    border-bottom-color: #1e3c72 !important;
+  }
+
+  .provider-form-row,
+  .settings-row,
+  .category-card-row,
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .member-row,
+  .provider-card,
+  .provider-info {
+    align-items: stretch !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hamburgerIcon {
+    right: 16px !important;
+    top: 18px !important;
+  }
+
+  .Services .logo-container,
+  .About .logo-container,
+  .Sellers .logo-container,
+  .sellers .logo-container,
+  .buyers .logo-container,
+  .landlords .logo-container,
+  .tenants .logo-container {
+    padding-top: 28px !important;
+  }
+
+  .sellersContentOne .header,
+  .buyersContentOne .header,
+  .landlordsContentOne .header,
+  .tenantsContentOne .header {
+    font-size: clamp(26px, 9vw, 40px) !important;
+    line-height: 1.15 !important;
+  }
+
+  .right-content,
+  .content,
+  .content-text {
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+    text-align: left !important;
+  }
+
+  .sellerCardContainer,
+  .flip-card,
+  .clientCard,
+  .rateCard,
+  .service-Card-mini,
+  .guide-Card-mini {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .responsive-footer {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer {
+    padding-top: 48px !important;
+    margin-top: 56px !important;
+  }
+
+  .designer-foot {
+    margin-top: 36px !important;
+    padding-top: 18px !important;
+    text-align: center !important;
+  }
+
+  .admin-login-container {
+    padding: 16px !important;
+  }
+
+  .admin-login-box {
+    padding: 28px 20px !important;
+    border-radius: 10px !important;
+  }
+
+  .admin-login-box h1 {
+    font-size: 26px !important;
+  }
+
+  .admin-content {
+    padding: 0 12px !important;
+    margin: 16px auto !important;
+  }
+
+  .admin-tab-content {
+    padding: 16px !important;
+  }
+}
+
+/* Final mobile/tablet repair layer. Keep this after all previous overrides. */
+@media screen and (max-width: 1199px) {
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .Services,
+  .About,
+  .Sellers,
+  .buyers,
+  .landlords,
+  .tenants {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .hamburgerIcon {
+    position: fixed !important;
+    z-index: 70 !important;
+    right: clamp(16px, 4vw, 28px) !important;
+    top: clamp(18px, 4vw, 34px) !important;
+    width: 40px !important;
+    height: 28px !important;
+    display: grid !important;
+    place-items: center;
+  }
+
+  body.drawer-open .hamburgerIcon {
+    display: none !important;
+  }
+
+  .hamburgerIcon img,
+  .hamburgerIcon .img-1,
+  .hamburgerIcon .img-2 {
+    width: 40px !important;
+    height: auto !important;
+  }
+
+  .side-bar .main-nav {
+    top: 0 !important;
+    right: 0 !important;
+    width: min(92vw, 430px) !important;
+    min-width: 280px;
+    height: 100dvh !important;
+    padding: 18px 16px 24px !important;
+    background: #f7faff !important;
+    border-radius: 0 !important;
+    box-shadow: -18px 0 50px rgba(10, 15, 32, 0.18);
+  }
+
+  .side-bar ul.nav {
+    height: auto !important;
+    min-height: 100%;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+
+  .side-bar ul.nav li,
+  .side-bar ul.nav li:first-child,
+  .side-bar ul.nav li:nth-child(2),
+  .side-bar ul.nav li:nth-child(3),
+  .side-bar ul.nav li:nth-child(4),
+  .side-bar ul.nav li:nth-child(5),
+  .side-bar ul.nav li:nth-child(6),
+  .side-bar ul.nav li:nth-child(7) {
+    padding-top: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+  }
+
+  .side-bar .drawer-close,
+  .side-bar .nv {
+    min-height: 48px !important;
+    border: 1px solid rgba(48, 53, 72, 0.22);
+    border-radius: 0 !important;
+    padding: 12px 10px !important;
+    background: rgba(255, 255, 255, 0.45);
+    font-family: "League Gothic", "Lato", sans-serif !important;
+    font-size: clamp(24px, 6vw, 34px) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.04em !important;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.16) !important;
+  }
+
+  .side-bar .drawer-close {
+    width: 58px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: #e5322d !important;
+    margin-bottom: 18px !important;
+  }
+
+  .side-bar .hovercontent,
+  .side-bar .hovercontent-3 {
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.58) !important;
+    border: 1px solid rgba(48, 53, 72, 0.14);
+  }
+
+  .side-bar .service-layout {
+    min-height: 58px;
+    margin-bottom: 10px !important;
+  }
+
+  .side-bar .head {
+    font-size: clamp(15px, 4vw, 18px) !important;
+    line-height: 1.2 !important;
+    text-shadow: none !important;
+  }
+
+  .side-bar .sub-n,
+  .side-bar .sub-2 {
+    font-size: clamp(13px, 3.3vw, 15px) !important;
+    line-height: 1.35 !important;
+    text-shadow: none !important;
+  }
+
+  .side-bar .div-b > .sub-2 {
+    min-height: 26px;
+    margin-top: 13px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Sellers .sellers-background-bottom,
+  .buyers .buyers-background-bottom,
+  .landlords .landlords-background-bottom,
+  .tenants .tenants-background-bottom {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 42px var(--page-gutter) !important;
+  }
+
+  .Sellers .sellers-background-bottom .left-in,
+  .buyers .buyers-background-bottom .left-in,
+  .landlords .landlords-background-bottom .left-in,
+  .tenants .tenants-background-bottom .left-in {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .Sellers .sellers-background-bottom .top-containr,
+  .buyers .buyers-background-bottom .top-containr,
+  .landlords .landlords-background-bottom .top-containr,
+  .tenants .tenants-background-bottom .top-containr {
+    width: 100% !important;
+    margin: 0 auto !important;
+    gap: 24px !important;
+  }
+
+  .Sellers .sellers-background-bottom .left-inner,
+  .buyers .buyers-background-bottom .left-inner,
+  .landlords .landlords-background-bottom .left-inner,
+  .tenants .tenants-background-bottom .left-inner {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .Sellers .sellers-background-bottom .header,
+  .buyers .buyers-background-bottom .header,
+  .landlords .landlords-background-bottom .header,
+  .tenants .tenants-background-bottom .header {
+    width: auto !important;
+    font-size: clamp(28px, 6vw, 44px) !important;
+    line-height: 1.15 !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin: 0 0 22px !important;
+  }
+
+  .Sellers .cnt-form-div,
+  .buyers .cnt-form-div,
+  .landlords .cnt-form-div,
+  .tenants .cnt-form-div {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Services .Services-background {
+    min-height: auto !important;
+    padding-bottom: 0 !important;
+  }
+
+  .Services .header-text {
+    margin-top: 22px !important;
+    padding-right: 72px !important;
+  }
+
+  .Services .top-bottom-container {
+    margin-top: 24px !important;
+  }
+
+  .Services .topper-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .Services .topper-text {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    z-index: 2 !important;
+  }
+
+  .Services .topper-text .inner-content {
+    position: static !important;
+  }
+
+  .Services .topper-text .rect,
+  .Services .topper-text .rect2 {
+    display: none !important;
+  }
+
+  .Services .topper-text .inner-content-div {
+    position: relative !important;
+    inset: auto !important;
+    width: min(100%, 620px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: clamp(24px, 7vw, 42px) var(--page-gutter) clamp(18px, 6vw, 34px) !important;
+    border-radius: 0 clamp(70px, 22vw, 150px) 0 0 !important;
+    background: linear-gradient(218.94deg, #e5322d 14.95%, #0f64fa 161.14%) !important;
+  }
+
+  .Services .topper-text .want {
+    display: block !important;
+    margin: 0 0 22px !important;
+    font-size: clamp(30px, 9vw, 44px) !important;
+    line-height: 1.05 !important;
+    color: #fff !important;
+  }
+
+  .Services .topper-text .want-content {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px 20px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .Services .topper-text .want-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    margin: 0 !important;
+    font-size: clamp(20px, 6.2vw, 30px) !important;
+    line-height: 1.18 !important;
+  }
+
+  .Services .topper-text .want-inner a {
+    color: #fff !important;
+    overflow-wrap: anywhere;
+  }
+
+  .Services .topper-text .want-inner .arrow {
+    width: clamp(18px, 5vw, 26px) !important;
+    height: clamp(18px, 5vw, 26px) !important;
+    margin: 0 !important;
+    justify-self: end;
+  }
+
+  .Services .topper-image {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .Services .topper-image .bg {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 220px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .Services .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: none !important;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: clamp(42px, 10vw, 72px) var(--page-gutter) !important;
+  }
+
+  .ServicesContentTwo .top-container,
+  .ServicesContentFour .top-container {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  .ServicesContentTwo .top-content,
+  .ServicesContentFour .top-content,
+  .ServicesContentSeven .presennse-header {
+    justify-content: flex-start !important;
+    text-align: left !important;
+    font-size: clamp(18px, 5vw, 28px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: clamp(0.12em, 2vw, 0.32em) !important;
+    margin: 0 0 24px !important;
+  }
+
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 28px !important;
+  }
+
+  .ServicesContentTwo .bottom-left-container,
+  .ServicesContentFour .bottom-left-container,
+  .ServicesContentTwo .bottom-right-container,
+  .ServicesContentFour .bottom-right-container {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .ServicesContentTwo .heder-content,
+  .ServicesContentFour .heder-content {
+    text-align: left !important;
+    font-size: clamp(28px, 7vw, 40px) !important;
+    line-height: 1.35 !important;
+    margin: 0 0 22px !important;
+  }
+
+  .ServicesContentTwo .sub-content,
+  .ServicesContentTwo .sub-content-two,
+  .ServicesContentFour .sub-content-two {
+    text-align: left !important;
+    font-size: clamp(16px, 4vw, 18px) !important;
+    line-height: 1.75 !important;
+    word-spacing: normal !important;
+    overflow-wrap: anywhere;
+    margin-top: 18px !important;
+  }
+
+  .ServicesContentTwo .bottom-right-container,
+  .ServicesContentFour .bottom-right-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 18px;
+  }
+
+  .Rate-card {
+    width: 100% !important;
+    max-width: 180px;
+    margin: 0 auto 18px !important;
+    text-align: left !important;
+  }
+
+  .Rate-card .rate,
+  .Rate-card .rate-g {
+    font-size: clamp(56px, 16vw, 78px) !important;
+    line-height: 0.95 !important;
+  }
+
+  .Rate-card .description,
+  .Rate-card .description-g {
+    font-size: clamp(15px, 4vw, 18px) !important;
+    line-height: 1.35 !important;
+    margin-top: 8px !important;
+    padding-left: 0 !important;
+  }
+
+  .Rate-card .googlerate {
+    display: block !important;
+  }
+
+  .Rate-card .img-g {
+    width: min(150px, 100%) !important;
+    height: auto !important;
+    margin-top: 10px !important;
+  }
+
+  .ServicesContentFour .button-container {
+    width: 100% !important;
+    margin: 24px 0 0 !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .ServicesContentFour .button-container a,
+  .ServicesContentFour .button-container .button,
+  .ServicesContentFour .button-container button {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+
+  .ServicesContentSeven .inner-presense {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .ServicesContentSeven .inner-presense-left,
+  .ServicesContentSeven .inner-presense-right,
+  .ServicesContentSeven .map {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentSeven .offices-container,
+  .ServicesContentSeven .social-container {
+    margin: 0 auto !important;
+  }
+
+  .ServicesContentSeven .social-container {
+    margin-top: 34px !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    width: 100% !important;
+    max-width: 380px;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(34px, 1fr)) !important;
+    gap: clamp(14px, 5vw, 28px) !important;
+    justify-items: center;
+  }
+
+  .ServicesContentSeven .content-social img {
+    width: clamp(34px, 8vw, 44px) !important;
+    height: clamp(34px, 8vw, 44px) !important;
+    margin: 0 !important;
+  }
+
+  .ServicesContentSeven .map iframe {
+    width: 100% !important;
+    height: clamp(260px, 52vw, 380px) !important;
+    border-radius: 18px;
+  }
+
+  .contact-component {
+    width: 100% !important;
+    padding: 42px var(--page-gutter) !important;
+  }
+
+  .contactForm {
+    width: min(100%, 560px) !important;
+    margin: 0 auto !important;
+    padding: clamp(24px, 7vw, 36px) !important;
+  }
+
+  .contactForm .contact-form-header {
+    font-size: clamp(20px, 5vw, 26px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .contactForm .form .input-container {
+    margin-bottom: 20px !important;
+  }
+
+  .contactForm .input,
+  .contactForm .phone-input,
+  .contactForm .custom-select {
+    width: 100% !important;
+  }
+
+  .contactForm .phone-input .input-1 {
+    flex: 0 0 86px !important;
+    width: 86px !important;
+  }
+
+  .contactForm .phone-input .input-2 {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .contactForm .radio-container {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .contactForm .radio-container .label,
+  .contactForm .radio-cont {
+    width: 100% !important;
+  }
+
+  .contactForm .radio-cont .container {
+    min-height: 30px;
+    padding-left: 0 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .contactForm .contact-btn {
+    width: 100% !important;
+    max-width: 320px;
+    min-height: 52px;
+    padding: 12px 20px !important;
+  }
+
+  .Sellers .sellers-background,
+  .buyers .buyers-background,
+  .landlords .landlords-background,
+  .tenants .tenants-background {
+    background-color: #0a0f20 !important;
+    height: auto !important;
+  }
+
+  .Sellers .sellersContentOne-inner,
+  .buyers .buyersContentOne-inner,
+  .landlords .landlordsContentOne-inner,
+  .tenants .tenantsContentOne-inner {
+    width: 100% !important;
+    height: auto !important;
+    padding-bottom: clamp(36px, 8vw, 70px) !important;
+  }
+
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr {
+    width: min(100% - 2 * var(--page-gutter), 760px) !important;
+    margin: 0 auto !important;
+    padding: 28px 0 0 !important;
+    gap: 24px !important;
+  }
+
+  .Sellers .sellersContentOne .left-inner,
+  .buyers .buyersContentOne .left-inner,
+  .landlords .landlordsContentOne .left-inner,
+  .tenants .tenantsContentOne .left-inner {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .Sellers .sellersContentOne .header,
+  .buyers .buyersContentOne .header,
+  .landlords .landlordsContentOne .header,
+  .tenants .tenantsContentOne .header {
+    padding: 0 !important;
+    font-size: clamp(30px, 7vw, 48px) !important;
+    line-height: 1.16 !important;
+    text-align: left !important;
+  }
+
+  .Sellers .sellersContentOne .sub,
+  .buyers .buyersContentOne .sub,
+  .landlords .landlordsContentOne .sub,
+  .tenants .tenantsContentOne .sub {
+    padding: 0 !important;
+    margin: 12px 0 0 !important;
+    font-size: clamp(15px, 4vw, 22px) !important;
+    line-height: 1.35 !important;
+    letter-spacing: clamp(0.2em, 2.5vw, 0.55em) !important;
+    text-align: left !important;
+  }
+
+  .Sellers .sellersContentOne .top-conatiner-right,
+  .buyers .buyersContentOne .top-conatiner-right,
+  .landlords .landlordsContentOne .top-conatiner-right,
+  .tenants .tenantsContentOne .top-conatiner-right {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content,
+  .Sellers .buyers-card-container .right-content,
+  .buyers .buyers-card-container .right-content,
+  .landlords .landlords-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: clamp(16px, 4vw, 20px) !important;
+    line-height: 1.7 !important;
+    text-align: left !important;
+    color: #fff !important;
+  }
+
+  .Sellers .right-content .dots,
+  .buyers .right-content .dots,
+  .landlords .right-content .dots,
+  .tenants .right-content .dots {
+    padding-left: 0 !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.2 !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --page-gutter: clamp(16px, 5vw, 22px);
+  }
+
+  .Services .logo-container,
+  .About .logo-container,
+  .Sellers .logo-container,
+  .buyers .logo-container,
+  .landlords .logo-container,
+  .tenants .logo-container {
+    padding-top: 24px !important;
+    padding-left: var(--page-gutter) !important;
+    padding-right: 72px !important;
+  }
+
+  .Services .logo-container .logo,
+  .About .logo-container .logo,
+  .Sellers .logo-container .logo,
+  .buyers .logo-container .logo,
+  .landlords .logo-container .logo,
+  .tenants .logo-container .logo {
+    width: min(138px, 48vw) !important;
+    height: auto !important;
+  }
+
+  .Services .header-text {
+    font-size: clamp(24px, 7vw, 32px) !important;
+    line-height: 1.22 !important;
+    margin-top: 28px !important;
+  }
+
+  .Services .topper-text .inner-content-div {
+    border-radius: 0 clamp(46px, 18vw, 96px) 0 0 !important;
+  }
+
+  .Services .topper-text .want-content {
+    gap: 16px 14px !important;
+  }
+
+  .Services .topper-text .want-inner {
+    grid-template-columns: minmax(0, 1fr) 18px;
+    font-size: clamp(19px, 6.5vw, 27px) !important;
+  }
+
+  .Services .topper-image .bg {
+    min-height: 168px;
+    aspect-ratio: 4 / 2.25;
+  }
+
+  .ServicesContentTwo .bottom-right-container,
+  .ServicesContentFour .bottom-right-container {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+  }
+
+  .Rate-card {
+    max-width: 260px;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  .ServicesContentFour .button-container a {
+    width: 100% !important;
+  }
+
+  .ServicesContentSeven .presennse-header {
+    text-align: center !important;
+    justify-content: center !important;
+    letter-spacing: clamp(0.28em, 5vw, 0.72em) !important;
+  }
+
+  .Sellers .cnt-form-div,
+  .buyers .cnt-form-div,
+  .landlords .cnt-form-div,
+  .tenants .cnt-form-div {
+    grid-template-columns: 1fr !important;
+  }
+
+  .Sellers .sellers-background-bottom,
+  .buyers .buyers-background-bottom,
+  .landlords .landlords-background-bottom,
+  .tenants .tenants-background-bottom {
+    padding-top: 34px !important;
+  }
+
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr {
+    width: min(100% - 2 * var(--page-gutter), 440px) !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .Services .topper-text .want-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .side-bar .main-nav {
+    width: 94vw !important;
+    min-width: 0;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven,
+  .contact-component {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Full mobile alignment, transition, and overlap authority. */
+@media screen and (max-width: 1199px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: hidden !important;
+  }
+
+  img,
+  video,
+  canvas,
+  iframe,
+  svg {
+    max-width: 100%;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  a,
+  button,
+  .GradientButton,
+  .Button,
+  .SecondaryButton,
+  .service-Card-mini,
+  .guide-Card-mini,
+  .sellerCardContainer {
+    min-height: 44px;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .side-bar .div-b > .sub-2 {
+    min-height: 28px !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+  }
+
+  .Services,
+  .About,
+  .Sellers,
+  .buyers,
+  .landlords,
+  .tenants,
+  .admin-login-container,
+  .admin-dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .Services .Services-background,
+  .About .about-background,
+  .Sellers .sellers-background,
+  .buyers .buyers-background,
+  .landlords .landlords-background,
+  .tenants .tenants-background,
+  .Sellers .sellersContentOne-inner,
+  .buyers .buyersContentOne-inner,
+  .landlords .landlordsContentOne-inner,
+  .tenants .tenantsContentOne-inner {
+    width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .Services .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: none !important;
+  }
+
+  .Services .topper-image,
+  .Services .service-img-container,
+  .Services .contact-component,
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentFive,
+  .ServicesContentSeven,
+  .AboutContentTwo,
+  .AboutContentThree,
+  .AboutContentFour,
+  .AboutContentFive,
+  .Members_component {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .ServicesContentTwo .heder-content,
+  .ServicesContentTwo .sub-content,
+  .ServicesContentTwo .sub-content-two,
+  .ServicesContentFour .heder-content,
+  .ServicesContentFour .sub-content-two,
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content,
+  .Sellers .content-text,
+  .buyers .content-text,
+  .landlords .content-text,
+  .tenants .content-text,
+  .About .sub-content,
+  .About .sub-content-two {
+    text-align: left !important;
+    word-spacing: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ServicesContentTwo .top-content,
+  .ServicesContentFour .top-content,
+  .ServicesContentSeven .presennse-header,
+  .Sellers .sub,
+  .buyers .sub,
+  .landlords .sub,
+  .tenants .sub {
+    letter-spacing: clamp(0.12em, 2.4vw, 0.45em) !important;
+    overflow-wrap: anywhere;
+  }
+
+  .GradientButton {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .GradientButton span {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 52px;
+    padding: 14px 18px !important;
+    line-height: 1.25 !important;
+  }
+
+  .GradientButton img {
+    float: none !important;
+    flex: 0 0 auto;
+    padding: 0 !important;
+  }
+
+  .ServicesContentThree .inner-container {
+    width: min(100%, 760px) !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    padding: clamp(36px, 7vw, 64px) var(--page-gutter) !important;
+  }
+
+  .ServicesContentThree .inner-container .header {
+    grid-column: auto !important;
+    margin-bottom: 8px;
+    font-size: clamp(24px, 6vw, 40px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .ServicesContentThree .inner-container a {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .Services .service-img-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 24px auto 0 !important;
+    padding: 0 var(--page-gutter) !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .Services .service-img-container img {
+    width: min(100%, 680px) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+
+  .serviceCard,
+  .sellerCardContainer,
+  .flip-card,
+  .clientCard,
+  .Rate-card,
+  .service-Card-mini,
+  .guide-Card-mini,
+  .Collapsible,
+  .Collapsible .sing-cont {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .card-compo,
+  .cnt-form-div,
+  .ServicesContentThree .inner-container,
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container,
+  .ServicesContentSeven .inner-presense {
+    min-width: 0;
+  }
+
+  .contactForm,
+  .contactForm .form,
+  .contactForm .input-container,
+  .contactForm .phone-input,
+  .contactForm .custom-select {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .contactForm input,
+  .contactForm select,
+  .contactForm textarea {
+    font-size: 16px;
+  }
+
+  .contactForm .phone-input {
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  .contactForm .phone-input .input-1 {
+    flex: 0 0 86px !important;
+    width: 86px !important;
+  }
+
+  .contactForm .phone-input .input-2 {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .contactForm .contact-btn {
+    width: min(100%, 340px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    white-space: nowrap !important;
+  }
+
+  .modal-container .modal-content,
+  .contact-modal-container .contact-modal-content,
+  .gradient-modal-container .gradient-modal-content,
+  .confirm-dialog__panel {
+    width: min(92vw, 620px) !important;
+    max-width: 92vw !important;
+    max-height: 90dvh !important;
+    overflow: auto !important;
+  }
+
+  .gradient-modal-container .gradient-modal-content {
+    height: auto !important;
+    padding: clamp(24px, 5vw, 42px) clamp(22px, 6vw, 46px) !important;
+    overflow: hidden !important;
+  }
+
+  .gradient-modal-container .gradient-cont {
+    max-height: calc(90dvh - clamp(96px, 16vw, 132px)) !important;
+    overflow-y: auto !important;
+    padding-right: 4px;
+  }
+
+  .side-bar .main-nav {
+    max-width: 94vw !important;
+  }
+
+  .side-bar .hovercontent,
+  .side-bar .hovercontent-3 {
+    max-width: 100% !important;
+  }
+
+  .admin-login-box,
+  .admin-content,
+  .admin-tab-content,
+  .tab-content,
+  .section,
+  .provider-card,
+  .member-row,
+  .category-card-row,
+  .add-member-form {
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-header-content,
+  .admin-header-actions,
+  .provider-info,
+  .member-actions {
+    flex-wrap: wrap !important;
+    min-width: 0;
+  }
+
+  .admin-header-actions button,
+  .member-actions button,
+  .button-group button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger,
+  .btn-logout,
+  .btn-add-member {
+    min-height: 44px;
+    white-space: normal !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .GradientButton,
+  .GradientButton:hover,
+  .Button:hover,
+  .SecondaryButton:hover,
+  .sellerCardContainer:hover,
+  .serviceCard:hover,
+  .clientCard:hover,
+  .Rate-card:hover,
+  .flip-card:hover,
+  .provider-card:hover,
+  .member-row:hover,
+  .category-card-row:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-danger:hover,
+  .btn-logout:hover,
+  .btn-add-member:hover {
+    transform: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ServicesContentTwo .bottom-container,
+  .ServicesContentFour .bottom-container,
+  .ServicesContentSeven .inner-presense,
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr,
+  .Sellers .sellers-background-bottom .top-containr,
+  .buyers .buyers-background-bottom .top-containr,
+  .landlords .landlords-background-bottom .top-containr,
+  .tenants .tenants-background-bottom .top-containr {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven,
+  .contact-component,
+  .Sellers .sellers-background-bottom,
+  .buyers .buyers-background-bottom,
+  .landlords .landlords-background-bottom,
+  .tenants .tenants-background-bottom {
+    padding-left: var(--page-gutter) !important;
+    padding-right: var(--page-gutter) !important;
+  }
+
+  .Rate-card,
+  .ServicesContentFour .Rate-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentFour .button-container,
+  .ServicesContentFour .button-container a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentSeven .presennse-header {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    grid-template-columns: repeat(5, minmax(32px, 1fr)) !important;
+  }
+
+  .admin-header-content {
+    gap: 16px;
+  }
+
+  .admin-header-actions,
+  .member-actions,
+  .button-group {
+    width: 100% !important;
+  }
+
+  .admin-header-actions button,
+  .member-actions button,
+  .button-group button {
+    flex: 1 1 140px;
+  }
+
+  .provider-form-row,
+  .settings-row,
+  .category-card-row,
+  .form-row,
+  .member-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .provider-info {
+    display: grid !important;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Services .topper-text .want-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  .Services .topper-text .want-inner {
+    grid-template-columns: minmax(0, 1fr) 22px !important;
+  }
+
+  .ServicesContentTwo,
+  .ServicesContentThree,
+  .ServicesContentFour,
+  .ServicesContentSeven,
+  .contact-component {
+    padding-top: 36px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    max-width: 320px;
+    gap: 12px !important;
+  }
+
+  .admin-login-container,
+  .admin-content {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .admin-tab-content,
+  .tab-content,
+  .section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .provider-info {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .Services .topper-image,
+  .Services .topper-image .bg {
+    left: 0 !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+
+  .Services .topper-image {
+    overflow: hidden !important;
+  }
+
+  .footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .footer .inner-footer,
+  .footer .designer-foot {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .responsive-footer {
+    width: min(100% - 40px, 520px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+    align-items: start !important;
+  }
+
+  .footer-brand,
+  .footer-group {
+    width: 100% !important;
+    gap: 10px !important;
+    align-items: flex-start !important;
+  }
+
+  .footer-group .hed,
+  .footer-group .sub,
+  .footer-link,
+  .footer-muted {
+    width: auto !important;
+    max-width: 100% !important;
+    min-height: 32px;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left !important;
+    font-family: "Lato", sans-serif !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+    text-transform: none !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    text-shadow: none !important;
+  }
+
+  .footer-group .hed {
+    min-height: 36px;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #303548 !important;
+  }
+
+  .footer-group .sub,
+  .footer-link,
+  .footer-muted {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #566070 !important;
+  }
+
+  .tools-title {
+    margin-top: 12px !important;
+  }
+
+  .designer-foot,
+  .designer-foot a {
+    width: min(100% - 40px, 520px) !important;
+    padding-left: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    overflow-wrap: anywhere;
+  }
+
+  .Sellers .img-cont,
+  .buyers .img-cont,
+  .landlords .img-cont,
+  .tenants .img-cont {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+
+  .Sellers .img-cont .img-c,
+  .buyers .img-cont .img-c,
+  .landlords .img-cont .img-c,
+  .tenants .img-cont .img-c {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: cover !important;
+  }
+
+  .Sellers .seller-card-container,
+  .buyers .buyer-card-container,
+  .buyers .card-compo,
+  .landlords .landloards-card-container,
+  .tenants .card-compo {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
+    gap: clamp(14px, 3vw, 24px) !important;
+    overflow: visible !important;
+  }
+
+  .Sellers .seller-card-container > *,
+  .buyers .buyer-card-container > *,
+  .buyers .card-compo > *,
+  .landlords .landloards-card-container > *,
+  .tenants .card-compo > *,
+  .sellerCard,
+  .sellerCardContainer {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+  }
+
+  .sellerCard .content,
+  .sellerCardContainer .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .secondary-button-styles,
+  .SecondaryButton,
+  .About .secondary-button-styles {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .secondary-button-styles,
+  .secondary-button-styles * {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Final desktop/laptop QA corrections from full viewport audit. */
+@media screen and (min-width: 1200px) {
+  .ham-bar-div,
+  .hamburgerIcon {
+    display: none !important;
+  }
+
+  .Nav-bar,
+  .nav-bar-div,
+  .about-nav-bar,
+  .right-bar-div,
+  .about-right-bar,
+  .sellers-right-bar,
+  .buyers-right-bar,
+  .landlords-right-bar,
+  .tenants-right-bar {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .ServicesContentThree .inner-container {
+    width: min(100%, calc(100vw - 100px)) !important;
+    max-width: 1500px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 5vw, 96px) !important;
+    padding-right: clamp(120px, 8vw, 160px) !important;
+    overflow: hidden !important;
+  }
+
+  .ServicesContentThree .button-grid {
+    width: 100% !important;
+    max-width: 1100px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .ServicesContentThree .button-grid a,
+  .ServicesContentThree .GradientButton {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .ServicesContentThree .GradientButton span {
+    min-height: 92px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    line-height: 1.25 !important;
+    padding: 22px 28px !important;
+  }
+
+  .ServicesContentThree .GradientButton img {
+    float: none !important;
+    padding: 0 !important;
+    flex: 0 0 auto;
+  }
+
+  .contactComponent {
+    width: min(calc(100% - 160px), 1100px) !important;
+    max-width: calc(100% - 160px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow: visible !important;
+  }
+
+  .contactComponent .contactForm {
+    max-width: min(600px, 52vw) !important;
+  }
+
+  .Members_component .inner-content:not(.mySlides):not(.mySlides1) {
+    width: min(100%, 1120px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(120px, 18vw, 300px) !important;
+    padding-right: clamp(120px, 18vw, 300px) !important;
+  }
+
+  .AboutContentThree {
+    width: 100% !important;
+    max-width: calc(100% - 120px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: clamp(70px, 7vw, 120px) 120px clamp(60px, 6vw, 96px) 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .AboutContentThree .inner-content-three {
+    width: min(100%, 980px) !important;
+    max-width: 980px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(28px, 3vw, 44px);
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard {
+    width: min(100%, 860px) !important;
+    margin: 0 !important;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard span {
+    min-height: 132px !important;
+    padding: 26px 42px !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    box-sizing: border-box;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard .content-styles {
+    font-size: clamp(20px, 1.65vw, 28px) !important;
+    line-height: 1.35 !important;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .AboutContentThree .bottm-content {
+    width: 100% !important;
+    margin-top: clamp(10px, 1vw, 20px) !important;
+  }
+
+  .AboutContentThree .bottm-content > span,
+  .AboutContentThree .bottm-content .gradient-text {
+    display: block;
+    width: min(100%, 860px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .AboutContentThree .div-content {
+    width: min(100%, 860px) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 28px !important;
+  }
+
+  .AboutContentThree .inner-div {
+    padding: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard {
+    height: 100% !important;
+    min-height: 220px !important;
+    margin: 0 !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard span,
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    height: auto !important;
+    min-height: 220px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .AboutContentThree .inner-div .gradientCard span {
+    padding: 28px 30px !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    font-size: clamp(18px, 1.35vw, 24px) !important;
+    line-height: 1.45 !important;
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1366px) {
+  .Services .top-content-arrow,
+  .About .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: none !important;
+  }
+
+  .contactComponent {
+    width: min(calc(100% - 120px), 1040px) !important;
+    max-width: calc(100% - 120px) !important;
+  }
+
+  .contactComponent .contactForm {
+    max-width: 520px !important;
+  }
+
+  .Sellers .sellersContentOne .top-containr,
+  .buyers .buyersContentOne .top-containr,
+  .landlords .landlordsContentOne .top-containr,
+  .tenants .tenantsContentOne .top-containr,
+  .Sellers .sellers-background-bottom .top-containr,
+  .buyers .buyers-background-bottom .top-containr,
+  .landlords .landlords-background-bottom .top-containr,
+  .tenants .tenants-background-bottom .top-containr {
+    width: calc(100% - 120px) !important;
+    max-width: calc(100% - 120px) !important;
+    margin-left: 0 !important;
+    margin-right: 120px !important;
+    box-sizing: border-box !important;
+  }
+
+  .Sellers .sellersContentOne .top-conatiner-right,
+  .buyers .buyersContentOne .top-conatiner-right,
+  .landlords .landlordsContentOne .top-conatiner-right,
+  .tenants .tenantsContentOne .top-conatiner-right {
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .AboutContentThree {
+    max-width: calc(100% - 100px) !important;
+    padding-right: 100px !important;
+  }
+
+  .AboutContentThree .inner-content-three {
+    width: min(100%, 880px) !important;
+    max-width: 880px !important;
+  }
+
+  .AboutContentThree .inner-content-three > .gradientCard,
+  .AboutContentThree .div-content,
+  .AboutContentThree .bottm-content > span,
+  .AboutContentThree .bottm-content .gradient-text {
+    width: min(100%, 800px) !important;
+  }
+
+  .AboutContentThree .div-content {
+    gap: 22px !important;
+  }
+
+  .AboutContentThree .inner-div .gradientCard,
+  .AboutContentThree .inner-div .gradientCard span,
+  .AboutContentThree .inner-div .gradientCard .content-styles {
+    min-height: 190px !important;
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .ServicesContentThree .GradientButton {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .ServicesContentThree .GradientButton span {
+    min-height: 118px !important;
+  }
+}
+
+/* Final testimonial image and CTA spacing fixes. */
+@media screen and (min-width: 769px) {
+  .Services .service-img-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: hidden;
+  }
+
+  .Services .service-img-container img {
+    display: block;
+    width: 100vw !important;
+    max-width: none !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+}
+
+.ServicesContentFour .sub-content-two {
+  overflow: visible !important;
+}
+
+.ServicesContentFour .button-container {
+  position: relative !important;
+  clear: both !important;
+  z-index: 1;
+  margin-top: clamp(22px, 3vw, 42px) !important;
+  margin-bottom: clamp(28px, 5vw, 80px) !important;
+}
+
+.ServicesContentFour .button-container a {
+  display: inline-flex !important;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+.ServicesContentFour .Button-styles {
+  max-width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (min-width: 769px) {
+  .ServicesContentFour #reviews_btn_1 {
+    display: none !important;
+  }
+
+  .ServicesContentFour #reviews_btn_2 {
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: min(100%, 760px) !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ServicesContentFour #reviews_btn_1 {
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+  }
+
+  .ServicesContentFour #reviews_btn_2 {
+    display: none !important;
+  }
+
+  .ServicesContentFour .button-container {
+    margin-top: 24px !important;
+    margin-bottom: 28px !important;
+  }
+
+  .ServicesContentFour .Button-styles {
+    width: min(100%, 360px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

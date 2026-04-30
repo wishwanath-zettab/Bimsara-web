@@ -1,0 +1,1278 @@
+@import "../../../colors.scss";
+
+.buyers {
+  height: 100%;
+  width: 100vw;
+  background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
+    linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
+    linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
+    linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
+    linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
+    linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
+    linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
+    linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
+    linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
+  background-size: 1.5px 100%;
+  /* Control the width here*/
+  background-repeat: no-repeat;
+  background-color: $background;
+
+  .buyers-background {
+    .ham-bar-div {
+      display: none;
+    }
+
+    .logo-container {
+      padding-top: 3%;
+      padding-left: 8vw;
+      position: absolute;
+      z-index: 2;
+
+      .logo {
+        height: 42px;
+        width: 160px;
+      }
+    }
+
+    .buyersContentOne {
+      height: max-content;
+
+      .buyersContentOne-inner {
+        background: #0a0f20;
+        height: max-content;
+        width: 100%;
+
+        .top-containr {
+          display: flex;
+          width: 100%;
+
+          .img-cont {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
+            transition: visibility 0s, opacity 0.3s linear;
+
+            .img-c {
+              width: 100vw;
+            }
+          }
+
+          .top-conatiner-left {
+            width: 50%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 100px;
+              margin-top: 70px;
+
+              .header {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 42px;
+                line-height: 90px;
+                text-align: justify;
+                color: $white;
+              }
+
+              .sub {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 23px;
+                line-height: 30px;
+                text-align: justify;
+                letter-spacing: 1em;
+                color: $primary-blue;
+                margin-left: 14px;
+              }
+
+              .buyers-card-container {
+                margin-top: 5vh;
+
+                .right-content {
+                  font-family: "Lato";
+                  font-style: normal;
+                  font-weight: 300;
+                  font-size: 18px;
+                  line-height: 41px;
+                  color: #ffffff;
+                  width: 380px;
+                  text-align: justify;
+
+                  .header-s {
+                    font-family: "Lato";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 32px;
+                    line-height: 44px;
+                    color: $white;
+                    margin-bottom: 50px;
+                    text-align: left;
+                  }
+                }
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            width: 48%;
+            height: 85%;
+            padding-top: 170px;
+            margin-left: -8%;
+
+            .grid-component {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex: 1;
+
+              .div-1 {
+                width: 55%;
+                margin-right: 27px;
+
+                .div-t {
+                  height: 580px;
+                  margin-bottom: 35px;
+                }
+
+                .div-b {
+                  height: 240px;
+                }
+              }
+
+              .div-2 {
+                width: 55%;
+
+                .div-t {
+                  height: 280px;
+                  margin-bottom: 35px;
+                }
+
+                .div-b {
+                  height: 330px;
+                  margin-bottom: 35px;
+                }
+
+                .img-container {
+                  width: 100%;
+                  height: 200px;
+                  margin-bottom: 45px;
+                  border-radius: 25px;
+
+                  img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: 25px;
+                  }
+                }
+              }
+            }
+
+            .card-compo {
+              display: none;
+            }
+
+            .img-container {
+              height: 104px;
+              width: 480px;
+              border-radius: 25px;
+
+              img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 25px;
+              }
+            }
+
+            .white-arrow {
+              height: 35px;
+              width: 35px;
+              transform: rotate(90deg);
+              position: absolute;
+              top: 70%;
+              left: 50%;
+            }
+          }
+        }
+
+        .top-content-arrow {
+          width: 20vw;
+          color: $primary-red;
+          display: flex;
+          justify-content: center;
+          font-family: "Lato";
+          font-style: italic;
+          font-size: 30px;
+          position: fixed;
+          right: 15vw;
+          bottom: 2vh;
+          z-index: 1;
+
+          .iso {
+            margin-top: 10px;
+            height: 50px;
+            margin-right: 2vw;
+          }
+
+          .safetynet {
+            margin-top: 10px;
+            height: 50px;
+            margin-right: 2vw;
+          }
+
+          .circle {
+            position: relative;
+            height: 60px;
+            width: 60px;
+          }
+
+          .arrow {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .buyers-background-bottom {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .buyers-right-bar {
+      margin-top: -15%;
+    }
+
+    .left-in {
+      .top-containr {
+        display: flex;
+        width: 100%;
+        margin-right: -100px;
+        margin-top: 35px;
+
+        .top-conatiner-left {
+          width: 35%;
+          height: 100vh;
+
+          .left-inner {
+            padding-left: 100px;
+
+            .cnt-form-div {
+              display: none;
+            }
+
+            .header {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 42px;
+              line-height: 90px;
+              text-align: justify;
+
+              color: $primary-red;
+            }
+          }
+        }
+
+        .top-conatiner-right {
+          width: 46%;
+          margin-top: 120px;
+          margin-left: 37px;
+          padding-bottom: 5%;
+          height: 95vh;
+          overflow-y: scroll;
+          padding-right: 12%;
+          mask-image: linear-gradient(to bottom,
+              black calc(100% - 48px),
+              transparent 100%);
+
+          .content {
+            .topic {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 30px;
+              line-height: 50px;
+              color: #303548;
+              margin-bottom: 8px;
+            }
+
+            .margin-top {
+              margin-top: 20px;
+            }
+
+            .margin-top-40 {
+              margin-top: 40px;
+            }
+
+            .margin-top-60 {
+              margin-top: 60px;
+            }
+
+            .content-text {
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 300;
+              font-size: 18px;
+              line-height: 30px;
+              text-align: justify;
+              color: #434343;
+
+              img {
+                width: 100%;
+                margin-top: 20px;
+              }
+            }
+
+            .bold-content {
+              font-weight: 600;
+            }
+
+            .conent-form {
+              width: 70%;
+              margin: auto;
+              margin-top: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:480px) {
+  .buyers {
+    height: 100%;
+    width: 100vw;
+    background: $background;
+    background-size: 1.5px 100%;
+    /* Control the width here*/
+    background-repeat: no-repeat;
+    background-color: $background;
+
+    .gradient-cont {
+      width: 100%;
+      max-height: calc(84dvh - 96px);
+      overflow-y: auto;
+      color: $dark-text;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: clamp(16px, 4.8vw, 20px);
+      line-height: 1.55;
+      mask-image: none;
+
+      .head {
+        color: $primary-blue;
+        font-weight: 600;
+        font-size: clamp(24px, 7vw, 30px);
+        line-height: 1.2;
+      }
+
+      .margin-top-40 {
+        margin-top: 24px;
+      }
+
+      .margin-top-20 {
+        margin-top: 16px;
+      }
+    }
+
+    .buyers-background {
+      height: 100%;
+      background-color: #0a0f20;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 41px;
+        padding-left: 23px;
+        position: static;
+
+        .logo {
+          height: 36px;
+          width: 133px;
+        }
+      }
+
+      .buyersContentOne {
+        height: 100%;
+
+        .buyersContentOne-inner {
+          width: 100vw;
+          background-color: #0a0f20;
+          background-repeat: no-repeat;
+          height: max-content;
+
+
+          .top-content-arrow {
+            width: 0;
+
+            .iso {
+              display: none;
+            }
+
+            .safetynet {
+              display: none;
+            }
+          }
+
+          .top-containr {
+            display: block;
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 100%;
+              height: 100%;
+              margin-top: 3vh;
+
+              .left-inner {
+                padding-left: 34px;
+                margin-top: 0;
+
+                .header {
+                  font-size: 25px;
+                  line-height: 50px;
+                }
+
+                .sub {
+                  font-size: 15px;
+                  line-height: 45px;
+                  letter-spacing: 0.4em;
+                  margin-left: 0;
+                }
+
+                .buyers-card-container {
+                  margin-top: 15px;
+                  padding-left: 0;
+                  width: 95%;
+
+                  .right-content {
+                    width: 95%;
+                    padding-left: 0;
+                    font-size: 15px;
+                    line-height: 30px;
+                    text-align: center;
+
+                    .header-s {
+                      font-size: 25px;
+                      line-height: 40px;
+                      text-align: center;
+                      margin-bottom: 20px;
+                    }
+                  }
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 100%;
+              padding: 0;
+              padding-top: 20px;
+              margin: auto;
+              height: 100%;
+              padding-bottom: 62px;
+
+              .grid-component {
+                display: none;
+              }
+
+              .card-compo {
+                display: block;
+                width: 80%;
+                margin: auto;
+                margin-top: 31px;
+              }
+
+              .img-container {
+                display: none;
+              }
+
+              .white-arrow {
+                margin-top: 0;
+                position: absolute;
+                top: 90vh;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 24px;
+                height: 24px;
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .buyers-background-bottom {
+      height: max-content;
+      display: block;
+
+      .left-in {
+        .top-containr {
+          display: block;
+
+          .top-conatiner-left {
+            width: 100%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 37px;
+
+              .header {
+                font-size: 25px;
+                line-height: 50px;
+              }
+
+              .buyers-service-card {
+                display: none;
+              }
+
+              .cnt-form-div {
+                display: block;
+                width: 98%;
+                margin-left: -15px;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:481px) and (max-width: 1024px) {
+  .buyers {
+    height: 100%;
+    width: 100vw;
+    background: $background;
+
+    .gradient-cont {
+      width: 100%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 60px;
+      color: $dark-text;
+      align-self: center;
+      overflow-y: scroll;
+      height: 70vh;
+      mask-image: linear-gradient(to bottom,
+          black calc(100% - 48px),
+          transparent 100%);
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 60px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .buyers-background {
+      height: 100%;
+      background-color: #0a0f20;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 5%;
+        position: static;
+
+        .logo {
+          height: auto;
+          width: 200px;
+        }
+      }
+
+      .buyersContentOne {
+        height: 100%;
+
+        .buyersContentOne-inner {
+          width: 100vw;
+          background-color: #0a0f20;
+          height: max-content;
+
+          .top-containr {
+            display: block;
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 100%;
+              height: 100%;
+
+              .left-inner {
+                padding-left: 83px;
+                margin-top: 38px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 50px;
+                }
+
+                .sub {
+                  font-size: 25px;
+                  line-height: 45px;
+                  letter-spacing: 1em;
+                  margin-left: 0;
+                  margin-top: 15px;
+                }
+
+                .buyers-card-container {
+                  padding-top: 39px;
+                  margin: auto;
+
+                  .right-content {
+                    width: 92%;
+                    font-size: 20px;
+                    line-height: 50px;
+                    text-align: center;
+                    margin-bottom: 37px;
+
+                    .header-s {
+                      font-size: 35px;
+                      line-height: 60px;
+                      /* or 171% */
+                      text-align: center;
+                      //width: max-content;
+                    }
+                  }
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 83%;
+              padding: 0;
+              margin: auto;
+              height: 100%;
+              padding-bottom: 62px;
+
+              .grid-component {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex: 1;
+
+                .div-1 {
+                  width: 55%;
+                  margin-right: 27px;
+
+                  .div-t {
+                    height: 600px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 250px;
+                  }
+                }
+
+                .div-2 {
+                  width: 55%;
+
+                  .div-t {
+                    height: 369px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 369px;
+                    margin-bottom: 35px;
+                  }
+
+                  .img-container {
+                    width: 100%;
+                    height: 235px;
+                    margin-bottom: 45px;
+                    border-radius: 25px;
+
+                    img {
+                      height: 100%;
+                      width: 100%;
+                      object-fit: cover;
+                      border-radius: 25px;
+                    }
+                  }
+                }
+              }
+
+              .img-container {
+                display: none;
+              }
+
+              .white-arrow {
+                margin-top: 0;
+                position: absolute;
+                top: 81vh;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 40px;
+                height: 40px;
+                display: none;
+              }
+            }
+          }
+
+          .top-content-arrow {
+            width: auto;
+            right: 5vw;
+            bottom: 3vh;
+
+            .iso {
+              margin-top: 15px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .safetynet {
+              margin-top: 15px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .circle {
+              width: 10vw;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+
+    .buyers-background-bottom {
+      height: max-content;
+      display: block;
+      margin-top: 5%;
+
+      .left-in {
+        .top-containr {
+          display: block;
+
+          .top-conatiner-left {
+            width: 100%;
+            height: 100%;
+
+            .left-inner {
+              padding-left: 76px;
+              margin-top: 6vh;
+
+              .header {
+                font-size: 45px;
+                line-height: 50px;
+              }
+
+              .buyers-service-card {
+                display: none;
+              }
+
+              .cnt-form-div {
+                display: block;
+                width: 85%;
+                margin-left: -15px;
+                padding-left: 4%;
+                margin-top: 48px;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1025px) and (max-width: 1200px) {
+  .buyers {
+    height: 100%;
+    width: 100vw;
+
+    .gradient-cont {
+      width: 100%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 60px;
+      color: $dark-text;
+      align-self: center;
+      overflow-y: scroll;
+      height: 70vh;
+      mask-image: linear-gradient(to bottom,
+          black calc(100% - 48px),
+          transparent 100%);
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 60px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .buyers-background {
+      height: 100%;
+
+      .ham-bar-div {
+        display: block;
+      }
+
+      .nav-bar-div {
+        display: none;
+      }
+
+      .logo-container {
+        padding-top: 41px;
+        padding-left: 44px;
+        position: static;
+        z-index: 2222;
+
+        .logo {
+          width: 220px;
+          height: 50px;
+        }
+      }
+
+      .buyersContentOne {
+        height: 100%;
+
+        .buyersContentOne-inner {
+          width: 100vw;
+          height: max-content;
+          padding-bottom: 5%;
+
+          .top-containr {
+            height: 100%;
+
+            .top-conatiner-left {
+              width: 50%;
+              height: 100%;
+
+              .left-inner {
+                padding-left: 83px;
+                margin-top: 31px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 50px;
+                }
+
+                .sub {
+                  font-size: 25px;
+                  line-height: 45px;
+                  letter-spacing: 1em;
+                  margin-left: 0;
+                }
+
+                .buyers-card-container {
+                  margin-top: 80px;
+
+                  .right-content {
+                    line-height: 60px;
+
+                    .header-s {
+                      line-height: 60px;
+                      //width: max-content;
+                    }
+                  }
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 50%;
+              padding: 0;
+              height: 100%;
+              margin-top: 28%;
+              margin-left: -4%;
+
+              .right-content {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 22px;
+                line-height: 50px;
+                color: #ffffff;
+                margin-top: 30px;
+                width: 480px;
+
+                .dots {
+                  text-align: center;
+                  padding-left: 180px;
+                  font-size: 25px;
+                  letter-spacing: 0.1em;
+                }
+              }
+
+              .grid-component {
+                .div-1 {
+                  margin-right: 27px;
+
+                  .div-t {
+                    height: 670px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 260px;
+                  }
+                }
+
+                .div-2 {
+                  .div-t {
+                    height: 300px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 380px;
+                    margin-bottom: 35px;
+                  }
+                }
+              }
+            }
+          }
+
+          .top-content-arrow {
+            top: 75%;
+            right: -2%;
+          }
+        }
+      }
+    }
+
+    .buyers-background-bottom {
+      height: max-content;
+      display: block;
+      margin-top: 0;
+
+      .left-in {
+        .top-containr {
+          .top-conatiner-left {
+            width: 40%;
+
+            .left-inner {
+              padding-left: 76px;
+              margin-top: 39px;
+
+              .header {
+                font-size: 33px;
+                line-height: 70px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1441px) {
+  .buyers {
+    background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
+      linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
+      linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
+      linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
+      linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
+      linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
+      linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
+      linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
+      linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
+    background-size: 1.5px 100%;
+    /* Control the width here*/
+    background-repeat: no-repeat;
+    background-color: $background;
+    overflow-x: hidden;
+
+    .gradient-cont {
+      font-size: 25px;
+      line-height: 60px;
+
+      .head {
+        font-size: 25px;
+        line-height: 60px;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
+    .buyers-background {
+      .ham-bar-div {
+        display: none;
+      }
+
+      .buyersContentOne {
+        height: max-content;
+
+        .buyersContentOne-inner {
+          height: max-content;
+          padding-bottom: 89px;
+
+          .top-containr {
+            .top-conatiner-left {
+              width: 40%;
+              height: max-content;
+
+              .left-inner {
+                padding-left: 100px;
+                margin-top: 110px;
+
+                .header {
+                  font-size: 45px;
+                  line-height: 120px;
+                }
+
+                .sub {
+                  font-size: 23px;
+                  line-height: 45px;
+                }
+
+                .buyers-card-container {
+                  margin-top: 10vh;
+
+                  .right-content {
+                    font-size: 20px;
+                    line-height: 50px;
+                    width: 90%;
+
+                    .header-s {
+                      font-size: 35px;
+                      line-height: 60px;
+                      letter-spacing: 0;
+                      width: 500px;
+                    }
+                  }
+                }
+              }
+            }
+
+            .top-conatiner-right {
+              width: 48%;
+              height: max-content;
+              padding-top: 238px;
+              margin-left: 0;
+
+              .grid-component {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex: 1;
+
+                .div-1 {
+                  width: 55%;
+                  margin-right: 27px;
+
+                  .div-t {
+                    height: 450px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 225px;
+                  }
+                }
+
+                .div-2 {
+                  width: 55%;
+
+                  .div-t {
+                    height: 200px;
+                    margin-bottom: 35px;
+                  }
+
+                  .div-b {
+                    height: 200px;
+                    margin-bottom: 35px;
+                  }
+
+                  .img-container {
+                    width: 100%;
+                    height: 225px;
+                    margin-bottom: 45px;
+                    border-radius: 40px;
+
+                    img {
+                      height: 100%;
+                      width: 100%;
+                      object-fit: cover;
+                      border-radius: 25px;
+                    }
+                  }
+                }
+              }
+
+              .card-compo {
+                display: none;
+              }
+
+              .img-container {
+                height: 104px;
+                width: 480px;
+                border-radius: 25px;
+
+                img {
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  border-radius: 25px;
+                }
+              }
+
+              .white-arrow {
+                height: 50px;
+                width: 50px;
+                transform: rotate(90deg);
+                position: absolute;
+                top: 80%;
+                left: 55%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .buyers-background-bottom {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      margin-top: 0;
+
+      .left-in {
+        .top-containr {
+          display: flex;
+          width: 100%;
+          margin-right: 0;
+          margin-top: 35px;
+
+          .top-conatiner-left {
+            width: 40%;
+            height: max-content;
+
+            .left-inner {
+              padding-left: 100px;
+
+              .header {
+                width: 800px;
+                font-size: 48px;
+                line-height: 120px;
+                text-align: left;
+                padding-left: 13px;
+                color: $primary-red;
+              }
+
+              .cnt-form-div {
+                display: none;
+              }
+            }
+          }
+
+          .top-conatiner-right {
+            width: 46%;
+            //margin-top: 190px;
+            margin-left: 37px;
+            padding-bottom: 5%;
+            height: 95vh;
+            overflow-y: scroll;
+            padding-right: 12%;
+            mask-image: linear-gradient(to bottom,
+                black calc(100% - 48px),
+                transparent 100%);
+
+            .content {
+              .topic {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: normal;
+                font-size: 36px;
+                color: #303548;
+              }
+
+              .margin-top {
+                margin-top: 40px;
+              }
+
+              .margin-top-40 {
+                margin-top: 60px;
+              }
+
+              .margin-top-60 {
+                margin-top: 80px;
+              }
+
+              .content-text {
+                font-size: 18px;
+                line-height: 40px;
+              }
+
+              .bold-content {
+                font-weight: 600;
+              }
+
+              .conent-form {
+                width: 70%;
+                margin: auto;
+                margin-top: 100px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

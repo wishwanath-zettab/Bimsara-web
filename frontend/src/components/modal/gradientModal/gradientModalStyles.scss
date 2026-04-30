@@ -1,0 +1,253 @@
+.gradient-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  pointer-events: none;
+  
+  .gradient-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  &.closing .gradient-modal-backdrop {
+    animation: fadeOut 0.3s ease-in-out;
+  }
+
+  .gradient-modal-content {
+    overflow: auto;
+    position: fixed;
+    z-index: 1000;
+    margin-left: 50vw;
+    left: 0;
+    right: 0;
+    top: 0vh;
+    -webkit-animation: right-to-left-desktop 0.3s linear forwards;
+    animation: right-to-left-desktop 0.3s linear forwards;
+    background: linear-gradient(149.93deg,
+        #ffdcdb 13.72%,
+        #d9e7ff 53.99%,
+        #f8ffdc 100%);
+    width: 50vw;
+    padding: 10% 5%;
+    height: 100vh;
+    pointer-events: auto;
+
+    .close-icon {
+      height: 20px;
+      width: 20px;
+      display: none;
+      float: right;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &.closing .gradient-modal-content {
+    animation: left-to-right-desktop 0.3s linear forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes left-to-right-desktop {
+    from {
+      transform: scale(1);
+      margin-left: 50vw;
+    }
+    to {
+      transform: scale(0);
+      margin-left: 80vw;
+    }
+  }
+
+  @-webkit-keyframes left-to-right-desktop {
+    from {
+      -webkit-transform: scale(1);
+      margin-left: 50vw;
+    }
+    to {
+      -webkit-transform: scale(0);
+      margin-left: 80vw;
+    }
+  }
+
+  @keyframes popout {
+    from {
+      transform: scale(0);
+    }
+
+    80% {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes popout {
+    from {
+      -webkit-transform: scale(0);
+    }
+
+    80% {
+      -webkit-transform: scale(1);
+    }
+
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes right-to-left-desktop {
+    from {
+      -webkit-transform: scale(0);
+      margin-left: 80vw;
+    }
+
+    to {
+      -webkit-transform: scale(1);
+      margin-left: 50vw;
+    }
+  }
+
+  @keyframes right-to-left-desktop {
+    from {
+      transform: scale(0);
+      margin-left: 80vw;
+    }
+
+    to {
+      transform: scale(1);
+      margin-left: 50vw;
+    }
+  }
+
+  @-webkit-keyframes right-to-left {
+    from {
+      -webkit-transform: scale(0);
+      right: -100vw;
+    }
+
+    to {
+      -webkit-transform: scale(1);
+      left: 0;
+    }
+  }
+
+  @keyframes right-to-left {
+    from {
+      transform: scale(0);
+      right: -100vw;
+    }
+
+    to {
+      transform: scale(1);
+      left: 0;
+    }
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: min(92vw, 560px);
+      height: auto;
+      max-height: 84dvh;
+      min-height: auto;
+      box-sizing: border-box;
+      margin: auto;
+      padding: 28px 26px;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+
+      .close-icon {
+        display: block;
+        margin-bottom: 1vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 680px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      height: 70vh;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 60vw;
+      height: 60vh;
+      min-height: auto;
+      margin: auto;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+
+      .close-icon {
+        height: 30px;
+        width: 30px;
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (min-width:481px) and (max-width: 800px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 70vw;
+      height: 70vh;
+      min-height: auto;
+      -webkit-animation: right-to-left 0.3s linear forwards;
+      animation: right-to-left 0.3s linear forwards;
+      top: 8vh;
+      bottom: 20px;
+    }
+
+    .close-icon {
+      margin-bottom: 1vh;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: 40%;
+    }
+  }
+}

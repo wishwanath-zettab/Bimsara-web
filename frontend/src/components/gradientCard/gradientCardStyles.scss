@@ -1,0 +1,66 @@
+.gradientCard {
+  background: radial-gradient(
+    249.18% 83.58% at 50% -9.85%,
+    #9abfff 0%,
+    #dc9f9d 100%
+  );
+  border-radius: 20px;
+  color: #fff;
+  font-size: 20px;
+  padding: 1px;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(145, 120, 120, 0.5);
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  span {
+    display: block;
+    padding: 20px 20px;
+    border-radius: 20px;
+    background-color: white;
+    backdrop-filter: blur(60px);
+    text-align: center;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+  }
+  .content-styles {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #303548;
+    line-height: 25px;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    vertical-align:middle;
+  }
+}
+@media screen and (max-width:480px){
+  .gradientCard{
+    border-radius: 40px;
+    height: max-content;
+    span{
+      border-radius: 40px;
+    }
+    .content-styles{
+      font-size: 15px;
+      line-height: 30px;
+    }
+  }
+  
+}
+@media screen and (min-width:1441px){
+  .gradientCard{
+    //margin-top: 59px;
+    span{
+      //padding: 38px 53px;
+    }
+    .content-styles{
+      font-size: 20px;
+      line-height: 50px;
+    }
+  }
+}

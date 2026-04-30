@@ -1,11 +1,11 @@
-# ── Stage 1: Build Vite frontend ────────────────────────────────────────────
+# ── Stage 1: Build React frontend ────────────────────────────────────────────
 FROM node:20-alpine AS builder
-WORKDIR /app
+WORKDIR /app/frontend
 
-COPY package*.json ./
+COPY frontend/package*.json ./
 RUN npm ci --legacy-peer-deps
 
-COPY . .
+COPY frontend/ ./
 RUN npm run build
 
 # ── Stage 2: Production runtime ─────────────────────────────────────────────
@@ -13,27 +13,23 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Production deps only
-COPY package*.json ./
-RUN npm ci --legacy-peer-deps --omit=dev
+COPY backend/package*.json ./
+RUN npm ci --omit=dev
 
-# Server code
-COPY server/ ./server/
-
-# Seed data sources (seed.js reads these)
-COPY src/data/ ./src/data/
-COPY src/assets/images/ ./src/assets/images/
+# Backend server code
+COPY backend/ ./
 
 # Built frontend from stage 1
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/frontend/build ./client
 
 # Entrypoint
 COPY entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
 # Ensure uploads dir exists at build time
-RUN mkdir -p server/uploads
+RUN mkdir -p uploads
 
-EXPOSE 3001
+EXPOSE 5000
 
 ENV NODE_ENV=production
 

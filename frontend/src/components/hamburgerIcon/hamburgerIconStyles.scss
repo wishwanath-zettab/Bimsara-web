@@ -1,0 +1,29 @@
+.hamburgerIcon {
+  position: fixed;
+  right: 25.5px;
+  top: 50px;
+  height: 20px;
+  width: 40px;
+  z-index: 1;
+  .img-1 {
+    height: 20px;
+    width: 40px;
+  }
+  .img-2 {
+    display: none;
+  }
+}
+@media screen and (max-width: 481px) {
+  .hamburgerIcon {
+    width: 29px;
+    height: 16px;
+    .img-1 {
+      display: none;
+    }
+    .img-2 {
+      display: block;
+      width: 29px;
+      height: 16px;
+    }
+  }
+}

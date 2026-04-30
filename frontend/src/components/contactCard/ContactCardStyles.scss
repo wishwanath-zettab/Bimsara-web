@@ -1,0 +1,63 @@
+@import "../../colors.scss";
+.contactCard {
+  width: max-content;
+  height: max-content;
+  text-align: center;
+  .contact-header-c {
+    font-family: "Lato";
+    font-style: normal;
+    font-size: 18px;
+    text-align: center;
+    color: $primary-blue;
+  }
+  .contact-email {
+    font-family: "Lato";
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    color: $text;
+    line-height: 30px;
+  }
+  .contact-phone {
+    font-family: "Lato";
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+    color: $text;
+    line-height: 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .contactCard {
+    .contact-header-c {
+      font-size: 15px;
+      line-height: 30px;
+    }
+    .contact-email {
+      font-size: 15px;
+      line-height: 30px;
+    }
+    .contact-phone {
+      font-size: 15px;
+      line-height: 30px;
+    }
+  }
+}
+@media screen and (min-width: 1919px){
+  
+  .contactCard {
+    margin-bottom: 20px;
+    .contact-header-c {
+      font-size: 25px;
+      line-height: 40px;
+    }
+    .contact-email {
+      font-size: 25px;
+      line-height: 40px;
+    }
+    .contact-phone {
+      font-size: 25px;
+      line-height: 40px;
+    }
+  }
+}

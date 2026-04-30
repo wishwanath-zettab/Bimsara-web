@@ -1,0 +1,97 @@
+.GradientButton {
+  background: radial-gradient(60.66% 95.28% at 14.14% 58.13%,
+      #0f64fa 0%,
+      rgba(156, 0, 182, 0.76) 80.16%,
+      #e5322d 100%);
+  border-radius: 25px;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  padding: 2px;
+  text-decoration: none;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(145, 120, 120, 0.5);
+  margin-top: 0;
+
+  span {
+    background: linear-gradient(90.16deg,
+        rgba(255, 255, 255, 0.2) 0.93%,
+        rgba(98, 134, 205, 0.153326) 47.11%,
+        rgba(255, 255, 255, 0.1) 99.86%);
+    display: block;
+    padding: 25px 20px;
+    border-radius: 25px;
+    background-color: #0a0f20;
+    backdrop-filter: blur(60px);
+    text-align: center;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  img {
+    display: flex;
+    height: 18px;
+    align-self: center;
+    float: right;
+    justify-content: center;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .GradientButton {
+    width: 90%;
+    margin-top: 20px;
+
+    span {
+      padding-top: 14px;
+      padding-bottom: 14px;
+      font-size: 14px;
+    }
+
+    img {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 560px) {
+  .GradientButton {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 560px) and (max-width: 650px) {
+  .GradientButton {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 650px) and (max-width: 800px) {
+  .GradientButton {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .GradientButton {
+    width: 1074px;
+    height: 129px;
+    border-radius: 40px;
+
+    span {
+      font-size: 30px;
+      line-height: 80px;
+      border-radius: 40px;
+    }
+
+    img {
+      height: 30px;
+      width: 40px;
+      align-self: center;
+      padding-top: 25px;
+    }
+  }
+}
