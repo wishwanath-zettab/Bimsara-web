@@ -83,6 +83,15 @@ app.get('/api/admin/contact-details', authenticateToken, (req, res) => {
     res.json(row || { office_address: '' });
   });
 });
+// Public contact details for frontend rendering
+app.get('/api/contact-details', (req, res) => {
+  db.get('SELECT * FROM contact_details ORDER BY id DESC LIMIT 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(row || { office_address: '' });
+  });
+});
 
 // Update contact details
 app.put('/api/admin/contact-details', authenticateToken, (req, res) => {
@@ -102,6 +111,15 @@ app.put('/api/admin/contact-details', authenticateToken, (req, res) => {
 
 // Get contact categories
 app.get('/api/admin/contact-categories', authenticateToken, (req, res) => {
+  db.all('SELECT * FROM contact_categories ORDER BY display_order', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+// Public contact categories for frontend rendering
+app.get('/api/contact-categories', (req, res) => {
   db.all('SELECT * FROM contact_categories ORDER BY display_order', (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -162,6 +180,16 @@ app.delete('/api/admin/contact-categories/:id', authenticateToken, (req, res) =>
 
 // Get all service providers
 app.get('/api/admin/service-providers', authenticateToken, (req, res) => {
+  db.all('SELECT * FROM service_providers ORDER BY created_at DESC', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+// Public service providers for frontend rendering
+app.get('/api/service-providers', (req, res) => {
   db.all('SELECT * FROM service_providers ORDER BY created_at DESC', (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -232,9 +260,33 @@ app.get('/api/admin/team-members', authenticateToken, (req, res) => {
   });
 });
 
+// Public team members for frontend rendering
+app.get('/api/team-members', (req, res) => {
+  db.all('SELECT * FROM team_members ORDER BY display_order', (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows.map((row) => ({
+      ...row,
+      pos: row.position,
+      link: row.linkedin_url || ''
+    })));
+  });
+});
+
+// Public other settings for frontend rendering (commission rate)
+app.get('/api/other-settings', (req, res) => {
+  db.get('SELECT * FROM other_settings ORDER BY id DESC LIMIT 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(row || { commission_rate: '3%', iso_certificate_path: null });
+  });
+});
+
 // Create team member
 app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (req, res) => {
-  const { name, position } = req.body;
+  const { name, position, description1, description2, linkedin_url } = req.body;
   const photo_path = req.file ? `/uploads/${req.file.filename}` : null;
 
   // Get max display_order
@@ -242,8 +294,8 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
     const display_order = (row && row.max_order) ? row.max_order + 1 : 1;
 
     db.run(
-      'INSERT INTO team_members (name, position, photo_path, display_order) VALUES (?, ?, ?, ?)',
-      [name, position, photo_path, display_order],
+      'INSERT INTO team_members (name, position, photo_path, linkedin_url, display_order, description1, description2) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [name, position, photo_path, linkedin_url || null, display_order, description1 || null, description2 || null],
       function(err) {
         if (err) {
           return res.status(500).json({ error: err.message });
@@ -253,7 +305,10 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
           name, 
           position,
           photo_path,
+          linkedin_url: linkedin_url || null,
           display_order,
+          description1: description1 || null,
+          description2: description2 || null,
           message: 'Team member created successfully' 
         });
       }
@@ -264,11 +319,11 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
 // Update team member
 app.put('/api/admin/team-members/:id', authenticateToken, upload.single('photo'), (req, res) => {
   const { id } = req.params;
-  const { name, position } = req.body;
+  const { name, position, description1, description2, linkedin_url } = req.body;
 
   db.run(
-    'UPDATE team_members SET name = ?, position = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
-    [name, position, id],
+    'UPDATE team_members SET name = ?, position = ?, description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
+    [name, position, description1 || null, description2 || null, linkedin_url || null, id],
     function(err) {
       if (err) {
         return res.status(500).json({ error: err.message });

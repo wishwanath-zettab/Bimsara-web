@@ -2,7 +2,7 @@
 
 .Services {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
     linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
     linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
@@ -24,7 +24,7 @@
 
     .logo-container {
       padding-top: 3%;
-      padding-left: 8vw;
+      padding-left: 8vw; /* restore left placement per design */
 
       .logo {
         height: 42px;
@@ -34,7 +34,7 @@
 
     .header-text {
       display: block;
-      padding-left: 10vw;
+      padding-left: 10vw; /* left-align header as in image 1 */
       margin-top: 33px;
       font-size: 42px;
       color: $primary-red;
@@ -72,7 +72,7 @@
             .inner-content-div {
               position: absolute;
               top: 30%;
-              left: 8vw;
+              left: 8vw; /* restore left offset per design */
               font-family: "Lato";
               font-style: normal;
               font-weight: 700;
@@ -228,9 +228,11 @@
   }
 
   .ServicesContentTwo {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 6%;
-    padding-left: 10%;
+    padding-left: 0;
     height: max-content;
 
     .top-container {
@@ -344,9 +346,11 @@
   }
 
   .ServicesContentFour {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 6%;
-    padding-left: 10%;
+    padding-left: 0;
     height: max-content;
 
     .top-container {
@@ -366,7 +370,7 @@
 
     .button-container {
       margin-bottom: 10vh;
-      margin-top: -11.5vh;
+      margin-top: 1.5rem;
     }
 
     .bottom-container {
@@ -396,6 +400,7 @@
           line-height: 29px;
           text-align: justify;
           margin-top: 20px;
+          margin-bottom: 1rem;
         }
       }
 
@@ -415,8 +420,9 @@
   }
 
   .ServicesContentFive {
-    width: 62%;
-    margin: 5% 17% 9% 17%;
+    width: 80%;
+    max-width: 1200px;
+    margin: 5% auto 9% auto;
     background: linear-gradient(270deg,
         rgba(255, 255, 255, 0.1) 0%,
         rgba(255, 255, 255, 0.02) 127.96%);
@@ -442,8 +448,10 @@
   }
 
   .ServicesContentSeven {
-    width: 80%;
-    padding-left: 8%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 0;
 
     .presennse-header {
       color: $primary-red;
@@ -452,7 +460,8 @@
       letter-spacing: 0.6em;
       text-transform: uppercase;
       margin-bottom: 5vh;
-      margin-left: 30px;
+      margin-left: 0;
+      text-align: center;
     }
 
     .inner-presense {
@@ -516,11 +525,13 @@
       .inner-presense-right {
         width: 75%;
         max-height: 39vh;
+        display: flex;
+        justify-content: center;
 
         .map {
           width: 80%;
           height: 100%;
-          padding-left: 10%;
+          padding-left: 0;
         }
       }
     }
@@ -532,7 +543,8 @@
       font-size: 14px;
       color: $text;
       margin-top: 50px;
-      margin-left: 22px;
+      margin-left: 0;
+      text-align: center;
     }
 
     .sitemap {
@@ -542,7 +554,8 @@
       font-size: 12px;
       color: $primary-red;
       margin-top: 20px;
-      margin-left: 22px;
+      margin-left: 0;
+      text-align: center;
     }
   }
 }
@@ -793,6 +806,7 @@
                 font-size: 15px;
                 line-height: 30px;
                 margin-top: 0px;
+                margin-bottom: 1rem;
               }
             }
 
@@ -809,8 +823,12 @@
             margin-left: 0;
             display: flex;
             justify-content: center;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             padding-bottom: 0px;
+          }
+          
+          #reviews_btn_1 {
+            margin-top: 1.5rem;
           }
         }
 
@@ -1210,6 +1228,10 @@
                 text-align: start;
                 margin-top: 41px;
               }
+              
+              .sub-content-two {
+                margin-bottom: 1rem;
+              }
             }
 
             .bottom-right-container {
@@ -1218,13 +1240,13 @@
           }
 
           .button-container {
-            margin-top: -8vh;
+            margin-top: 1.5rem;
             margin-left: 0;
           }
 
           #reviews_btn_1 {
             display: block;
-            margin-top: 3vh;
+            margin-top: 1.5rem;
           }
 
           #reviews_btn_2 {
@@ -1751,7 +1773,7 @@
       .button-container {
         margin-left: 20px;
         margin-bottom: 5%;
-        margin-top: -22%;
+        margin-top: 1.5rem;
       }
 
       .bottom-container {
@@ -1770,6 +1792,7 @@
           .sub-content-two {
             font-size: 30px;
             line-height: 45px;
+            margin-bottom: 1rem;
           }
         }
 

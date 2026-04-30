@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import RightBar from "../../components/rightBar/RightBar";
 import AboutContentOne from "./AboutContentOne";
@@ -19,6 +20,20 @@ const About = () => {
   const [modal, setModal] = useState(false);
   const [contactModal, setContactModal] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const [certificatePath, setCertificatePath] = useState(null);
+
+  useEffect(() => {
+    const fetchCertificate = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/other-settings');
+        setCertificatePath(response.data.iso_certificate_path || null);
+      } catch (error) {
+        setCertificatePath(null);
+      }
+    };
+
+    fetchCertificate();
+  }, []);
 
   return (
     <div className="About">
@@ -47,7 +62,7 @@ const About = () => {
         <div className="left-about-container">
           <AboutContentTwo />
           <AboutContentThree />
-          <AboutContentFour setModal={setModal} />
+          <AboutContentFour setModal={setModal} certificatePath={certificatePath} />
           <AboutContentFive />
           <AboutContentSix />
           <AboutContentSeven />
@@ -58,7 +73,7 @@ const About = () => {
           <RightBar />
         </div>
       </div>
-      {modal ? <Modal setModal={setModal} /> : ""}
+      {modal ? <Modal setModal={setModal} certificatePath={certificatePath} /> : ""}
       {contactModal ? <ContactModal setContactModal={setContactModal} /> : ""}
     </div>
   );

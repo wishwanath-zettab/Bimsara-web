@@ -4,6 +4,7 @@ import "./gradientModalStyles.scss";
 
 const GradientModal = (props) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [fadeOutTimer, setFadeOutTimer] = useState(null);
 
   // Handle external closing (from scroll or other triggers)
   useEffect(() => {
@@ -16,28 +17,47 @@ const GradientModal = (props) => {
   }, [props.externalClosing]);
 
   const handleClose = () => {
+    if (isClosing) {
+      return;
+    }
+
     setIsClosing(true);
     // Wait for animation to complete before actually closing
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       props.setModal(false);
     }, 300); // Match animation duration
+    setFadeOutTimer(timerId);
   };
 
-  const handleBackdropClick = (e) => {
-    // Only close if clicking on the backdrop area (not on content)
-    if (e.target.classList.contains('gradient-modal-container') || 
-        e.target.classList.contains('gradient-modal-backdrop')) {
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      const targetElement = event.target;
+
+      if (targetElement.closest(".gradient-modal-content")) {
+        return;
+      }
+
+      if (targetElement.closest(".sellerCardContainer")) {
+        return;
+      }
+
       handleClose();
-    }
-  };
+    };
+
+    document.addEventListener("click", handleDocumentClick, true);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick, true);
+      if (fadeOutTimer) {
+        clearTimeout(fadeOutTimer);
+      }
+    };
+  }, [fadeOutTimer, isClosing]);
 
   return (
-    <div 
-      className={`gradient-modal-container ${isClosing ? 'closing' : ''}`}
-      onClick={handleBackdropClick}
-    >
+    <div className={`gradient-modal-container ${isClosing ? 'closing' : ''}`}>
       <div className="gradient-modal-backdrop"></div>
-      <div className="gradient-modal-content">
+      <div className="gradient-modal-content" onClick={(e) => e.stopPropagation()}>
         <div>
           <img
             alt=""
