@@ -15,6 +15,23 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
     email: '',
     phone: ''
   });
+  const [errors, setErrors] = useState({});
+  const [newCategoryErrors, setNewCategoryErrors] = useState({});
+
+  // Validation functions
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email) || email === '';
+  };
+
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+    return phoneRegex.test(phone) || phone === '';
+  };
+
+  const validateOfficeAddress = (address) => {
+    return address.length <= 200;
+  };
 
   useEffect(() => {
     fetchContactDetails();
@@ -46,6 +63,12 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const handleUpdateAddress = async () => {
+    if (!validateOfficeAddress(officeAddress)) {
+      setErrors({ officeAddress: 'Office address must not exceed 200 characters' });
+      toast.error('Office address must not exceed 200 characters');
+      return;
+    }
+    setErrors({});
     setLoading(true);
     try {
       await axios.put(
@@ -62,6 +85,22 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const handleUpdateCategory = async (id, categoryData) => {
+    const categoryErrors = {};
+
+    if (!validateEmail(categoryData.email)) {
+      categoryErrors.email = 'Please enter a valid email address';
+    }
+
+    if (categoryData.phone && !validatePhoneNumber(categoryData.phone)) {
+      categoryErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (Object.keys(categoryErrors).length > 0) {
+      setErrors({ [`category_${id}`]: categoryErrors });
+      toast.error('Please fix the validation errors');
+      return;
+    }
+
     try {
       await axios.put(
         `http://localhost:5000/api/admin/contact-categories/${id}`,
@@ -76,18 +115,43 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const handleCategoryChange = (id, field, value) => {
+    let updatedValue = value;
+    if (field === 'category_name') {
+      updatedValue = value.charAt(0).toUpperCase() + value.slice(1);
+    }
     setCategories(categories.map(cat => 
-      cat.id === id ? { ...cat, [field]: value } : cat
+      cat.id === id ? { ...cat, [field]: updatedValue } : cat
     ));
+    // Clear errors for this field
+    const categoryErrors = { ...errors };
+    delete categoryErrors[`category_${id}_${field}`];
+    setErrors(categoryErrors);
   };
 
   const handleAddCategory = async (e) => {
     e.preventDefault();
+    const newErrors = {};
     
     if (!newCategory.category_name) {
       toast.error('Please enter category name');
       return;
     }
+
+    if (!validateEmail(newCategory.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (newCategory.phone && !validatePhoneNumber(newCategory.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setNewCategoryErrors(newErrors);
+      toast.error('Please fix the errors before adding');
+      return;
+    }
+
+    setNewCategoryErrors({});
 
     try {
       const maxOrder = categories.length > 0 ? Math.max(...categories.map(c => c.display_order || 0)) : 0;
@@ -143,6 +207,9 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
 
       <div className="section">
         <h3>Office Address</h3>
+        <div style={{ marginBottom: '10px' }}>
+          <small style={{ color: '#666' }}>Maximum 200 characters</small>
+        </div>
         <div className="form-group">
           <label>Office Address</label>
           <textarea
@@ -150,7 +217,14 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
             onChange={(e) => setOfficeAddress(e.target.value)}
             placeholder="Enter office address"
             rows="3"
+            maxLength="200"
+            style={{ borderColor: errors.officeAddress ? '#dc3545' : '' }}
           />
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '5px' }}>
+            <span style={{ color: errors.officeAddress ? '#dc3545' : '#666', fontSize: '12px' }}>
+              {errors.officeAddress ? errors.officeAddress : `${officeAddress.length}/200 characters`}
+            </span>
+          </div>
         </div>
         <button 
           onClick={handleUpdateAddress} 
@@ -181,7 +255,11 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 value={category.email}
                 onChange={(e) => handleCategoryChange(category.id, 'email', e.target.value)}
                 placeholder="Email address"
+                style={{ borderColor: errors[`category_${category.id}_email`] ? '#dc3545' : '' }}
               />
+              {errors[`category_${category.id}_email`] && (
+                <small style={{ color: '#dc3545' }}>{errors[`category_${category.id}_email`]}</small>
+              )}
             </div>
             <div className="form-group">
               <label>Phone Number</label>
@@ -190,7 +268,11 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 value={category.phone}
                 onChange={(e) => handleCategoryChange(category.id, 'phone', e.target.value)}
                 placeholder="Phone number"
+                style={{ borderColor: errors[`category_${category.id}_phone`] ? '#dc3545' : '' }}
               />
+              {errors[`category_${category.id}_phone`] && (
+                <small style={{ color: '#dc3545' }}>{errors[`category_${category.id}_phone`]}</small>
+              )}
             </div>
             <div className="button-group" style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
               <button 
@@ -222,7 +304,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 <input
                   type="text"
                   value={newCategory.category_name}
-                  onChange={(e) => setNewCategory({ ...newCategory, category_name: e.target.value })}
+                  onChange={(e) => setNewCategory({ ...newCategory, category_name: e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1) })}
                   placeholder="Enter category name"
                   required
                 />
@@ -234,7 +316,11 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                   value={newCategory.email}
                   onChange={(e) => setNewCategory({ ...newCategory, email: e.target.value })}
                   placeholder="Enter email"
+                  style={{ borderColor: newCategoryErrors.email ? '#dc3545' : '' }}
                 />
+                {newCategoryErrors.email && (
+                  <small style={{ color: '#dc3545' }}>{newCategoryErrors.email}</small>
+                )}
               </div>
             </div>
             <div className="form-group">
@@ -244,7 +330,11 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 value={newCategory.phone}
                 onChange={(e) => setNewCategory({ ...newCategory, phone: e.target.value })}
                 placeholder="Enter phone number"
+                style={{ borderColor: newCategoryErrors.phone ? '#dc3545' : '' }}
               />
+              {newCategoryErrors.phone && (
+                <small style={{ color: '#dc3545' }}>{newCategoryErrors.phone}</small>
+              )}
             </div>
             <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
               <button type="submit" className="btn-primary">Add Category</button>
