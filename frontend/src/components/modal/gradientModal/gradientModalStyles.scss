@@ -177,10 +177,13 @@
 @media screen and (max-width: 480px) {
   .gradient-modal-container {
     .gradient-modal-content {
-      width: 70vw;
-      height: 60vh;
+      width: min(92vw, 560px);
+      height: auto;
+      max-height: 84dvh;
       min-height: auto;
+      box-sizing: border-box;
       margin: auto;
+      padding: 28px 26px;
       -webkit-animation: right-to-left 0.3s linear forwards;
       animation: right-to-left 0.3s linear forwards;
       top: 8vh;
