@@ -10,7 +10,7 @@ dotenv.config();
 
 const db = require('./database');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 const HOST = process.env.HOST || '127.0.0.1';
 const JWT_SECRET = process.env.JWT_SECRET || 'bimsara-admin-dev-secret';
 
@@ -40,7 +40,7 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ 
+const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
@@ -116,7 +116,7 @@ app.put('/api/admin/contact-details', authenticateToken, (req, res) => {
   db.run(
     'UPDATE contact_details SET office_address = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
     [office_address],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -151,13 +151,13 @@ app.post('/api/admin/contact-categories', authenticateToken, (req, res) => {
   db.run(
     'INSERT INTO contact_categories (category_name, email, phone, display_order) VALUES (?, ?, ?, ?)',
     [category_name, email, phone, display_order],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ 
+      res.json({
         id: this.lastID,
-        message: 'Contact category created successfully' 
+        message: 'Contact category created successfully'
       });
     }
   );
@@ -171,7 +171,7 @@ app.put('/api/admin/contact-categories/:id', authenticateToken, (req, res) => {
   db.run(
     'UPDATE contact_categories SET category_name = ?, email = ?, phone = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
     [category_name, email, phone, id],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -184,7 +184,7 @@ app.put('/api/admin/contact-categories/:id', authenticateToken, (req, res) => {
 app.delete('/api/admin/contact-categories/:id', authenticateToken, (req, res) => {
   const { id } = req.params;
 
-  db.run('DELETE FROM contact_categories WHERE id = ?', [id], function(err) {
+  db.run('DELETE FROM contact_categories WHERE id = ?', [id], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -222,15 +222,15 @@ app.post('/api/admin/service-providers', authenticateToken, upload.single('logo'
   db.run(
     'INSERT INTO service_providers (company_name, logo_path) VALUES (?, ?)',
     [company_name, logo_path],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ 
-        id: this.lastID, 
-        company_name, 
+      res.json({
+        id: this.lastID,
+        company_name,
         logo_path,
-        message: 'Service provider created successfully' 
+        message: 'Service provider created successfully'
       });
     }
   );
@@ -255,7 +255,7 @@ app.delete('/api/admin/service-providers/:id', authenticateToken, (req, res) => 
     }
 
     // Delete from database
-    db.run('DELETE FROM service_providers WHERE id = ?', [id], function(err) {
+    db.run('DELETE FROM service_providers WHERE id = ?', [id], function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -312,20 +312,20 @@ app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (
     db.run(
       'INSERT INTO team_members (name, position, photo_path, linkedin_url, display_order, description1, description2) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [name, position, photo_path, linkedin_url || null, display_order, description1 || null, description2 || null],
-      function(err) {
+      function (err) {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
-        res.json({ 
-          id: this.lastID, 
-          name, 
+        res.json({
+          id: this.lastID,
+          name,
           position,
           photo_path,
           linkedin_url: linkedin_url || null,
           display_order,
           description1: description1 || null,
           description2: description2 || null,
-          message: 'Team member created successfully' 
+          message: 'Team member created successfully'
         });
       }
     );
@@ -353,7 +353,7 @@ app.put('/api/admin/team-members/:id', authenticateToken, upload.single('photo')
     db.run(
       'UPDATE team_members SET name = ?, position = ?, photo_path = COALESCE(?, photo_path), description1 = ?, description2 = ?, linkedin_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
       [name, position, photo_path, description1 || null, description2 || null, linkedin_url || null, id],
-      function(err) {
+      function (err) {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
@@ -371,7 +371,7 @@ app.put('/api/admin/team-members/:id/order', authenticateToken, (req, res) => {
   db.run(
     'UPDATE team_members SET display_order = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
     [display_order, id],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -399,7 +399,7 @@ app.delete('/api/admin/team-members/:id', authenticateToken, (req, res) => {
     }
 
     // Delete from database
-    db.run('DELETE FROM team_members WHERE id = ?', [id], function(err) {
+    db.run('DELETE FROM team_members WHERE id = ?', [id], function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -427,7 +427,7 @@ app.put('/api/admin/other-settings/commission', authenticateToken, (req, res) =>
   db.run(
     'UPDATE other_settings SET commission_rate = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
     [commission_rate],
-    function(err) {
+    function (err) {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -457,13 +457,13 @@ app.post('/api/admin/other-settings/iso-certificate', authenticateToken, certifi
     db.run(
       'UPDATE other_settings SET iso_certificate_path = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
       [certificate_path],
-      function(err) {
+      function (err) {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
-        res.json({ 
+        res.json({
           iso_certificate_path: certificate_path,
-          message: 'ISO certificate uploaded successfully' 
+          message: 'ISO certificate uploaded successfully'
         });
       }
     );
@@ -489,7 +489,7 @@ app.post('/api/admin/other-settings/company-profile-pdf', authenticateToken, pdf
     db.run(
       'UPDATE other_settings SET company_profile_pdf_path = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
       [pdf_path],
-      function(updateErr) {
+      function (updateErr) {
         if (updateErr) {
           return res.status(500).json({ error: updateErr.message });
         }
@@ -521,7 +521,7 @@ app.delete('/api/admin/other-settings/iso-certificate', authenticateToken, (req,
     // Remove from database
     db.run(
       'UPDATE other_settings SET iso_certificate_path = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
-      function(err) {
+      function (err) {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
@@ -547,7 +547,7 @@ app.delete('/api/admin/other-settings/company-profile-pdf', authenticateToken, (
 
     db.run(
       'UPDATE other_settings SET company_profile_pdf_path = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
-      function(updateErr) {
+      function (updateErr) {
         if (updateErr) {
           return res.status(500).json({ error: updateErr.message });
         }
