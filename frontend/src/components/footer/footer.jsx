@@ -94,9 +94,7 @@ const Footer = () => {
       <div className="inner-footer responsive-footer">
         <section className="footer-brand">
           <img alt="Safetynet Private Limited" src={logo} className="logo" />
-          <p>
-            Safetynet (Private) Limited DBA Bimsara Real Estate is a licensed Real Estate Broker and an Auctioneer based in Sri Lanka.
-          </p>
+          
         </section>
 
         {serviceGroups.map((group) => (
@@ -110,8 +108,28 @@ const Footer = () => {
               </FooterButton>
             ))}
           </section>
+          
         ))}
+        <section className="footer-group">
+          <div className="hed">Downloads</div>
+          {companyProfileUrl && ["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
+            <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>
+              {label}
+            </a>
+          ))}
 
+
+
+          
+        </section>
+        
+
+        <section className="footer-brand">
+          
+          <p>
+            Safetynet (Private) Limited DBA Bimsara Real Estate is a licensed Real Estate Broker and an Auctioneer based in Sri Lanka.
+          </p>
+        </section>
         <section className="footer-group">
           <FooterButton className="hed" onClick={() => goHomeSection("home-testimonials")}>Testimonials</FooterButton>
           <a className="sub footer-link hover-red" target="_blank" rel="noopener noreferrer" href={googleReviewsUrl}>Reviews</a>
@@ -132,17 +150,16 @@ const Footer = () => {
           <FooterButton onClick={goContact}>Contact Us</FooterButton>
           <FooterButton onClick={() => goHomeSection("home-location")}>Our Location</FooterButton>
         </section>
-
         <section className="footer-group">
-          <div className="hed">Downloads</div>
-          {companyProfileUrl && ["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
-            <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>
-              {label}
-            </a>
-          ))}
+
+        </section>
+        <section className="footer-group">
           <div className="hed tools-title">Tools</div>
           <span className="sub footer-muted" title="Coming Soon">Land Grading Tool</span>
         </section>
+        
+
+        
       </div>
 
       <div className="designer-foot">

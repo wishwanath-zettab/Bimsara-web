@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Members from "../../components/members/members";
 import RateCard from "../../components/rateCard/RateCard";
 import MemberCard from "../../components/memberCard/memberCard";
@@ -7,6 +8,30 @@ import "./AboutStyles.scss";
 import MobileMemberCard from "../../components/memberCard/mobileMemberCard/mobileMemberCard";
 
 const AboutContentSix = () => {
+  const [positionsCount, setPositionsCount] = useState(12);
+  const [providersCount, setProvidersCount] = useState(7);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        // Fetch team members count
+        const teamResponse = await axios.get('http://localhost:5000/api/team-members');
+        if (teamResponse.data && Array.isArray(teamResponse.data)) {
+          setPositionsCount(teamResponse.data.length);
+        }
+
+        // Fetch service providers count
+        const providersResponse = await axios.get('http://localhost:5000/api/service-providers');
+        if (providersResponse.data && Array.isArray(providersResponse.data)) {
+          setProvidersCount(providersResponse.data.length);
+        }
+      } catch (error) {
+        console.error('Error fetching counts:', error);
+      }
+    };
+
+    fetchCounts();
+  }, []);
   return (
     <div className="AboutContentSix" id="about-team">
       <div className="top-container">
@@ -25,9 +50,9 @@ const AboutContentSix = () => {
           </div>
         </div>
         <div className="bottom-right-container">
-          <RateCard des="Positions" des2=" and growing" rate="12" />
+          <RateCard des="Positions" des2=" and growing" rate={positionsCount.toString()} />
           <div className="margin-top">
-            <RateCard des="Service" des2=" Providers" rate="7" />
+            <RateCard des="Service" des2=" Providers" rate={providersCount.toString()} />
           </div>
         </div>
       </div>

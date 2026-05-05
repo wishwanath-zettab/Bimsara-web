@@ -37,8 +37,9 @@
   padding: 45px;
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 420px;
+  width: 30%;
+  max-width: 490px;
+  min-width: 330px;
   position: relative;
   z-index: 1;
 }

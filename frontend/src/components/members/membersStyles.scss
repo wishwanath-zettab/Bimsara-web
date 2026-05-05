@@ -29,7 +29,7 @@
         $rot: $rot + 21;
       }
       @for $i from 1 through $item-count {
-        &:nth-of-type(10) {
+        &:nth-of-type(11) {
           transform: rotate($rot * 1deg)
             translate($circle-size / 2)
             rotate($rot * -1deg);
@@ -82,12 +82,11 @@
         display: flex;
         justify-content: center;
         
-        
         img {
           height: 140px;
           border-radius: 50%;
           width: 140px;
-          border: solid 2px $background-line;
+          border: 3px solid #e7c694;
           object-fit: cover;
         }
         .linked {

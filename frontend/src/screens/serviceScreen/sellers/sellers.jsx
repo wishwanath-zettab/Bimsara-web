@@ -61,6 +61,17 @@ const Sellers = () => {
     };
   }, [modal, modalClosing]);
 
+  useEffect(() => {
+    const rightContainers = document.querySelectorAll('.top-conatiner-right');
+    rightContainers.forEach(container => {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const guideSection = document.getElementById('sellers-guide');
+    if (window.innerWidth <= 1024 && guideSection) {
+      window.scrollTo({ top: guideSection.offsetTop, behavior: 'smooth' });
+    }
+  }, [selected]);
+
   const data = [
     {
       name: "Facts at a Glance",

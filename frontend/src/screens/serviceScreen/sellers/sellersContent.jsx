@@ -73,9 +73,9 @@ const SellerContent = (props) => {
           <br />
           <div className="margin-top" />
           <span className="bold-content ">2. Times have changed.</span>{" "}
-          Purchasers now use AI and also get professionals such as architects,
+          Today’s real estate marketplace is radically different when compared with that of 10 years ago. Purchasers now use AI and also get professionals such as architects,
           civil structural engineers, valuers etc in their decision-making
-          process and are routinely represented by brokers.
+          process and are routinely represented by brokers. The result is that buyers are generally better prepared than in the past.
           <br />
           <div className="margin-top" />
           <span className="bold-content ">3. Sparkle and shine.</span> Imagine
@@ -176,9 +176,9 @@ const SellerContent = (props) => {
           <br />
           <div className="margin-top" />
           <div className="bold-content">
-                More than publishing advertisements.
+                How many potential buyers will you reach?
           </div>
-          Selling a home takes much more than publishing an advertisement in the
+          Selling a home takes much more than publishing advertisements in the
           internet or weekend paper. How will you promote your home? Will you
           write your own ads? How will you use property websites/social media
           platforms? Private sellers typically have limited exposure to

@@ -25,7 +25,6 @@
     z-index: 2;
     .nav {
       .homeNav {
-        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         width: 100px;
         height: max-content;
         padding-bottom: 40px;
@@ -41,6 +40,7 @@
           line-height: 36px;
           letter-spacing: 0.15em;
           color: #303548;
+          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       }
 
@@ -61,6 +61,20 @@
           letter-spacing: 0.15em;
           color: #303548;
           text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          button {
+            font-family: "League Gothic";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 36px;
+            letter-spacing: 0.15em;
+            color: #303548;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+          }
         }
         .hovercontent {
           background: #f7faff;
@@ -179,6 +193,20 @@
           line-height: 36px;
           letter-spacing: 0.15em;
           color: #303548;
+          button {
+            font-family: "League Gothic";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 36px;
+            letter-spacing: 0.15em;
+            color: #303548;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+          }
         }
       }
       .aboutNav {
@@ -314,6 +342,20 @@
           margin-top: 50px;
           text-align: center;
           text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          button {
+            font-family: "League Gothic";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 36px;
+            letter-spacing: 0.15em;
+            color: #303548;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+          }
         }
         .hovercontent-3 {
           background: #f7faff;

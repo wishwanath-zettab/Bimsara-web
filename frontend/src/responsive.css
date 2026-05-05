@@ -61,7 +61,7 @@
   margin: 0 auto;
   padding-left: 0 !important;
   display: grid !important;
-  grid-template-columns: minmax(220px, 1.4fr) repeat(4, minmax(130px, 1fr));
+  grid-template-columns: minmax(220px, 1.4fr) repeat(5, minmax(130px, 1fr));
   gap: clamp(22px, 3vw, 52px);
 }
 
@@ -69,8 +69,9 @@
 .footer-group {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 4px;
   min-width: 0;
+  
 }
 
 .footer-brand {
@@ -98,7 +99,7 @@
 .footer-group .hed {
   font-family: "Lato";
   font-size: clamp(16px, 1.5vw, 25px);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .footer-group .sub {
@@ -112,7 +113,7 @@
 }
 
 .tools-title {
-  margin-top: 16px !important;
+  margin-top: 36px !important;
 }
 
 .designer-foot {

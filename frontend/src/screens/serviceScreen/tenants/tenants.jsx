@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import circle from "../../../assets/icons/round.webp";
@@ -25,6 +25,17 @@ const Tenants = () => {
   const [sidebar, setSidebar] = useState(false);
   const [modal, setModal] = useState(false);
   const [num, setNum] = useState(1);
+
+  useEffect(() => {
+    const rightContainers = document.querySelectorAll('.top-conatiner-right');
+    rightContainers.forEach(container => {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const guideSection = document.getElementById('tenants-guide');
+    if (window.innerWidth <= 1024 && guideSection) {
+      window.scrollTo({ top: guideSection.offsetTop, behavior: 'smooth' });
+    }
+  }, [selected]);
 
   const data = [
     {

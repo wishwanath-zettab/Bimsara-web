@@ -61,6 +61,7 @@
           .top-conatiner-left {
             width: 50%;
             height: 100%;
+            flex-shrink: 0;
 
             .left-inner {
               padding-left: 100px;
@@ -251,10 +252,10 @@
     }
 
     .left-in {
+      flex: 1;
       .top-containr {
         display: flex;
         width: 100%;
-        margin-right: -100px;
         margin-top: 35px;
 
         .top-conatiner-left {
@@ -282,13 +283,15 @@
         }
 
         .top-conatiner-right {
-          width: 46%;
+          flex: 1;
+          min-width: 0;
           margin-top: 120px;
           margin-left: 37px;
+          margin-right: 20px;
           padding-bottom: 5%;
           height: 95vh;
           overflow-y: scroll;
-          padding-right: 12%;
+          padding-right: 10px;
           mask-image: linear-gradient(to bottom,
               black calc(100% - 48px),
               transparent 100%);
@@ -322,7 +325,7 @@
               font-weight: 300;
               font-size: 18px;
               line-height: 30px;
-              text-align: justify;
+              text-align: left;
               color: #434343;
 
               img {

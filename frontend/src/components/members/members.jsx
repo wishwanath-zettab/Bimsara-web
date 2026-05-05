@@ -88,6 +88,7 @@ const Members = () => {
       </div>
       <ul className="circle-container">
         {data
+          .slice(0, 11)
           .filter((member) => {
             return member.id !== selected.id;
           })

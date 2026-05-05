@@ -10,7 +10,8 @@
     backdrop-filter: blur(60px);
     border-radius: 25px;
     padding: 10px 30px;
-    width: 380px;
+    width: max-content;
+    min-width: 460px;
     padding-left: 50px;
 
     .content {
@@ -22,6 +23,7 @@
       display: flex;
       align-items: center;
       color: #ffffff;
+      white-space: nowrap;
     }
 
     img {
@@ -60,7 +62,6 @@
   .sellerCardContainer {
     .sellerCard {
       height: 51px;
-      //width: 273px;
       width: auto;
       display: flex;
       padding: 6px 20px;
@@ -95,7 +96,6 @@
 
       .content {
         font-size: 25px;
-        //line-height: 15px;
         width: 500px;
       }
 
