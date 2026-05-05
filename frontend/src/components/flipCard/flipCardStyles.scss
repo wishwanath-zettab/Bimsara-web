@@ -13,6 +13,7 @@
     align-items: center;
     color: #ffffff;
     margin: 10px 20px;
+    
   }
 }
 
@@ -41,8 +42,7 @@
       rgba(255, 255, 255, 0.2) 0.93%,
       rgba(98, 134, 205, 0.153326) 47.11%,
       rgba(255, 255, 255, 0.1) 99.86%);
-  box-shadow: 0px 2px 8px rgba(145, 120, 120, 0.5);
-  backdrop-filter: blur(60px);
+ 
   border-radius: 25px;
   height: 100%;
   width: 100%;
@@ -60,6 +60,7 @@
   width: 100%;
   border-radius: 25px;
   justify-content: center;
+  height: auto;
 
   .back-content {
     font-family: "Lato";
@@ -113,6 +114,31 @@
   }
 }
 
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .flip-card-back {
+    display: block;
+
+    .content-back {
+      font-size: 20px;
+      line-height: 40px;
+    }
+
+    .header-back {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 50px;
+      display: block;
+      text-align: start;
+      color: #000;
+      margin-top: 18px;
+      margin-left: 24px;
+      margin-bottom: 13px;
+    }
+  }
+}
+
 @media screen and (min-width:1441px) and (max-width: 1720px) {
   .flip-card-back {
     .back-content {
@@ -133,7 +159,7 @@
     .content {
       font-family: "Lato";
       font-style: normal;
-      font-weight: 400;
+      
       font-size: 35px;
       line-height: 80px;
       display: flex;

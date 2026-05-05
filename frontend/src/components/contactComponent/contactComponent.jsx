@@ -4,6 +4,7 @@ import ContactCard from "../../components/contactCard/ContactCard";
 import ContactFrom from "../../components/contactForm/ContactFrom";
 import wa from "../../assets/icons/wa.webp";
 import phone from "../../assets/icons/phone.webp";
+import API_URL from "../../apiConfig";
 
 import "./contactComponentStyles.scss";
 
@@ -13,7 +14,7 @@ const ContactComponent = (props) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/contact-categories');
+        const response = await axios.get(`${API_URL}/api/contact-categories`);
         setCategories(response.data || []);
       } catch (error) {
         setCategories([

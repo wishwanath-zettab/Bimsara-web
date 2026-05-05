@@ -22,9 +22,15 @@
 
       @for $i from 1 through $item-count {
         &:nth-of-type(#{$i}) {
-          transform: rotate($rot * 1deg)
-            translate($circle-size / 1.9)
-            rotate($rot * -1deg);
+          @if $i == 1 {
+            transform: rotate(210deg)
+              translate($circle-size / 1.9)
+              rotate(-210deg);
+          } @else {
+            transform: rotate($rot * 1deg)
+              translate($circle-size / 1.9)
+              rotate($rot * -1deg);
+          }
         }
         $rot: $rot + 21;
       }
@@ -41,21 +47,23 @@
   .circle-container {
     @include on-circle(
       $item-count: 10,
-      $circle-size: 100vh,
+      $circle-size: 85vh,
       $item-size: 6em,
       $single: 1
     );
-    margin: auto;
+    margin-left: 0;
+    margin-bottom: 100px;
     border: solid 2px $background-line;
     position: relative;
+   
 
     img {
       display: block;
       max-width: 100%;
       border-radius: 50%;
       transition: 0.15s;
-      height: 80px;
-      width: 80px;
+      height: 90px;
+      width: 90px;
       background: $background-line;
       object-fit: cover;
       cursor: pointer;
@@ -64,6 +72,8 @@
   }
   .inner-circle {
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 160px;
     width: 80%;
     display: flex;
@@ -75,6 +85,7 @@
       display: block;
       padding-left: 25%;
       padding-right: 25%;
+      
       .inner-circle-main {
         height: 100%;
         border-radius: 50%;
@@ -83,9 +94,9 @@
         justify-content: center;
         
         img {
-          height: 140px;
+          height: 160px;
           border-radius: 50%;
-          width: 140px;
+          width: 160px;
           border: 3px solid #e7c694;
           object-fit: cover;
         }
@@ -100,18 +111,20 @@
         }
       }
       .member-name {
+
         font-family: "Lato";
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 29px;
         text-align: center;
         color: $primary-red;
+        margin-top: 20px;
       }
       .member-designation {
         font-family: "Lato";
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 29px;
         text-align: center;
         margin-top: 8px;
         color: $dark-text;
@@ -127,7 +140,7 @@
         line-height: 28px;
         margin: auto;
         margin-top: 30px;
-        width: 40vw;
+        width: 90%;
       }
       .member-description {
         font-family: "Lato";
@@ -147,21 +160,8 @@
 
 @media screen and (max-width: 1200px) {
   .Members_component .inner-circle {
-    width: 100%;
     .inner-content {
-      .member-description {
-        width: 150%;
-      }
-      .member-quote {
-        width: 60vw;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1439px) {
-  .Members_component .inner-circle {
-    .inner-content {
+      
       .member-description {
         width: 90%;
       }
@@ -174,6 +174,51 @@
         //width: 38vw;
         width: 75vh;
         line-height: 20px;
+      }
+
+    }}
+}
+
+@media screen and (max-width: 1439px) {
+  .Members_component .inner-circle {
+    .inner-content {
+      
+      .member-description {
+        width: 90%;
+      }
+      .member-quote {
+        //width: 45vw;
+        width: 85vh;
+        line-height: 22px;
+      }
+      .member-description {
+        //width: 38vw;
+        width: 75vh;
+        line-height: 20px;
+      }
+      .member-quote {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 15px;
+        text-align: center;
+        color: $primary-red;
+        line-height: 28px;
+        margin: auto;
+        margin-top: 30px;
+        width: 90%;
+      }
+      .member-description {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        text-align: center;
+        color: $dark-text;
+        line-height: 28px;
+        width: 90%;
+        margin: auto;
+        margin-top: 30px;
       }
     }
   }
@@ -203,9 +248,15 @@
 
         @for $i from 1 through $item-count {
           &:nth-of-type(#{$i}) {
-            transform: rotate($rot * 1deg)
-              translate($circle-size / 1.9)
-              rotate($rot * -1deg);
+            @if $i == 1 {
+              transform: rotate(220deg)
+                translate($circle-size / 1.9)
+                rotate(-220deg);
+            } @else {
+              transform: rotate($rot * 1deg)
+                translate($circle-size / 1.9)
+                rotate($rot * -1deg);
+            }
           }
           $rot: $rot + 21;
         }
@@ -221,29 +272,31 @@
     }
     .circle-container {
       @include on-circle(
-        $item-count: 7,
-        $circle-size: 100vh,
+        $item-count: 10,
+        $circle-size: 96vh,
         $item-size: 6em,
         $single: 1
       );
       margin: auto;
       border: solid 2px $background-line;
       position: relative;
-
+       margin-bottom: 100px;
       img {
         display: block;
         max-width: 100%;
         border-radius: 50%;
         border: solid 2px $background-line;
         transition: 0.15s;
-        height: 10vh;
-        width: 10vh;
+        height: 100px;
+        width: 100px;
         background: $background-line;
         object-fit: cover;
       }
     }
     .inner-circle {
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       height: 240px;
       width: 80%;
       display: flex;
@@ -262,40 +315,56 @@
             height: 20vh;
             border-radius: 50%;
             width: 20vh;
-            border: solid 2px $background-line;
+            border: 3px solid #e7c694;
             object-fit: cover;
           }
+          
           .linked {
-            border: none;
-            position: absolute;
-            height: 6vh;
-            width: 6vh;
-            margin-top: 15vh;
-            margin-left: 80px;
-          }
+          border: none;
+          position: absolute;
+          height: 55px;
+          width: 55px;
+          margin-top: 160px;
+          margin-left: -60px;
+          cursor: pointer;
+        }
         }
         .member-name {
-          font-size: 30px;
+          font-size: 33px;
           line-height: 45px;
-          margin-top: 19px;
+          margin-top: 100px;
+
         }
         .member-designation {
-          font-size: 23px;
+          font-size: 30px;
           line-height: 40px;
           margin-top: 0;
+
         }
         .member-quote {
-          font-size: 20px;
-          line-height: 25px;
-          margin-top: 3vh;
-          width: 48vw;
-        }
-        .member-description {
-          font-size: 18px;
-          line-height: 23px;
-          margin-top: 19px;
-          width: 38vw;
-        }
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 15px;
+        text-align: center;
+        color: $primary-red;
+        line-height: 28px;
+        margin: auto;
+        margin-top: 30px;
+        width: 90%;
+      }
+      .member-description {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        text-align: center;
+        color: $dark-text;
+        line-height: 28px;
+        width: 90%;
+        margin: auto;
+        margin-top: 30px;
+      }
       }
     }
   }

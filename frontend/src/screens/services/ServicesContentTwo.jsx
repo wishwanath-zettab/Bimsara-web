@@ -7,18 +7,29 @@ const ServicesContentTwo = () => {
       <div className="inner-container">
         <div className="header">Our Services are for...</div>
         <div className="button-grid">
-          <a href="/sellers">
+          <div className="button-grid-div">
+            <a href="/sellers">
             <GradientButton buttonText="Sellers" />
           </a>
-          <a href="/landlords">
+          </div >
+          <div className="button-grid-div">
+            <a href="/landlords">
             <GradientButton buttonText="Landlords" />
           </a>
-          <a href="/buyers">
+          </div>
+          <div className="button-grid-div">
+            <a href="/buyers">
             <GradientButton buttonText="Buyers" />
           </a>
-          <a href="/tenants">
+          </div>
+          <div className="button-grid-div">
+            <a href="/tenants">
             <GradientButton buttonText="Tenants" />
           </a>
+          </div>
+          
+          
+          
         </div>
       </div>
     </div>

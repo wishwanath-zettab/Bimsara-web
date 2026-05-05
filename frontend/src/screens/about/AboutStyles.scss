@@ -159,6 +159,7 @@
       letter-spacing: 0.6em;
       text-transform: uppercase;
       text-align: left;
+      
     }
 
     .inner-who {
@@ -538,7 +539,7 @@
     .top-container {
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: left;
 
       .top-content {
         color: $primary-blue;
@@ -593,6 +594,15 @@
           margin-top: 0;
         }
       }
+    }
+
+    .member-view {
+      width: 100%;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
     }
 
     .member-tab-view {
@@ -1214,12 +1224,12 @@
                 }
 
                 .button-container {
+                  
                   margin-left: 0;
                   margin: auto;
                   display: flex;
                   justify-content: center;
                   margin-top: 10%;
-                  display: none;
                 }
 
                 .sub-content {
@@ -1519,8 +1529,9 @@
           .who-header {
             font-size: 25px;
             line-height: 45px;
-            text-align: justify;
+            text-align: center;
             letter-spacing: 1em;
+            
           }
 
           .inner-who {
@@ -1767,23 +1778,479 @@
   }
 }
 
+
+
 @media screen and (min-width: 1200px) and (max-width: 1918px) {
   .About {
+    background: linear-gradient($background-line 0 0) calc(1 * 100% / 20),
+      linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
+      linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
+      linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
+      linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
+      linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
+      linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
+      linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
+      linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
+      linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
+    background-size: 1.5px 100%;
+    /* Control the width here*/
+    background-repeat: no-repeat;
+    background-color: $background;
+    overflow-x: hidden;
+    
     .about-background {
+      .ham-bar-div {
+        display: none;
+      }
+
       .AboutContentOne {
+        .AboutContentOne-inner {
+          background-image: url("../../assets/images/coffeimg.webp");
+          height: 80vh;
+          background-repeat: no-repeat;
+          width: 100%;
+          background-position: center;
+          position: relative;
+
+          .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding-top: 35px;
+            padding-left: 63px;
+            z-index: 10;
+
+            .logo {
+              width: 270px;
+              height: 73px;
+              cursor: pointer;
+            }
+          }
+        }
+
         .top-container {
+          margin-top: 99px;
+          width: 90%;
+          display: flex;
           justify-content: center;
 
           .top-content {
             flex: 0 0 auto;
+            font-size: 40px;
+            line-height: 60px;
             text-align: center;
-            padding: 0 30px;
+            padding: 0 40px;
+
+            .iso {
+              margin-top: 10px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .safetynet {
+              margin-top: 10px;
+              height: 50px;
+              margin-right: 2vw;
+            }
+
+            .circle {
+              position: relative;
+              height: 60px;
+              width: 60px;
+            }
+
+            .arrow {
+              position: absolute;
+              height: 30px;
+              width: 30px;
+              margin-top: 16px;
+            }
+          }
+
+          .top-content-arrow {
+            width: auto;
+            right: 5vw;
+            bottom: 3vh;
+
+            .iso {
+              margin-top: 10px;
+              height: 50px;
+              margin-right: 2vw;
+            
+
+            .circle {
+                width: 100%;
+                max-width: 170px;
+                height: auto;
+                margin-bottom: 0;
+            }
+      }}
+    }
+
+    .about-bottom-container {
+      height: 100%;
+      display: flex;
+
+      .left-about-container {
+        margin-right: -100px;
+      }
+    }
+
+    .AboutContentTwo {
+      width: 90%;
+      padding-top: 100px;
+      padding-left: 99px;
+      padding-bottom: 5%;
+
+      .who-header {
+        font-size: 30px;
+        line-height: 45px;
+        letter-spacing: 1em;
+        text-align: left;
+        display: block;
+      }
+
+      .inner-who {
+        .about-content-two-left {
+          .bottom-left-container {
+            margin-top: 82px;
+
+            .button-container {
+              margin-top: 61px;
+              margin-left: 24px;
+            }
+
+            .heder-content {
+              font-size: 50px;
+              line-height: 60px;
+              text-align: left;
+            }
+
+            .sub-content {
+              font-size: 30px;
+              line-height: 50px;
+              margin-top: 39px;
+              text-align: left;
+            }
+
+            .sub-content-two {
+              font-size: 30px;
+              line-height: 50px;
+              margin-top: 36px;
+              text-align: left;
+            }
+          }
+        }
+
+        .about-content-two-right {
+          padding-top: 5%;
+
+          img {
+            width: 539px;
+            height: 150.98px;
+          }
+
+          .real-estate-header {
+            font-size: 48px;
+            line-height: 120px;
+            letter-spacing: 0.58em;
+            margin-top: -40px;
+            padding-left: 8px;
           }
         }
       }
     }
+
+    .AboutContentThree {
+      width: 90%;
+      padding-top: 0;
+      padding-bottom: 5%;
+      height: max-content;
+      margin: auto;
+
+      .inner-content-three {
+        display: block;
+        margin-right: 30%;
+
+        .bottm-content {
+          margin-top: 58px;
+
+          .div-content {
+            display: flex;
+            flex: 1;
+
+            .inner-div {
+              flex: 1;
+              padding: 1.5%;
+            }
+          }
+        }
+      }
+    }
+
+    .AboutContentFour {
+      width: 100%;
+      padding-top: 77px;
+      height: max-content;
+      padding-bottom: 66px;
+      background: linear-gradient($background-line 0 0) calc(1 * 100% / 20),
+        linear-gradient(#0a0f20 0 0) calc(2 * 100% / 3.5),
+        linear-gradient(#0a0f20 0 0) calc(3 * 100% / 5.33),
+        linear-gradient(#0a0f20 0 0) calc(4 * 100% / 6.2),
+        linear-gradient(#0a0f20 0 0) calc(5 * 100% / 7.85),
+        linear-gradient(#0a0f20 0 0) calc(6 * 100% / 8.45),
+        linear-gradient(#0a0f20 0 0) calc(7 * 100% / 9.75),
+        linear-gradient(#0a0f20 0 0) calc(8 * 100% / 10.2),
+        linear-gradient(#0a0f20 0 0) calc(9 * 100% / 11.36),
+        linear-gradient(#0a0f20 0 0) calc(10 * 100% / 11.6);
+      background-size: 1.5px 100%;
+      /* Control the width here*/
+      background-repeat: no-repeat;
+      background-color: #0a0f20;
+
+      .inner-content-four {
+        .left-inner-content {
+          width: 55%;
+          height: max-content;
+
+          .we-header {
+            font-size: 25px;
+            line-height: 45px;
+            padding-left: 99px;
+            letter-spacing: 0.5em;
+            width: 50%;
+          }
+
+          .bottom-left-container {
+            height: max-content;
+            margin-top: 30px;
+            padding-left: 99px;
+
+            .heder-content {
+              font-size: 50px;
+              line-height: 60px;
+            }
+
+            .sub-content {
+              font-size: 30px;
+              line-height: 50px;
+            }
+          }
+        }
+
+        .right-inner-content {
+          width: 30%;
+          height: 100%;
+
+          .iso-image {
+            width: 494px;
+            height: 693px;
+          }
+        }
+      }
+    }
+
+    .AboutContentFive {
+      width: 85%;
+      padding-top: 5%;
+      padding-left: 99px;
+      height: max-content;
+      padding-bottom: 5%;
+
+      .company-header {
+        font-size: 30px;
+        line-height: 45px;
+        letter-spacing: 1em;
+      }
+
+      .inner-content-five {
+        width: 92%;
+        background: linear-gradient(313.08deg,
+            #0f64fa -177%,
+            rgba(255, 255, 255, 0.02) 94.75%);
+        box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
+        backdrop-filter: blur(60px);
+        border-radius: 30px;
+        display: flex;
+        margin-top: 81px;
+        padding-top: 99px;
+        padding-bottom: 57px;
+        height: max-content;
+
+        .left-inner-content {
+          width: 60%;
+          height: max-content;
+
+          .bottom-left-container {
+            width: 100%;
+            height: max-content;
+            margin: 0;
+            text-align: center;
+
+            .logo {
+              width: 395px;
+              height: 96.18px;
+              margin-left: 0;
+            }
+
+            .sub-content {
+              font-size: 30px;
+              line-height: 50px;
+              text-align: center;
+              margin-top: 27px;
+            }
+
+            .sub-content-two {
+              width: 576px;
+              font-size: 30px;
+              line-height: 45px;
+              margin: auto;
+            }
+
+            .margin-top {
+              margin-top: 61px;
+            }
+
+            .contact-header-c {
+              font-size: 30px;
+              line-height: 45px;
+            }
+
+            .contact-address {
+              font-size: 30px;
+              line-height: 45px;
+            }
+          }
+        }
+
+        .right-inner-content {
+          height: max-content;
+          width: 50%;
+
+          .margin-top {
+            margin-top: 90px;
+          }
+
+          .contact-header-c {
+            font-size: 30px;
+            line-height: 45px;
+          }
+
+          .contact-name {
+            font-size: 30px;
+            line-height: 50px;
+            margin-top: 15px;
+          }
+
+          .contact-address {
+            font-size: 30px;
+            line-height: 45px;
+          }
+        }
+      }
+    }
+
+    .AboutContentSix {
+      padding-left: 99px;
+      height: max-content;
+
+      .top-container {
+        width: 70%;
+        display: flex;
+
+        .top-content {
+          font-size: 30px;
+          line-height: 45px;
+          letter-spacing: 1em;
+        }
+      }
+
+      .bottom-container {
+        width: 100%;
+        display: flex;
+        padding-top: 2%;
+        padding-bottom: 6%;
+
+        .bottom-left-container {
+          width: 60%;
+          height: max-content;
+          padding-right: 20%;
+
+          .sub-content {
+            font-size: 30px;
+            line-height: 45px;
+          }
+        }
+
+        .bottom-right-container {
+          width: 45%;
+          height: max-content;
+
+          .margin-top {
+            margin-top: 60px;
+          }
+        }
+      }
+
+      .member-tab-view {
+        display: none;
+      }
+
+      .member-mobile-view {
+        display: none;
+      }
+    }
+
+    .AboutContentSeven {
+      width: 100%;
+      background: $white;
+      padding-top: 3%;
+
+      .header {
+        font-size: 30px;
+        line-height: 30px;
+        padding-bottom: 56px;
+      }
+
+      .image-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        width: 75%;
+        margin: auto;
+        padding-bottom: 3%;
+
+        .image-item {
+          width: 157px;
+          height: 161px;
+          margin: auto;
+        }
+
+        .image-item-1 {
+          width: 167px;
+          height: 100px;
+          margin: auto;
+        }
+
+        .image-item-2 {
+          width: 274px;
+          height: 119px;
+          margin: auto;
+        }
+
+        .image-item-3 {
+          width: 92px;
+          height: 114px;
+          margin: auto;
+        }
+      }
+    }
   }
+    }
+  }
+    
 }
+
+
 
 @media screen and (min-width: 1919px) {
   .About {
@@ -1873,20 +2340,15 @@
           }
 
           .top-content-arrow {
-            width: 100%;
+            width: auto;
+            right: 5vw;
+            bottom: 3vh;
 
-            top: 85%;
-              font-size: 18px;
             .iso {
-              margin-top: 15px;
-
+              margin-top: 10px;
               height: 50px;
-              display: grid;
-              grid-template-columns: repeat(2, minmax(0, 1fr));
-              gap: 20px;
-              padding-top: 32px;
-              width: 90%;
-              margin: 0 auto;
+              margin-right: 2vw;
+            
 
             .circle {
                 width: 100%;

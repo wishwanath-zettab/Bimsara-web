@@ -325,7 +325,7 @@
               font-weight: 300;
               font-size: 18px;
               line-height: 30px;
-              text-align: left;
+              text-align: justify;
               color: #434343;
 
               img {
@@ -639,6 +639,7 @@
               width: 100%;
               height: 100%;
 
+
               .left-inner {
                 padding-left: 83px;
                 margin-top: 38px;
@@ -682,6 +683,7 @@
             .top-conatiner-right {
               width: 83%;
               padding: 0;
+              margin-left: 4%;
               margin: auto;
               height: 100%;
               padding-bottom: 62px;
@@ -824,7 +826,7 @@
   }
 }
 
-@media screen and (min-width:1025px) and (max-width: 1200px) {
+@media screen and (min-width:1025px) and (max-width: 1350px) {
   .buyers {
     height: 100%;
     width: 100vw;
@@ -897,7 +899,7 @@
             height: 100%;
 
             .top-conatiner-left {
-              width: 50%;
+              width: 40%;
               height: 100%;
 
               .left-inner {
@@ -932,11 +934,11 @@
             }
 
             .top-conatiner-right {
-              width: 50%;
+              width: 48%;
               padding: 0;
               height: 100%;
-              margin-top: 28%;
-              margin-left: -4%;
+              margin-top: 2%;
+              margin-left: 4%;
 
               .right-content {
                 font-family: "Lato";
@@ -1019,7 +1021,7 @@
   }
 }
 
-@media screen and (min-width:1441px) {
+@media screen and (min-width:1351px) {
   .buyers {
     background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
       linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
@@ -1108,7 +1110,7 @@
               width: 48%;
               height: max-content;
               padding-top: 238px;
-              margin-left: 0;
+              margin-left: 4%;
 
               .grid-component {
                 width: 100%;

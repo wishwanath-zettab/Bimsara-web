@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import './TabStyles.css';
 
@@ -63,7 +64,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   const fetchContactDetails = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/admin/contact-details',
+        `${API_URL}/api/admin/contact-details`,
         getAuthHeaders()
       );
       setOfficeAddress(response.data.office_address || '');
@@ -75,7 +76,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/admin/contact-categories',
+        `${API_URL}/api/admin/contact-categories`,
         getAuthHeaders()
       );
       setCategories(response.data);
@@ -94,7 +95,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
     setLoading(true);
     try {
       await axios.put(
-        'http://localhost:5000/api/admin/contact-details',
+        `${API_URL}/api/admin/contact-details`,
         { office_address: officeAddress },
         getAuthHeaders()
       );
@@ -128,7 +129,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/contact-categories/${id}`,
+        `${API_URL}/api/admin/contact-categories/${id}`,
         categoryData,
         getAuthHeaders()
       );
@@ -186,7 +187,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
       const maxOrder = categories.length > 0 ? Math.max(...categories.map(c => c.display_order || 0)) : 0;
       
       await axios.post(
-        'http://localhost:5000/api/admin/contact-categories',
+        `${API_URL}/api/admin/contact-categories`,
         {
           ...newCategory,
           display_order: maxOrder + 1
@@ -212,7 +213,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/admin/contact-categories/${id}`,
+        `${API_URL}/api/admin/contact-categories/${id}`,
         getAuthHeaders()
       );
       toast.success('Contact category deleted successfully');

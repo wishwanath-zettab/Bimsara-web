@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import API_URL from '../../apiConfig';
 import './AdminLogin.css';
 
 const AdminLogin = () => {
@@ -15,7 +16,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post(`${API_URL}/api/admin/login`, {
         username,
         password
       });

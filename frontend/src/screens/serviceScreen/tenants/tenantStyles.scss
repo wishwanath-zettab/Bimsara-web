@@ -314,7 +314,7 @@
               font-weight: 300;
               font-size: 18px;
               line-height: 30px;
-              text-align: left;
+              text-align: justify;
               color: #434343;
 
               img {
@@ -788,7 +788,7 @@
   }
 }
 
-@media screen and (min-width:1025px) and (max-width: 1200px) {
+@media screen and (min-width:1025px) and (max-width: 1350px) {
   .tenants {
     height: 100%;
     width: 100vw;
@@ -986,7 +986,7 @@
   }
 }
 
-@media screen and (min-width:1441px) {
+@media screen and (min-width:1351px) {
   .tenants {
     background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
       linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),

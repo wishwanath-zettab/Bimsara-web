@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import './TabStyles.css';
 
@@ -80,7 +81,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
   const fetchMembers = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/admin/team-members',
+        `${API_URL}/api/admin/team-members`,
         getAuthHeaders()
       );
       // Convert NULL values to empty strings for input fields
@@ -139,7 +140,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/admin/team-members',
+        `${API_URL}/api/admin/team-members`,
         data,
         {
           ...getAuthHeaders(),
@@ -194,7 +195,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/team-members/${id}`,
+        `${API_URL}/api/admin/team-members/${id}`,
         data,
         {
           ...getAuthHeaders(),
@@ -223,7 +224,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/admin/team-members/${id}`,
+        `${API_URL}/api/admin/team-members/${id}`,
         getAuthHeaders()
       );
       toast.success('Team member removed successfully');
@@ -236,7 +237,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
   const handleMoveUp = async (id, currentOrder) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/team-members/${id}/order`,
+        `${API_URL}/api/admin/team-members/${id}/order`,
         { display_order: currentOrder - 1 },
         getAuthHeaders()
       );
@@ -249,7 +250,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
   const handleMoveDown = async (id, currentOrder) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/team-members/${id}/order`,
+        `${API_URL}/api/admin/team-members/${id}/order`,
         { display_order: currentOrder + 1 },
         getAuthHeaders()
       );
@@ -306,7 +307,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
             <div className="member-photo">
               {member.photo_path ? (
                 <img 
-                  src={`http://localhost:5000${member.photo_path}`} 
+                  src={`${API_URL}${member.photo_path}`} 
                   alt={member.name}
                 />
               ) : (
