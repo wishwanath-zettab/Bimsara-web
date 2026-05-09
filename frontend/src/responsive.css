@@ -2413,8 +2413,9 @@
     margin-left: 0 !important;
     padding-left: 0 !important;
   }
-  
+
 }
+
 
 @media screen and (max-width: 768px) {
   .ServicesContentFour #reviews_btn_1 {
@@ -2434,6 +2435,14 @@
 
   .ServicesContentFour .Button-styles {
     width: min(100%, 360px) !important;
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .Services .ServicesContentFour .bottom-container .bottom-left-container {
+    width: 65%;
+    padding-right: 3%;
+    margin-top: 40px;
   }
 }
 

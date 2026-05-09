@@ -1,370 +1,246 @@
 @import "../../colors.scss";
+
+@keyframes memberFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 .Members_component {
-  @mixin on-circle($item-count, $circle-size, $item-size, $single) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 80px;
+
+  // ─── circle-positioning mixin ──────────────────────────────────────
+  @mixin on-circle($item-count, $circle-size, $item-size) {
     position: relative;
-    width: $circle-size;
+    width:  $circle-size;
     height: $circle-size;
     padding: 0;
     border-radius: 50%;
     list-style: none;
 
-    > * {
+    > li {
       display: block;
       position: absolute;
-      top: 50%;
+      top:  50%;
       left: 50%;
-      width: $item-size;
+      width:  $item-size;
       height: $item-size;
       margin: -($item-size / 2);
-
-      $angle: (360 / 14);
-      $rot: 0;
-
-      @for $i from 1 through $item-count {
-        &:nth-of-type(#{$i}) {
-          @if $i == 1 {
-            transform: rotate(210deg)
-              translate($circle-size / 1.9)
-              rotate(-210deg);
-          } @else {
-            transform: rotate($rot * 1deg)
-              translate($circle-size / 1.9)
-              rotate($rot * -1deg);
-          }
-        }
-        $rot: $rot + 21;
-      }
-      @for $i from 1 through $item-count {
-        &:nth-of-type(11) {
-          transform: rotate($rot * 1deg)
-            translate($circle-size / 2)
-            rotate($rot * -1deg);
-        }
-        $rot: $rot + $angle;
-      }
     }
   }
-  .circle-container {
-    @include on-circle(
-      $item-count: 10,
-      $circle-size: 85vh,
-      $item-size: 6em,
-      $single: 1
-    );
-    margin-left: 0;
-    margin-bottom: 100px;
-    border: solid 2px $background-line;
+  // ───────────────────────────────────────────────────────────────────
+
+  .members-stage {
     position: relative;
-   
+  }
+
+  .circle-container {
+    @include on-circle($item-count: 6, $circle-size: 100vh, $item-size: 72px);
+    border: solid 1px rgba(229, 50, 45, 0.15);
+    margin-bottom: 60px;
+
+    > li:nth-of-type(1) { transform: rotate(210deg) translate(50vh) rotate(-210deg); }
+    > li:nth-of-type(2) { transform: rotate(0deg)   translate(50vh) rotate(0deg);   }
+    > li:nth-of-type(3) { transform: rotate(20deg)  translate(50vh) rotate(-20deg); }
+    > li:nth-of-type(4) { transform: rotate(40deg)  translate(50vh) rotate(-40deg); }
+    > li:nth-of-type(5) { transform: rotate(60deg)  translate(50vh) rotate(-60deg); }
 
     img {
       display: block;
-      max-width: 100%;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      transition: 0.15s;
-      height: 90px;
-      width: 90px;
-      background: $background-line;
       object-fit: cover;
       cursor: pointer;
+      background: $background-line;
+      border: 2px solid rgba(229, 50, 45, 0.18);
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+
+      &:hover {
+        border-color: $primary-red;
+        transform: scale(1.1);
+        box-shadow: 0 4px 18px rgba(229, 50, 45, 0.3);
+      }
     }
-  
   }
+
   .inner-circle {
     position: absolute;
+    top:  0;
     left: 50%;
     transform: translateX(-50%);
-    height: 160px;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-   
-    
+    width: min(751px, 67vh);
+    z-index: 2;
+    pointer-events: none;
+    animation: memberFadeIn 0.28s ease;
 
-    .inner-content {
-      display: block;
-      padding-left: 25%;
-      padding-right: 25%;
-      
+    .member-detail {
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      overflow: visible;
+
       .inner-circle-main {
-        height: 100%;
-        border-radius: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        
-        img {
-          height: 160px;
+        position: relative;
+        flex-shrink: 0;
+
+        > img {
+          display: block;
+          width: 133px;
+          height: 133px;
           border-radius: 50%;
-          width: 160px;
-          border: 3px solid #e7c694;
+          border: 2px solid rgba(229, 50, 45, 0.25);
           object-fit: cover;
         }
+
         .linked {
-          border: none;
           position: absolute;
-          height: 40px;
-          width: 40px;
-          margin-top: 100px;
-          margin-left: -40px;
-          cursor: pointer;
+          bottom: 2px;
+          right: 2px;
+          width: 34px;
+          height: 34px;
+          border: none !important;
+          border-radius: 50%;
+          background: none;
         }
       }
+
       .member-name {
-
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 29px;
-        text-align: center;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 1.2;
+        letter-spacing: 0em;
         color: $primary-red;
-        margin-top: 20px;
+        margin-top: 14px;
       }
+
       .member-designation {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 29px;
-        text-align: center;
-        margin-top: 8px;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0em;
+        text-transform: none;
         color: $dark-text;
-    
+        opacity: 1;
+        margin-top: 5px;
       }
+
+      .member-text-scroll {
+        width: 100%;
+      }
+
       .member-quote {
-        font-family: "Lato";
-        font-style: normal;
+        font-family: "Lato", sans-serif;
         font-weight: 300;
-        font-size: 15px;
-        text-align: center;
-        color: $primary-red;
-        line-height: 28px;
-        margin: auto;
-        margin-top: 30px;
-        width: 90%;
-      }
-      .member-description {
-        font-family: "Lato";
         font-style: normal;
-        font-weight: 300;
         font-size: 14px;
+        line-height: 25px;
+        color: $primary-red;
+        margin: 28px 0 0 -18.75%;
         text-align: center;
+        width: 137.5%;
+
+        &::before { content: '\201C'; }
+        &::after  { content: '\201D'; }
+      }
+
+      .member-description {
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 23px;
         color: $dark-text;
-        line-height: 28px;
-        width: 90%;
-        margin: auto;
-        margin-top: 30px;
+        margin-top: 18px;
+        margin-left: -10.5%;
+        text-align: center;
+        width: 121%;
+
+        br {
+          display: block;
+          content: "";
+          margin-top: 14px;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .Members_component .inner-circle {
-    .inner-content {
-      
-      .member-description {
-        width: 90%;
-      }
-      .member-quote {
-        //width: 45vw;
-        width: 85vh;
-        line-height: 22px;
-      }
-      .member-description {
-        //width: 38vw;
-        width: 75vh;
-        line-height: 20px;
-      }
-
-    }}
-}
-
-@media screen and (max-width: 1439px) {
-  .Members_component .inner-circle {
-    .inner-content {
-      
-      .member-description {
-        width: 90%;
-      }
-      .member-quote {
-        //width: 45vw;
-        width: 85vh;
-        line-height: 22px;
-      }
-      .member-description {
-        //width: 38vw;
-        width: 75vh;
-        line-height: 20px;
-      }
-      .member-quote {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 15px;
-        text-align: center;
-        color: $primary-red;
-        line-height: 28px;
-        margin: auto;
-        margin-top: 30px;
-        width: 90%;
-      }
-      .member-description {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        text-align: center;
-        color: $dark-text;
-        line-height: 28px;
-        width: 90%;
-        margin: auto;
-        margin-top: 30px;
-      }
-    }
-  }
-}
-
+// ─── 1919px + ──────────────────────────────────────────────────────────────
 @media screen and (min-width: 1919px) {
   .Members_component {
-    @mixin on-circle($item-count, $circle-size, $item-size, $single) {
+    @mixin on-circle($item-count, $circle-size, $item-size) {
       position: relative;
-      width: $circle-size;
+      width:  $circle-size;
       height: $circle-size;
       padding: 0;
       border-radius: 50%;
       list-style: none;
 
-      > * {
+      > li {
         display: block;
         position: absolute;
-        top: 50%;
+        top:  50%;
         left: 50%;
-        width: $item-size;
+        width:  $item-size;
         height: $item-size;
         margin: -($item-size / 2);
-
-        $angle: (360 / 14);
-        $rot: 0;
-
-        @for $i from 1 through $item-count {
-          &:nth-of-type(#{$i}) {
-            @if $i == 1 {
-              transform: rotate(220deg)
-                translate($circle-size / 1.9)
-                rotate(-220deg);
-            } @else {
-              transform: rotate($rot * 1deg)
-                translate($circle-size / 1.9)
-                rotate($rot * -1deg);
-            }
-          }
-          $rot: $rot + 21;
-        }
-        @for $i from 1 through $item-count {
-          &:nth-of-type(5) {
-            transform: rotate($rot * 1deg)
-              translate($circle-size / 1.9)
-              rotate($rot * -1deg);
-          }
-          $rot: $rot + $angle;
-        }
       }
     }
+
     .circle-container {
-      @include on-circle(
-        $item-count: 10,
-        $circle-size: 96vh,
-        $item-size: 6em,
-        $single: 1
-      );
-      margin: auto;
-      border: solid 2px $background-line;
-      position: relative;
-       margin-bottom: 100px;
+      @include on-circle($item-count: 6, $circle-size: 105vh, $item-size: 88px);
+
+      > li:nth-of-type(1) { transform: rotate(210deg) translate(52.5vh) rotate(-210deg); }
+      > li:nth-of-type(2) { transform: rotate(0deg)   translate(52.5vh) rotate(0deg);   }
+      > li:nth-of-type(3) { transform: rotate(20deg)  translate(52.5vh) rotate(-20deg); }
+      > li:nth-of-type(4) { transform: rotate(40deg)  translate(52.5vh) rotate(-40deg); }
+      > li:nth-of-type(5) { transform: rotate(60deg)  translate(52.5vh) rotate(-60deg); }
+
       img {
-        display: block;
-        max-width: 100%;
-        border-radius: 50%;
-        border: solid 2px $background-line;
-        transition: 0.15s;
-        height: 100px;
-        width: 100px;
-        background: $background-line;
-        object-fit: cover;
+        width: 88px;
+        height: 88px;
       }
     }
+
     .inner-circle {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 240px;
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      .inner-content {
-        display: block;
-        padding-left: 25%;
-        padding-right: 25%;
+      width: min(751px, 67vh);
+
+      .member-detail {
+        overflow: visible;
+
         .inner-circle-main {
-          height: 65%;
-          border-radius: 50%;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          img {
-            height: 20vh;
-            border-radius: 50%;
-            width: 20vh;
-            border: 3px solid #e7c694;
-            object-fit: cover;
+          > img {
+            width: 162px;
+            height: 162px;
           }
-          
           .linked {
-          border: none;
-          position: absolute;
-          height: 55px;
-          width: 55px;
-          margin-top: 160px;
-          margin-left: -60px;
-          cursor: pointer;
+            width: 40px;
+            height: 40px;
+          }
         }
-        }
-        .member-name {
-          font-size: 33px;
-          line-height: 45px;
-          margin-top: 100px;
 
+        .member-name        { font-size: 26px; margin-top: 18px; font-weight: 400; }
+        .member-designation { font-size: 22px; }
+        .member-quote       {
+          font-size: 15px;
+          line-height: 25px;
+          font-style: normal;
+          font-weight: 300;
+          margin: 30px auto 0;
+          text-align: center;
+          width: 100%;
         }
-        .member-designation {
-          font-size: 30px;
-          line-height: 40px;
-          margin-top: 0;
-
+        .member-description {
+          font-size: 14px;
+          line-height: 23px;
+          text-align: center;
         }
-        .member-quote {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 15px;
-        text-align: center;
-        color: $primary-red;
-        line-height: 28px;
-        margin: auto;
-        margin-top: 30px;
-        width: 90%;
-      }
-      .member-description {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        text-align: center;
-        color: $dark-text;
-        line-height: 28px;
-        width: 90%;
-        margin: auto;
-        margin-top: 30px;
-      }
       }
     }
   }

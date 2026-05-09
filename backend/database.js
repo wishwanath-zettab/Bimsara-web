@@ -108,7 +108,7 @@ function initializeDatabase() {
       const hasDescription1 = columns.some(col => col.name === 'description1');
       const hasDescription2 = columns.some(col => col.name === 'description2');
       const hasLinkedinUrl = columns.some(col => col.name === 'linkedin_url');
-      
+
       if (!hasDescription1) {
         db.run("ALTER TABLE team_members ADD COLUMN description1 TEXT", (err) => {
           if (err) {
@@ -118,7 +118,7 @@ function initializeDatabase() {
           }
         });
       }
-      
+
       if (!hasDescription2) {
         db.run("ALTER TABLE team_members ADD COLUMN description2 TEXT", (err) => {
           if (err) {

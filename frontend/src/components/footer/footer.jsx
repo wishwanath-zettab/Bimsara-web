@@ -112,15 +112,11 @@ const Footer = () => {
         ))}
         <section className="footer-group">
           <div className="hed">Downloads</div>
-          {companyProfileUrl && ["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
-            <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>
-              {label}
-            </a>
+          {["Seller's Checklist", "Buyer's Checklist", "Landlord's Checklist", "Tenant's Checklist"].map((label) => (
+            companyProfileUrl
+              ? <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>{label}</a>
+              : <span className="sub footer-link" key={label}>{label}</span>
           ))}
-
-
-
-          
         </section>
         
 

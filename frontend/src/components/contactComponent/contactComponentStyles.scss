@@ -2,8 +2,7 @@
 
 .contactComponent {
   width: 62%;
-  margin: 9% 17%;
-  margin-bottom: 10vh;
+  margin: 9% 17% 10vh;
 
   .contact-header {
     font-family: "Lato";
@@ -259,12 +258,11 @@
   }
 }
 
+
 @media screen and (min-width: 1919px) {
   .contactComponent {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
+    width: 90%;
+    padding-left: 5vh;
 
     .contact-header {
       font-size: 60px;
@@ -279,12 +277,13 @@
     .contact-content-container {
       display: flex;
       width: 100%;
+      max-width: none;
       margin-top: 5%;
       justify-content: space-between;
       align-items: flex-start;
 
       .left-content {
-        width: 45%;
+        width: 50%;
         flex-shrink: 0;
 
         .wa {
