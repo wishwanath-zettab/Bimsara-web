@@ -24,27 +24,17 @@
 
     .AboutContentOne {
       .AboutContentOne-inner {
-        background-image: url("../../assets/images/coffeimg.webp");
-        height: 95vh;
-        background-repeat: no-repeat;
-        width: 100%;
-        background-size: cover;
-        background-position: bottom;
         position: relative;
+        height: 95vh;
+        width: 100%;
+        overflow: hidden;
 
-        .logo-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding-top: 3%;
-          padding-left: 8%;
-          z-index: 10;
-
-          .logo {
-            height: 42px;
-            width: 160px;
-            cursor: pointer;
-          }
+        .about-hero-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: bottom;
+          display: block;
         }
       }
 
@@ -147,7 +137,7 @@
     width: 85%;
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 5%;
+    padding-top: 3.61%;
     padding-left: 0;
     height: max-content;
 
@@ -155,10 +145,11 @@
       color: $primary-blue;
       font-family: "Lato";
       font-size: 25px;
+      font-weight: 400;
       letter-spacing: 0.6em;
       text-transform: uppercase;
       text-align: left;
-      
+
     }
 
     .inner-who {
@@ -167,16 +158,16 @@
       width: 100%;
 
       .about-content-two-left {
-        width: 80%;
+        width: 60%;
 
         .bottom-left-container {
-          width: 95%;
+          width: 100%;
           height: 70%;
-          padding-right: 10%;
+          padding-right: 5%;
           margin-top: 3%;
 
           .button-container {
-            margin-top: 40px;
+            margin-top: 61px;
           }
 
           .heder-content {
@@ -184,8 +175,10 @@
             font-style: normal;
             font-weight: 700;
             font-size: 36px;
+            line-height: #{"clamp(1.2, 0.5vw + 1.05, 1.3)"};
             color: $text;
-            text-align: left;
+            text-align: justify;
+            text-align-last: left;
             margin-right: 2vw;
           }
 
@@ -196,7 +189,6 @@
             font-weight: 400;
             line-height: 29px;
             text-align: justify;
-            text-align-last: left;
             margin-top: 30px;
           }
 
@@ -207,18 +199,19 @@
             font-size: 18px;
             line-height: 29px;
             text-align: justify;
-            text-align-last: left;
             margin-top: 30px;
           }
         }
       }
 
       .about-content-two-right {
-        width: 46%;
+        width: 35%;
         margin-top: 3%;
 
         img {
-          width: 70%;
+          max-height: 110px;
+          width: auto;
+          object-fit: contain;
         }
 
         .real-estate-header {
@@ -693,8 +686,7 @@
         width: 100%;
 
         .AboutContentOne-inner {
-          height: 50vh;
-          background-position-x: left;
+          height: 60vh;
         }
 
         .top-container {
@@ -1104,22 +1096,7 @@
         width: 100%;
 
         .AboutContentOne-inner {
-          height: 50vh;
-          position: relative;
-
-          .logo-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-top: 5%;
-            z-index: 10;
-
-            .logo {
-              height: auto;
-              width: 200px;
-              cursor: pointer;
-            }
-          }
+          height: 60vh;
         }
 
         .top-container {
@@ -1803,27 +1780,7 @@
 
       .AboutContentOne {
         .AboutContentOne-inner {
-          background-image: url("../../assets/images/coffeimg.webp");
-          height: 80vh;
-          background-repeat: no-repeat;
-          width: 100%;
-          background-position: center;
-          position: relative;
-
-          .logo-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-top: 35px;
-            padding-left: 63px;
-            z-index: 10;
-
-            .logo {
-              width: 270px;
-              height: 73px;
-              cursor: pointer;
-            }
-          }
+          height: 95vh;
         }
 
         .top-container {
@@ -1901,14 +1858,9 @@
 
     .AboutContentTwo {
       width: 90%;
-      padding-top: 100px;
-      padding-left: 99px;
       padding-bottom: 5%;
 
       .who-header {
-        font-size: 30px;
-        line-height: 45px;
-        letter-spacing: 1em;
         text-align: left;
         display: block;
       }
@@ -1916,42 +1868,25 @@
       .inner-who {
         .about-content-two-left {
           .bottom-left-container {
-            margin-top: 82px;
-
             .button-container {
-              margin-top: 61px;
               margin-left: 24px;
             }
 
             .heder-content {
-              font-size: 50px;
-              line-height: 60px;
-              text-align: left;
             }
 
             .sub-content {
-              font-size: 30px;
-              line-height: 50px;
               margin-top: 39px;
-              text-align: left;
             }
 
             .sub-content-two {
-              font-size: 30px;
-              line-height: 50px;
               margin-top: 36px;
-              text-align: left;
             }
           }
         }
 
         .about-content-two-right {
           padding-top: 5%;
-
-          img {
-            width: 539px;
-            height: 150.98px;
-          }
 
           .real-estate-header {
             font-size: 48px;
@@ -2248,7 +2183,7 @@
       }
     }
   }
-    
+
 }
 
 
@@ -2278,27 +2213,7 @@
 
       .AboutContentOne {
         .AboutContentOne-inner {
-          background-image: url("../../assets/images/coffeimg.webp");
-          height: 80vh;
-          background-repeat: no-repeat;
-          width: 100%;
-          background-position: center;
-          position: relative;
-
-          .logo-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-top: 35px;
-            padding-left: 63px;
-            z-index: 10;
-
-            .logo {
-              width: 270px;
-              height: 73px;
-              cursor: pointer;
-            }
-          }
+          height: 95vh;
         }
 
         .top-container {
@@ -2376,14 +2291,9 @@
 
     .AboutContentTwo {
       width: 90%;
-      padding-top: 100px;
-      padding-left: 99px;
       padding-bottom: 5%;
 
       .who-header {
-        font-size: 30px;
-        line-height: 45px;
-        letter-spacing: 1em;
         text-align: left;
         display: block;
       }
@@ -2391,42 +2301,25 @@
       .inner-who {
         .about-content-two-left {
           .bottom-left-container {
-            margin-top: 82px;
-
             .button-container {
-              margin-top: 61px;
               margin-left: 24px;
             }
 
             .heder-content {
-              font-size: 50px;
-              line-height: 60px;
-              text-align: left;
             }
 
             .sub-content {
-              font-size: 30px;
-              line-height: 50px;
               margin-top: 39px;
-              text-align: left;
             }
 
             .sub-content-two {
-              font-size: 30px;
-              line-height: 50px;
               margin-top: 36px;
-              text-align: left;
             }
           }
         }
 
         .about-content-two-right {
           padding-top: 5%;
-
-          img {
-            width: 539px;
-            height: 150.98px;
-          }
 
           .real-estate-header {
             font-size: 48px;
