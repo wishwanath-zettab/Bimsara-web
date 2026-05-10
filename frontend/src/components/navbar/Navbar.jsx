@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import hamburger1 from "../../assets/images/Bimsara Real Estate - Hamburger 1.webp";
+import hamburger2 from "../../assets/images/Bimsara Real Estate - Hamburger 2.webp";
 import img from "../../assets/images/Bimsara Real Estate - Sellers Icon.webp";
 import buyer from "../../assets/images/Bimsara Real Estate - Buyers Icon.webp";
 import img2 from "../../assets/images/Bimsara Real Estate - Landlords Icon.webp";
@@ -52,6 +54,9 @@ const NavAction = ({ children, className = "hover-red", id, onClick }) => (
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const [openFlyout, setOpenFlyout] = useState(null);
   const [companyProfilePath, setCompanyProfilePath] = useState(null);
 
   useEffect(() => {
@@ -63,9 +68,21 @@ const Navbar = () => {
         setCompanyProfilePath(null);
       }
     };
-
     fetchCompanyProfilePath();
   }, []);
+
+  const closeNav = () => {
+    setClosing(true);
+    setOpenFlyout(null);
+    setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 500);
+  };
+
+  const toggleFlyout = (name) => {
+    setOpenFlyout(prev => prev === name ? null : name);
+  };
 
   const companyProfileUrl = companyProfilePath
     ? `http://localhost:5000${companyProfilePath}`
@@ -77,7 +94,7 @@ const Navbar = () => {
     <div className="service-cont">
       <div className="div-c">
         {serviceLinks.map((item) => (
-          <button type="button" className="service-layout text-button" onClick={() => navigateAndScroll(navigate, item.path)} key={item.path}>
+          <button type="button" className="service-layout text-button" onClick={() => { closeNav(); navigateAndScroll(navigate, item.path); }} key={item.path}>
             <div className="img-cont">
               <img alt="" src={item.icon} />
             </div>
@@ -93,7 +110,7 @@ const Navbar = () => {
         <div className="hdr-t">Read the Guides</div>
         {guideLinks.map((item) => (
           <div className="sub-2" key={item.target}>
-            <NavAction onClick={() => navigateAndScroll(navigate, item.path, item.target)}>
+            <NavAction onClick={() => { closeNav(); navigateAndScroll(navigate, item.path, item.target); }}>
               {item.label}
             </NavAction>
           </div>
@@ -110,7 +127,7 @@ const Navbar = () => {
             type="button"
             className="service-layout text-button"
             key={item.target}
-            onClick={() => navigateAndScroll(navigate, "/about", item.target, 120)}
+            onClick={() => { closeNav(); navigateAndScroll(navigate, "/about", item.target, 120); }}
           >
             <div className="text">
               <div className="head hover-red" id={item.id}>{item.label}</div>
@@ -136,13 +153,13 @@ const Navbar = () => {
   const contactPanel = (
     <div className="service-cont">
       <div className="div-c">
-        <button type="button" className="service-layout text-button" onClick={() => navigateAndScroll(navigate, "/", "home-contact", 420)}>
+        <button type="button" className="service-layout text-button" onClick={() => { closeNav(); navigateAndScroll(navigate, "/", "home-contact", 420); }}>
           <div className="text">
             <div className="head hover-red">Contact Us</div>
             <div className="sub">Contact the divisions</div>
           </div>
         </button>
-        <button type="button" className="service-layout text-button" onClick={() => navigateAndScroll(navigate, "/", "home-location", 420)}>
+        <button type="button" className="service-layout text-button" onClick={() => { closeNav(); navigateAndScroll(navigate, "/", "home-location", 420); }}>
           <div className="text">
             <div className="head hover-red">Our Location</div>
             <div className="sub">Meet at office</div>
@@ -165,43 +182,58 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="Nav-bar" aria-label="Primary navigation">
-      <div className="overlayer" />
-      <div className="main-nav">
-        <div className="nav">
-          <div className="homeNav">
-            <div className="rotate">
-              <Link to="/" className={`hover-red ${location.pathname === "/" ? "active" : ""}`} id="NavHome">Home</Link>
+    <>
+      {/* Mobile hamburger button — toggles nav open/close */}
+      <button
+        className="nav-hamburger-btn"
+        onClick={() => { if (open || closing) closeNav(); else { setOpen(true); setOpenFlyout(null); } }}
+        aria-label="Toggle navigation"
+      >
+        <img src={hamburger1} alt="Menu" className="ham-img-1" />
+        <img src={hamburger2} alt="Menu" className="ham-img-2" />
+      </button>
+
+      <nav className={`Nav-bar${(open || closing) ? ' nav-open' : ''}${closing ? ' nav-closing' : ''}`} aria-label="Primary navigation">
+        <div className="overlayer" onClick={closeNav} />
+        <div className="main-nav">
+          <div className="nav">
+            <div className="homeNav">
+              <div className="rotate">
+                <Link to="/" onClick={closeNav} className={`hover-red ${location.pathname === "/" ? "active" : ""}`} id="NavHome">Home</Link>
+              </div>
             </div>
-          </div>
-          <div className="servicesNav">
-            <div className="rotate">
-              <NavAction id="NavServices" className={serviceActive ? "hover-red active" : "hover-red"}>Services</NavAction>
+            <div className={`servicesNav nav-item-has-flyout${openFlyout === 'services' ? ' flyout-open' : ''}`}
+              onClick={() => toggleFlyout('services')}>
+              <div className="rotate">
+                <NavAction id="NavServices" className={serviceActive ? "hover-red active" : "hover-red"}>Services</NavAction>
+              </div>
+              <div className="hovercontent">{servicesPanel}</div>
             </div>
-            <div className="hovercontent">{servicesPanel}</div>
-          </div>
-          <div className="testimonialsNav">
-            <div className="rotate">
-              <NavAction onClick={() => navigateAndScroll(navigate, "/", "home-testimonials", 320)}>
-                Testimonials
-              </NavAction>
+            <div className="testimonialsNav">
+              <div className="rotate">
+                <NavAction onClick={() => { closeNav(); navigateAndScroll(navigate, "/", "home-testimonials", 320); }}>
+                  Testimonials
+                </NavAction>
+              </div>
             </div>
-          </div>
-          <div className="aboutNav">
-            <div className="rotate">
-              <Link to="/about" className={`hover-red ${location.pathname === "/about" ? "active" : ""}`} id="NavAbout">About</Link>
+            <div className={`aboutNav nav-item-has-flyout${openFlyout === 'about' ? ' flyout-open' : ''}`}
+              onClick={() => toggleFlyout('about')}>
+              <div className="rotate">
+                <Link to="/about" onClick={closeNav} className={`hover-red ${location.pathname === "/about" ? "active" : ""}`} id="NavAbout">About</Link>
+              </div>
+              <div className="hovercontent-2">{aboutPanel}</div>
             </div>
-            <div className="hovercontent-2">{aboutPanel}</div>
-          </div>
-          <div className="contactNav">
-            <div className="rotate">
-              <NavAction>Contact</NavAction>
+            <div className={`contactNav nav-item-has-flyout${openFlyout === 'contact' ? ' flyout-open' : ''}`}
+              onClick={() => toggleFlyout('contact')}>
+              <div className="rotate">
+                <NavAction>Contact</NavAction>
+              </div>
+              <div className="hovercontent-3">{contactPanel}</div>
             </div>
-            <div className="hovercontent-3">{contactPanel}</div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

@@ -17,13 +17,10 @@ import SellerCard from "../../../components/sellerCard/sellerCard";
 import Collapsible from "../../../components/collapsible/collapsible";
 import ContactModal from "../../../components/modal/contactModal/contactModal";
 import Footer from "../../../components/footer/footer";
-import HamburgerIcon from "../../../components/hamburgerIcon/hamburgerIcon";
-import Sidebar from "../../../components/sidebar/sidebar";
 import GradientModal from "../../../components/modal/gradientModal/gradientModal";
 const Buyers = () => {
   const [selected, setSelected] = useState(1);
   const [contactModal, setContactModal] = useState(false);
-  const [sidebar, setSidebar] = useState(false);
   const [modal, setModal] = useState(false);
   const [num, setNum] = useState(1);
   const [commissionRate, setCommissionRate] = useState('3%');
@@ -165,25 +162,8 @@ const Buyers = () => {
   };
   return (
     <div className="buyers">
-      {sidebar ? <Sidebar setSidebar={setSidebar} /> : ""}
-      <div className="buyers-background" id="buyers"
-        onClick={() => {
-          let element = document.getElementById('sidee');
-          if (element) {
-            element.style.right = "0";
-            element.style.animation = "slideout 1s backwards";
-            setTimeout(() => {
-              setSidebar(false);
-            }, 500);
-          }
-        }}
-      >
-        <div className="ham-bar-div">
-          <HamburgerIcon setSidebar={setSidebar} sidebar={sidebar} />
-        </div>
-        <div className="nav-bar-div">
-          <Navbar nav="services" />
-        </div>
+      <Navbar />
+      <div className="buyers-background" id="buyers">
         <div className="logo-container">
           <img alt="" src={logo} className="logo" onClick={() => window.open("/", "_self")} style={{ cursor: "pointer" }} />
         </div>

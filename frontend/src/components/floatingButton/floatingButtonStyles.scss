@@ -1,0 +1,94 @@
+@import "../../colors.scss";
+
+.floating-button {
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 15vw;
+  bottom: 2vh;
+  z-index: 2;
+
+  .fb-iso {
+    margin-top: 10px;
+    height: 50px;
+    margin-right: 2vw;
+  }
+
+  .fb-safetynet {
+    margin-top: 10px;
+    height: 50px;
+    margin-right: 2vw;
+  }
+
+  .fb-circle {
+    position: relative;
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .floating-button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .floating-button {
+    width: auto;
+    right: 5vw;
+    bottom: 3vh;
+
+    .fb-iso {
+      margin-top: 10px;
+      height: 50px;
+      margin-right: 2vw;
+    }
+
+    .fb-safetynet {
+      margin-top: 10px;
+      height: 50px;
+      margin-right: 2vw;
+    }
+
+    .fb-circle {
+      width: 8vw;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1199px) {
+  .floating-button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1918px) {
+  .floating-button {
+    width: auto;
+    right: 15vw;
+    bottom: 3vh;
+
+    .fb-circle {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .floating-button {
+    width: auto;
+    right: 15vw;
+    bottom: 3vh;
+
+    .fb-circle {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}

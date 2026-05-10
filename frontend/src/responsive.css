@@ -213,7 +213,6 @@
 }
 
 @media screen and (max-width: 1199px) {
-  .Nav-bar,
   .nav-bar-div,
   .about-nav-bar,
   .right-bar-div,
@@ -225,12 +224,104 @@
     display: none !important;
   }
 
-  .ham-bar-div {
+  .nav-hamburger-btn {
     display: block !important;
   }
 
   .hamburgerIcon {
     z-index: 35 !important;
+  }
+
+  /* Self-managing mobile nav */
+  .Nav-bar .main-nav {
+    width: 80px !important;
+    z-index: 65 !important;
+    background: #f7faff !important;
+    transform: translateX(100%);
+    transition: none;
+  }
+
+  .Nav-bar.nav-open .main-nav {
+    animation: navMobileIn 0.5s ease both;
+  }
+
+  .Nav-bar.nav-closing .main-nav {
+    animation: navMobileOut 0.5s ease both;
+  }
+
+  @keyframes navMobileIn {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes navMobileOut {
+    from { transform: translateX(0); }
+    to   { transform: translateX(100%); }
+  }
+
+  .Nav-bar.nav-open .overlayer {
+    display: block !important;
+  }
+
+  /* Mobile nav item sizing */
+  .Nav-bar .main-nav .nav {
+    padding-top: 100px !important;
+  }
+
+  .Nav-bar .main-nav .nav .homeNav,
+  .Nav-bar .main-nav .nav .servicesNav,
+  .Nav-bar .main-nav .nav .testimonialsNav,
+  .Nav-bar .main-nav .nav .aboutNav,
+  .Nav-bar .main-nav .nav .contactNav {
+    width: 80px !important;
+  }
+
+  .Nav-bar .main-nav .nav .rotate {
+    font-size: 21px !important;
+    white-space: nowrap !important;
+  }
+
+  .Nav-bar .main-nav .nav .rotate * {
+    white-space: nowrap !important;
+  }
+
+  .Nav-bar .main-nav .nav .homeNav {
+    padding-bottom: 2.5vh !important;
+  }
+  .Nav-bar .main-nav .nav .homeNav .rotate {
+    margin-top: 44px !important;
+  }
+  .Nav-bar .main-nav .nav .servicesNav {
+    padding-bottom: 2.5vh !important;
+  }
+  .Nav-bar .main-nav .nav .servicesNav .rotate {
+    margin-top: 34px !important;
+  }
+  .Nav-bar .main-nav .nav .testimonialsNav {
+    padding-bottom: 2.5vh !important;
+  }
+  .Nav-bar .main-nav .nav .testimonialsNav .rotate {
+    margin-top: 44px !important;
+  }
+  .Nav-bar .main-nav .nav .aboutNav {
+    padding-bottom: 2.5vh !important;
+  }
+  .Nav-bar .main-nav .nav .aboutNav .rotate {
+    margin-top: 48px !important;
+  }
+  .Nav-bar .main-nav .nav .contactNav {
+    padding-bottom: 2vh !important;
+  }
+  .Nav-bar .main-nav .nav .contactNav .rotate {
+    margin-top: 32px !important;
+  }
+
+  /* Flyout panels on mobile: keep absolute position relative to main-nav */
+  .Nav-bar .main-nav .hovercontent,
+  .Nav-bar .main-nav .hovercontent-2,
+  .Nav-bar .main-nav .hovercontent-3 {
+    right: 80px !important;
+    z-index: 66;
   }
 
   .mobile-nav-backdrop {
@@ -519,7 +610,7 @@
     padding: 0 var(--page-gutter) !important;
     font-size: clamp(28px, 8vw, 44px) !important;
     line-height: 1.18 !important;
-    text-align: left !important;
+    text-align: center !important;
   }
 
   .Services .topper-image .bg {
@@ -901,13 +992,13 @@
     padding-bottom: 0 !important;
   }
 
+  .Services .top-bottom-container {
+    margin-top: 25% !important;
+  }
+
   .Services .header-text {
     margin-top: 22px !important;
     padding-right: 72px !important;
-  }
-
-  .Services .top-bottom-container {
-    margin-top: 24px !important;
   }
 
   .Services .topper-container {
@@ -945,43 +1036,38 @@
   }
 
   .Services .topper-text .want {
-    display: block !important;
-    margin: 0 0 22px !important;
-    font-size: clamp(30px, 9vw, 44px) !important;
-    line-height: 1.05 !important;
-    color: #fff !important;
+    display: none !important;
   }
 
   .Services .topper-text .want-content {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 18px 20px !important;
+    grid-template-columns: auto !important;
+    padding-left: 10% !important;
+    padding-top: 8vh !important;
+    gap: 0 !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0 !important;
   }
 
   .Services .topper-text .want-inner {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 24px;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    margin: 0 !important;
-    font-size: clamp(20px, 6.2vw, 30px) !important;
-    line-height: 1.18 !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 22px !important;
+    line-height: 1.2 !important;
   }
 
   .Services .topper-text .want-inner a {
     color: #fff !important;
-    overflow-wrap: anywhere;
+    text-decoration: none !important;
   }
 
   .Services .topper-text .want-inner .arrow {
-    width: clamp(18px, 5vw, 26px) !important;
-    height: clamp(18px, 5vw, 26px) !important;
-    margin: 0 !important;
-    justify-self: end;
+    width: 22px !important;
+    height: 22px !important;
+    align-self: center !important;
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+    flex-shrink: 0;
   }
 
   .Services .topper-image {
@@ -1368,8 +1454,7 @@
   }
 
   .Services .topper-text .want-inner {
-    grid-template-columns: minmax(0, 1fr) 18px;
-    font-size: clamp(19px, 6.5vw, 27px) !important;
+    font-size: 20px !important;
   }
 
   .Services .topper-image .bg {
@@ -2085,8 +2170,14 @@
 /* Final desktop/laptop QA corrections from full viewport audit. */
 @media screen and (min-width: 1200px) {
   .ham-bar-div,
-  .hamburgerIcon {
+  .hamburgerIcon,
+  .nav-hamburger-btn {
     display: none !important;
+  }
+
+  .Nav-bar .main-nav {
+    transform: translateX(0) !important;
+    animation: none !important;
   }
 
   .Nav-bar,

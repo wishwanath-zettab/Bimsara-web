@@ -42,11 +42,17 @@ const MemberCard = () => {
       } catch (error) {
         setData(fallbackData);
       }
-      showDivs(slideIndex);
     };
 
     fetchMembers();
   }, []);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      slideIndex = 1;
+      showDivs(slideIndex);
+    }
+  }, [data]);
   const showDivs = (n) => {
     var i;
     var x = document.getElementsByClassName("mySlides");

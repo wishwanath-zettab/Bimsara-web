@@ -16,8 +16,6 @@ import GradientModal from "../../../components/modal/gradientModal/gradientModal
 import Collapsible from "../../../components/collapsible/collapsible";
 import ContactModal from "../../../components/modal/contactModal/contactModal";
 import Footer from "../../../components/footer/footer";
-import HamburgerIcon from "../../../components/hamburgerIcon/hamburgerIcon";
-import Sidebar from "../../../components/sidebar/sidebar";
 const Landlords = () => {
   const [selected, setSelected] = useState(1);
   const [modal, setModal] = useState(false);
@@ -26,7 +24,6 @@ const Landlords = () => {
   const [nextNum, setNextNum] = useState(null);
   const [isSwitching, setIsSwitching] = useState(false);
   const [contactModal, setContactModal] = useState(false);
-  const [sidebar, setSidebar] = useState(false);
 
   // Handle popup switching when clicking different button while modal is open
   useEffect(() => {
@@ -194,25 +191,8 @@ const Landlords = () => {
   };
   return (
     <div className="landlords">
-      {sidebar ? <Sidebar setSidebar={setSidebar} /> : ""}
-      <div className="landlords-background" id="landlords"
-        onClick={() => {
-          let element = document.getElementById('sidee');
-          if (element) {
-            element.style.right = "0";
-            element.style.animation = "slideout 1s backwards";
-            setTimeout(() => {
-              setSidebar(false);
-            }, 500);
-          }
-        }}
-      >
-        <div className="ham-bar-div">
-          <HamburgerIcon setSidebar={setSidebar} sidebar={sidebar} />
-        </div>
-        <div className="nav-bar-div">
-          <Navbar nav="services" />
-        </div>
+      <Navbar />
+      <div className="landlords-background" id="landlords">
         <div className="logo-container">
           <img alt="" src={logo} className="logo" onClick={() => window.open("/", "_self")} style={{ cursor: "pointer" }} />
         </div>

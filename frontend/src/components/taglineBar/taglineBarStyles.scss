@@ -1,0 +1,92 @@
+@import "../../colors.scss";
+
+.tagline-bar {
+  width: 100%;
+  display: flex;
+  margin-top: 2.5%;
+  margin-bottom: 1.8%;
+  justify-content: center;
+
+  .tagline-item {
+    width: 26%;
+    color: $primary-red;
+    display: flex;
+    justify-content: center;
+    font-family: "Lato";
+    font-weight: 600;
+    font-style: italic;
+    font-size: 30px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tagline-bar {
+    display: block;
+    margin-top: 6%;
+
+    .tagline-item {
+      width: 100%;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 4%;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .tagline-bar {
+    width: 100%;
+    margin-top: 32px;
+    justify-content: center;
+
+    .tagline-item {
+      width: 26%;
+      font-size: 22px;
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1199px) {
+  .tagline-bar {
+    .tagline-item {
+      width: 26%;
+      font-size: 26px;
+      line-height: 38px;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1918px) {
+  .tagline-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .tagline-item {
+      width: 26%;
+      font-size: 30px;
+      line-height: 60px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1919px) {
+  .tagline-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .tagline-item {
+      width: 26%;
+      font-size: 40px;
+      line-height: 60px;
+      text-align: center;
+    }
+  }
+}

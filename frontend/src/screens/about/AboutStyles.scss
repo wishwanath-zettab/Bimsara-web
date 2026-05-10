@@ -1,4 +1,4 @@
-@import "../../colors.scss";
+﻿@import "../../colors.scss";
 
 .About {
   height: 100%;
@@ -56,7 +56,7 @@
         justify-content: center;
 
         .top-content {
-          flex: 0 0 auto;
+          width: 26%;
           color: $primary-red;
           display: flex;
           justify-content: center;
@@ -65,7 +65,6 @@
           font-style: italic;
           font-size: 30px;
           text-align: center;
-          padding: 0 30px;
 
           .iso {
             margin-top: 10px;
@@ -81,14 +80,14 @@
 
           .circle {
             position: relative;
-            height: 60px;
-            width: 60px;
+            height: 48px;
+            width: 48px;
           }
 
           .arrow {
             position: absolute;
-            height: 30px;
-            width: 30px;
+            height: 24px;
+            width: 24px;
             margin-top: 16px;
           }
         }
@@ -120,14 +119,14 @@
 
           .circle {
             position: relative;
-            height: 60px;
-            width: 60px;
+            height: 48px;
+            width: 48px;
           }
 
           .arrow {
             position: absolute;
-            height: 30px;
-            width: 30px;
+            height: 24px;
+            width: 24px;
             margin-top: 16px;
           }
         }
@@ -704,8 +703,9 @@
 
           .top-content {
             width: 100%;
+            font-size: 18px;
+            text-align: center;
             margin-bottom: 4%;
-            font-size: 25px;
           }
 
           .top-content-arrow {
@@ -1123,15 +1123,14 @@
         }
 
         .top-container {
-          padding-left: 0;
-          width: 80%;
-          margin: auto;
+          width: 100%;
           margin-top: 32px;
+          justify-content: center;
 
           .top-content {
-            width: 100%;
-            margin-bottom: 4%;
-            font-size: 24px;
+            width: 26%;
+            font-size: 22px;
+            white-space: nowrap;
             display: flex;
             justify-content: center;
             text-align: center;
@@ -1155,7 +1154,7 @@
             }
 
             .circle {
-              width: 10vw;
+              width: 8vw;
               height: auto;
             }
           }
@@ -1497,10 +1496,9 @@
       .AboutContentOne {
         .top-container {
           .top-content {
-            width: 100%;
-            font-size: 24px;
+            width: 26%;
+            font-size: 26px;
             line-height: 38px;
-            padding: 0 18px;
           }
 
           .top-content-arrow {
@@ -1829,17 +1827,16 @@
         }
 
         .top-container {
-          margin-top: 99px;
-          width: 90%;
+
+          width: 100%;
           display: flex;
           justify-content: center;
 
           .top-content {
-            flex: 0 0 auto;
-            font-size: 40px;
+            width: 26%;
+            font-size: 30px;
             line-height: 60px;
             text-align: center;
-            padding: 0 40px;
 
             .iso {
               margin-top: 10px;
@@ -1869,22 +1866,28 @@
 
           .top-content-arrow {
             width: auto;
-            right: 5vw;
+            right: 15vw;
             bottom: 3vh;
 
             .iso {
               margin-top: 10px;
               height: 50px;
               margin-right: 2vw;
-            
+            }
+
+            .safetynet {
+              margin-top: 10px;
+              height: 50px;
+              margin-right: 2vw;
+            }
 
             .circle {
-                width: 100%;
-                max-width: 170px;
-                height: auto;
-                margin-bottom: 0;
+              height: 48px;
+              width: 48px;
             }
-      }}
+          }
+        }
+      }
     }
 
     .about-bottom-container {
@@ -2243,8 +2246,6 @@
           margin: auto;
         }
       }
-    }
-  }
     }
   }
     
@@ -2301,17 +2302,16 @@
         }
 
         .top-container {
-          margin-top: 99px;
-          width: 90%;
+
+          width: 100%;
           display: flex;
           justify-content: center;
 
           .top-content {
-            flex: 0 0 auto;
+            width: 26%;
             font-size: 40px;
             line-height: 60px;
             text-align: center;
-            padding: 0 40px;
 
             .iso {
               margin-top: 10px;
@@ -2341,22 +2341,28 @@
 
           .top-content-arrow {
             width: auto;
-            right: 5vw;
+            right: 15vw;
             bottom: 3vh;
 
             .iso {
               margin-top: 10px;
               height: 50px;
               margin-right: 2vw;
-            
+            }
+
+            .safetynet {
+              margin-top: 10px;
+              height: 50px;
+              margin-right: 2vw;
+            }
 
             .circle {
-                width: 100%;
-                max-width: 170px;
-                height: auto;
-                margin-bottom: 0;
+              height: 48px;
+              width: 48px;
             }
-      }}
+          }
+        }
+      }
     }
 
     .about-bottom-container {
@@ -2715,8 +2721,6 @@
           margin: auto;
         }
       }
-    }
-  }
     }
   }
 }

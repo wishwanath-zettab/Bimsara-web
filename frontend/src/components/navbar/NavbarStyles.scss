@@ -170,7 +170,8 @@
           }
         }
       }
-      .servicesNav:hover > .hovercontent {
+      .servicesNav:hover > .hovercontent,
+      .servicesNav.flyout-open > .hovercontent {
         display: block;
       }
       .servicesNav:hover {
@@ -322,7 +323,8 @@
           }
         }
       }
-      .aboutNav:hover > .hovercontent-2 {
+      .aboutNav:hover > .hovercontent-2,
+      .aboutNav.flyout-open > .hovercontent-2 {
         display: block;
       }
       .contactNav {
@@ -468,7 +470,8 @@
           }
         }
       }
-      .contactNav:hover > .hovercontent-3 {
+      .contactNav:hover > .hovercontent-3,
+      .contactNav.flyout-open > .hovercontent-3 {
         display: block;
       }
     }
@@ -806,6 +809,48 @@
 
 .hover-red:hover {
   color: red;
+}
+
+.nav-hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 50px;
+  right: 25.5px;
+  z-index: 70;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  .ham-img-1 {
+    width: 40px;
+    height: 20px;
+    display: block;
+  }
+  .ham-img-2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .nav-hamburger-btn {
+    .ham-img-1 {
+      display: none;
+    }
+    .ham-img-2 {
+      display: block;
+      width: 29px;
+      height: 16px;
+    }
+  }
+}
+
+.Nav-bar .overlayer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 64;
+  background: rgba(10, 15, 32, 0.28);
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1919px) {

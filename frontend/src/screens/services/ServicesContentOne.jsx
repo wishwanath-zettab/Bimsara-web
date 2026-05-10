@@ -1,16 +1,13 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import RateCard from "../../components/rateCard/RateCard";
+import TaglineBar from "../../components/taglineBar/TaglineBar";
 import "./ServicesStyles.scss";
 
 const ServicesContentOne = () => {
   return (
     <div className="ServicesContentTwo">
-      <div className="top-container">
-        <div className="top-content">Trusted Advisor</div>
-        <div className="top-content">Skilled Negotiator </div>
-        <div className="top-content">Expert Facilitator</div>
-      </div>
+      <TaglineBar />
       <div className="bottom-container">
         <div className="bottom-left-container">
           <div className="heder-content">
