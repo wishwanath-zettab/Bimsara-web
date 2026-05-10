@@ -355,14 +355,12 @@
         .button-grid-div{
           display: flex;
           justify-content: center;
-          width: 100%;
-          margin-top: 20px;
-        
+          width: 50%;
+          margin: 20px auto 0 auto;
+
         a {
-          
           text-decoration: none;
           width: 100%;
-          
         }
       }
       }
@@ -452,39 +450,39 @@
   }
 
   .service-img-container {
-    width: 80%;
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 40px;
 
     img {
-      width: 100vw;
+      width: 100%;
+      display: block;
     }
   }
 
   .ServicesContentFive {
-    width: 65%;
-    margin: 5% auto 9% auto;
-    background: linear-gradient(270deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.02) 127.96%);
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto 9% auto;
+    background: linear-gradient(90.16deg, hsla(0, 0%, 100%, 0.2) 0.93%, rgba(98, 134, 205, 0.153) 47.11%, hsla(0, 0%, 100%, 0.1) 99.86%);
     box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
     backdrop-filter: blur(60px);
     border-radius: 30px;
+    padding: 60px;
 
     .grid-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 32px;
       width: 100%;
-      padding: 10px;
-    }
-
-    .single-container {
-      display: none;
     }
   }
 
   .ServicesContentFiveMain {
-    .arrow-btn-container {
-      display: none;
-    }
+    width: 100%;
   }
 
   .ServicesContentSeven {
@@ -951,56 +949,12 @@
 
         .ServicesContentFive {
           width: 90%;
-          margin: auto;
-          margin-top: 10%;
-          margin-bottom: 10%;
+          padding: 24px;
+          margin: 10% auto;
 
           .grid-container {
-            display: none;
-          }
-
-          .single-container {
-            display: block;
-            width: 100%;
-          }
-        }
-
-        .ServicesContentFiveMain {
-          margin-bottom: 0;
-
-          .arrow-btn-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            .arrow-div-1 {
-              height: 50px;
-              width: 50px;
-              border: 0.5px solid $primary-blue;
-              margin-right: 10px;
-              display: flex;
-              justify-content: center;
-
-              img {
-                height: 16px;
-                align-self: center;
-              }
-            }
-
-            .arrow-div-2 {
-              height: 50px;
-              width: 50px;
-              border: 0.5px solid $primary-blue;
-              margin-left: 10px;
-              display: flex;
-              justify-content: center;
-
-              img {
-                height: 16px;
-                align-self: center;
-                transform: rotate(180deg);
-              }
-            }
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
         }
       }
@@ -1204,48 +1158,12 @@
 
         .ServicesContentFive {
           width: 90%;
-          margin: 9% 5%;
-          margin-top: 10%;
-          margin-bottom: 10%;
+          padding: 24px;
+          margin: 10% auto;
 
           .grid-container {
-            display: none;
-          }
-
-          .single-container {
-            display: block;
-            width: 100%;
-          }
-        }
-
-        .ServicesContentFiveMain {
-          .arrow-btn-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            .arrow-div-1 {
-              padding: 15px 30px;
-              border: 0.5px solid $primary-blue;
-              margin-right: 5vw;
-
-              img {
-                height: 18px;
-                align-self: center;
-              }
-            }
-
-            .arrow-div-2 {
-              padding: 15px 30px;
-              border: 0.5px solid $primary-blue;
-              margin-left: 10px;
-
-              img {
-                height: 18px;
-                align-self: center;
-                transform: rotate(180deg);
-              }
-            }
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
         }
 
@@ -1719,24 +1637,13 @@
         }
 
         .ServicesContentFive {
-          width: 65%;
+          width: 85%;
+          padding: 60px;
           margin: 5% auto 9% auto;
 
           .grid-container {
-            display: grid;
             grid-template-columns: 1fr 1fr;
-            width: 100%;
-            padding: 10px;
-          }
-
-          .single-container {
-            display: none;
-          }
-        }
-
-        .ServicesContentFiveMain {
-          .arrow-btn-container {
-            display: none;
+            gap: 32px;
           }
         }
 
@@ -2135,14 +2042,12 @@
           .button-grid-div{
           display: flex;
           justify-content: center;
-          width: 100%;
-          margin-top: 20px;
-        
+          width: 50%;
+          margin: 20px auto 0 auto;
+
         a {
-          
           text-decoration: none;
           width: 100%;
-          
         }
       }
         }
@@ -2252,30 +2157,14 @@
     }
 
     .ServicesContentFive {
-      width: 65%;
+      width: 85%;
+      max-width: none;
       margin: 5% auto 9% auto;
-      background: linear-gradient(270deg,
-          rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0.02) 127.96%);
-      box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
-      backdrop-filter: blur(60px);
-      border-radius: 30px;
+      padding: 60px;
 
       .grid-container {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-        width: 100%;
-        padding: 10px;
-      }
-
-      .single-container {
-        display: none;
-      }
-    }
-
-    .ServicesContentFiveMain {
-      .arrow-btn-container {
-        display: none;
+        gap: 32px;
       }
     }
 

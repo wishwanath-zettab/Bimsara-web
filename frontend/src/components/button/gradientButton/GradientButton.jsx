@@ -4,9 +4,10 @@ import "./GradientButtonStyles.scss";
 const GradientButton = (props) => {
   return (
     <div className="GradientButton">
-      <span>
-        {props.buttonText} <img alt="" src={rightArrow} />
-      </span>
+      <div className="GradientButton-inner">
+        <span>{props.buttonText}</span>
+        <img alt="" src={rightArrow} />
+      </div>
     </div>
   );
 };
