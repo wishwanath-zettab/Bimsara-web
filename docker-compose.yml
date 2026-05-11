@@ -8,6 +8,8 @@ services:
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
+      - DB_PATH=/app/data/bimsara_admin.db
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
     restart: unless-stopped
 
 volumes:

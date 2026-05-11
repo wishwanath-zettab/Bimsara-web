@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const fs = require('fs');
 
@@ -79,13 +80,21 @@ const authenticateToken = (req, res, next) => {
 app.post('/api/admin/login', (req, res) => {
   const { username, password } = req.body;
 
-  // Simple authentication (username: admin, password: admin)
-  if (username === 'admin' && password === 'admin') {
-    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
-    res.json({ token, message: 'Login successful' });
-  } else {
-    res.status(401).json({ error: 'Invalid credentials' });
-  }
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    bcrypt.compare(password, user.password_hash, (compareErr, match) => {
+      if (compareErr || !match) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+      const token = jwt.sign({ username: user.username, id: user.id }, JWT_SECRET, { expiresIn: '24h' });
+      res.json({ token, message: 'Login successful' });
+    });
+  });
 });
 
 // ============ CONTACT DETAILS ROUTES ============
