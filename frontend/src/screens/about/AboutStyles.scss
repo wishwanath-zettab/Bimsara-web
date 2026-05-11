@@ -36,6 +36,20 @@
           object-position: bottom;
           display: block;
         }
+
+        .logo-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding-left: 8%;
+          padding-top: 3%;
+          z-index: 10;
+
+          .logo {
+            height: 42px;
+            width: auto;
+          }
+        }
       }
 
       .top-container {
