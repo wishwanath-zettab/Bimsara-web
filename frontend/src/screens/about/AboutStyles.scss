@@ -207,6 +207,7 @@
       .about-content-two-right {
         width: 35%;
         margin-top: 3%;
+        padding-left: 5%;
 
         img {
           max-height: 110px;
@@ -269,25 +270,15 @@
 
   .AboutContentFour {
     width: 100%;
-    padding-top: 5%;
+    padding: 3.5% 4%;
     height: max-content;
-    padding-bottom: 5%;
-    background: linear-gradient($background-line 0 0) calc(2 * 100% / 3.5),
-      linear-gradient($background-line 0 0) calc(3 * 100% / 5.33),
-      linear-gradient($background-line 0 0) calc(4 * 100% / 6.2),
-      linear-gradient($background-line 0 0) calc(5 * 100% / 7.85),
-      linear-gradient($background-line 0 0) calc(6 * 100% / 8.45),
-      linear-gradient($background-line 0 0) calc(7 * 100% / 9.75),
-      linear-gradient($background-line 0 0) calc(8 * 100% / 10.2),
-      linear-gradient($background-line 0 0) calc(9 * 100% / 11.36),
-      linear-gradient($background-line 0 0) calc(10 * 100% / 11.6);
-    background-size: 1.5px 100%;
-    /* Control the width here*/
-    background-repeat: no-repeat;
-    background-color: black;
+    background-color: #0a0f20;
 
     .inner-content-four {
       display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 80px;
       width: 85%;
       max-width: 1200px;
       margin: 0 auto;
@@ -298,41 +289,33 @@
 
         .we-header {
           font-family: "Lato";
-          font-weight: normal;
+          font-weight: 400;
           font-size: 25px;
           text-transform: uppercase;
-          padding-left: 0;
-          display: flex;
-          justify-content: center;
+          letter-spacing: 0.6em;
+          line-height: 1.3;
+          margin-bottom: 24px;
           background: linear-gradient(180deg, #0f64fa -50.56%, #ffffff 178.33%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          letter-spacing: 0.6em;
-          line-height: 40px;
         }
 
         .bottom-left-container {
-          width: 80%;
-          max-width: 600px;
-          height: 70%;
+          width: 100%;
+          height: max-content;
           margin-top: 8%;
-          margin-left: auto;
-          margin-right: auto;
-          padding-left: 0;
-
-          .button-container {
-            margin-top: 40px;
-            margin-left: 20px;
-          }
 
           .heder-content {
             font-family: "Lato";
             font-style: normal;
             font-weight: 700;
             font-size: 36px;
-            color: $text;
+            line-height: 1.2;
             color: #dddddd;
+            text-align: left;
+            margin-bottom: 30px;
+            width: 76%;
           }
 
           .sub-content {
@@ -340,33 +323,29 @@
             font-style: normal;
             font-weight: 300;
             font-size: 18px;
-            line-height: 29px;
-            text-align: center; /* center the paragraph inside this block */
-            margin-top: 30px;
-            color: #dddddd;
+            line-height: 28.8px;
+            text-align: justify;
+            color: rgba(221, 221, 221, 0.8);
+            width: 89%;
           }
         }
       }
 
       .right-inner-content {
-        width: 25%;
-        min-width: 520px;
-        height: 620px;
-        position: relative;
+        flex: 1;
         display: flex;
-        align-items: center;
         justify-content: center;
-        overflow: hidden;
-        text-align: center;
-        padding: 20px 0;
+        align-items: center;
+        min-width: 0;
 
         .iso-image {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
+          width: 100%;
+          max-width: 340px;
           height: auto;
           object-fit: contain;
           display: block;
+          border-radius: 8px;
+          box-shadow: 0 20px 25px -5px rgba(0,0,0,0.4);
           cursor: pointer;
         }
 
@@ -375,7 +354,7 @@
           align-items: center;
           justify-content: center;
           width: 100%;
-          height: 100%;
+          max-width: 340px;
           padding: 24px;
           box-sizing: border-box;
           text-decoration: none;
@@ -390,62 +369,60 @@
   }
 
   .AboutContentFive {
-    width: 85%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding-top: 5%;
-    padding-left: 0;
-    height: max-content;
     padding-bottom: 5%;
+    height: max-content;
 
     .company-header {
       color: $primary-blue;
-      display: flex;
       font-family: "Lato";
       font-size: 25px;
+      font-weight: 400;
       letter-spacing: 0.6em;
       text-transform: uppercase;
+      padding-left: 5%;
     }
 
     .inner-content-five {
       width: 92%;
-      background: linear-gradient(313.08deg,
-          #0f65faaf -340%,
-          rgb(255, 255, 255) 94.75%);
-      box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
+      margin-left: 5%;
+      background: linear-gradient(313.08deg, rgba(15, 101, 250, 0.686) -340%, #fff 94.75%);
+      box-shadow: 0 4px 10px hsla(0, 10%, 52%, 0.5);
       backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
       border-radius: 30px;
       display: flex;
+      flex-direction: row;
       margin-top: 5%;
-      padding-top: 5%;
-      padding-bottom: 5%;
 
       .left-inner-content {
+        flex: 1;
         width: 60%;
+        padding: 5% 8%;
 
         .bottom-left-container {
-          width: 60%;
-          height: 70%;
-          margin: auto;
+          width: 100%;
+          text-align: center;
 
           .logo {
-            height: 55px;
-            margin-left: 18%;
+            height: 86px;
+            width: auto;
+            display: block;
+            margin: 0 auto 24px auto;
           }
 
           .sub-content {
             font-family: "Lato";
-            font-style: normal;
             font-size: 18px;
             font-weight: 400;
             line-height: 29px;
             text-align: center;
-            margin-top: 30px;
+            margin-bottom: 8px;
           }
 
           .sub-content-two {
             font-family: "Lato";
-            font-style: normal;
             font-weight: 300;
             font-size: 18px;
             line-height: 29px;
@@ -457,23 +434,22 @@
           }
 
           .margin-bottom {
-            margin-bottom: 4.8vh;
+            margin-bottom: 30px;
           }
 
           .contact-header-c {
             font-family: "Lato";
-            font-style: normal;
             font-size: 18px;
             text-align: center;
             color: $primary-blue;
+            margin-bottom: 4px;
           }
 
           .contact-address {
             font-family: "Lato";
-            font-style: normal;
             font-size: 18px;
             color: $text;
-            line-height: 30px;
+            line-height: 29px;
             font-weight: 300;
             text-align: center;
           }
@@ -481,9 +457,8 @@
       }
 
       .right-inner-content {
-        height: max-content;
         width: 40%;
-        margin-left: -5%;
+        padding: 5% 10% 5% 0;
 
         .margin-top {
           margin-top: 80px;
@@ -491,27 +466,26 @@
 
         .contact-header-c {
           font-family: "Lato";
-          font-style: normal;
           font-size: 18px;
           text-align: center;
           color: $primary-blue;
+          margin-bottom: 4px;
         }
 
         .contact-name {
           font-family: "Lato";
-          font-style: normal;
           font-size: 18px;
+          font-weight: 400;
           text-align: center;
           color: $text;
-          line-height: 30px;
+          line-height: 29px;
         }
 
         .contact-address {
           font-family: "Lato";
-          font-style: normal;
           font-size: 18px;
           color: $text;
-          line-height: 30px;
+          line-height: 29px;
           font-weight: 300;
           text-align: center;
         }
@@ -520,25 +494,19 @@
   }
 
   .AboutContentSix {
-    width: 85%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 0;
+    width: 100%;
+    padding: 5vh 4% 5% 10%;
     height: max-content;
-    padding-bottom: 5%;
-    padding-top: 5vh;
 
     .top-container {
-      width: 100%;
+      width: 70%;
       display: flex;
-      justify-content: left;
 
       .top-content {
         color: $primary-blue;
-        display: flex;
-        justify-content: center;
         font-family: "Lato";
         font-size: 25px;
+        font-weight: 400;
         letter-spacing: 0.6em;
         text-transform: uppercase;
       }
@@ -547,15 +515,27 @@
     .bottom-container {
       width: 100%;
       display: flex;
+      flex-direction: row;
+      gap: 32px;
       padding-top: 2%;
       padding-bottom: 2vh;
-      justify-content: space-between;
       align-items: flex-start;
 
       .bottom-left-container {
-        width: 60%;
+        width: 50%;
         height: 70%;
-        padding-right: 5%;
+        padding-right: 10%;
+
+        .heder-content {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 29px;
+          text-align: justify;
+          color: $text;
+          margin-top: 30px;
+        }
 
         .sub-content {
           font-family: "Lato";
@@ -564,23 +544,14 @@
           font-size: 18px;
           line-height: 29px;
           text-align: justify;
-          text-align-last: left;
-          margin-top: 30px;
-        }
-
-        .heder-content {
-          font-family: "Lato";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 24px;
-          line-height: 29px;
-          text-align: left;
           margin-top: 30px;
         }
       }
 
       .bottom-right-container {
-        width: 30%;
+        width: 240px;
+        flex-shrink: 0;
+        padding-left: 5%;
 
         .margin-top {
           margin-top: 0;
@@ -827,71 +798,37 @@
         }
 
         .AboutContentFour {
-          background: #0a0f20;
-
           .inner-content-four {
-            display: block;
+            flex-direction: column;
+            gap: 32px;
 
             .left-inner-content {
               width: 100%;
 
               .we-header {
-                padding-left: 0;
-                font-size: 15px;
-                line-height: 45px;
-                margin: auto;
-                letter-spacing: 0.5em;
-                width: 82%;
+                font-size: 18px;
+                letter-spacing: 0.42em;
               }
 
               .bottom-left-container {
-                width: 82%;
-                padding-left: 0;
-                margin: auto;
-
                 .heder-content {
-                  font-size: 25px;
-                  line-height: 35px;
+                  font-size: 24px;
+                  line-height: 1.4;
                 }
 
                 .sub-content {
                   font-size: 15px;
-                  line-height: 30px;
+                  line-height: 28px;
                 }
               }
             }
 
             .right-inner-content {
               width: 100%;
-              margin: 0% ;
-              aspect-ratio: 16 / 9;
-              display: flex;
-              align-items: left;
-              justify-content: left;
-              overflow: hidden;
-              padding: 0%;
-              
-              
+              justify-content: center;
 
               .iso-image {
-                position: initial;
-                display: block;
-                width: 70%;
-                height: 70%;
-                max-width: 80%;
-                max-height: 80%;
-                object-fit: contain;
-                margin: 0%;
-              }
-
-              .iso-certificate-link {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 18px 12px;
+                max-width: 100%;
               }
             }
           }
@@ -1236,49 +1173,37 @@
         }
 
         .AboutContentFour {
-          width: 100%;
-          background: #0a0f20;
-
           .inner-content-four {
-            width: 90%;
-            margin: auto;
+            flex-direction: column;
+            gap: 40px;
 
             .left-inner-content {
-              width: 65%;
+              width: 100%;
 
               .we-header {
                 font-size: 20px;
-                line-height: 45px;
                 letter-spacing: 0.4em;
-                padding-left: 0;
               }
 
               .bottom-left-container {
-                padding-left: 0;
-                width: 90%;
-
                 .heder-content {
-                  font-size: 35px;
-                  line-height: 60px;
-                  align-items: center;
+                  font-size: 28px;
+                  line-height: 1.3;
                 }
 
                 .sub-content {
-                  font-size: 20px;
-                  line-height: 50px;
+                  font-size: 16px;
+                  line-height: 30px;
                 }
               }
             }
 
             .right-inner-content {
-              width: 35%;
-              display: flex;
-              align-items: left;
+              width: 100%;
+              justify-content: center;
 
               .iso-image {
-                height: auto;
-                width: 60%;
-                vertical-align: middle;
+                max-width: 300px;
               }
             }
           }
@@ -1574,51 +1499,37 @@
         }
 
         .AboutContentFour {
-          width: 100%;
-          background: #0a0f20;
-
           .inner-content-four {
-            width: 90%;
-            display: block;
+            flex-direction: column;
+            gap: 40px;
 
             .left-inner-content {
               width: 100%;
 
               .we-header {
                 font-size: 18px;
-                line-height: 32px;
                 letter-spacing: 0.45em;
               }
 
               .bottom-left-container {
-                width: 100%;
-
                 .heder-content {
-                  font-size: 30px;
-                  line-height: 44px;
-                  text-align: center;
+                  font-size: 28px;
+                  line-height: 1.3;
                 }
 
                 .sub-content {
                   font-size: 16px;
                   line-height: 28px;
-                  text-align: center;
                 }
               }
             }
 
             .right-inner-content {
               width: 100%;
-              min-width: 0;
-              height: auto;
-              margin-top: 18px;
-              display: flex;
               justify-content: center;
 
               .iso-image {
-                width: 100%;
-                max-width: 460px;
-                height: auto;
+                max-width: 340px;
               }
             }
           }
@@ -1886,8 +1797,6 @@
         }
 
         .about-content-two-right {
-          padding-top: 5%;
-
           .real-estate-header {
             font-size: 48px;
             line-height: 120px;
@@ -1927,62 +1836,16 @@
     }
 
     .AboutContentFour {
-      width: 100%;
-      padding-top: 77px;
-      height: max-content;
-      padding-bottom: 66px;
-      background: linear-gradient($background-line 0 0) calc(1 * 100% / 20),
-        linear-gradient(#0a0f20 0 0) calc(2 * 100% / 3.5),
-        linear-gradient(#0a0f20 0 0) calc(3 * 100% / 5.33),
-        linear-gradient(#0a0f20 0 0) calc(4 * 100% / 6.2),
-        linear-gradient(#0a0f20 0 0) calc(5 * 100% / 7.85),
-        linear-gradient(#0a0f20 0 0) calc(6 * 100% / 8.45),
-        linear-gradient(#0a0f20 0 0) calc(7 * 100% / 9.75),
-        linear-gradient(#0a0f20 0 0) calc(8 * 100% / 10.2),
-        linear-gradient(#0a0f20 0 0) calc(9 * 100% / 11.36),
-        linear-gradient(#0a0f20 0 0) calc(10 * 100% / 11.6);
-      background-size: 1.5px 100%;
-      /* Control the width here*/
-      background-repeat: no-repeat;
-      background-color: #0a0f20;
-
       .inner-content-four {
+        gap: 80px;
+
         .left-inner-content {
-          width: 55%;
-          height: max-content;
-
-          .we-header {
-            font-size: 25px;
-            line-height: 45px;
-            padding-left: 99px;
-            letter-spacing: 0.5em;
-            width: 50%;
-          }
-
-          .bottom-left-container {
-            height: max-content;
-            margin-top: 30px;
-            padding-left: 99px;
-
-            .heder-content {
-              font-size: 50px;
-              line-height: 60px;
-            }
-
-            .sub-content {
-              font-size: 30px;
-              line-height: 50px;
-            }
-          }
+          width: 50%;
         }
 
         .right-inner-content {
-          width: 30%;
-          height: 100%;
-
           .iso-image {
-            width: 494px;
-            height: 693px;
+            max-width: 340px;
           }
         }
       }
@@ -1991,105 +1854,23 @@
     .AboutContentFive {
       width: 85%;
       padding-top: 5%;
-      padding-left: 99px;
+      padding-left: 10%;
       height: max-content;
       padding-bottom: 5%;
 
       .company-header {
-        font-size: 30px;
+        font-size: 25px;
         line-height: 45px;
-        letter-spacing: 1em;
+        letter-spacing: 0.6em;
       }
 
       .inner-content-five {
         width: 92%;
-        background: linear-gradient(313.08deg,
-            #0f64fa -177%,
-            rgba(255, 255, 255, 0.02) 94.75%);
-        box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
-        backdrop-filter: blur(60px);
-        border-radius: 30px;
-        display: flex;
-        margin-top: 81px;
-        padding-top: 99px;
-        padding-bottom: 57px;
-        height: max-content;
-
-        .left-inner-content {
-          width: 60%;
-          height: max-content;
-
-          .bottom-left-container {
-            width: 100%;
-            height: max-content;
-            margin: 0;
-            text-align: center;
-
-            .logo {
-              width: 395px;
-              height: 96.18px;
-              margin-left: 0;
-            }
-
-            .sub-content {
-              font-size: 30px;
-              line-height: 50px;
-              text-align: center;
-              margin-top: 27px;
-            }
-
-            .sub-content-two {
-              width: 576px;
-              font-size: 30px;
-              line-height: 45px;
-              margin: auto;
-            }
-
-            .margin-top {
-              margin-top: 61px;
-            }
-
-            .contact-header-c {
-              font-size: 30px;
-              line-height: 45px;
-            }
-
-            .contact-address {
-              font-size: 30px;
-              line-height: 45px;
-            }
-          }
-        }
-
-        .right-inner-content {
-          height: max-content;
-          width: 50%;
-
-          .margin-top {
-            margin-top: 90px;
-          }
-
-          .contact-header-c {
-            font-size: 30px;
-            line-height: 45px;
-          }
-
-          .contact-name {
-            font-size: 30px;
-            line-height: 50px;
-            margin-top: 15px;
-          }
-
-          .contact-address {
-            font-size: 30px;
-            line-height: 45px;
-          }
-        }
       }
     }
 
     .AboutContentSix {
-      padding-left: 99px;
+      padding-left: 10%;
       height: max-content;
 
       .top-container {
@@ -2097,9 +1878,8 @@
         display: flex;
 
         .top-content {
-          font-size: 30px;
-          line-height: 45px;
-          letter-spacing: 1em;
+          font-size: 25px;
+          letter-spacing: 0.6em;
         }
       }
 
@@ -2107,17 +1887,11 @@
         width: 100%;
         display: flex;
         padding-top: 2%;
-        padding-bottom: 6%;
 
         .bottom-left-container {
-          width: 60%;
-          height: max-content;
-          padding-right: 20%;
-
-          .sub-content {
-            font-size: 30px;
-            line-height: 45px;
-          }
+          width: 50%;
+          height: 70%;
+          padding-right: 10%;
         }
 
         .bottom-right-container {
@@ -2125,7 +1899,7 @@
           height: max-content;
 
           .margin-top {
-            margin-top: 60px;
+            margin-top: -8.5%;
           }
         }
       }
@@ -2319,8 +2093,6 @@
         }
 
         .about-content-two-right {
-          padding-top: 5%;
-
           .real-estate-header {
             font-size: 48px;
             line-height: 120px;
@@ -2360,62 +2132,16 @@
     }
 
     .AboutContentFour {
-      width: 100%;
-      padding-top: 77px;
-      height: max-content;
-      padding-bottom: 66px;
-      background: linear-gradient($background-line 0 0) calc(1 * 100% / 20),
-        linear-gradient(#0a0f20 0 0) calc(2 * 100% / 3.5),
-        linear-gradient(#0a0f20 0 0) calc(3 * 100% / 5.33),
-        linear-gradient(#0a0f20 0 0) calc(4 * 100% / 6.2),
-        linear-gradient(#0a0f20 0 0) calc(5 * 100% / 7.85),
-        linear-gradient(#0a0f20 0 0) calc(6 * 100% / 8.45),
-        linear-gradient(#0a0f20 0 0) calc(7 * 100% / 9.75),
-        linear-gradient(#0a0f20 0 0) calc(8 * 100% / 10.2),
-        linear-gradient(#0a0f20 0 0) calc(9 * 100% / 11.36),
-        linear-gradient(#0a0f20 0 0) calc(10 * 100% / 11.6);
-      background-size: 1.5px 100%;
-      /* Control the width here*/
-      background-repeat: no-repeat;
-      background-color: #0a0f20;
-
       .inner-content-four {
+        gap: 80px;
+
         .left-inner-content {
-          width: 55%;
-          height: max-content;
-
-          .we-header {
-            font-size: 25px;
-            line-height: 45px;
-            padding-left: 99px;
-            letter-spacing: 0.5em;
-            width: 50%;
-          }
-
-          .bottom-left-container {
-            height: max-content;
-            margin-top: 30px;
-            padding-left: 99px;
-
-            .heder-content {
-              font-size: 50px;
-              line-height: 60px;
-            }
-
-            .sub-content {
-              font-size: 30px;
-              line-height: 50px;
-            }
-          }
+          width: 50%;
         }
 
         .right-inner-content {
-          width: 30%;
-          height: 100%;
-
           .iso-image {
-            width: 494px;
-            height: 693px;
+            max-width: 340px;
           }
         }
       }
@@ -2424,105 +2150,23 @@
     .AboutContentFive {
       width: 85%;
       padding-top: 5%;
-      padding-left: 99px;
+      padding-left: 10%;
       height: max-content;
       padding-bottom: 5%;
 
       .company-header {
-        font-size: 30px;
+        font-size: 25px;
         line-height: 45px;
-        letter-spacing: 1em;
+        letter-spacing: 0.6em;
       }
 
       .inner-content-five {
         width: 92%;
-        background: linear-gradient(313.08deg,
-            #0f64fa -177%,
-            rgba(255, 255, 255, 0.02) 94.75%);
-        box-shadow: 0px 4px 10px rgba(145, 120, 120, 0.5);
-        backdrop-filter: blur(60px);
-        border-radius: 30px;
-        display: flex;
-        margin-top: 81px;
-        padding-top: 99px;
-        padding-bottom: 57px;
-        height: max-content;
-
-        .left-inner-content {
-          width: 60%;
-          height: max-content;
-
-          .bottom-left-container {
-            width: 100%;
-            height: max-content;
-            margin: 0;
-            text-align: center;
-
-            .logo {
-              width: 395px;
-              height: 96.18px;
-              margin-left: 0;
-            }
-
-            .sub-content {
-              font-size: 30px;
-              line-height: 50px;
-              text-align: center;
-              margin-top: 27px;
-            }
-
-            .sub-content-two {
-              width: 576px;
-              font-size: 30px;
-              line-height: 45px;
-              margin: auto;
-            }
-
-            .margin-top {
-              margin-top: 61px;
-            }
-
-            .contact-header-c {
-              font-size: 30px;
-              line-height: 45px;
-            }
-
-            .contact-address {
-              font-size: 30px;
-              line-height: 45px;
-            }
-          }
-        }
-
-        .right-inner-content {
-          height: max-content;
-          width: 50%;
-
-          .margin-top {
-            margin-top: 90px;
-          }
-
-          .contact-header-c {
-            font-size: 30px;
-            line-height: 45px;
-          }
-
-          .contact-name {
-            font-size: 30px;
-            line-height: 50px;
-            margin-top: 15px;
-          }
-
-          .contact-address {
-            font-size: 30px;
-            line-height: 45px;
-          }
-        }
       }
     }
 
     .AboutContentSix {
-      padding-left: 99px;
+      padding-left: 10%;
       height: max-content;
 
       .top-container {
@@ -2530,9 +2174,8 @@
         display: flex;
 
         .top-content {
-          font-size: 30px;
-          line-height: 45px;
-          letter-spacing: 1em;
+          font-size: 25px;
+          letter-spacing: 0.6em;
         }
       }
 
@@ -2540,17 +2183,11 @@
         width: 100%;
         display: flex;
         padding-top: 2%;
-        padding-bottom: 6%;
 
         .bottom-left-container {
-          width: 60%;
-          height: max-content;
-          padding-right: 20%;
-
-          .sub-content {
-            font-size: 30px;
-            line-height: 45px;
-          }
+          width: 50%;
+          height: 70%;
+          padding-right: 10%;
         }
 
         .bottom-right-container {
@@ -2558,7 +2195,7 @@
           height: max-content;
 
           .margin-top {
-            margin-top: 60px;
+            margin-top: -8.5%;
           }
         }
       }
