@@ -1,9 +1,10 @@
 import React from "react";
 import iso from "../../assets/images/Bimsara Real Estate - ISO Certificate.webp";
+import API_URL from "../../apiConfig";
 import "./AboutStyles.scss";
 const AboutContentFour = (props) => {
   const certificateUrl = props.certificatePath
-    ? `http://localhost:5000${props.certificatePath}`
+    ? `${API_URL}${props.certificatePath}`
     : iso;
 
   const isPdf = props.certificatePath && props.certificatePath.toLowerCase().endsWith('.pdf');

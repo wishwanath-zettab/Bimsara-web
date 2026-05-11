@@ -2,11 +2,12 @@ import React from "react";
 import logo from "../../assets/images/Bimsara Real Estate - About Logo.webp";
 import SecondaryButton from "../../components/button/secondaryButton/SecondaryButton";
 import config from "../../config";
+import API_URL from "../../apiConfig";
 import "./AboutStyles.scss";
 
 const AboutContentTwo = ({ companyProfilePath }) => {
   const companyProfileUrl = companyProfilePath
-    ? `http://localhost:5000${companyProfilePath}`
+    ? `${API_URL}${companyProfilePath}`
     : null;
 
   return (

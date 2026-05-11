@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import Navbar from "../../components/navbar/Navbar";
 import RightBar from "../../components/rightBar/RightBar";
 import AboutContentOne from "./AboutContentOne";
@@ -23,7 +24,7 @@ const About = () => {
   useEffect(() => {
     const fetchCertificate = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/other-settings');
+        const response = await axios.get('${API_URL}/api/other-settings');
         setCertificatePath(response.data.iso_certificate_path || null);
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {

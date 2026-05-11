@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import hamburger1 from "../../assets/images/Bimsara Real Estate - Hamburger 1.webp";
 import hamburger2 from "../../assets/images/Bimsara Real Estate - Hamburger 2.webp";
 import img from "../../assets/images/Bimsara Real Estate - Sellers Icon.webp";
@@ -62,7 +63,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCompanyProfilePath = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/other-settings");
+        const response = await axios.get("${API_URL}/api/other-settings");
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {
         setCompanyProfilePath(null);
@@ -85,7 +86,7 @@ const Navbar = () => {
   };
 
   const companyProfileUrl = companyProfilePath
-    ? `http://localhost:5000${companyProfilePath}`
+    ? `${API_URL}${companyProfilePath}`
     : null;
 
   const serviceActive = ["/sellers", "/buyers", "/landlords", "/tenants"].includes(location.pathname);

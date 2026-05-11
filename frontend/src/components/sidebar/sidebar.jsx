@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import img from "../../assets/images/Bimsara Real Estate - Sellers Icon.webp";
 import buyer from "../../assets/images/Bimsara Real Estate - Buyers Icon.webp";
 import img2 from "../../assets/images/Bimsara Real Estate - Landlords Icon.webp";
@@ -53,7 +54,7 @@ const Sidebar = ({ setSidebar }) => {
   useEffect(() => {
     const fetchCompanyProfilePath = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/other-settings");
+        const response = await axios.get("${API_URL}/api/other-settings");
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {
         setCompanyProfilePath(null);
@@ -64,7 +65,7 @@ const Sidebar = ({ setSidebar }) => {
   }, []);
 
   const companyProfileUrl = companyProfilePath
-    ? `http://localhost:5000${companyProfilePath}`
+    ? `${API_URL}${companyProfilePath}`
     : null;
 
   const close = () => setSidebar(false);
