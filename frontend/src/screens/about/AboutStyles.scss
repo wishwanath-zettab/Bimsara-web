@@ -605,7 +605,6 @@
       color: $primary-blue;
       text-align: center;
       padding-bottom: 3%;
-      display: grid;
     }
 
     .member-view {
@@ -618,14 +617,11 @@
     }
 
     .image-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      width: 70%;
+      margin: auto;
       padding-bottom: 3%;
-      width: 80%;
-      margin: 0 auto;
 
       .image-item {
         height: 100px;
@@ -1933,15 +1929,15 @@
       padding-top: 3%;
 
       .header {
-        font-size: 30px;
+        font-size: 18px;
         line-height: 30px;
-        padding-bottom: 56px;
+        padding-bottom: 3%;
       }
 
       .image-container {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        width: 75%;
+        width: 70%;
         margin: auto;
         padding-bottom: 3%;
 
@@ -2229,15 +2225,15 @@
       padding-top: 3%;
 
       .header {
-        font-size: 30px;
+        font-size: 18px;
         line-height: 30px;
-        padding-bottom: 56px;
+        padding-bottom: 3%;
       }
 
       .image-container {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        width: 75%;
+        width: 70%;
         margin: auto;
         padding-bottom: 3%;
 
