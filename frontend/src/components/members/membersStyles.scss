@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
 
   // ─── circle-positioning mixin ──────────────────────────────────────
   @mixin on-circle($item-count, $circle-size, $item-size) {
