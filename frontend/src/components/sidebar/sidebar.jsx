@@ -54,7 +54,7 @@ const Sidebar = ({ setSidebar }) => {
   useEffect(() => {
     const fetchCompanyProfilePath = async () => {
       try {
-        const response = await axios.get("${API_URL}/api/other-settings");
+        const response = await axios.get(`${API_URL}/api/other-settings`);
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {
         setCompanyProfilePath(null);
