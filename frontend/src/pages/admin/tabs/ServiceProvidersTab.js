@@ -22,7 +22,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
   const fetchProviders = async () => {
     try {
       const response = await axios.get(
-        '${API_URL}/api/admin/service-providers',
+        `${API_URL}/api/admin/service-providers`,
         getAuthHeaders()
       );
       setProviders(response.data);
@@ -58,7 +58,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.post(
-        '${API_URL}/api/admin/service-providers',
+        `${API_URL}/api/admin/service-providers`,
         formData,
         {
           ...getAuthHeaders(),

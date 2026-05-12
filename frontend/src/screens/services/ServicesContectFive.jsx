@@ -14,7 +14,7 @@ const ServicesContentFive = () => {
   useEffect(() => {
     const fetchOfficeAddress = async () => {
       try {
-        const response = await axios.get('${API_URL}/api/contact-details');
+        const response = await axios.get(`${API_URL}/api/contact-details`);
         setOfficeAddress(response.data.office_address || '');
       } catch (error) {
         setOfficeAddress('199/58, Rajagiriya Road, Rajagiriya.');

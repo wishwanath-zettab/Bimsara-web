@@ -24,7 +24,7 @@ const About = () => {
   useEffect(() => {
     const fetchCertificate = async () => {
       try {
-        const response = await axios.get('${API_URL}/api/other-settings');
+        const response = await axios.get(`${API_URL}/api/other-settings`);
         setCertificatePath(response.data.iso_certificate_path || null);
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {

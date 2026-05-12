@@ -30,7 +30,7 @@ const Buyers = () => {
   useEffect(() => {
     const fetchCommissionRate = async () => {
       try {
-        const response = await axios.get('${API_URL}/api/other-settings');
+        const response = await axios.get(`${API_URL}/api/other-settings`);
         if (response.data && response.data.commission_rate) {
           setCommissionRate(response.data.commission_rate);
         }

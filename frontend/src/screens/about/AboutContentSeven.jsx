@@ -13,7 +13,7 @@ const AboutContentSeven = () => {
   useEffect(() => {
     const fetchProviders = async () => {
       try {
-        const response = await axios.get('${API_URL}/api/service-providers');
+        const response = await axios.get(`${API_URL}/api/service-providers`);
         setProviders(response.data || []);
       } catch (error) {
         setProviders([

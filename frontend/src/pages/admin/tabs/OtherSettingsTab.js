@@ -27,7 +27,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
   const fetchSettings = async () => {
     try {
       const response = await axios.get(
-        '${API_URL}/api/admin/other-settings',
+        `${API_URL}/api/admin/other-settings`,
         getAuthHeaders()
       );
       setCommissionRate(response.data.commission_rate || '');
@@ -65,7 +65,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
     setLoadingCommission(true);
     try {
       await axios.put(
-        '${API_URL}/api/admin/other-settings/commission',
+        `${API_URL}/api/admin/other-settings/commission`,
         { commission_rate: formatted },
         getAuthHeaders()
       );
@@ -98,7 +98,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
 
     try {
       const response = await axios.post(
-        '${API_URL}/api/admin/other-settings/iso-certificate',
+        `${API_URL}/api/admin/other-settings/iso-certificate`,
         formData,
         {
           ...getAuthHeaders(),
@@ -138,7 +138,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
 
     try {
       const response = await axios.post(
-        '${API_URL}/api/admin/other-settings/company-profile-pdf',
+        `${API_URL}/api/admin/other-settings/company-profile-pdf`,
         formData,
         {
           ...getAuthHeaders(),
@@ -174,7 +174,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       setLoadingCertificate(true);
       try {
         await axios.delete(
-          '${API_URL}/api/admin/other-settings/iso-certificate',
+          `${API_URL}/api/admin/other-settings/iso-certificate`,
           getAuthHeaders()
         );
         toast.success('ISO certificate removed successfully');
@@ -188,7 +188,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       setLoadingPDF(true);
       try {
         await axios.delete(
-          '${API_URL}/api/admin/other-settings/company-profile-pdf',
+          `${API_URL}/api/admin/other-settings/company-profile-pdf`,
           getAuthHeaders()
         );
         toast.success('Company profile PDF removed successfully');
