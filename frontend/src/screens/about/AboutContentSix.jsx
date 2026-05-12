@@ -16,13 +16,13 @@ const AboutContentSix = () => {
     const fetchCounts = async () => {
       try {
         // Fetch team members count
-        const teamResponse = await axios.get('${API_URL}/api/team-members');
+        const teamResponse = await axios.get(`${API_URL}/api/team-members`);
         if (teamResponse.data && Array.isArray(teamResponse.data)) {
           setPositionsCount(teamResponse.data.length);
         }
 
         // Fetch service providers count
-        const providersResponse = await axios.get('${API_URL}/api/service-providers');
+        const providersResponse = await axios.get(`${API_URL}/api/service-providers`);
         if (providersResponse.data && Array.isArray(providersResponse.data)) {
           setProvidersCount(providersResponse.data.length);
         }

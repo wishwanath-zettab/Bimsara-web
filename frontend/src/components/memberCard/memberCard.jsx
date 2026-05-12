@@ -25,7 +25,7 @@ const MemberCard = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get('${API_URL}/api/team-members');
+        const response = await axios.get(`${API_URL}/api/team-members`);
         const normalized = (response.data || []).map((member, index) => ({
           id: member.id,
           name: member.name,
