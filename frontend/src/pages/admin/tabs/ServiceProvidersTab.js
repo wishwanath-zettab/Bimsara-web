@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import './TabStyles.css';
 
@@ -21,7 +22,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
   const fetchProviders = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/admin/service-providers',
+        '${API_URL}/api/admin/service-providers',
         getAuthHeaders()
       );
       setProviders(response.data);
@@ -57,7 +58,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/admin/service-providers',
+        '${API_URL}/api/admin/service-providers',
         formData,
         {
           ...getAuthHeaders(),
@@ -87,7 +88,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/admin/service-providers/${id}`,
+        `${API_URL}/api/admin/service-providers/${id}`,
         getAuthHeaders()
       );
       toast.success('Service provider deleted successfully');
@@ -187,7 +188,7 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
                 <div className="provider-info">
                   {provider.logo_path && (
                     <img 
-                      src={`http://localhost:5000${provider.logo_path}`} 
+                      src={`${API_URL}${provider.logo_path}`} 
                       alt={provider.company_name}
                       className="provider-logo"
                     />

@@ -2259,7 +2259,6 @@
     max-width: calc(100% - 120px) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding: clamp(70px, 7vw, 120px) 120px clamp(60px, 6vw, 96px) 0 !important;
     box-sizing: border-box !important;
   }
 

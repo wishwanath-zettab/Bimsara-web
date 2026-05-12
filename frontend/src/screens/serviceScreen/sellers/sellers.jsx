@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../../apiConfig";
 import Navbar from "../../../components/navbar/Navbar";
 import logo from "../../../assets/images/Bimsara Real Estate - Logo.webp";
 import image from "../../../assets/images/Bimsara Real Estate - Sellers Hero Mini.webp";
@@ -28,7 +29,7 @@ const Sellers = () => {
   useEffect(() => {
     const fetchCommissionRate = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/other-settings");
+        const response = await axios.get("${API_URL}/api/other-settings");
         if (response.data && response.data.commission_rate) {
           setCommissionRate(response.data.commission_rate);
         }

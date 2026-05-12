@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import wijeya from "../../assets/images/Bimsara Real Estate - Wijeya Newspapers Logo.webp";
 import ikman from "../../assets/images/Bimsara Real Estate - Ikman Logo.webp";
 import lpw from "../../assets/images/Bimsara Real Estate - Lanka Property Web Logo.webp";
@@ -12,7 +13,7 @@ const AboutContentSeven = () => {
   useEffect(() => {
     const fetchProviders = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/service-providers');
+        const response = await axios.get('${API_URL}/api/service-providers');
         setProviders(response.data || []);
       } catch (error) {
         setProviders([
@@ -36,7 +37,7 @@ const AboutContentSeven = () => {
             <img
               key={provider.id}
               alt={provider.company_name}
-              src={provider.logo_path.startsWith('http') ? provider.logo_path : `http://localhost:5000${provider.logo_path}`}
+              src={provider.logo_path.startsWith('http') ? provider.logo_path : `${API_URL}${provider.logo_path}`}
               className="image-item"
             />
           ) : null

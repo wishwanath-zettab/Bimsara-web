@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import facebook from "../../assets/icons/fb.webp";
 import google from "../../assets/icons/gl.webp";
 import linkedin from "../../assets/icons/lin.webp";
@@ -13,7 +14,7 @@ const ServicesContentFive = () => {
   useEffect(() => {
     const fetchOfficeAddress = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/contact-details');
+        const response = await axios.get('${API_URL}/api/contact-details');
         setOfficeAddress(response.data.office_address || '');
       } catch (error) {
         setOfficeAddress('199/58, Rajagiriya Road, Rajagiriya.');

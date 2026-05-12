@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../../../apiConfig";
 import linked from "../../../assets/icons/Linkedin-2.webp";
 import "./mobileMemberCardStyles.scss";
 import arrow from "../../../assets/icons/blue-arrow.webp";
@@ -24,7 +25,7 @@ const MobileMemberCard = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/team-members');
+        const response = await axios.get('${API_URL}/api/team-members');
         const normalized = (response.data || []).map((member, index) => ({
           id: member.id,
           name: member.name,
@@ -32,7 +33,7 @@ const MobileMemberCard = () => {
           quote: member.description1 || '',
           des: member.description2 || '',
           des2: '',
-          img: member.photo_path ? `http://localhost:5000${member.photo_path}` : fallbackData[index % fallbackData.length].img,
+          img: member.photo_path ? `${API_URL}${member.photo_path}` : fallbackData[index % fallbackData.length].img,
           link: member.linkedin_url || member.link || ''
         }));
 

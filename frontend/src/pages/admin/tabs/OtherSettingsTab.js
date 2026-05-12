@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 import './TabStyles.css';
 
@@ -26,7 +27,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
   const fetchSettings = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/admin/other-settings',
+        '${API_URL}/api/admin/other-settings',
         getAuthHeaders()
       );
       setCommissionRate(response.data.commission_rate || '');
@@ -64,7 +65,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
     setLoadingCommission(true);
     try {
       await axios.put(
-        'http://localhost:5000/api/admin/other-settings/commission',
+        '${API_URL}/api/admin/other-settings/commission',
         { commission_rate: formatted },
         getAuthHeaders()
       );
@@ -97,7 +98,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/admin/other-settings/iso-certificate',
+        '${API_URL}/api/admin/other-settings/iso-certificate',
         formData,
         {
           ...getAuthHeaders(),
@@ -137,7 +138,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/admin/other-settings/company-profile-pdf',
+        '${API_URL}/api/admin/other-settings/company-profile-pdf',
         formData,
         {
           ...getAuthHeaders(),
@@ -173,7 +174,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       setLoadingCertificate(true);
       try {
         await axios.delete(
-          'http://localhost:5000/api/admin/other-settings/iso-certificate',
+          '${API_URL}/api/admin/other-settings/iso-certificate',
           getAuthHeaders()
         );
         toast.success('ISO certificate removed successfully');
@@ -187,7 +188,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       setLoadingPDF(true);
       try {
         await axios.delete(
-          'http://localhost:5000/api/admin/other-settings/company-profile-pdf',
+          '${API_URL}/api/admin/other-settings/company-profile-pdf',
           getAuthHeaders()
         );
         toast.success('Company profile PDF removed successfully');
@@ -290,7 +291,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
           <div className="current-file">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <a 
-                href={`http://localhost:5000${currentCertificatePath}`}
+                href={`${API_URL}${currentCertificatePath}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="file-link"
@@ -337,7 +338,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
           <div className="current-file">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <a 
-                href={`http://localhost:5000${currentPDFPath}`}
+                href={`${API_URL}${currentPDFPath}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="file-link"

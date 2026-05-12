@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import linked from "../../assets/icons/Linkedin-2.webp";
 import member1 from "../../assets/images/member-1.webp";
 import member2 from "../../assets/images/member-2.webp";
@@ -35,14 +36,14 @@ const Members = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/team-members");
+        const response = await axios.get("${API_URL}/api/team-members");
         const normalized = (response.data || []).map((member) => ({
           ...member,
           quote: member.description1 || "",
           des: member.description2 || "",
           des2: "",
           pos: member.position || member.pos || "",
-          img: member.photo_path ? `http://localhost:5000${member.photo_path}` : member1,
+          img: member.photo_path ? `${API_URL}${member.photo_path}` : member1,
           link: member.linkedin_url || member.link || "",
         }));
 

@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const bcrypt = require('bcryptjs');
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'bimsara_admin.db');
 
@@ -136,6 +137,41 @@ function initializeDatabase() {
           } else {
             console.log('Added linkedin_url column to team_members table');
           }
+        });
+      }
+    });
+  });
+
+  // Users Table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT NOT NULL UNIQUE,
+      password_hash TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `, (err) => {
+    if (err) {
+      console.error('Error creating users table:', err.message);
+      return;
+    }
+
+    db.get('SELECT COUNT(*) as count FROM users', (countErr, row) => {
+      if (!countErr && row.count === 0) {
+        const defaultPassword = process.env.ADMIN_PASSWORD || 'admin';
+        bcrypt.hash(defaultPassword, 10, (hashErr, hash) => {
+          if (hashErr) {
+            console.error('Error hashing admin password:', hashErr.message);
+            return;
+          }
+          db.run('INSERT INTO users (username, password_hash) VALUES (?, ?)', ['admin', hash], (insertErr) => {
+            if (insertErr) {
+              console.error('Error seeding admin user:', insertErr.message);
+            } else {
+              console.log('Default admin user created');
+            }
+          });
         });
       }
     });

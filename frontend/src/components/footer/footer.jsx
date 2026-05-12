@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../../apiConfig";
 import logo from "../../assets/images/Safetynet Private Limited - Logo.webp";
 import { navigateAndScroll } from "../../utils/navigation";
 import "./footerStyles.scss";
@@ -65,7 +66,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchCompanyProfilePath = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/other-settings");
+        const response = await axios.get("${API_URL}/api/other-settings");
         setCompanyProfilePath(response.data.company_profile_pdf_path || null);
       } catch (error) {
         setCompanyProfilePath(null);
@@ -76,7 +77,7 @@ const Footer = () => {
   }, []);
 
   const companyProfileUrl = companyProfilePath
-    ? `http://localhost:5000${companyProfilePath}`
+    ? `${API_URL}${companyProfilePath}`
     : null;
 
   const go = (path, target = "root", delay = 120) => navigateAndScroll(navigate, path, target, delay);
