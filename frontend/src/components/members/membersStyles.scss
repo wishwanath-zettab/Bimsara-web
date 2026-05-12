@@ -45,6 +45,12 @@
     > li:nth-of-type(3) { transform: rotate(20deg)  translate(50vh) rotate(-20deg); }
     > li:nth-of-type(4) { transform: rotate(40deg)  translate(50vh) rotate(-40deg); }
     > li:nth-of-type(5) { transform: rotate(60deg)  translate(50vh) rotate(-60deg); }
+    > li:nth-of-type(6)  { transform: rotate(80deg)  translate(50vh) rotate(-80deg);  }
+    > li:nth-of-type(7)  { transform: rotate(100deg) translate(50vh) rotate(-100deg); }
+    > li:nth-of-type(8)  { transform: rotate(120deg) translate(50vh) rotate(-120deg); }
+    > li:nth-of-type(9)  { transform: rotate(140deg) translate(50vh) rotate(-140deg); }
+    > li:nth-of-type(10) { transform: rotate(160deg) translate(50vh) rotate(-160deg); }
+    > li:nth-of-type(11) { transform: rotate(180deg) translate(50vh) rotate(-180deg); }
 
     img {
       display: block;
@@ -200,6 +206,12 @@
       > li:nth-of-type(3) { transform: rotate(20deg)  translate(52.5vh) rotate(-20deg); }
       > li:nth-of-type(4) { transform: rotate(40deg)  translate(52.5vh) rotate(-40deg); }
       > li:nth-of-type(5) { transform: rotate(60deg)  translate(52.5vh) rotate(-60deg); }
+      > li:nth-of-type(6)  { transform: rotate(80deg)  translate(52.5vh) rotate(-80deg);  }
+      > li:nth-of-type(7)  { transform: rotate(100deg) translate(52.5vh) rotate(-100deg); }
+      > li:nth-of-type(8)  { transform: rotate(120deg) translate(52.5vh) rotate(-120deg); }
+      > li:nth-of-type(9)  { transform: rotate(140deg) translate(52.5vh) rotate(-140deg); }
+      > li:nth-of-type(10) { transform: rotate(160deg) translate(52.5vh) rotate(-160deg); }
+      > li:nth-of-type(11) { transform: rotate(180deg) translate(52.5vh) rotate(-180deg); }
 
       img {
         width: 88px;
