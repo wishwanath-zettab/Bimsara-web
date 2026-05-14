@@ -322,6 +322,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
             <input
               type="number"
               min="0"
+              step="1"
               value={positionsCount}
               onChange={(e) => setPositionsCount(e.target.value)}
               placeholder="e.g., 12"
