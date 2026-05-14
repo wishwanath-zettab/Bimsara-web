@@ -8,6 +8,7 @@ import member3 from "../../assets/images/member-3.webp";
 import member4 from "../../assets/images/member-4.webp";
 import member5 from "../../assets/images/member-5.webp";
 import member6 from "../../assets/images/member-6.webp";
+import memberPlaceholder from "../../assets/images/member-placeholder.svg";
 import "./membersStyles.scss";
 
 const Members = () => {
@@ -43,7 +44,7 @@ const Members = () => {
           des: member.description2 || "",
           des2: "",
           pos: member.position || member.pos || "",
-          img: member.photo_path ? `${API_URL}${member.photo_path}` : member1,
+          img: member.photo_path ? `${API_URL}${member.photo_path}` : memberPlaceholder,
           link: member.linkedin_url || member.link || "",
         }));
 

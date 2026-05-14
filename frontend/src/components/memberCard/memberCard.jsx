@@ -10,6 +10,7 @@ import member3 from "../../assets/images/member-3.webp";
 import member4 from "../../assets/images/member-4.webp";
 import member5 from "../../assets/images/member-5.webp";
 import member6 from "../../assets/images/member-6.webp";
+import memberPlaceholder from "../../assets/images/member-placeholder.svg";
 const MemberCard = () => {
   const fallbackData = [
     { id: 1, name: "Bimsara Gamage", pos: "Managing Director/ CEO", quote: "Although we are in the service provider business, I always visualize our operation similar to a production process in the manufacturing industry that runs on a conveyor belt system. The seamless flow of perfect coordination between departments ensuring efficiency with stringent quality checks at all points, I believe, is the greatest strength we have built as a team now.", des: "Bimsara counts over 15 years of experience involving hundreds of Real Estate mediation as a licensed broker and an auctioneer. His initial entry was as an investor and a developer and that involvement has made him conversant with all legal procedures as well as local authority and UDA regulations.", des2: "Bimsara has been tested in many environments for honesty and integrity and the testimonials issued by his real estate clients speak volumes of Bimsara’s ability, capacity, passion and his uncompromising commitment to rise to the top in the real estate business.", img: member1, link: "https://www.linkedin.com/in/bimsara-b-gamage-5b0b832a/" },
@@ -33,7 +34,7 @@ const MemberCard = () => {
           quote: member.description1 || '',
           des: member.description2 || '',
           des2: '',
-          img: member.photo_path ? `${API_URL}${member.photo_path}` : fallbackData[index % fallbackData.length].img,
+          img: member.photo_path ? `${API_URL}${member.photo_path}` : memberPlaceholder,
           link: member.linkedin_url || member.link || ''
         }));
 
