@@ -309,6 +309,16 @@ app.get('/api/other-settings', (req, res) => {
   });
 });
 
+// Public positions count for frontend rendering
+app.get('/api/positions-count', (req, res) => {
+  db.get('SELECT positions_count FROM other_settings WHERE id = 1', (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ positions_count: row ? row.positions_count : null });
+  });
+});
+
 // Create team member
 app.post('/api/admin/team-members', authenticateToken, upload.single('photo'), (req, res) => {
   const { name, position, description1, description2, linkedin_url } = req.body;
@@ -441,6 +451,25 @@ app.put('/api/admin/other-settings/commission', authenticateToken, (req, res) =>
         return res.status(500).json({ error: err.message });
       }
       res.json({ message: 'Commission rate updated successfully' });
+    }
+  );
+});
+
+// Update positions count
+app.put('/api/admin/other-settings/positions-count', authenticateToken, (req, res) => {
+  const { positions_count } = req.body;
+  const parsed = parseInt(positions_count, 10);
+  if (isNaN(parsed) || parsed < 0) {
+    return res.status(400).json({ error: 'positions_count must be a non-negative integer' });
+  }
+  db.run(
+    'UPDATE other_settings SET positions_count = ?, updated_at = CURRENT_TIMESTAMP WHERE id = 1',
+    [parsed],
+    function(err) {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: 'Positions count updated successfully', positions_count: parsed });
     }
   );
 });
