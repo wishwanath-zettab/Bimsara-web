@@ -78,6 +78,17 @@ function initializeDatabase() {
           }
         });
       }
+
+      const hasPositionsCount = columns.some(col => col.name === 'positions_count');
+      if (!hasPositionsCount) {
+        db.run('ALTER TABLE other_settings ADD COLUMN positions_count INTEGER', (alterErr) => {
+          if (alterErr) {
+            console.error('Error adding positions_count column:', alterErr.message);
+          } else {
+            console.log('Added positions_count column to other_settings table');
+          }
+        });
+      }
     });
   });
 

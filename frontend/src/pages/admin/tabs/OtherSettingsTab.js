@@ -16,6 +16,8 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
   const [loadingPDF, setLoadingPDF] = useState(false);
   const [errors, setErrors] = useState({});
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, type: null });
+  const [positionsCount, setPositionsCount] = useState('');
+  const [loadingPositions, setLoadingPositions] = useState(false);
 
   const MAX_CERTIFICATE_SIZE = 20 * 1024 * 1024; // 20MB
   const MAX_PDF_SIZE = 50 * 1024 * 1024; // 50MB
@@ -33,6 +35,7 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       setCommissionRate(response.data.commission_rate || '');
       setCurrentCertificatePath(response.data.iso_certificate_path);
       setCurrentPDFPath(response.data.company_profile_pdf_path);
+      setPositionsCount(response.data.positions_count != null ? String(response.data.positions_count) : '');
     } catch (error) {
       toast.error('Failed to fetch settings');
     }
@@ -75,6 +78,32 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
       toast.error('Failed to update commission rate');
     } finally {
       setLoadingCommission(false);
+    }
+  };
+
+  const handleUpdatePositionsCount = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const parsed = parseInt(positionsCount, 10);
+    if (positionsCount.trim() === '' || isNaN(parsed) || parsed < 0) {
+      toast.error('Please enter a valid non-negative number');
+      return;
+    }
+
+    setLoadingPositions(true);
+    try {
+      await axios.put(
+        `${API_URL}/api/admin/other-settings/positions-count`,
+        { positions_count: parsed },
+        getAuthHeaders()
+      );
+      setPositionsCount(String(parsed));
+      toast.success('Positions count updated successfully');
+    } catch (error) {
+      toast.error('Failed to update positions count');
+    } finally {
+      setLoadingPositions(false);
     }
   };
 
@@ -280,6 +309,35 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
               disabled={loadingCommission}
             >
               {loadingCommission ? 'Updating...' : 'Update'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="section">
+        <h3>Positions Count</h3>
+        <div className="settings-row">
+          <div className="form-group">
+            <label>Positions Count (shown on About page)</label>
+            <input
+              type="number"
+              min="0"
+              step="1"
+              value={positionsCount}
+              onChange={(e) => setPositionsCount(e.target.value)}
+              placeholder="e.g., 12"
+            />
+            <small style={{ color: '#666' }}>This number appears as "X Positions and growing" on the About page.</small>
+          </div>
+          <div className="form-group button-group">
+            <label>&nbsp;</label>
+            <button
+              type="button"
+              onClick={handleUpdatePositionsCount}
+              className="btn-primary"
+              disabled={loadingPositions}
+            >
+              {loadingPositions ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>

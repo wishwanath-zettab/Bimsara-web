@@ -70,7 +70,7 @@ const Members = () => {
       <div className="members-stage">
         <ul className="circle-container">
           {data
-            .slice(0, 11)
+            .slice(0, 12)
             .filter((memb) => memb.id !== selected.id)
             .map((memb) => (
               <li key={memb.id}>

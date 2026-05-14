@@ -15,14 +15,15 @@ const AboutContentSix = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        // Fetch team members count
-        const teamResponse = await axios.get(`${API_URL}/api/team-members`);
-        if (teamResponse.data && Array.isArray(teamResponse.data)) {
-          setPositionsCount(teamResponse.data.length);
+        const [positionsResponse, providersResponse] = await Promise.all([
+          axios.get(`${API_URL}/api/positions-count`),
+          axios.get(`${API_URL}/api/service-providers`)
+        ]);
+
+        if (positionsResponse.data && positionsResponse.data.positions_count != null) {
+          setPositionsCount(positionsResponse.data.positions_count);
         }
 
-        // Fetch service providers count
-        const providersResponse = await axios.get(`${API_URL}/api/service-providers`);
         if (providersResponse.data && Array.isArray(providersResponse.data)) {
           setProvidersCount(providersResponse.data.length);
         }
