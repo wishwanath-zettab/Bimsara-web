@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../../apiConfig";
-import facebook from "../../assets/icons/fb.webp";
+import facebook from "../../assets/icons/Facebook.webp";
 import google from "../../assets/icons/gl.webp";
 import linkedin from "../../assets/icons/lin.webp";
 import instagram from "../../assets/icons/insta.webp";
@@ -47,11 +47,11 @@ const ServicesContentFive = () => {
           <div className="social-container">
             <div className="header-social">WE ARE SOCIAL</div>
             <div className="content-social">
-              <img alt="" src={facebook} onClick={()=> openExternal("https://www.facebook.com/bimsararealestate/")} style={{ cursor: "pointer" }}/>
-              <img alt="" src={google} onClick={()=> openExternal("https://g.page/r/CcszCwgyi0e4EAE")} style={{ cursor: "pointer" }}/>
-              <img alt="" src={linkedin} onClick={()=> openExternal("https://www.linkedin.com/company/safetynet-private-limited")} style={{ cursor: "pointer" }}/>
-              <img alt="" src={instagram} onClick={()=> openExternal("https://www.instagram.com/bimsara.realestate/")} style={{ cursor: "pointer" }} />
-              <img alt="" src={youtube} onClick={()=> openExternal("https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured")} style={{ cursor: "pointer" }}/>
+              <a href="https://www.facebook.com/bimsararealestate/" target="_blank" rel="noopener noreferrer"><img alt="Facebook" src={facebook} className="icon-facebook" /></a>
+              <a href="https://g.page/r/CcszCwgyi0e4EAE" target="_blank" rel="noopener noreferrer"><img alt="Google" src={google} /></a>
+              <a href="https://www.linkedin.com/company/safetynet-private-limited" target="_blank" rel="noopener noreferrer"><img alt="LinkedIn" src={linkedin} /></a>
+              <a href="https://www.instagram.com/bimsara.realestate/" target="_blank" rel="noopener noreferrer"><img alt="Instagram" src={instagram} /></a>
+              <a href="https://www.youtube.com/channel/UC7qFW8s7CdI1GeDChAY5nTw/featured" target="_blank" rel="noopener noreferrer"><img alt="YouTube" src={youtube} /></a>
             </div>
           </div>
         </div>
