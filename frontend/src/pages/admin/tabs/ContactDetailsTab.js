@@ -172,7 +172,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
     }
 
     if (newCategory.phone && !validatePhoneNumber(newCategory.phone)) {
-      newErrors.phone = 'Phone number must be "+94 7* *** ****", "+947********" or "07*******"';
+      newErrors.phone = 'Phone number must be "+94 7X XXX XXXX", "+947XXXXXXXX" or "07XXXXXXX"';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -297,7 +297,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={category.phone}
                 onChange={(e) => handleCategoryChange(category.id, 'phone', e.target.value)}
-                placeholder='+94 7* *** ****, +947******** or 07*******'
+                placeholder='+94 7X XXX XXXX, +947XXXXXXXX or 07XXXXXXX'
                 style={{ borderColor: errors[`category_${category.id}_phone`] ? '#dc3545' : '' }}
               />
               {errors[`category_${category.id}_phone`] && (
@@ -359,7 +359,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={newCategory.phone}
                 onChange={(e) => setNewCategory({ ...newCategory, phone: e.target.value })}
-                placeholder='+94 7* *** ****, +947******** or 07*******'
+                placeholder='+94 7X XXX XXXX, +947XXXXXXXX or 07XXXXXXX'
                 style={{ borderColor: newCategoryErrors.phone ? '#dc3545' : '' }}
               />
               {newCategoryErrors.phone && (
