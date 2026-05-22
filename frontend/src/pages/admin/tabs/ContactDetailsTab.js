@@ -26,7 +26,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^(\+94 7\d \d{3} \d{4}|\+947\d{8}|07\d{8})$/;
+    const phoneRegex = /^(\+94 \d{2} \d{3} \d{4}|\+94\d{9}|0\d{9})$/;
     return phoneRegex.test(phone) || phone === '';
   };
 
@@ -172,7 +172,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
     }
 
     if (newCategory.phone && !validatePhoneNumber(newCategory.phone)) {
-      newErrors.phone = 'Phone number must be "+94 7X XXX XXXX", "+947XXXXXXXX" or "07XXXXXXX"';
+      newErrors.phone = 'Phone number must be "+94 XX XXX XXXX", "+94XXXXXXXXX" or "0XXXXXXXXX"';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -297,7 +297,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={category.phone}
                 onChange={(e) => handleCategoryChange(category.id, 'phone', e.target.value)}
-                placeholder='+94 7X XXX XXXX, +947XXXXXXXX or 07XXXXXXX'
+                placeholder='+94 XX XXX XXXX, +94XXXXXXXXX or 0XXXXXXXXX'
                 style={{ borderColor: errors[`category_${category.id}_phone`] ? '#dc3545' : '' }}
               />
               {errors[`category_${category.id}_phone`] && (
@@ -359,7 +359,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
                 type="tel"
                 value={newCategory.phone}
                 onChange={(e) => setNewCategory({ ...newCategory, phone: e.target.value })}
-                placeholder='+94 7X XXX XXXX, +947XXXXXXXX or 07XXXXXXX'
+                placeholder='+94 XX XXX XXXX, +94XXXXXXXXX or 0XXXXXXXXX'
                 style={{ borderColor: newCategoryErrors.phone ? '#dc3545' : '' }}
               />
               {newCategoryErrors.phone && (
