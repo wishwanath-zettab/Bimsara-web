@@ -24,7 +24,7 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
 
   const MAX_NAME_LENGTH = 125;
   const MAX_POSITION_LENGTH = 125;
-  const MAX_DESCRIPTION_LENGTH = 400;
+  const MAX_DESCRIPTION_LENGTH = 1000;
   const MAX_PHOTO_SIZE = 5 * 1024 * 1024; // 5MB
 
   // Validation functions

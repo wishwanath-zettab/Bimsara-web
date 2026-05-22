@@ -26,7 +26,7 @@ const ContactDetailsTab = ({ getAuthHeaders }) => {
   };
 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^(\+94 7\d \d{3} \d{3}|\+947\d{7}|0\d{8})$/;
+    const phoneRegex = /^(\+94 7\d \d{3} \d{4}|\+947\d{8}|07\d{8})$/;
     return phoneRegex.test(phone) || phone === '';
   };
 
