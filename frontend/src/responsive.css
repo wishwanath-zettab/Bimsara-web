@@ -1139,18 +1139,18 @@
 
   .ServicesContentTwo .heder-content,
   .ServicesContentFour .heder-content {
-    text-align: left !important;
-    font-size: clamp(28px, 7vw, 40px) !important;
-    line-height: 1.35 !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    line-height: 50px !important;
     margin: 0 0 22px !important;
   }
 
   .ServicesContentTwo .sub-content,
   .ServicesContentTwo .sub-content-two,
   .ServicesContentFour .sub-content-two {
-    text-align: left !important;
-    font-size: clamp(16px, 4vw, 18px) !important;
-    line-height: 1.75 !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    line-height: 30px !important;
     word-spacing: normal !important;
     overflow-wrap: anywhere;
     margin-top: 18px !important;
@@ -1159,28 +1159,28 @@
   .ServicesContentTwo .bottom-right-container,
   .ServicesContentFour .bottom-right-container {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: 18px !important;
   }
 
   .Rate-card {
     width: 100% !important;
     max-width: 180px;
     margin: 0 auto 18px !important;
-    text-align: left !important;
+    text-align: center !important;
   }
 
   .Rate-card .rate,
   .Rate-card .rate-g {
-    font-size: clamp(56px, 16vw, 78px) !important;
-    line-height: 0.95 !important;
+    font-size: 40px !important;
+    line-height: 45px !important;
   }
 
   .Rate-card .description,
   .Rate-card .description-g {
-    font-size: clamp(15px, 4vw, 18px) !important;
-    line-height: 1.35 !important;
+    font-size: 20px !important;
+    line-height: 30px !important;
     margin-top: 8px !important;
     padding-left: 0 !important;
   }
@@ -1270,8 +1270,8 @@
   }
 
   .contactForm .contact-form-header {
-    font-size: clamp(20px, 5vw, 26px) !important;
-    line-height: 1.25 !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
   }
 
   .contactForm .form .input-container {
@@ -1296,11 +1296,16 @@
   }
 
   .contactForm .radio-container {
-    grid-template-columns: 1fr !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
   }
 
-  .contactForm .radio-container .label,
+  .contactForm .radio-container .label {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+  }
+
   .contactForm .radio-cont {
     width: 100% !important;
   }
@@ -1440,8 +1445,8 @@
   }
 
   .Services .header-text {
-    font-size: clamp(24px, 7vw, 32px) !important;
-    line-height: 1.22 !important;
+    font-size: 25px !important;
+    line-height: 40px !important;
     margin-top: 28px !important;
   }
 
@@ -1464,8 +1469,14 @@
 
   .ServicesContentTwo .bottom-right-container,
   .ServicesContentFour .bottom-right-container {
-    grid-template-columns: 1fr !important;
-    justify-items: start !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    justify-items: center !important;
+  }
+
+  .ServicesContentTwo .button-container {
+    margin-top: 24px !important;
+    margin-bottom: 0 !important;
+    justify-content: center !important;
   }
 
   .Rate-card {
@@ -1631,11 +1642,6 @@
     overflow: visible !important;
   }
 
-  .ServicesContentTwo .heder-content,
-  .ServicesContentTwo .sub-content,
-  .ServicesContentTwo .sub-content-two,
-  .ServicesContentFour .heder-content,
-  .ServicesContentFour .sub-content-two,
   .Sellers .right-content,
   .buyers .right-content,
   .landlords .right-content,
@@ -1647,6 +1653,16 @@
   .About .sub-content,
   .About .sub-content-two {
     text-align: justify !important;
+    word-spacing: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ServicesContentTwo .heder-content,
+  .ServicesContentTwo .sub-content,
+  .ServicesContentTwo .sub-content-two,
+  .ServicesContentFour .heder-content,
+  .ServicesContentFour .sub-content-two {
+    text-align: center !important;
     word-spacing: normal !important;
     overflow-wrap: anywhere;
   }
@@ -1697,8 +1713,8 @@
   .ServicesContentThree .inner-container .header {
     grid-column: auto !important;
     margin-bottom: 8px;
-    font-size: clamp(24px, 6vw, 40px) !important;
-    line-height: 1.25 !important;
+    font-size: 20px !important;
+    line-height: 80px !important;
   }
 
   .ServicesContentThree .inner-container a {
@@ -2025,16 +2041,48 @@
   }
 
   .responsive-footer {
-    width: min(100% - 40px, 520px) !important;
-    grid-template-columns: 1fr !important;
-    gap: 26px !important;
+    width: calc(100% - 24px) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px 8px !important;
     align-items: start !important;
+  }
+
+  /* Reorder items to match: Brand(logo) | Sellers | Buyers /
+     Brand(desc) | Landlords | Tenants /
+     Testimonials | About | Downloads /
+     empty | Contact | Tools */
+  .responsive-footer > :nth-child(1)  { order: 1;  }
+  .responsive-footer > :nth-child(2)  { order: 2;  }
+  .responsive-footer > :nth-child(3)  { order: 3;  }
+  .responsive-footer > :nth-child(4)  { order: 5;  }
+  .responsive-footer > :nth-child(5)  { order: 6;  }
+  .responsive-footer > :nth-child(6)  { order: 9;  }
+  .responsive-footer > :nth-child(7)  { order: 4;  }
+  .responsive-footer > :nth-child(8)  { order: 7;  }
+  .responsive-footer > :nth-child(9)  { order: 8;  }
+  .responsive-footer > :nth-child(10) { order: 11; }
+  .responsive-footer > :nth-child(11) { order: 10; }
+  .responsive-footer > :nth-child(12) { order: 12; }
+
+  .footer-brand .logo {
+    width: min(80px, 100%) !important;
+    height: auto !important;
+    margin-bottom: 4px !important;
+  }
+
+  .footer-brand {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .footer-brand {
+    grid-column: auto !important;
   }
 
   .footer-brand,
   .footer-group {
     width: 100% !important;
-    gap: 10px !important;
+    gap: 4px !important;
     align-items: flex-start !important;
   }
 
@@ -2044,7 +2092,7 @@
   .footer-muted {
     width: auto !important;
     max-width: 100% !important;
-    min-height: 32px;
+    min-height: unset !important;
     padding: 0 !important;
     margin: 0 !important;
     display: inline-flex !important;
@@ -2055,23 +2103,23 @@
     letter-spacing: 0 !important;
     word-spacing: normal !important;
     text-transform: none !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
     white-space: normal !important;
     overflow-wrap: anywhere;
     text-shadow: none !important;
   }
 
   .footer-group .hed {
-    min-height: 36px;
-    font-size: 16px !important;
+    font-size: 13px !important;
     font-weight: 700 !important;
     color: #303548 !important;
+    margin-bottom: 2px !important;
   }
 
   .footer-group .sub,
   .footer-link,
   .footer-muted {
-    font-size: 14px !important;
+    font-size: 12px !important;
     font-weight: 400 !important;
     color: #566070 !important;
   }
@@ -2082,7 +2130,7 @@
 
   .designer-foot,
   .designer-foot a {
-    width: min(100% - 40px, 520px) !important;
+    width: calc(100% - 24px) !important;
     padding-left: 0 !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -2526,6 +2574,44 @@
   .ServicesContentFour .Button-styles {
     width: min(100%, 360px) !important;
   }
+
+  /* Fix: CLIENT TESTIMONIALS */
+  .ServicesContentFour .top-content {
+    font-size: 15px !important;
+    letter-spacing: 0.12em !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    line-height: 45px !important;
+    justify-content: center !important;
+  }
+
+  /* Fix: rate cards side-by-side — overrides the max-width:480px 1-column rule */
+  .ServicesContentFour .bottom-right-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+
+  .ServicesContentFour .margin-top-100 {
+    display: none !important;
+  }
+
+  /* Fix: button after stats using display:contents to unwrap left container */
+  .ServicesContentFour .bottom-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .ServicesContentFour .bottom-left-container {
+    display: contents !important;
+  }
+
+  .ServicesContentFour .heder-content    { order: 1 !important; }
+  .ServicesContentFour .sub-content-two  { order: 2 !important; }
+  .ServicesContentFour .bottom-right-container { order: 3 !important; }
+  .ServicesContentFour #reviews_btn_1    { order: 4 !important; }
+  .ServicesContentFour #reviews_btn_2    { order: 4 !important; }
 }
 
 @media screen and (min-width: 1919px) {
@@ -2533,6 +2619,68 @@
     width: 65%;
     padding-right: 3%;
     margin-top: 40px;
+  }
+}
+
+/* Mobile carousel for client video testimonials */
+@media screen and (max-width: 768px) {
+  .ServicesContentFiveMain .ServicesContentFive {
+    width: 90% !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .ServicesContentFiveMain {
+    margin-bottom: 0 !important;
+  }
+
+  .contact-component {
+    padding-top: 0 !important;
+  }
+
+  .client-cards-swiper {
+    width: 100% !important;
+  }
+
+  .client-cards-swiper .swiper-slide {
+    height: auto !important;
+    display: flex !important;
+  }
+
+  .arrow-btn-container {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 16px !important;
+  }
+
+  .arrow-div-1,
+  .arrow-div-2 {
+    width: 44px !important;
+    height: 44px !important;
+    border: 1.5px solid #0f64fa !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    background: #fff !important;
+  }
+
+  .arrow-div-1 img,
+  .arrow-div-2 img {
+    width: 12px !important;
+    height: auto !important;
+  }
+
+  .arrow-div-2 img {
+    transform: scaleX(-1) !important;
+  }
+
+  .arrow-div-1.swiper-button-disabled,
+  .arrow-div-2.swiper-button-disabled {
+    opacity: 0.35 !important;
+    cursor: default !important;
   }
 }
 
