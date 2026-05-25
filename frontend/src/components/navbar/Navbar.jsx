@@ -208,7 +208,7 @@ const Navbar = () => {
               <div className="rotate">
                 <NavAction id="NavServices" className={serviceActive ? "hover-red active" : "hover-red"}>Services</NavAction>
               </div>
-              <div className="hovercontent">{servicesPanel}</div>
+              <div className="hovercontent" onClick={(e) => e.stopPropagation()}>{servicesPanel}</div>
             </div>
             <div className="testimonialsNav">
               <div className="rotate">
@@ -220,16 +220,16 @@ const Navbar = () => {
             <div className={`aboutNav nav-item-has-flyout${openFlyout === 'about' ? ' flyout-open' : ''}`}
               onClick={() => toggleFlyout('about')}>
               <div className="rotate">
-                <Link to="/about" onClick={closeNav} className={`hover-red ${location.pathname === "/about" ? "active" : ""}`} id="NavAbout">About</Link>
+                <NavAction className={`hover-red ${location.pathname === "/about" ? "active" : ""}`} id="NavAbout">About</NavAction>
               </div>
-              <div className="hovercontent-2">{aboutPanel}</div>
+              <div className="hovercontent-2" onClick={(e) => e.stopPropagation()}>{aboutPanel}</div>
             </div>
             <div className={`contactNav nav-item-has-flyout${openFlyout === 'contact' ? ' flyout-open' : ''}`}
               onClick={() => toggleFlyout('contact')}>
               <div className="rotate">
                 <NavAction>Contact</NavAction>
               </div>
-              <div className="hovercontent-3">{contactPanel}</div>
+              <div className="hovercontent-3" onClick={(e) => e.stopPropagation()}>{contactPanel}</div>
             </div>
           </div>
         </div>
