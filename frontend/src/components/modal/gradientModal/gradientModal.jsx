@@ -60,7 +60,7 @@ const GradientModal = (props) => {
       <div className="gradient-modal-content" onClick={(e) => e.stopPropagation()}>
         <div>
           <button className="close-icon-btn" onClick={handleClose} aria-label="Close">
-            <img alt="" src={close} className="close-icon" />
+            <span className="close-icon">&#x2715;</span>
           </button>
           {props.content}
         </div>
