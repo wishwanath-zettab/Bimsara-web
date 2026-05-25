@@ -1438,7 +1438,7 @@
     padding: 0 !important;
     font-size: clamp(16px, 4vw, 20px) !important;
     line-height: 1.7 !important;
-    text-align: left !important;
+    text-align: center !important;
     color: #fff !important;
   }
 
@@ -2001,6 +2001,36 @@
     grid-template-columns: 64px minmax(0, 1fr);
     gap: 14px;
   }
+
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content {
+    text-align: center !important;
+  }
+
+  .Sellers .content-text,
+  .buyers .content-text,
+  .landlords .content-text,
+  .tenants .content-text {
+    text-align: left !important;
+  }
+
+  /* Reset letter-spacing on navbar dropdown subtitles — .Sellers .sub bleeds into .Nav-bar */
+  .Nav-bar .sub,
+  .Nav-bar .sub-n {
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+
+  .Sellers .sellersContentOne .header,
+  .buyers .buyersContentOne .header,
+  .landlords .landlordsContentOne .header,
+  .tenants .tenantsContentOne .header {
+    font-size: clamp(22px, 6vw, 32px) !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -2196,6 +2226,19 @@
     height: auto !important;
     display: block !important;
     object-fit: cover !important;
+  }
+
+  /* Navbar dropdown img-cont must not inherit the 100%-width override above */
+  .Nav-bar .service-layout .img-cont {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    margin-right: 16px !important;
+    overflow: hidden !important;
+  }
+  .Nav-bar .service-layout .img-cont img {
+    width: 40px !important;
+    height: 40px !important;
   }
 
   .Sellers .seller-card-container,
