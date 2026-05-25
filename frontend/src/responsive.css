@@ -746,7 +746,6 @@
   .content-text {
     font-size: 15px !important;
     line-height: 1.75 !important;
-    text-align: justify !important;
   }
 
   .sellerCardContainer,
@@ -2255,10 +2254,11 @@
   .Sellers .seller-card-container,
   .buyers .buyer-card-container,
   .buyers .card-compo,
-  .landlords .landloards-card-container,
+  .landlords .landlords-card-container,
   .tenants .card-compo {
     width: 100% !important;
     max-width: 100% !important;
+    margin: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
     gap: clamp(14px, 3vw, 24px) !important;
@@ -2268,7 +2268,7 @@
   .Sellers .seller-card-container > *,
   .buyers .buyer-card-container > *,
   .buyers .card-compo > *,
-  .landlords .landloards-card-container > *,
+  .landlords .landlords-card-container > *,
   .tenants .card-compo > *,
   .sellerCard,
   .sellerCardContainer {
