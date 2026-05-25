@@ -2792,7 +2792,10 @@
   .tenants .card-compo {
     width: 80vw !important;
     max-width: 80vw !important;
-    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 40px !important;
+    margin-bottom: 0 !important;
   }
 
   /* Align heading and subtitle with button left edge (buttons have 10vw left margin within the parent) */
