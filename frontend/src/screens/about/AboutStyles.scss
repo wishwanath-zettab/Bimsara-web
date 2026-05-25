@@ -878,6 +878,7 @@
                 width: 70%;
                 height: max-content;
                 padding-top: 10%;
+                margin: auto;
 
                 .logo {
                   display: flex;
@@ -899,11 +900,13 @@
                 .contact-header-c {
                   font-size: 15px;
                   line-height: 30px;
+                  text-align: center !important;
                 }
 
                 .contact-address {
                   font-size: 15px;
                   line-height: 24px;
+                  text-align: center !important;
                 }
               }
             }
@@ -913,20 +916,24 @@
               margin: auto;
               margin-top: 10%;
               margin-bottom: 5%;
+              text-align: center !important;
 
               .contact-header-c {
                 font-size: 15px;
                 line-height: 30px;
+                text-align: center !important;
               }
 
               .contact-name {
                 font-size: 15px;
                 line-height: 24px;
+                text-align: center !important;
               }
 
               .contact-address {
                 font-size: 15px;
                 line-height: 24px;
+                text-align: center !important;
               }
 
               .margin-top {
