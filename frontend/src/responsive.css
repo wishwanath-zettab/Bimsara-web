@@ -1438,7 +1438,7 @@
     padding: 0 !important;
     font-size: clamp(16px, 4vw, 20px) !important;
     line-height: 1.7 !important;
-    text-align: left !important;
+    text-align: center !important;
     color: #fff !important;
   }
 
@@ -2000,6 +2000,20 @@
     display: grid !important;
     grid-template-columns: 64px minmax(0, 1fr);
     gap: 14px;
+  }
+
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content {
+    text-align: center !important;
+  }
+
+  .Sellers .content-text,
+  .buyers .content-text,
+  .landlords .content-text,
+  .tenants .content-text {
+    text-align: left !important;
   }
 }
 
