@@ -2794,4 +2794,16 @@
     max-width: 80vw !important;
     margin: 0 auto !important;
   }
+
+  /* Align heading and subtitle with button left edge (buttons have 10vw left margin within the parent) */
+  .Sellers .sellersContentOne .header,
+  .buyers .buyersContentOne .header,
+  .landlords .landlordsContentOne .header,
+  .tenants .tenantsContentOne .header,
+  .Sellers .sellersContentOne .sub,
+  .buyers .buyersContentOne .sub,
+  .landlords .landlordsContentOne .sub,
+  .tenants .tenantsContentOne .sub {
+    padding-left: 5vw !important;
+  }
 }
