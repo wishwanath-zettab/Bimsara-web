@@ -95,7 +95,9 @@ const Footer = () => {
       <div className="inner-footer responsive-footer">
         <section className="footer-brand">
           <img alt="Safetynet Private Limited" src={logo} className="logo" />
-          
+          <p>
+            Safetynet (Private) Limited DBA Bimsara Real Estate is a licensed Real Estate Broker and an Auctioneer based in Sri Lanka.
+          </p>
         </section>
 
         {serviceGroups.map((group) => (
@@ -109,7 +111,6 @@ const Footer = () => {
               </FooterButton>
             ))}
           </section>
-          
         ))}
         <section className="footer-group">
           <div className="hed">Downloads</div>
@@ -118,14 +119,6 @@ const Footer = () => {
               ? <a className="sub footer-link hover-red" href={companyProfileUrl} target="_blank" rel="noopener noreferrer" key={label}>{label}</a>
               : <span className="sub footer-link" key={label}>{label}</span>
           ))}
-        </section>
-        
-
-        <section className="footer-brand">
-          
-          <p>
-            Safetynet (Private) Limited DBA Bimsara Real Estate is a licensed Real Estate Broker and an Auctioneer based in Sri Lanka.
-          </p>
         </section>
         <section className="footer-group">
           <FooterButton className="hed" onClick={() => goHomeSection("home-testimonials")}>Testimonials</FooterButton>

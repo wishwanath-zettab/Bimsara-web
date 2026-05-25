@@ -746,7 +746,6 @@
   .content-text {
     font-size: 15px !important;
     line-height: 1.75 !important;
-    text-align: justify !important;
   }
 
   .sellerCardContainer,
@@ -1111,7 +1110,7 @@
     align-items: center !important;
     justify-content: center !important;
     padding: 0 !important;
-    margin-top: 0 !important;
+    margin-top: 6% !important;
     margin-bottom: 26px !important;
     gap: 0 !important;
   }
@@ -2031,6 +2030,16 @@
   .tenants .tenantsContentOne .header {
     font-size: clamp(22px, 6vw, 32px) !important;
   }
+
+  /* Allow seller card buttons to expand for long text on mobile */
+  .sellerCard {
+    height: auto !important;
+    min-height: 51px !important;
+    align-items: center !important;
+  }
+  .sellerCard .content {
+    white-space: normal !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -2107,26 +2116,25 @@
   .responsive-footer {
     width: calc(100% - 24px) !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 16px 8px !important;
+    gap: 40px 8px !important;
     align-items: start !important;
   }
 
-  /* Reorder items to match: Brand(logo) | Sellers | Buyers /
-     Brand(desc) | Landlords | Tenants /
+  /* Reorder items to match: Brand(logo+desc spans 2 rows) | Sellers | Buyers /
+     Brand(logo+desc spans 2 rows)     | Landlords | Tenants /
      Testimonials | About | Downloads /
      empty | Contact | Tools */
-  .responsive-footer > :nth-child(1)  { order: 1;  }
+  .responsive-footer > :nth-child(1)  { order: 1; grid-row: span 2 !important; }
   .responsive-footer > :nth-child(2)  { order: 2;  }
   .responsive-footer > :nth-child(3)  { order: 3;  }
   .responsive-footer > :nth-child(4)  { order: 5;  }
   .responsive-footer > :nth-child(5)  { order: 6;  }
   .responsive-footer > :nth-child(6)  { order: 9;  }
-  .responsive-footer > :nth-child(7)  { order: 4;  }
-  .responsive-footer > :nth-child(8)  { order: 7;  }
-  .responsive-footer > :nth-child(9)  { order: 8;  }
-  .responsive-footer > :nth-child(10) { order: 11; }
-  .responsive-footer > :nth-child(11) { order: 10; }
-  .responsive-footer > :nth-child(12) { order: 12; }
+  .responsive-footer > :nth-child(7)  { order: 7;  }
+  .responsive-footer > :nth-child(8)  { order: 8;  }
+  .responsive-footer > :nth-child(9)  { order: 11; }
+  .responsive-footer > :nth-child(10) { order: 10; }
+  .responsive-footer > :nth-child(11) { order: 12; }
 
   .footer-brand .logo {
     width: min(80px, 100%) !important;
@@ -2146,7 +2154,7 @@
   .footer-brand,
   .footer-group {
     width: 100% !important;
-    gap: 4px !important;
+    gap: 16px !important;
     align-items: flex-start !important;
   }
 
@@ -2174,7 +2182,7 @@
   }
 
   .footer-group .hed {
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     color: #303548 !important;
     margin-bottom: 2px !important;
@@ -2186,6 +2194,7 @@
     font-size: 12px !important;
     font-weight: 400 !important;
     color: #566070 !important;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px !important;
   }
 
   .tools-title {
@@ -2233,6 +2242,7 @@
     width: 40px !important;
     height: 40px !important;
     min-width: 40px !important;
+    margin-left: 0 !important;
     margin-right: 16px !important;
     overflow: hidden !important;
   }
@@ -2244,10 +2254,11 @@
   .Sellers .seller-card-container,
   .buyers .buyer-card-container,
   .buyers .card-compo,
-  .landlords .landloards-card-container,
+  .landlords .landlords-card-container,
   .tenants .card-compo {
     width: 100% !important;
     max-width: 100% !important;
+    margin: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important;
     gap: clamp(14px, 3vw, 24px) !important;
@@ -2257,7 +2268,7 @@
   .Sellers .seller-card-container > *,
   .buyers .buyer-card-container > *,
   .buyers .card-compo > *,
-  .landlords .landloards-card-container > *,
+  .landlords .landlords-card-container > *,
   .tenants .card-compo > *,
   .sellerCard,
   .sellerCardContainer {
@@ -2727,7 +2738,7 @@
   .arrow-btn-container {
     display: flex !important;
     justify-content: center !important;
-    gap: 12px !important;
+    gap: 50px !important;
     margin-top: 16px !important;
   }
 
@@ -2769,5 +2780,78 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Mobile: constrain seller card containers to match bimsara.com width (80vw, centred) */
+@media screen and (max-width: 480px) {
+  .Sellers .seller-card-container,
+  .buyers .buyer-card-container,
+  .buyers .card-compo,
+  .landlords .landlords-card-container,
+  .tenants .card-compo {
+    width: 80vw !important;
+    max-width: 80vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 40px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Align heading and subtitle with button left edge (buttons have 10vw left margin within the parent) */
+  .Sellers .sellersContentOne .header,
+  .landlords .landlordsContentOne .header,
+  .tenants .tenantsContentOne .header,
+  .Sellers .sellersContentOne .sub,
+  .landlords .landlordsContentOne .sub,
+  .tenants .tenantsContentOne .sub {
+    padding-left: 5vw !important;
+  }
+
+  /* Buyers: restore full-width top-containr so layout matches bimsara.com (bimsara has no page-gutter constraint here) */
+  .buyers .buyersContentOne .top-containr {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Buyers: restore SCSS padding-left:34px on left-inner (zeroed by the 768px block) so
+     buyers-card-container lands at x=34 matching bimsara.com */
+  .buyers .buyersContentOne .left-inner {
+    padding-left: 34px !important;
+  }
+
+  /* Buyers: no extra padding on header/sub — left-inner's 34px already provides the offset */
+  .buyers .buyersContentOne .header,
+  .buyers .buyersContentOne .sub {
+    padding-left: 0 !important;
+  }
+
+  /* Match bimsara.com paragraph: 15px / line-height 2.0 — include high-specificity selectors to beat 1199px block */
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content,
+  .Sellers .buyers-card-container .right-content,
+  .buyers .buyers-card-container .right-content,
+  .landlords .landlords-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    font-size: 15px !important;
+    line-height: 2.0 !important;
+  }
+
+  /* Buyers paragraph: keep 95% width so 100% override from 768px block is cancelled.
+     With left-inner=390px and buyers-card-container=95%×356px=338px, right-content=95%×338=321px matching bimsara */
+  .buyers .buyers-card-container .right-content {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+
+  /* Match bimsara.com OUR SERVICES letter-spacing (6px) and font-size (15px) */
+  .Sellers .sellersContentOne .sub,
+  .buyers .buyersContentOne .sub,
+  .landlords .landlordsContentOne .sub,
+  .tenants .tenantsContentOne .sub {
+    letter-spacing: 6px !important;
+    font-size: 15px !important;
   }
 }
