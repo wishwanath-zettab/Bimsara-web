@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import macosClose from "../../../assets/icons/icons8-macos-close-30.png";
 import "./gradientModalStyles.scss";
 
 const GradientModal = (props) => {
@@ -58,7 +59,9 @@ const GradientModal = (props) => {
       <div className="gradient-modal-backdrop"></div>
       <div className="gradient-modal-content" onClick={(e) => e.stopPropagation()}>
         <div>
-          <button className="close-icon-btn" onClick={handleClose} aria-label="Close" />
+          <button className="close-icon-btn" onClick={handleClose} aria-label="Close">
+            <img src={macosClose} alt="close" className="close-icon" />
+          </button>
           {props.content}
         </div>
       </div>

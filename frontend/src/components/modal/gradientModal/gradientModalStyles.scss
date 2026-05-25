@@ -46,40 +46,22 @@
       position: absolute;
       top: 16px;
       right: 16px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #FF5F57;
-      border: 1px solid #E0443E;
+      background: none;
+      border: none;
       display: none;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: filter 0.15s;
       padding: 0;
-
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        width: 6px;
-        height: 1.5px;
-        background: rgba(80, 0, 0, 0.7);
-        border-radius: 1px;
-        opacity: 0;
-        transition: opacity 0.15s;
-      }
-
-      &::before { transform: rotate(45deg); }
-      &::after  { transform: rotate(-45deg); }
+      transition: transform 0.15s;
 
       &:hover {
-        filter: brightness(0.9);
+        transform: scale(1.1);
+      }
 
-        &::before,
-        &::after {
-          opacity: 1;
-        }
+      .close-icon {
+        width: 28px;
+        height: 28px;
       }
     }
   }
