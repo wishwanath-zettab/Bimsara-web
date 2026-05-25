@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { LuX } from "react-icons/lu";
 import "./gradientModalStyles.scss";
 
 const GradientModal = (props) => {
@@ -59,9 +58,7 @@ const GradientModal = (props) => {
       <div className="gradient-modal-backdrop"></div>
       <div className="gradient-modal-content" onClick={(e) => e.stopPropagation()}>
         <div>
-          <button className="close-icon-btn" onClick={handleClose} aria-label="Close">
-            <LuX className="close-icon" />
-          </button>
+          <button className="close-icon-btn" onClick={handleClose} aria-label="Close" />
           {props.content}
         </div>
       </div>
