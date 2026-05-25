@@ -1110,7 +1110,7 @@
     justify-content: center !important;
     padding: 0 !important;
     margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 26px !important;
     gap: 0 !important;
   }
 
@@ -1161,8 +1161,8 @@
   .ServicesContentFour .heder-content {
     text-align: center !important;
     font-size: 20px !important;
-    line-height: 50px !important;
-    margin: 0 0 22px !important;
+    line-height: 35px !important;
+    margin: 0 !important;
   }
 
   .ServicesContentTwo .sub-content,
