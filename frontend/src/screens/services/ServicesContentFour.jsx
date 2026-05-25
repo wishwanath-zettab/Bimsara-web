@@ -43,6 +43,7 @@ const ServicesContentFour = () => {
   );
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -50,17 +51,22 @@ const ServicesContentFour = () => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  useEffect(() => {
+    if (swiperRef.current && prevRef.current && nextRef.current) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
+    }
+  }, [isMobile]);
+
   return (
     <div className="ServicesContentFiveMain" id="home-video">
       <div className="ServicesContentFive">
         {isMobile ? (
           <Swiper
             modules={[Navigation]}
-            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-            }}
+            onSwiper={(swiper) => { swiperRef.current = swiper; }}
             slidesPerView={1}
             className="client-cards-swiper"
           >
