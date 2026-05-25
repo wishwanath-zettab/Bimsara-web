@@ -2807,12 +2807,25 @@
     padding-left: 5vw !important;
   }
 
-  /* Match bimsara.com paragraph line-spacing: 15px / line-height 2.0 */
+  /* Match bimsara.com paragraph: 15px / line-height 2.0 — include high-specificity selectors to beat 1199px block */
   .Sellers .right-content,
   .buyers .right-content,
   .landlords .right-content,
-  .tenants .right-content {
+  .tenants .right-content,
+  .Sellers .buyers-card-container .right-content,
+  .buyers .buyers-card-container .right-content,
+  .landlords .landlords-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
     font-size: 15px !important;
     line-height: 2.0 !important;
+  }
+
+  /* Match bimsara.com OUR SERVICES letter-spacing (6px) and font-size (15px) */
+  .Sellers .sellersContentOne .sub,
+  .buyers .buyersContentOne .sub,
+  .landlords .landlordsContentOne .sub,
+  .tenants .tenantsContentOne .sub {
+    letter-spacing: 6px !important;
+    font-size: 15px !important;
   }
 }
