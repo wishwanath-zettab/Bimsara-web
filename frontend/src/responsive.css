@@ -2116,7 +2116,7 @@
   .responsive-footer {
     width: calc(100% - 24px) !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 16px 8px !important;
+    gap: 40px 8px !important;
     align-items: start !important;
   }
 
@@ -2155,7 +2155,7 @@
   .footer-brand,
   .footer-group {
     width: 100% !important;
-    gap: 4px !important;
+    gap: 16px !important;
     align-items: flex-start !important;
   }
 
@@ -2183,7 +2183,7 @@
   }
 
   .footer-group .hed {
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     color: #303548 !important;
     margin-bottom: 2px !important;
@@ -2195,6 +2195,7 @@
     font-size: 12px !important;
     font-weight: 400 !important;
     color: #566070 !important;
+    text-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px !important;
   }
 
   .tools-title {
@@ -2797,14 +2798,30 @@
 
   /* Align heading and subtitle with button left edge (buttons have 10vw left margin within the parent) */
   .Sellers .sellersContentOne .header,
-  .buyers .buyersContentOne .header,
   .landlords .landlordsContentOne .header,
   .tenants .tenantsContentOne .header,
   .Sellers .sellersContentOne .sub,
-  .buyers .buyersContentOne .sub,
   .landlords .landlordsContentOne .sub,
   .tenants .tenantsContentOne .sub {
     padding-left: 5vw !important;
+  }
+
+  /* Buyers: restore full-width top-containr so layout matches bimsara.com (bimsara has no page-gutter constraint here) */
+  .buyers .buyersContentOne .top-containr {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Buyers: restore SCSS padding-left:34px on left-inner (zeroed by the 768px block) so
+     buyers-card-container lands at x=34 matching bimsara.com */
+  .buyers .buyersContentOne .left-inner {
+    padding-left: 34px !important;
+  }
+
+  /* Buyers: no extra padding on header/sub — left-inner's 34px already provides the offset */
+  .buyers .buyersContentOne .header,
+  .buyers .buyersContentOne .sub {
+    padding-left: 0 !important;
   }
 
   /* Match bimsara.com paragraph: 15px / line-height 2.0 — include high-specificity selectors to beat 1199px block */
@@ -2820,8 +2837,8 @@
     line-height: 2.0 !important;
   }
 
-  /* Restore SCSS 95% width on buyers paragraph — 100% override makes it 333px vs bimsara's 321px,
-     causing "for." to wrap alone on the last line */
+  /* Buyers paragraph: keep 95% width so 100% override from 768px block is cancelled.
+     With left-inner=390px and buyers-card-container=95%×356px=338px, right-content=95%×338=321px matching bimsara */
   .buyers .buyers-card-container .right-content {
     width: 95% !important;
     max-width: 95% !important;
