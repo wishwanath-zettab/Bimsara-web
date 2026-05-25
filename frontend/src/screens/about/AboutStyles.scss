@@ -722,17 +722,20 @@
           }
 
           .inner-who {
-            display: table;
-            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
 
             .about-content-two-right {
-              display: table-header-group;
+              order: -1;
+              width: 100%;
               text-align: center;
 
               img {
                 width: 136px;
                 height: auto;
-                margin-bottom: 5vh;
+                margin-bottom: 16px;
               }
 
               .real-estate-header {
@@ -744,13 +747,12 @@
 
             .about-content-two-left {
               width: 100%;
-              margin: 5%;
+              margin: 0;
 
               .bottom-left-container {
                 padding-right: 0;
-                width: 80%;
-                margin: auto;
-                margin-top: -30px;
+                width: 85%;
+                margin: 20px auto 0;
 
                 .heder-content {
                   text-align: center;
