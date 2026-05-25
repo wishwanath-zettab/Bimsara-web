@@ -1108,10 +1108,9 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    margin-top: 6% !important;
     justify-content: center !important;
     padding: 0 !important;
-    margin-top: 0 !important;
+    margin-top: 6% !important;
     margin-bottom: 26px !important;
     gap: 0 !important;
   }
