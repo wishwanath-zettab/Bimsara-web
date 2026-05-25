@@ -2120,22 +2120,21 @@
     align-items: start !important;
   }
 
-  /* Reorder items to match: Brand(logo) | Sellers | Buyers /
-     Brand(desc) | Landlords | Tenants /
+  /* Reorder items to match: Brand(logo+desc spans 2 rows) | Sellers | Buyers /
+     Brand(logo+desc spans 2 rows)     | Landlords | Tenants /
      Testimonials | About | Downloads /
      empty | Contact | Tools */
-  .responsive-footer > :nth-child(1)  { order: 1;  }
+  .responsive-footer > :nth-child(1)  { order: 1; grid-row: span 2 !important; }
   .responsive-footer > :nth-child(2)  { order: 2;  }
   .responsive-footer > :nth-child(3)  { order: 3;  }
   .responsive-footer > :nth-child(4)  { order: 5;  }
   .responsive-footer > :nth-child(5)  { order: 6;  }
   .responsive-footer > :nth-child(6)  { order: 9;  }
-  .responsive-footer > :nth-child(7)  { order: 4;  }
-  .responsive-footer > :nth-child(8)  { order: 7;  }
-  .responsive-footer > :nth-child(9)  { order: 8;  }
-  .responsive-footer > :nth-child(10) { order: 11; }
-  .responsive-footer > :nth-child(11) { order: 10; }
-  .responsive-footer > :nth-child(12) { order: 12; }
+  .responsive-footer > :nth-child(7)  { order: 7;  }
+  .responsive-footer > :nth-child(8)  { order: 8;  }
+  .responsive-footer > :nth-child(9)  { order: 11; }
+  .responsive-footer > :nth-child(10) { order: 10; }
+  .responsive-footer > :nth-child(11) { order: 12; }
 
   .footer-brand .logo {
     width: min(80px, 100%) !important;
