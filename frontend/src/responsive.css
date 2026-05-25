@@ -2228,6 +2228,19 @@
     object-fit: cover !important;
   }
 
+  /* Navbar dropdown img-cont must not inherit the 100%-width override above */
+  .Nav-bar .service-layout .img-cont {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    margin-right: 16px !important;
+    overflow: hidden !important;
+  }
+  .Nav-bar .service-layout .img-cont img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
   .Sellers .seller-card-container,
   .buyers .buyer-card-container,
   .buyers .card-compo,
