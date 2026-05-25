@@ -2820,6 +2820,13 @@
     line-height: 2.0 !important;
   }
 
+  /* Restore SCSS 95% width on buyers paragraph — 100% override makes it 333px vs bimsara's 321px,
+     causing "for." to wrap alone on the last line */
+  .buyers .buyers-card-container .right-content {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+
   /* Match bimsara.com OUR SERVICES letter-spacing (6px) and font-size (15px) */
   .Sellers .sellersContentOne .sub,
   .buyers .buyersContentOne .sub,
