@@ -114,29 +114,29 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+    gap: 12px;
+    margin-top: 16px;
 
-    .arrow-div-1 {
-      padding: 15px 30px;
-      border: 0.5px solid $primary-blue;
-      margin-right: 10px;
+    .arrow-div-1,
+    .arrow-div-2 {
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid $primary-blue;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #fff;
 
       img {
-        height: 18px;
-        align-self: center;
+        width: 12px;
+        height: auto;
       }
     }
 
-    .arrow-div-2 {
-      padding: 15px 30px;
-      border: 0.5px solid $primary-blue;
-      margin-left: 10px;
-
-      img {
-        height: 18px;
-        align-self: center;
-        transform: rotate(180deg);
-      }
+    .arrow-div-2 img {
+      transform: scaleX(-1);
     }
   }
 }
