@@ -2015,6 +2015,22 @@
   .tenants .content-text {
     text-align: left !important;
   }
+
+  /* Reset letter-spacing on navbar dropdown subtitles — .Sellers .sub bleeds into .Nav-bar */
+  .Nav-bar .sub,
+  .Nav-bar .sub-n {
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+
+  .Sellers .sellersContentOne .header,
+  .buyers .buyersContentOne .header,
+  .landlords .landlordsContentOne .header,
+  .tenants .tenantsContentOne .header {
+    font-size: clamp(22px, 6vw, 32px) !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
