@@ -2782,3 +2782,16 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Mobile: constrain seller card containers to match bimsara.com width (80vw, centred) */
+@media screen and (max-width: 480px) {
+  .Sellers .seller-card-container,
+  .buyers .buyer-card-container,
+  .buyers .card-compo,
+  .landlords .landlords-card-container,
+  .tenants .card-compo {
+    width: 80vw !important;
+    max-width: 80vw !important;
+    margin: 0 auto !important;
+  }
+}
