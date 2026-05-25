@@ -226,6 +226,7 @@
 
   .nav-hamburger-btn {
     display: block !important;
+    top: 36px !important;
   }
 
   .hamburgerIcon {
@@ -998,7 +999,6 @@
 
   .Services .header-text {
     margin-top: 22px !important;
-    padding-right: 72px !important;
   }
 
   .Services .topper-container {
@@ -1122,7 +1122,7 @@
     line-height: 40px !important;
     text-align: center !important;
     justify-content: center !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 7.4px !important;
   }
 
   .ServicesContentTwo .top-container,
@@ -1285,15 +1285,27 @@
     padding: 42px var(--page-gutter) !important;
   }
 
+  .contactComponent .right-content {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
   .contactForm {
     width: min(100%, 560px) !important;
     margin: 0 auto !important;
     padding: clamp(24px, 7vw, 36px) !important;
   }
 
+  .contactForm input:not([type="radio"]),
+  .contactForm select {
+    min-height: 40px !important;
+    height: 40px !important;
+  }
+
   .contactForm .contact-form-header {
     font-size: 15px !important;
     line-height: 1.4 !important;
+    text-align: left !important;
   }
 
   .contactForm .form .input-container {
