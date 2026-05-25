@@ -2806,4 +2806,13 @@
   .tenants .tenantsContentOne .sub {
     padding-left: 5vw !important;
   }
+
+  /* Match bimsara.com paragraph line-spacing: 15px / line-height 2.0 */
+  .Sellers .right-content,
+  .buyers .right-content,
+  .landlords .right-content,
+  .tenants .right-content {
+    font-size: 15px !important;
+    line-height: 2.0 !important;
+  }
 }
