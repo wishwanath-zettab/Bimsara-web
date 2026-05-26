@@ -3,7 +3,10 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
-import './TabStyles.css';
+import c from '../adminClasses';
+
+const MAX_COMPANY_NAME_LENGTH = 100;
+const MAX_LOGO_SIZE = 3 * 1024 * 1024;
 
 const ServiceProvidersTab = ({ getAuthHeaders }) => {
   const [providers, setProviders] = useState([]);
@@ -12,111 +15,74 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, providerId: null });
   const [errors, setErrors] = useState({});
 
-  const MAX_COMPANY_NAME_LENGTH = 100;
-  const MAX_LOGO_SIZE = 3 * 1024 * 1024; // 3MB
-
-  useEffect(() => {
-    fetchProviders();
-  }, []);
+  useEffect(() => { fetchProviders(); }, []);
 
   const fetchProviders = async () => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/admin/service-providers`,
-        getAuthHeaders()
-      );
+      const response = await axios.get(`${API_URL}/api/admin/service-providers`, getAuthHeaders());
       setProviders(response.data);
-    } catch (error) {
+    } catch {
       toast.error('Failed to fetch service providers');
     }
   };
 
   const handleCreateProvider = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-    
-    if (!newProvider.company_name) {
-      toast.error('Please enter company name');
-      return;
-    }
-
+    if (!newProvider.company_name) { toast.error('Please enter company name'); return; }
     if (newProvider.company_name.length > MAX_COMPANY_NAME_LENGTH) {
-      newErrors.company_name = `Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`;
-      setErrors(newErrors);
-      toast.error(newErrors.company_name);
+      setErrors({ company_name: `Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters` });
+      toast.error(`Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`);
       return;
     }
-
     setErrors({});
-
     setLoading(true);
     const formData = new FormData();
     formData.append('company_name', newProvider.company_name);
-    if (newProvider.logo) {
-      formData.append('logo', newProvider.logo);
-    }
-
+    if (newProvider.logo) formData.append('logo', newProvider.logo);
     try {
-      await axios.post(
-        `${API_URL}/api/admin/service-providers`,
-        formData,
-        {
-          ...getAuthHeaders(),
-          headers: {
-            ...getAuthHeaders().headers,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      await axios.post(`${API_URL}/api/admin/service-providers`, formData, {
+        ...getAuthHeaders(),
+        headers: { ...getAuthHeaders().headers, 'Content-Type': 'multipart/form-data' }
+      });
       toast.success('Service provider created successfully');
       setNewProvider({ company_name: '', logo: null });
       fetchProviders();
-    } catch (error) {
+    } catch {
       toast.error('Failed to create service provider');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDeleteProvider = async (id) => {
-    setConfirmDialog({ isOpen: true, providerId: id });
-  };
+  const handleDeleteProvider = (id) => setConfirmDialog({ isOpen: true, providerId: id });
 
   const confirmDelete = async () => {
     const id = confirmDialog.providerId;
     setConfirmDialog({ isOpen: false, providerId: null });
-
     try {
-      await axios.delete(
-        `${API_URL}/api/admin/service-providers/${id}`,
-        getAuthHeaders()
-      );
+      await axios.delete(`${API_URL}/api/admin/service-providers/${id}`, getAuthHeaders());
       toast.success('Service provider deleted successfully');
       fetchProviders();
-    } catch (error) {
+    } catch {
       toast.error('Failed to delete service provider');
     }
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    const newErrors = { ...errors };
-    
-    if (file) {
-      if (file.size > MAX_LOGO_SIZE) {
-        newErrors.logo = `Company logo must be less than 3MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
-        setErrors(newErrors);
-        toast.error(newErrors.logo);
-        return;
-      }
-      delete newErrors.logo;
-      setErrors(newErrors);
-      setNewProvider({ ...newProvider, logo: file });
+    if (!file) return;
+    if (file.size > MAX_LOGO_SIZE) {
+      setErrors({ ...errors, logo: `Company logo must be less than 3MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB` });
+      toast.error(`Logo must be less than 3MB`);
+      return;
     }
+    const { logo: _, ...rest } = errors;
+    setErrors(rest);
+    setNewProvider({ ...newProvider, logo: file });
   };
 
   return (
-    <div className="tab-content">
+    <div className="py-[15px]">
       <ConfirmDialog
         isOpen={confirmDialog.isOpen}
         title="Delete Service Provider"
@@ -125,85 +91,78 @@ const ServiceProvidersTab = ({ getAuthHeaders }) => {
         onCancel={() => setConfirmDialog({ isOpen: false, providerId: null })}
       />
 
-      <h2>Service Providers Management</h2>
+      <h2 className={c.h2}>Service Providers Management</h2>
 
-      <div className="section">
-        <h3>Add New Service Provider</h3>
-        <form onSubmit={handleCreateProvider} className="provider-form-row">
-          <div className="form-group">
-            <label>Company Name</label>
+      <div className={c.section}>
+        <h3 className={c.h3}>Add New Service Provider</h3>
+        <form onSubmit={handleCreateProvider} className={c.providerFormRow}>
+          <div className={c.formGroup}>
+            <label className={c.label}>Company Name</label>
             <input
               type="text"
               value={newProvider.company_name}
               onChange={(e) => {
+                const val = e.target.value;
                 const newErrors = { ...errors };
-                if (e.target.value.length > MAX_COMPANY_NAME_LENGTH) {
-                  newErrors.company_name = `Company name must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`;
-                } else {
-                  delete newErrors.company_name;
-                }
+                if (val.length > MAX_COMPANY_NAME_LENGTH) newErrors.company_name = `Must not exceed ${MAX_COMPANY_NAME_LENGTH} characters`;
+                else delete newErrors.company_name;
                 setErrors(newErrors);
-                setNewProvider({ ...newProvider, company_name: e.target.value });
+                setNewProvider({ ...newProvider, company_name: val });
               }}
               placeholder="Enter company name"
               maxLength={MAX_COMPANY_NAME_LENGTH}
+              className={c.input}
               style={{ borderColor: errors.company_name ? '#dc3545' : '' }}
               required
             />
-            {errors.company_name && (
-              <small style={{ color: '#dc3545' }}>{errors.company_name}</small>
-            )}
-            <small style={{ color: '#666' }}>{newProvider.company_name.length}/{MAX_COMPANY_NAME_LENGTH} characters</small>
+            {errors.company_name && <small className={c.smallError}>{errors.company_name}</small>}
+            <small className={c.smallGray}>{newProvider.company_name.length}/{MAX_COMPANY_NAME_LENGTH} characters</small>
           </div>
-          <div className="form-group">
-            <label>Company Logo</label>
+          <div className={c.formGroup}>
+            <label className={c.label}>Company Logo</label>
             <input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
+              className={c.input}
               style={{ borderColor: errors.logo ? '#dc3545' : '' }}
             />
-            {errors.logo && (
-              <small style={{ color: '#dc3545' }}>{errors.logo}</small>
-            )}
-            <small style={{ color: '#666' }}>Maximum 3MB</small>
+            {errors.logo && <small className={c.smallError}>{errors.logo}</small>}
+            <small className={c.smallGray}>Maximum 3MB</small>
           </div>
-          <div className="form-group button-group">
-            <label>&nbsp;</label>
-            <button type="submit" className="btn-primary" disabled={loading}>
+          <div className={`${c.formGroup} ${c.buttonGroup}`}>
+            <label className={c.label}>&nbsp;</label>
+            <button type="submit" className={c.btnPrimary} disabled={loading}>
               {loading ? 'Creating...' : 'Create'}
             </button>
           </div>
         </form>
       </div>
 
-      <div className="section">
-        <h3>Existing Service Providers</h3>
+      <div className={c.section}>
+        <h3 className={c.h3}>Existing Service Providers</h3>
         {providers.length === 0 ? (
-          <p className="no-data">No service providers found</p>
+          <p className={c.noData}>No service providers found</p>
         ) : (
-          <div className="providers-list">
+          <div className="grid gap-[10px]">
             {providers.map((provider) => (
-              <div key={provider.id} className="provider-card">
-                <div className="provider-info">
+              <div key={provider.id} className={c.providerCard}>
+                <div className={c.providerInfo}>
                   {provider.logo_path && (
-                    <img 
-                      src={`${API_URL}${provider.logo_path}`} 
+                    <img
+                      src={`${API_URL}${provider.logo_path}`}
                       alt={provider.company_name}
-                      className="provider-logo"
+                      className={c.providerLogo}
                     />
                   )}
-                  <div className="provider-details">
-                    <h4>{provider.company_name}</h4>
-                    <p className="provider-date">
+                  <div>
+                    <h4 className="text-[15px] font-semibold text-[#1e3c72] mb-[5px] mt-0">{provider.company_name}</h4>
+                    <p className="text-[#666] text-[12px] m-0">
                       Added: {new Date(provider.created_at).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
-                <button 
-                  onClick={() => handleDeleteProvider(provider.id)}
-                  className="btn-danger"
-                >
+                <button onClick={() => handleDeleteProvider(provider.id)} className={c.btnDanger}>
                   Remove
                 </button>
               </div>

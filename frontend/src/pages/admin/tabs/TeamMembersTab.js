@@ -3,7 +3,28 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
-import './TabStyles.css';
+import c from '../adminClasses';
+
+const MAX_NAME_LENGTH = 125;
+const MAX_POSITION_LENGTH = 125;
+const MAX_DESCRIPTION_LENGTH = 1000;
+const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
+
+const validateName = (name) => {
+  if (!name) return '';
+  if (!/^[a-zA-Z\s]*$/.test(name)) return 'Name can only contain letters and spaces';
+  if (name.length > MAX_NAME_LENGTH) return `Name must not exceed ${MAX_NAME_LENGTH} characters`;
+  return '';
+};
+const validatePosition = (position) => (!position || position.length <= MAX_POSITION_LENGTH) ? '' : `Position must not exceed ${MAX_POSITION_LENGTH} characters`;
+const validateDescription = (desc) => (!desc || desc.length <= MAX_DESCRIPTION_LENGTH) ? '' : `Description must not exceed ${MAX_DESCRIPTION_LENGTH} characters`;
+const validateLinkedInURL = (url) => {
+  if (!url) return '';
+  if (!url.startsWith('https://') && !url.startsWith('www.')) return 'URL must start with "https://" or "www."';
+  if (!url.includes('linkedin')) return 'Please enter a valid LinkedIn URL';
+  return '';
+};
+const validatePhotoSize = (file) => (!file || file.size <= MAX_PHOTO_SIZE) ? '' : `Photo must be less than 5MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
 
 const TeamMembersTab = ({ getAuthHeaders }) => {
   const [members, setMembers] = useState([]);
@@ -13,281 +34,141 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, memberId: null });
   const [errors, setErrors] = useState({});
   const [formErrors, setFormErrors] = useState({});
-  const [formData, setFormData] = useState({
-    name: '',
-    position: '',
-    description1: '',
-    description2: '',
-    linkedin_url: '',
-    photo: null
-  });
+  const [formData, setFormData] = useState({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null });
 
-  const MAX_NAME_LENGTH = 125;
-  const MAX_POSITION_LENGTH = 125;
-  const MAX_DESCRIPTION_LENGTH = 1000;
-  const MAX_PHOTO_SIZE = 5 * 1024 * 1024; // 5MB
-
-  // Validation functions
-  const validateName = (name) => {
-    if (!name) return '';
-    if (!/^[a-zA-Z\s]*$/.test(name)) {
-      return 'Name can only contain letters and spaces';
-    }
-    if (name.length > MAX_NAME_LENGTH) {
-      return `Name must not exceed ${MAX_NAME_LENGTH} characters`;
-    }
-    return '';
-  };
-
-  const validatePosition = (position) => {
-    if (!position) return '';
-    if (position.length > MAX_POSITION_LENGTH) {
-      return `Position must not exceed ${MAX_POSITION_LENGTH} characters`;
-    }
-    return '';
-  };
-
-  const validateDescription = (description) => {
-    if (!description) return '';
-    if (description.length > MAX_DESCRIPTION_LENGTH) {
-      return `Description must not exceed ${MAX_DESCRIPTION_LENGTH} characters`;
-    }
-    return '';
-  };
-
-  const validateLinkedInURL = (url) => {
-    if (!url) return '';
-    if (!url.startsWith('https://') && !url.startsWith('www.')) {
-      return 'URL must start with "https://" or "www."';
-    }
-    if (!url.includes('linkedin')) {
-      return 'Please enter a valid LinkedIn URL';
-    }
-    return '';
-  };
-
-  const validatePhotoSize = (file) => {
-    if (!file) return '';
-    if (file.size > MAX_PHOTO_SIZE) {
-      return `Photo must be less than 5MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
-    }
-    return '';
-  };
-
-  useEffect(() => {
-    fetchMembers();
-  }, []);
+  useEffect(() => { fetchMembers(); }, []);
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/admin/team-members`,
-        getAuthHeaders()
-      );
-      // Convert NULL values to empty strings for input fields
-      const membersWithDefaults = response.data.map(member => ({
-        ...member,
-        description1: member.description1 || '',
-        description2: member.description2 || '',
-        linkedin_url: member.linkedin_url || ''
-      }));
-      setMembers(membersWithDefaults);
-    } catch (error) {
-      toast.error('Failed to fetch team members');
-    }
+      const response = await axios.get(`${API_URL}/api/admin/team-members`, getAuthHeaders());
+      setMembers(response.data.map(m => ({ ...m, description1: m.description1 || '', description2: m.description2 || '', linkedin_url: m.linkedin_url || '' })));
+    } catch { toast.error('Failed to fetch team members'); }
   };
 
   const handleAddMember = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-    
-    if (!formData.name || !formData.position) {
-      toast.error('Please enter name and position');
+    if (!formData.name || !formData.position) { toast.error('Please enter name and position'); return; }
+    const nameErr = validateName(formData.name);
+    const posErr = validatePosition(formData.position);
+    const d1Err = validateDescription(formData.description1);
+    const d2Err = validateDescription(formData.description2);
+    const liErr = validateLinkedInURL(formData.linkedin_url);
+    const photoErr = formData.photo ? validatePhotoSize(formData.photo) : '';
+    if (nameErr || posErr || d1Err || d2Err || liErr || photoErr) {
+      setFormErrors({ name: nameErr, position: posErr, description1: d1Err, description2: d2Err, linkedin_url: liErr, photo: photoErr });
+      if (photoErr) toast.error(photoErr);
       return;
     }
-
-    // Validate all fields
-    const nameError = validateName(formData.name);
-    const positionError = validatePosition(formData.position);
-    const desc1Error = validateDescription(formData.description1);
-    const desc2Error = validateDescription(formData.description2);
-    const linkedInError = validateLinkedInURL(formData.linkedin_url);
-    const photoError = formData.photo ? validatePhotoSize(formData.photo) : '';
-
-    if (nameError || positionError || desc1Error || desc2Error || linkedInError || photoError) {
-      newErrors.name = nameError;
-      newErrors.position = positionError;
-      newErrors.description1 = desc1Error;
-      newErrors.description2 = desc2Error;
-      newErrors.linkedin_url = linkedInError;
-      newErrors.photo = photoError;
-      setFormErrors(newErrors);
-      if (photoError) toast.error(photoError);
-      return;
-    }
-
     setFormErrors({});
-
     const data = new FormData();
     data.append('name', formData.name);
     data.append('position', formData.position);
     data.append('description1', formData.description1);
     data.append('description2', formData.description2);
     data.append('linkedin_url', formData.linkedin_url);
-    if (formData.photo) {
-      data.append('photo', formData.photo);
-    }
-
+    if (formData.photo) data.append('photo', formData.photo);
     try {
-      await axios.post(
-        `${API_URL}/api/admin/team-members`,
-        data,
-        {
-          ...getAuthHeaders(),
-          headers: {
-            ...getAuthHeaders().headers,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      await axios.post(`${API_URL}/api/admin/team-members`, data, { ...getAuthHeaders(), headers: { ...getAuthHeaders().headers, 'Content-Type': 'multipart/form-data' } });
       toast.success('Team member added successfully');
       setFormData({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null });
       setShowAddForm(false);
       fetchMembers();
-    } catch (error) {
-      toast.error('Failed to add team member');
-    }
+    } catch { toast.error('Failed to add team member'); }
   };
 
   const handleUpdateMember = async (id) => {
     const member = members.find(m => m.id === id);
-    const newErrors = {};
-
-    // Validate all fields
-    const nameError = validateName(member.name);
-    const positionError = validatePosition(member.position);
-    const desc1Error = validateDescription(member.description1);
-    const desc2Error = validateDescription(member.description2);
-    const linkedInError = validateLinkedInURL(member.linkedin_url);
-    
-    if (nameError || positionError || desc1Error || desc2Error || linkedInError) {
-      newErrors.name = nameError;
-      newErrors.position = positionError;
-      newErrors.description1 = desc1Error;
-      newErrors.description2 = desc2Error;
-      newErrors.linkedin_url = linkedInError;
-      setErrors(newErrors);
+    const nameErr = validateName(member.name);
+    const posErr = validatePosition(member.position);
+    const d1Err = validateDescription(member.description1);
+    const d2Err = validateDescription(member.description2);
+    const liErr = validateLinkedInURL(member.linkedin_url);
+    if (nameErr || posErr || d1Err || d2Err || liErr) {
+      setErrors({ name: nameErr, position: posErr, description1: d1Err, description2: d2Err, linkedin_url: liErr });
       toast.error('Please fix validation errors');
       return;
     }
-
     setErrors({});
-    
     const data = new FormData();
     data.append('name', member.name);
     data.append('position', member.position);
     data.append('description1', member.description1 || '');
     data.append('description2', member.description2 || '');
     data.append('linkedin_url', member.linkedin_url || '');
-    if (member.newPhoto) {
-      data.append('photo', member.newPhoto);
-    }
-
+    if (member.newPhoto) data.append('photo', member.newPhoto);
     try {
-      await axios.put(
-        `${API_URL}/api/admin/team-members/${id}`,
-        data,
-        {
-          ...getAuthHeaders(),
-          headers: {
-            ...getAuthHeaders().headers,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      await axios.put(`${API_URL}/api/admin/team-members/${id}`, data, { ...getAuthHeaders(), headers: { ...getAuthHeaders().headers, 'Content-Type': 'multipart/form-data' } });
       toast.success('Team member updated successfully');
       setEditingId(null);
       setOriginalMemberData(null);
       fetchMembers();
-    } catch (error) {
-      toast.error('Failed to update team member');
-    }
+    } catch { toast.error('Failed to update team member'); }
   };
 
-  const handleDeleteMember = async (id) => {
-    setConfirmDialog({ isOpen: true, memberId: id });
-  };
+  const handleDeleteMember = (id) => setConfirmDialog({ isOpen: true, memberId: id });
 
   const confirmDelete = async () => {
     const id = confirmDialog.memberId;
     setConfirmDialog({ isOpen: false, memberId: null });
-
     try {
-      await axios.delete(
-        `${API_URL}/api/admin/team-members/${id}`,
-        getAuthHeaders()
-      );
+      await axios.delete(`${API_URL}/api/admin/team-members/${id}`, getAuthHeaders());
       toast.success('Team member removed successfully');
       fetchMembers();
-    } catch (error) {
-      toast.error('Failed to remove team member');
-    }
+    } catch { toast.error('Failed to remove team member'); }
   };
 
   const handleMoveUp = async (id, currentOrder) => {
-    try {
-      await axios.put(
-        `${API_URL}/api/admin/team-members/${id}/order`,
-        { display_order: currentOrder - 1 },
-        getAuthHeaders()
-      );
-      fetchMembers();
-    } catch (error) {
-      toast.error('Failed to reorder');
-    }
+    try { await axios.put(`${API_URL}/api/admin/team-members/${id}/order`, { display_order: currentOrder - 1 }, getAuthHeaders()); fetchMembers(); }
+    catch { toast.error('Failed to reorder'); }
   };
 
   const handleMoveDown = async (id, currentOrder) => {
-    try {
-      await axios.put(
-        `${API_URL}/api/admin/team-members/${id}/order`,
-        { display_order: currentOrder + 1 },
-        getAuthHeaders()
-      );
-      fetchMembers();
-    } catch (error) {
-      toast.error('Failed to reorder');
-    }
+    try { await axios.put(`${API_URL}/api/admin/team-members/${id}/order`, { display_order: currentOrder + 1 }, getAuthHeaders()); fetchMembers(); }
+    catch { toast.error('Failed to reorder'); }
   };
 
-  const handleMemberChange = (id, field, value) => {
-    setMembers(members.map(m => 
-      m.id === id ? { ...m, [field]: value } : m
-    ));
-  };
+  const handleMemberChange = (id, field, value) => setMembers(members.map(m => m.id === id ? { ...m, [field]: value } : m));
 
   const handleStartEdit = (id) => {
     const member = members.find(m => m.id === id);
-    if (member) {
-      // Save original data for revert on cancel
-      setOriginalMemberData({ ...member });
-      setEditingId(id);
-    }
+    if (member) { setOriginalMemberData({ ...member }); setEditingId(id); }
   };
 
   const handleCancelEdit = () => {
-    if (originalMemberData && editingId) {
-      // Revert changes to original values
-      setMembers(members.map(m => 
-        m.id === editingId ? originalMemberData : m
-      ));
-    }
+    if (originalMemberData && editingId) setMembers(members.map(m => m.id === editingId ? originalMemberData : m));
     setEditingId(null);
     setOriginalMemberData(null);
   };
 
+  const fieldWithValidation = (id, field, validate, label, placeholder, type = 'input') => {
+    const member = members.find(m => m.id === id);
+    const maxLen = field === 'name' ? MAX_NAME_LENGTH : field === 'position' ? MAX_POSITION_LENGTH : MAX_DESCRIPTION_LENGTH;
+    const commonProps = {
+      value: member[field] || '',
+      onChange: (e) => {
+        const err = validate(e.target.value);
+        const newErrors = { ...errors };
+        if (err) newErrors[field] = err; else delete newErrors[field];
+        setErrors(newErrors);
+        handleMemberChange(id, field, e.target.value);
+      },
+      placeholder,
+      maxLength: maxLen,
+      className: type === 'textarea' ? c.textarea : c.input,
+      style: { borderColor: errors[field] ? '#dc3545' : '', ...(type === 'textarea' ? { minHeight: '80px', fontFamily: 'inherit' } : {}) },
+    };
+    return (
+      <div className={c.formGroup}>
+        <label className={`${c.label} !text-[11px] !text-[#1e3c72] !font-semibold !mb-[3px]`}>{label}</label>
+        {type === 'textarea' ? <textarea {...commonProps} /> : <input type="text" {...commonProps} />}
+        {errors[field] && <small className={c.smallError}>{errors[field]}</small>}
+        <small className={c.smallGray}>{(member[field] || '').length}/{maxLen} characters</small>
+      </div>
+    );
+  };
+
   return (
-    <div className="tab-content">
+    <div className="py-[15px]">
       <ConfirmDialog
         isOpen={confirmDialog.isOpen}
         title="Remove Team Member"
@@ -296,397 +177,199 @@ const TeamMembersTab = ({ getAuthHeaders }) => {
         onCancel={() => setConfirmDialog({ isOpen: false, memberId: null })}
       />
 
-      <h2>Team Members</h2>
-      <p style={{ color: '#666', fontSize: '13px', marginBottom: '15px' }}>
-        Manage team members shown on the About page.
-      </p>
+      <h2 className={c.h2}>Team Members</h2>
+      <p className="text-[#666] text-[13px] mb-[15px]">Manage team members shown on the About page.</p>
 
-      <div className="members-list">
+      <div className="mb-5">
         {members.map((member, index) => (
-          <div key={member.id} className="member-row">
-            <div className="member-photo">
+          <div key={member.id} className={c.memberRow}>
+            <div className={c.memberPhoto}>
               {member.photo_path ? (
-                <img 
-                  src={`${API_URL}${member.photo_path}`} 
-                  alt={member.name}
-                />
+                <img src={`${API_URL}${member.photo_path}`} alt={member.name} className={c.memberPhotoImg} />
               ) : (
-                <div className="photo-placeholder">?</div>
+                <div className={c.photoPlaceholder}>?</div>
               )}
             </div>
-            
-            <div className="member-info">
+
+            <div className={c.memberInfo}>
               {editingId === member.id ? (
                 <>
-                  <div className="form-group">
-                    <label>Name</label>
-                    <input
-                      type="text"
-                      value={member.name}
-                      onChange={(e) => {
-                        const newErrors = { ...errors };
-                        const error = validateName(e.target.value);
-                        if (error) {
-                          newErrors.name = error;
-                        } else {
-                          delete newErrors.name;
-                        }
-                        setErrors(newErrors);
-                        handleMemberChange(member.id, 'name', e.target.value);
-                      }}
-                      placeholder="Name"
-                      maxLength={MAX_NAME_LENGTH}
-                      style={{ borderColor: errors.name ? '#dc3545' : '' }}
-                    />
-                    {errors.name && <small style={{ color: '#dc3545' }}>{errors.name}</small>}
-                    <small style={{ color: '#666' }}>{member.name.length}/{MAX_NAME_LENGTH} characters</small>
-                  </div>
-                  <div className="form-group">
-                    <label>Position</label>
-                    <input
-                      type="text"
-                      value={member.position}
-                      onChange={(e) => {
-                        const newErrors = { ...errors };
-                        const error = validatePosition(e.target.value);
-                        if (error) {
-                          newErrors.position = error;
-                        } else {
-                          delete newErrors.position;
-                        }
-                        setErrors(newErrors);
-                        handleMemberChange(member.id, 'position', e.target.value);
-                      }}
-                      placeholder="Position"
-                      maxLength={MAX_POSITION_LENGTH}
-                      style={{ borderColor: errors.position ? '#dc3545' : '' }}
-                    />
-                    {errors.position && <small style={{ color: '#dc3545' }}>{errors.position}</small>}
-                    <small style={{ color: '#666' }}>{member.position.length}/{MAX_POSITION_LENGTH} characters</small>
-                  </div>
-                  <div className="form-group">
-                    <label>Description 1</label>
-                    <textarea
-                      value={member.description1 || ''}
-                      onChange={(e) => {
-                        const newErrors = { ...errors };
-                        const error = validateDescription(e.target.value);
-                        if (error) {
-                          newErrors.description1 = error;
-                        } else {
-                          delete newErrors.description1;
-                        }
-                        setErrors(newErrors);
-                        handleMemberChange(member.id, 'description1', e.target.value);
-                      }}
-                      placeholder="Description 1"
-                      maxLength={MAX_DESCRIPTION_LENGTH}
-                      style={{ borderColor: errors.description1 ? '#dc3545' : '', minHeight: '80px', fontFamily: 'inherit' }}
-                    />
-                    {errors.description1 && <small style={{ color: '#dc3545' }}>{errors.description1}</small>}
-                    <small style={{ color: '#666' }}>{(member.description1 || '').length}/{MAX_DESCRIPTION_LENGTH} characters</small>
-                  </div>
-                  <div className="form-group">
-                    <label>Description 2</label>
-                    <textarea
-                      value={member.description2 || ''}
-                      onChange={(e) => {
-                        const newErrors = { ...errors };
-                        const error = validateDescription(e.target.value);
-                        if (error) {
-                          newErrors.description2 = error;
-                        } else {
-                          delete newErrors.description2;
-                        }
-                        setErrors(newErrors);
-                        handleMemberChange(member.id, 'description2', e.target.value);
-                      }}
-                      placeholder="Description 2"
-                      maxLength={MAX_DESCRIPTION_LENGTH}
-                      style={{ borderColor: errors.description2 ? '#dc3545' : '', minHeight: '80px', fontFamily: 'inherit' }}
-                    />
-                    {errors.description2 && <small style={{ color: '#dc3545' }}>{errors.description2}</small>}
-                    <small style={{ color: '#666' }}>{(member.description2 || '').length}/{MAX_DESCRIPTION_LENGTH} characters</small>
-                  </div>
-                  <div className="form-group">
-                    <label>LinkedIn Profile URL</label>
+                  {fieldWithValidation(member.id, 'name', validateName, 'Name', 'Name')}
+                  {fieldWithValidation(member.id, 'position', validatePosition, 'Position', 'Position')}
+                  {fieldWithValidation(member.id, 'description1', validateDescription, 'Description 1', 'Description 1', 'textarea')}
+                  {fieldWithValidation(member.id, 'description2', validateDescription, 'Description 2', 'Description 2', 'textarea')}
+                  <div className={c.formGroup}>
+                    <label className={`${c.label} !text-[11px] !text-[#1e3c72] !font-semibold !mb-[3px]`}>LinkedIn Profile URL</label>
                     <input
                       type="text"
                       value={member.linkedin_url || ''}
                       onChange={(e) => {
+                        const err = validateLinkedInURL(e.target.value);
                         const newErrors = { ...errors };
-                        const error = validateLinkedInURL(e.target.value);
-                        if (error) {
-                          newErrors.linkedin_url = error;
-                        } else {
-                          delete newErrors.linkedin_url;
-                        }
+                        if (err) newErrors.linkedin_url = err; else delete newErrors.linkedin_url;
                         setErrors(newErrors);
                         handleMemberChange(member.id, 'linkedin_url', e.target.value);
                       }}
                       placeholder="https://www.linkedin.com/in/..."
+                      className={c.input}
                       style={{ borderColor: errors.linkedin_url ? '#dc3545' : '' }}
                     />
-                    {errors.linkedin_url && <small style={{ color: '#dc3545' }}>{errors.linkedin_url}</small>}
-                    <small style={{ color: '#666' }}>Must start with "https://" or "www."</small>
+                    {errors.linkedin_url && <small className={c.smallError}>{errors.linkedin_url}</small>}
+                    <small className={c.smallGray}>Must start with "https://" or "www."</small>
                   </div>
-                  <div className="form-group">
-                    <label>Profile Photo</label>
+                  <div className={c.formGroup}>
+                    <label className={`${c.label} !text-[11px] !text-[#1e3c72] !font-semibold !mb-[3px]`}>Profile Photo</label>
                     <input
                       type="file"
                       accept="image/*"
                       onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
-                          const photoError = validatePhotoSize(file);
+                          const photoErr = validatePhotoSize(file);
                           const newErrors = { ...errors };
-                          if (photoError) {
-                            newErrors.photo = photoError;
-                            setErrors(newErrors);
-                            toast.error(photoError);
-                          } else {
-                            delete newErrors.photo;
-                            setErrors(newErrors);
-                            handleMemberChange(member.id, 'newPhoto', file);
-                          }
+                          if (photoErr) { newErrors.photo = photoErr; setErrors(newErrors); toast.error(photoErr); }
+                          else { delete newErrors.photo; setErrors(newErrors); handleMemberChange(member.id, 'newPhoto', file); }
                         }
                       }}
+                      className={c.input}
                       style={{ borderColor: errors.photo ? '#dc3545' : '' }}
                     />
-                    {errors.photo && <small style={{ color: '#dc3545' }}>{errors.photo}</small>}
-                    <small style={{ color: '#666' }}>Maximum 5MB</small>
+                    {errors.photo && <small className={c.smallError}>{errors.photo}</small>}
+                    <small className={c.smallGray}>Maximum 5MB</small>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="member-name">{member.name}</div>
-                  <div className="member-position">{member.position}</div>
-                  {member.description1 && (
-                    <div className="member-description">{member.description1}</div>
-                  )}
-                  {member.description2 && (
-                    <div className="member-description">{member.description2}</div>
-                  )}
+                  <div className="text-[15px] font-semibold text-[#1e3c72]">{member.name}</div>
+                  <div className="text-[13px] text-[#666]">{member.position}</div>
+                  {member.description1 && <div className="text-[#666] text-[13px] mt-1 leading-[1.4]">{member.description1}</div>}
+                  {member.description2 && <div className="text-[#666] text-[13px] mt-1 leading-[1.4]">{member.description2}</div>}
                 </>
               )}
             </div>
 
-            <div className="member-actions">
-              <button 
-                onClick={() => handleMoveUp(member.id, member.display_order)}
-                disabled={index === 0}
-                className="btn-icon"
-                title="Move up"
-              >
-                ▲
-              </button>
-              <button 
-                onClick={() => handleMoveDown(member.id, member.display_order)}
-                disabled={index === members.length - 1}
-                className="btn-icon"
-                title="Move down"
-              >
-                ▼
-              </button>
-              
+            <div className={c.memberActions}>
+              <button onClick={() => handleMoveUp(member.id, member.display_order)} disabled={index === 0} className={c.btnIcon} title="Move up">▲</button>
+              <button onClick={() => handleMoveDown(member.id, member.display_order)} disabled={index === members.length - 1} className={c.btnIcon} title="Move down">▼</button>
               {editingId === member.id ? (
                 <>
-                  <button 
-                    onClick={() => handleUpdateMember(member.id)}
-                    className="btn-edit"
-                  >
-                    Save
-                  </button>
-                  <button 
-                    onClick={handleCancelEdit}
-                    className="btn-edit"
-                  >
-                    Cancel
-                  </button>
+                  <button onClick={() => handleUpdateMember(member.id)} className={c.btnEdit}>Save</button>
+                  <button onClick={handleCancelEdit} className={c.btnEdit}>Cancel</button>
                 </>
               ) : (
-                <button 
-                  onClick={() => handleStartEdit(member.id)}
-                  className="btn-edit"
-                >
-                  Edit
-                </button>
+                <button onClick={() => handleStartEdit(member.id)} className={c.btnEdit}>Edit</button>
               )}
-              
-              <button 
-                onClick={() => handleDeleteMember(member.id)}
-                className="btn-remove"
-              >
-                Remove
-              </button>
+              <button onClick={() => handleDeleteMember(member.id)} className={c.btnRemove}>Remove</button>
             </div>
           </div>
         ))}
       </div>
 
       {showAddForm ? (
-        <form onSubmit={handleAddMember} className="add-member-form">
-          <h3>Add New Team Member</h3>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => {
-                const newErrors = { ...formErrors };
-                const error = validateName(e.target.value);
-                if (error) {
-                  newErrors.name = error;
-                } else {
-                  delete newErrors.name;
-                }
-                setFormErrors(newErrors);
-                setFormData({ ...formData, name: e.target.value });
-              }}
-              placeholder="Enter name"
-              maxLength={MAX_NAME_LENGTH}
-              style={{ borderColor: formErrors.name ? '#dc3545' : '' }}
-              required
-            />
-            {formErrors.name && <small style={{ color: '#dc3545' }}>{formErrors.name}</small>}
-            <small style={{ color: '#666' }}>{formData.name.length}/{MAX_NAME_LENGTH} characters</small>
-          </div>
-          <div className="form-group">
-            <label>Position</label>
-            <input
-              type="text"
-              value={formData.position}
-              onChange={(e) => {
-                const newErrors = { ...formErrors };
-                const error = validatePosition(e.target.value);
-                if (error) {
-                  newErrors.position = error;
-                } else {
-                  delete newErrors.position;
-                }
-                setFormErrors(newErrors);
-                setFormData({ ...formData, position: e.target.value });
-              }}
-              placeholder="Enter position"
-              maxLength={MAX_POSITION_LENGTH}
-              style={{ borderColor: formErrors.position ? '#dc3545' : '' }}
-              required
-            />
-            {formErrors.position && <small style={{ color: '#dc3545' }}>{formErrors.position}</small>}
-            <small style={{ color: '#666' }}>{formData.position.length}/{MAX_POSITION_LENGTH} characters</small>
-          </div>
-          <div className="form-group">
-            <label>Description 1</label>
-            <textarea
-              value={formData.description1}
-              onChange={(e) => {
-                const newErrors = { ...formErrors };
-                const error = validateDescription(e.target.value);
-                if (error) {
-                  newErrors.description1 = error;
-                } else {
-                  delete newErrors.description1;
-                }
-                setFormErrors(newErrors);
-                setFormData({ ...formData, description1: e.target.value });
-              }}
-              placeholder="Enter first description (optional)"
-              maxLength={MAX_DESCRIPTION_LENGTH}
-              style={{ borderColor: formErrors.description1 ? '#dc3545' : '', minHeight: '80px', fontFamily: 'inherit' }}
-            />
-            {formErrors.description1 && <small style={{ color: '#dc3545' }}>{formErrors.description1}</small>}
-            <small style={{ color: '#666' }}>{formData.description1.length}/{MAX_DESCRIPTION_LENGTH} characters</small>
-          </div>
-          <div className="form-group">
-            <label>Description 2</label>
-            <textarea
-              value={formData.description2}
-              onChange={(e) => {
-                const newErrors = { ...formErrors };
-                const error = validateDescription(e.target.value);
-                if (error) {
-                  newErrors.description2 = error;
-                } else {
-                  delete newErrors.description2;
-                }
-                setFormErrors(newErrors);
-                setFormData({ ...formData, description2: e.target.value });
-              }}
-              placeholder="Enter second description (optional)"
-              maxLength={MAX_DESCRIPTION_LENGTH}
-              style={{ borderColor: formErrors.description2 ? '#dc3545' : '', minHeight: '80px', fontFamily: 'inherit' }}
-            />
-            {formErrors.description2 && <small style={{ color: '#dc3545' }}>{formErrors.description2}</small>}
-            <small style={{ color: '#666' }}>{formData.description2.length}/{MAX_DESCRIPTION_LENGTH} characters</small>
-          </div>
-          <div className="form-group">
-            <label>LinkedIn Profile URL</label>
+        <form onSubmit={handleAddMember} className={c.addMemberForm}>
+          <h3 className={c.addMemberH3}>Add New Team Member</h3>
+          {[
+            { field: 'name', label: 'Name', placeholder: 'Enter name', validate: validateName, maxLen: MAX_NAME_LENGTH, required: true },
+            { field: 'position', label: 'Position', placeholder: 'Enter position', validate: validatePosition, maxLen: MAX_POSITION_LENGTH, required: true },
+          ].map(({ field, label, placeholder, validate, maxLen, required }) => (
+            <div key={field} className={c.formGroup}>
+              <label className={c.label}>{label}</label>
+              <input
+                type="text"
+                value={formData[field]}
+                onChange={(e) => {
+                  const err = validate(e.target.value);
+                  const newErrors = { ...formErrors };
+                  if (err) newErrors[field] = err; else delete newErrors[field];
+                  setFormErrors(newErrors);
+                  setFormData({ ...formData, [field]: e.target.value });
+                }}
+                placeholder={placeholder}
+                maxLength={maxLen}
+                className={c.input}
+                style={{ borderColor: formErrors[field] ? '#dc3545' : '' }}
+                required={required}
+              />
+              {formErrors[field] && <small className={c.smallError}>{formErrors[field]}</small>}
+              <small className={c.smallGray}>{formData[field].length}/{maxLen} characters</small>
+            </div>
+          ))}
+          {[
+            { field: 'description1', label: 'Description 1', placeholder: 'Enter first description (optional)' },
+            { field: 'description2', label: 'Description 2', placeholder: 'Enter second description (optional)' },
+          ].map(({ field, label, placeholder }) => (
+            <div key={field} className={c.formGroup}>
+              <label className={c.label}>{label}</label>
+              <textarea
+                value={formData[field]}
+                onChange={(e) => {
+                  const err = validateDescription(e.target.value);
+                  const newErrors = { ...formErrors };
+                  if (err) newErrors[field] = err; else delete newErrors[field];
+                  setFormErrors(newErrors);
+                  setFormData({ ...formData, [field]: e.target.value });
+                }}
+                placeholder={placeholder}
+                maxLength={MAX_DESCRIPTION_LENGTH}
+                className={c.textarea}
+                style={{ borderColor: formErrors[field] ? '#dc3545' : '', fontFamily: 'inherit' }}
+              />
+              {formErrors[field] && <small className={c.smallError}>{formErrors[field]}</small>}
+              <small className={c.smallGray}>{formData[field].length}/{MAX_DESCRIPTION_LENGTH} characters</small>
+            </div>
+          ))}
+          <div className={c.formGroup}>
+            <label className={c.label}>LinkedIn Profile URL</label>
             <input
               type="text"
               value={formData.linkedin_url}
               onChange={(e) => {
+                const err = validateLinkedInURL(e.target.value);
                 const newErrors = { ...formErrors };
-                const error = validateLinkedInURL(e.target.value);
-                if (error) {
-                  newErrors.linkedin_url = error;
-                } else {
-                  delete newErrors.linkedin_url;
-                }
+                if (err) newErrors.linkedin_url = err; else delete newErrors.linkedin_url;
                 setFormErrors(newErrors);
                 setFormData({ ...formData, linkedin_url: e.target.value });
               }}
               placeholder="Enter LinkedIn URL (optional)"
+              className={c.input}
               style={{ borderColor: formErrors.linkedin_url ? '#dc3545' : '' }}
             />
-            {formErrors.linkedin_url && <small style={{ color: '#dc3545' }}>{formErrors.linkedin_url}</small>}
-            <small style={{ color: '#666' }}>Must start with "https://" or "www."</small>
+            {formErrors.linkedin_url && <small className={c.smallError}>{formErrors.linkedin_url}</small>}
+            <small className={c.smallGray}>Must start with "https://" or "www."</small>
           </div>
-          <div className="form-group">
-            <label>Photo</label>
+          <div className={c.formGroup}>
+            <label className={c.label}>Photo</label>
             <input
               type="file"
               accept="image/*"
               onChange={(e) => {
                 const file = e.target.files[0];
                 if (file) {
-                  const photoError = validatePhotoSize(file);
-                  if (photoError) {
-                    const newErrors = { ...formErrors };
-                    newErrors.photo = photoError;
-                    setFormErrors(newErrors);
-                    toast.error(photoError);
-                  } else {
-                    const newErrors = { ...formErrors };
-                    delete newErrors.photo;
-                    setFormErrors(newErrors);
-                    setFormData({ ...formData, photo: file });
-                  }
+                  const photoErr = validatePhotoSize(file);
+                  const newErrors = { ...formErrors };
+                  if (photoErr) { newErrors.photo = photoErr; setFormErrors(newErrors); toast.error(photoErr); }
+                  else { delete newErrors.photo; setFormErrors(newErrors); setFormData({ ...formData, photo: file }); }
                 }
               }}
+              className={c.input}
               style={{ borderColor: formErrors.photo ? '#dc3545' : '' }}
             />
-            {formErrors.photo && <small style={{ color: '#dc3545' }}>{formErrors.photo}</small>}
-            <small style={{ color: '#666' }}>Maximum 5MB</small>
+            {formErrors.photo && <small className={c.smallError}>{formErrors.photo}</small>}
+            <small className={c.smallGray}>Maximum 5MB</small>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <button type="submit" className="btn-primary">Add Member</button>
-            <button 
-              type="button" 
-              onClick={() => {
-                setShowAddForm(false);
-                setFormData({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null });
-              }}
-              className="btn-secondary"
+          <div className="flex gap-2">
+            <button type="submit" className={c.btnPrimary}>Add Member</button>
+            <button
+              type="button"
+              onClick={() => { setShowAddForm(false); setFormData({ name: '', position: '', description1: '', description2: '', linkedin_url: '', photo: null }); }}
+              className={c.btnSecondary}
             >
               Cancel
             </button>
           </div>
         </form>
       ) : (
-        <button 
-          onClick={() => setShowAddForm(true)}
-          className="btn-add-member"
-        >
+        <button onClick={() => setShowAddForm(true)} className={c.btnAddMember}>
           + Add New Team Member
         </button>
       )}

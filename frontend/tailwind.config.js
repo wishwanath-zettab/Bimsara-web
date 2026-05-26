@@ -37,6 +37,15 @@ module.exports = {
         xl: '1199px',
         '2xl': '1920px',
       },
+      keyframes: {
+        moveBackground: {
+          '0%': { transform: 'translate(0, 0)' },
+          '100%': { transform: 'translate(50px, 50px)' },
+        },
+      },
+      animation: {
+        'move-bg': 'moveBackground 20s linear infinite',
+      },
       spacing: {
         '15': '3.75rem',
         '18': '4.5rem',

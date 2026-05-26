@@ -3,7 +3,10 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import API_URL from '../../../apiConfig';
 import ConfirmDialog from '../../../components/ConfirmDialog';
-import './TabStyles.css';
+import c from '../adminClasses';
+
+const MAX_CERTIFICATE_SIZE = 20 * 1024 * 1024;
+const MAX_PDF_SIZE = 50 * 1024 * 1024;
 
 const OtherSettingsTab = ({ getAuthHeaders }) => {
   const [commissionRate, setCommissionRate] = useState('');
@@ -19,259 +22,139 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
   const [positionsCount, setPositionsCount] = useState('');
   const [loadingPositions, setLoadingPositions] = useState(false);
 
-  const MAX_CERTIFICATE_SIZE = 20 * 1024 * 1024; // 20MB
-  const MAX_PDF_SIZE = 50 * 1024 * 1024; // 50MB
-
-  useEffect(() => {
-    fetchSettings();
-  }, []);
+  useEffect(() => { fetchSettings(); }, []);
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/admin/other-settings`,
-        getAuthHeaders()
-      );
+      const response = await axios.get(`${API_URL}/api/admin/other-settings`, getAuthHeaders());
       setCommissionRate(response.data.commission_rate || '');
       setCurrentCertificatePath(response.data.iso_certificate_path);
       setCurrentPDFPath(response.data.company_profile_pdf_path);
       setPositionsCount(response.data.positions_count != null ? String(response.data.positions_count) : '');
-    } catch (error) {
+    } catch {
       toast.error('Failed to fetch settings');
     }
   };
 
   const formatCommissionRate = (value) => {
-    // Remove any existing % character
-    let cleanValue = value.replace(/%/g, '').trim();
-    
-    // Check if it's a valid number
-    if (cleanValue && /^\d+(\.\d{1,2})?$/.test(cleanValue)) {
-      return cleanValue + '%';
-    }
-    
-    return value;
+    const clean = value.replace(/%/g, '').trim();
+    return clean && /^\d+(\.\d{1,2})?$/.test(clean) ? clean + '%' : value;
   };
 
   const handleUpdateCommission = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (!commissionRate.trim()) {
-      toast.error('Please enter a commission rate');
-      return;
-    }
-
-    // Format and validate commission rate
+    e.preventDefault(); e.stopPropagation();
+    if (!commissionRate.trim()) { toast.error('Please enter a commission rate'); return; }
     const formatted = formatCommissionRate(commissionRate);
-    
     setLoadingCommission(true);
     try {
-      await axios.put(
-        `${API_URL}/api/admin/other-settings/commission`,
-        { commission_rate: formatted },
-        getAuthHeaders()
-      );
+      await axios.put(`${API_URL}/api/admin/other-settings/commission`, { commission_rate: formatted }, getAuthHeaders());
       setCommissionRate(formatted);
       toast.success('Commission rate updated successfully');
-    } catch (error) {
-      toast.error('Failed to update commission rate');
-    } finally {
-      setLoadingCommission(false);
-    }
+    } catch { toast.error('Failed to update commission rate'); }
+    finally { setLoadingCommission(false); }
   };
 
   const handleUpdatePositionsCount = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
+    e.preventDefault(); e.stopPropagation();
     const parsed = parseInt(positionsCount, 10);
-    if (positionsCount.trim() === '' || isNaN(parsed) || parsed < 0) {
-      toast.error('Please enter a valid non-negative number');
-      return;
-    }
-
+    if (positionsCount.trim() === '' || isNaN(parsed) || parsed < 0) { toast.error('Please enter a valid non-negative number'); return; }
     setLoadingPositions(true);
     try {
-      await axios.put(
-        `${API_URL}/api/admin/other-settings/positions-count`,
-        { positions_count: parsed },
-        getAuthHeaders()
-      );
+      await axios.put(`${API_URL}/api/admin/other-settings/positions-count`, { positions_count: parsed }, getAuthHeaders());
       setPositionsCount(String(parsed));
       toast.success('Positions count updated successfully');
-    } catch (error) {
-      toast.error('Failed to update positions count');
-    } finally {
-      setLoadingPositions(false);
-    }
+    } catch { toast.error('Failed to update positions count'); }
+    finally { setLoadingPositions(false); }
   };
 
   const handleUploadCertificate = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (!isoCertificate) {
-      toast.error('Please select a file');
-      return;
-    }
-
-    if (errors.certificate) {
-      toast.error(errors.certificate);
-      return;
-    }
-
+    e.preventDefault(); e.stopPropagation();
+    if (!isoCertificate) { toast.error('Please select a file'); return; }
+    if (errors.certificate) { toast.error(errors.certificate); return; }
     setLoadingCertificate(true);
     const formData = new FormData();
     formData.append('certificate', isoCertificate);
-
     try {
-      const response = await axios.post(
-        `${API_URL}/api/admin/other-settings/iso-certificate`,
-        formData,
-        {
-          ...getAuthHeaders(),
-          headers: {
-            ...getAuthHeaders().headers,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/admin/other-settings/iso-certificate`, formData, {
+        ...getAuthHeaders(), headers: { ...getAuthHeaders().headers, 'Content-Type': 'multipart/form-data' }
+      });
       toast.success('ISO certificate uploaded successfully');
       setCurrentCertificatePath(response.data.iso_certificate_path);
       setIsoCertificate(null);
-    } catch (error) {
-      toast.error('Failed to upload ISO certificate');
-    } finally {
-      setLoadingCertificate(false);
-    }
+    } catch { toast.error('Failed to upload ISO certificate'); }
+    finally { setLoadingCertificate(false); }
   };
 
   const handleUploadPDF = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (!companyProfilePDF) {
-      toast.error('Please select a PDF file');
-      return;
-    }
-
-    if (errors.pdf) {
-      toast.error(errors.pdf);
-      return;
-    }
-
+    e.preventDefault(); e.stopPropagation();
+    if (!companyProfilePDF) { toast.error('Please select a PDF file'); return; }
+    if (errors.pdf) { toast.error(errors.pdf); return; }
     setLoadingPDF(true);
     const formData = new FormData();
     formData.append('pdf', companyProfilePDF);
-
     try {
-      const response = await axios.post(
-        `${API_URL}/api/admin/other-settings/company-profile-pdf`,
-        formData,
-        {
-          ...getAuthHeaders(),
-          headers: {
-            ...getAuthHeaders().headers,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/admin/other-settings/company-profile-pdf`, formData, {
+        ...getAuthHeaders(), headers: { ...getAuthHeaders().headers, 'Content-Type': 'multipart/form-data' }
+      });
       toast.success('Company profile PDF uploaded successfully');
       setCurrentPDFPath(response.data.company_profile_pdf_path);
       setCompanyProfilePDF(null);
-    } catch (error) {
-      toast.error('Failed to upload company profile PDF');
-    } finally {
-      setLoadingPDF(false);
-    }
+    } catch { toast.error('Failed to upload company profile PDF'); }
+    finally { setLoadingPDF(false); }
   };
 
-  const handleRemoveCertificate = async () => {
-    setConfirmDialog({ isOpen: true, type: 'certificate' });
-  };
-
-  const handleRemovePDF = async () => {
-    setConfirmDialog({ isOpen: true, type: 'pdf' });
-  };
+  const handleRemoveCertificate = () => setConfirmDialog({ isOpen: true, type: 'certificate' });
+  const handleRemovePDF = () => setConfirmDialog({ isOpen: true, type: 'pdf' });
 
   const confirmRemove = async () => {
     const type = confirmDialog.type;
     setConfirmDialog({ isOpen: false, type: null });
-
     if (type === 'certificate') {
       setLoadingCertificate(true);
       try {
-        await axios.delete(
-          `${API_URL}/api/admin/other-settings/iso-certificate`,
-          getAuthHeaders()
-        );
+        await axios.delete(`${API_URL}/api/admin/other-settings/iso-certificate`, getAuthHeaders());
         toast.success('ISO certificate removed successfully');
         setCurrentCertificatePath(null);
-      } catch (error) {
-        toast.error('Failed to remove ISO certificate');
-      } finally {
-        setLoadingCertificate(false);
-      }
+      } catch { toast.error('Failed to remove ISO certificate'); }
+      finally { setLoadingCertificate(false); }
     } else if (type === 'pdf') {
       setLoadingPDF(true);
       try {
-        await axios.delete(
-          `${API_URL}/api/admin/other-settings/company-profile-pdf`,
-          getAuthHeaders()
-        );
+        await axios.delete(`${API_URL}/api/admin/other-settings/company-profile-pdf`, getAuthHeaders());
         toast.success('Company profile PDF removed successfully');
         setCurrentPDFPath(null);
-      } catch (error) {
-        toast.error('Failed to remove company profile PDF');
-      } finally {
-        setLoadingPDF(false);
-      }
+      } catch { toast.error('Failed to remove company profile PDF'); }
+      finally { setLoadingPDF(false); }
     }
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    const newErrors = { ...errors };
-    
-    if (file) {
-      if (file.size > MAX_CERTIFICATE_SIZE) {
-        newErrors.certificate = `ISO certificate must be less than 20MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
-        setErrors(newErrors);
-        toast.error(newErrors.certificate);
-        return;
-      }
-      delete newErrors.certificate;
-      setErrors(newErrors);
-      setIsoCertificate(file);
+    if (!file) return;
+    if (file.size > MAX_CERTIFICATE_SIZE) {
+      const msg = `ISO certificate must be less than 20MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
+      setErrors({ ...errors, certificate: msg }); toast.error(msg); return;
     }
+    const { certificate: _, ...rest } = errors;
+    setErrors(rest);
+    setIsoCertificate(file);
   };
 
   const handlePDFFileChange = (e) => {
     const file = e.target.files[0];
-    const newErrors = { ...errors };
-    
-    if (file) {
-      if (!file.type.includes('pdf')) {
-        newErrors.pdf = 'Please upload a PDF file';
-        setErrors(newErrors);
-        toast.error(newErrors.pdf);
-        return;
-      }
-      if (file.size > MAX_PDF_SIZE) {
-        newErrors.pdf = `Company profile PDF must be less than 50MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
-        setErrors(newErrors);
-        toast.error(newErrors.pdf);
-        return;
-      }
-      delete newErrors.pdf;
-      setErrors(newErrors);
-      setCompanyProfilePDF(file);
+    if (!file) return;
+    if (!file.type.includes('pdf')) { const msg = 'Please upload a PDF file'; setErrors({ ...errors, pdf: msg }); toast.error(msg); return; }
+    if (file.size > MAX_PDF_SIZE) {
+      const msg = `Company profile PDF must be less than 50MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`;
+      setErrors({ ...errors, pdf: msg }); toast.error(msg); return;
     }
+    const { pdf: _, ...rest } = errors;
+    setErrors(rest);
+    setCompanyProfilePDF(file);
   };
 
   return (
-    <div className="tab-content">
+    <div className="py-[15px]">
       <ConfirmDialog
         isOpen={confirmDialog.isOpen}
         title={confirmDialog.type === 'certificate' ? 'Remove ISO Certificate' : 'Remove Company Profile PDF'}
@@ -280,45 +163,37 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
         onCancel={() => setConfirmDialog({ isOpen: false, type: null })}
       />
 
-      <h2>Other Settings</h2>
+      <h2 className={c.h2}>Other Settings</h2>
 
-      <div className="section">
-        <h3>Commission Rate</h3>
-        <div className="settings-row">
-          <div className="form-group">
-            <label>Commission Rate</label>
+      <div className={c.section}>
+        <h3 className={c.h3}>Commission Rate</h3>
+        <div className={c.settingsRow}>
+          <div className={c.formGroup}>
+            <label className={c.label}>Commission Rate</label>
             <input
               type="text"
               value={commissionRate}
               onChange={(e) => setCommissionRate(e.target.value)}
-              onBlur={() => {
-                if (commissionRate && !commissionRate.includes('%')) {
-                  setCommissionRate(formatCommissionRate(commissionRate));
-                }
-              }}
+              onBlur={() => { if (commissionRate && !commissionRate.includes('%')) setCommissionRate(formatCommissionRate(commissionRate)); }}
               placeholder="e.g., 5 or 5%"
+              className={c.input}
             />
-            <small style={{ color: '#666' }}>Enter a number. The % symbol will be added automatically if missing.</small>
+            <small className={c.smallGray}>Enter a number. The % symbol will be added automatically if missing.</small>
           </div>
-          <div className="form-group button-group">
-            <label>&nbsp;</label>
-            <button 
-              type="button"
-              onClick={handleUpdateCommission} 
-              className="btn-primary"
-              disabled={loadingCommission}
-            >
+          <div className={`${c.formGroup} ${c.buttonGroup}`}>
+            <label className={c.label}>&nbsp;</label>
+            <button type="button" onClick={handleUpdateCommission} className={c.btnPrimary} disabled={loadingCommission}>
               {loadingCommission ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>
       </div>
 
-      <div className="section">
-        <h3>Positions Count</h3>
-        <div className="settings-row">
-          <div className="form-group">
-            <label>Positions Count (shown on About page)</label>
+      <div className={c.section}>
+        <h3 className={c.h3}>Positions Count</h3>
+        <div className={c.settingsRow}>
+          <div className={c.formGroup}>
+            <label className={c.label}>Positions Count (shown on About page)</label>
             <input
               type="number"
               min="0"
@@ -326,63 +201,50 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
               value={positionsCount}
               onChange={(e) => setPositionsCount(e.target.value)}
               placeholder="e.g., 12"
+              className={c.input}
             />
-            <small style={{ color: '#666' }}>This number appears as "X Positions and growing" on the About page.</small>
+            <small className={c.smallGray}>This number appears as "X Positions and growing" on the About page.</small>
           </div>
-          <div className="form-group button-group">
-            <label>&nbsp;</label>
-            <button
-              type="button"
-              onClick={handleUpdatePositionsCount}
-              className="btn-primary"
-              disabled={loadingPositions}
-            >
+          <div className={`${c.formGroup} ${c.buttonGroup}`}>
+            <label className={c.label}>&nbsp;</label>
+            <button type="button" onClick={handleUpdatePositionsCount} className={c.btnPrimary} disabled={loadingPositions}>
               {loadingPositions ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>
       </div>
 
-      <div className="section">
-        <h3>ISO Certificate</h3>
+      <div className={c.section}>
+        <h3 className={c.h3}>ISO Certificate</h3>
         {currentCertificatePath && (
-          <div className="current-file">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <a 
-                href={`${API_URL}${currentCertificatePath}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="file-link"
-              >
+          <div className={c.currentFile}>
+            <div className="flex justify-between items-center">
+              <a href={`${API_URL}${currentCertificatePath}`} target="_blank" rel="noopener noreferrer" className={c.fileLink}>
                 View Current Certificate
               </a>
-              <button 
-                type="button"
-                onClick={handleRemoveCertificate}
-                className="btn-danger btn-small"
-                disabled={loadingCertificate}
-              >
+              <button type="button" onClick={handleRemoveCertificate} className={`${c.btnDanger} ${c.btnSmall}`} disabled={loadingCertificate}>
                 Remove
               </button>
             </div>
           </div>
         )}
         <form onSubmit={handleUploadCertificate}>
-          <div className="settings-row">
-            <div className="form-group">
-              <label>Upload New ISO Certificate</label>
+          <div className={c.settingsRow}>
+            <div className={c.formGroup}>
+              <label className={c.label}>Upload New ISO Certificate</label>
               <input
                 type="file"
                 accept=".pdf,.jpg,.jpeg,.png"
                 onChange={handleFileChange}
+                className={c.input}
                 style={{ borderColor: errors.certificate ? '#dc3545' : '' }}
               />
-              {errors.certificate && <small style={{ color: '#dc3545' }}>{errors.certificate}</small>}
-              <small style={{ color: '#666' }}>Maximum 20MB</small>
+              {errors.certificate && <small className={c.smallError}>{errors.certificate}</small>}
+              <small className={c.smallGray}>Maximum 20MB</small>
             </div>
-            <div className="form-group button-group">
-              <label>&nbsp;</label>
-              <button type="submit" className="btn-primary" disabled={loadingCertificate}>
+            <div className={`${c.formGroup} ${c.buttonGroup}`}>
+              <label className={c.label}>&nbsp;</label>
+              <button type="submit" className={c.btnPrimary} disabled={loadingCertificate}>
                 {loadingCertificate ? 'Uploading...' : 'Upload'}
               </button>
             </div>
@@ -390,46 +252,37 @@ const OtherSettingsTab = ({ getAuthHeaders }) => {
         </form>
       </div>
 
-      <div className="section">
-        <h3>Company Profile PDF</h3>
+      <div className={c.section}>
+        <h3 className={c.h3}>Company Profile PDF</h3>
         {currentPDFPath && (
-          <div className="current-file">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <a 
-                href={`${API_URL}${currentPDFPath}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="file-link"
-              >
+          <div className={c.currentFile}>
+            <div className="flex justify-between items-center">
+              <a href={`${API_URL}${currentPDFPath}`} target="_blank" rel="noopener noreferrer" className={c.fileLink}>
                 Download Current Company Profile
               </a>
-              <button 
-                type="button"
-                onClick={handleRemovePDF}
-                className="btn-danger btn-small"
-                disabled={loadingPDF}
-              >
+              <button type="button" onClick={handleRemovePDF} className={`${c.btnDanger} ${c.btnSmall}`} disabled={loadingPDF}>
                 Remove
               </button>
             </div>
           </div>
         )}
         <form onSubmit={handleUploadPDF}>
-          <div className="settings-row">
-            <div className="form-group">
-              <label>Upload Company Profile PDF</label>
+          <div className={c.settingsRow}>
+            <div className={c.formGroup}>
+              <label className={c.label}>Upload Company Profile PDF</label>
               <input
                 type="file"
                 accept=".pdf"
                 onChange={handlePDFFileChange}
+                className={c.input}
                 style={{ borderColor: errors.pdf ? '#dc3545' : '' }}
               />
-              {errors.pdf && <small style={{ color: '#dc3545' }}>{errors.pdf}</small>}
-              <small style={{ color: '#666' }}>PDF only, maximum 50MB</small>
+              {errors.pdf && <small className={c.smallError}>{errors.pdf}</small>}
+              <small className={c.smallGray}>PDF only, maximum 50MB</small>
             </div>
-            <div className="form-group button-group">
-              <label>&nbsp;</label>
-              <button type="submit" className="btn-primary" disabled={loadingPDF}>
+            <div className={`${c.formGroup} ${c.buttonGroup}`}>
+              <label className={c.label}>&nbsp;</label>
+              <button type="submit" className={c.btnPrimary} disabled={loadingPDF}>
                 {loadingPDF ? 'Uploading...' : 'Upload'}
               </button>
             </div>
