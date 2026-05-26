@@ -83,7 +83,9 @@
           width: 300px;
           display: none;
           border-radius: 8px 0px 0px 8px;
-          bottom: 20%;
+          top: 0;
+          max-height: 100dvh;
+          overflow-y: auto;
           .service-cont {
             display: block;
             .div-c {
@@ -247,8 +249,9 @@
           right: 100px;
           width: 300px;
           display: none;
-          bottom: 100px;
-
+          top: 0;
+          max-height: 100dvh;
+          overflow-y: auto;
           border-radius: 8px 0px 0px 8px;
           .service-cont {
             display: block;
@@ -377,8 +380,9 @@
           right: 100px;
           width: 300px;
           display: none;
-          bottom: 50px;
-
+          top: 0;
+          max-height: 100dvh;
+          overflow-y: auto;
           border-radius: 8px 0px 0px 8px;
           .service-cont {
             display: block;
