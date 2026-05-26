@@ -350,6 +350,34 @@
     background-color: $background;
     overflow-x: hidden;
 
+    .gradient-cont {
+      width: 80%;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 30px;
+      color: $dark-text;
+      align-self: center;
+
+      .head {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 30px;
+        color: $primary-blue;
+      }
+
+      .margin-top-40 {
+        margin-top: 40px;
+      }
+
+      .margin-top-20 {
+        margin-top: 20px;
+      }
+    }
+
     .tenants-background {
       height: 100%;
       background-color: #0a0f20;
