@@ -31,6 +31,7 @@ const guideLinks = [
 ];
 
 const aboutLinks = [
+  { label: "About", desc: "", target: "root", id: "NavAbout0" },
   { label: "Who we are", desc: "About us", target: "about-who", id: "NavAbout1" },
   { label: "Our Direction", desc: "Vision, Mission, Values", target: "about-mission", id: "NavAbout2" },
   { label: "ISO Certification", desc: "We love to follow systems", target: "about-iso", id: "NavAbout3" },
@@ -128,6 +129,7 @@ const Navbar = () => {
             type="button"
             className="service-layout text-button"
             key={item.target}
+            style={item.target === "root" ? { marginBottom: 0 } : undefined}
             onClick={() => { closeNav(); navigateAndScroll(navigate, "/about", item.target, 120); }}
           >
             <div className="text">
