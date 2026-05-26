@@ -4,9 +4,13 @@ const bcrypt = require('bcryptjs');
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, 'bimsara_admin.db');
 
+let resolveReady;
+const ready = new Promise((resolve) => { resolveReady = resolve; });
+
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err.message);
+    process.exit(1);
   } else {
     console.log('Connected to SQLite database');
     initializeDatabase();
@@ -169,6 +173,10 @@ function initializeDatabase() {
     }
 
     db.get('SELECT COUNT(*) as count FROM users', (countErr, row) => {
+      if (countErr || row.count > 0) {
+        resolveReady();
+        return;
+      }
       if (!countErr && row.count === 0) {
         const defaultPassword = process.env.ADMIN_PASSWORD || 'admin';
         bcrypt.hash(defaultPassword, 10, (hashErr, hash) => {
@@ -182,6 +190,7 @@ function initializeDatabase() {
             } else {
               console.log('Default admin user created');
             }
+            resolveReady();
           });
         });
       }
@@ -219,3 +228,4 @@ function initializeDatabase() {
 }
 
 module.exports = db;
+module.exports.ready = ready;

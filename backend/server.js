@@ -608,6 +608,8 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(PORT, HOST, () => {
-  console.log(`Server is running on http://${HOST}:${PORT}`);
+db.ready.then(() => {
+  app.listen(PORT, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${PORT}`);
+  });
 });
