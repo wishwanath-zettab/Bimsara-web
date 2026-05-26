@@ -26,8 +26,8 @@ COPY --from=builder /app/frontend/build ./client
 COPY entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
-# Ensure uploads dir exists at build time
-RUN mkdir -p uploads
+# Ensure persistent data dirs exist at build time
+RUN mkdir -p /app/data/uploads
 
 EXPOSE 3001
 
