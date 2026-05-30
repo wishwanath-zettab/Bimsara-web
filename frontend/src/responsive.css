@@ -2718,6 +2718,17 @@
     margin-top: 61px !important; /* matches live's hero-image-to-tagline gap */
   }
 
+  /* Match live: items sit within the content area (Trusted Advisor starts at
+     the content-left, by "go-to"), as three equal touching blocks. The section
+     has padding-left:10% and no right padding, so add an equal right inset for
+     symmetry (so the row is also visually screen-centered). */
+  .ServicesContentTwo .tagline-bar {
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 10% !important;
+    column-gap: 0 !important;
+  }
+
   .ServicesContentTwo .tagline-bar .tagline-item,
   .tagline-bar .tagline-item {
     width: auto !important;
