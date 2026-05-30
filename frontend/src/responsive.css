@@ -3668,11 +3668,78 @@
 
 /* About "COMPANY OVERVIEW": left column flex overrides its 60% width, making it
    full-width (so the description wraps too wide). Honor the 60% so it matches
-   live (~553px) and the text wraps the same. */
+   live (~553px) and the text wraps the same. Also drop the inner padding and
+   center the content block + text so the logo and text are centered across the
+   full column (like live) instead of left-pushed/justified. */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Drop the base 5% padding-left so "COMPANY OVERVIEW" aligns to the column
+     left edge like live (text starts at ~102px, not ~154px). */
+  .About .AboutContentFive .company-header {
+    padding-left: 0 !important;
+  }
+  /* Live insets the content 5% from the card's top/bottom via padding on the
+     card itself (columns have no padding), so the logo isn't flush to the top. */
+  .About .AboutContentFive .inner-content-five {
+    padding: 5% 0 !important;
+  }
   .About .AboutContentFive .inner-content-five .left-inner-content {
     flex: 0 0 60% !important;
     width: 60% !important;
     max-width: 60% !important;
+    padding: 0 !important;
+  }
+  .About .AboutContentFive .inner-content-five .right-inner-content {
+    padding: 0 !important;
+  }
+  .About .AboutContentFive .inner-content-five .left-inner-content .bottom-left-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .About .AboutContentFive .inner-content-five .left-inner-content .sub-content,
+  .About .AboutContentFive .inner-content-five .left-inner-content .sub-content-two {
+    text-align: center !important;
+  }
+}
+
+/* About "OUR TEAM" (AboutContentSix): live uses the full content width (no 4%
+   right inset) so the header/intro/rate-cards aren't shifted left, and centers
+   the intro sub-content (not justified like the shared .About .sub-content rule). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentSix {
+    padding-right: 0 !important;
+  }
+  .About .AboutContentSix .bottom-container .bottom-left-container .sub-content {
+    text-align: center !important;
+  }
+  /* The generic ".Rate-card { width:100% }" reset (for the Services grids) leaks
+     into AboutContentSix's flex rate-card row, ballooning the first card to
+     ~391px and squashing the second to ~69px. Restore the fixed 160px width so
+     the two cards are equal and the pair centers like live. */
+  .About .AboutContentSix .bottom-right-container .Rate-card {
+    width: 160px !important;
+    max-width: none !important;
+  }
+  /* Live renders this heading in pure black; local uses the $text navy. */
+  .About .AboutContentSix .bottom-left-container .heder-content {
+    color: #000 !important;
+  }
+}
+
+/* About "Our Service Providers" (AboutContentSeven): the tab override turns the
+   logo row into a 2-column grid with enlarged/stretched 108x102 items. Live keeps
+   a single row (4 columns) of 100x100 logos. Restore that. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Live insets the section ~3% from the top. */
+  .About .AboutContentSeven {
+    padding-top: 3% !important;
+  }
+  .About .AboutContentSeven .image-container {
+    grid-template-columns: repeat(4, auto) !important;
+    padding-top: 0 !important;
+  }
+  .About .AboutContentSeven .image-container .image-item {
+    width: 100px !important;
+    height: 100px !important;
+    margin-bottom: 0 !important;
   }
 }
