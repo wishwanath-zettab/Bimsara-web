@@ -3122,4 +3122,10 @@
     margin-left: 0 !important;
     padding-left: 0 !important;
   }
+
+  /* Hero services list ("Regular Updates to Sellers" ...): center-align
+     (the .Sellers .right-content rule otherwise justifies it). */
+  .Sellers .sellersContentOne .right-content {
+    text-align: center !important;
+  }
 }

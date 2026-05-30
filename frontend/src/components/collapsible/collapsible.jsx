@@ -11,7 +11,8 @@ import LandlordContent from "../../screens/serviceScreen/landlords/landlordConte
 
 const Collapsible = (props) => {
   const [sellers, setSellers] = useState(true);
-  const [guides, setGuides] = useState(false);
+  // Guide list open by default; it collapses to a single item only when one is clicked.
+  const [guides, setGuides] = useState(true);
   const [visible, setVisible] = useState(true);
   const [selectedCard, setSelectedCard] = useState(0);
   const selectedIndex = props.type === "Seller" ? 2 : 1;
@@ -78,7 +79,10 @@ const Collapsible = (props) => {
             onClick={() => {
               setGuides(!guides);
               props.setSelected(0);
-              // setSelectedCard(0);
+              // Reset to the "show all items" state so re-expanding after
+              // opening a guide item doesn't leave the list empty.
+              setVisible(true);
+              setSelectedCard(0);
             }}
           >
             <div className="header-text">{props.type}’s Guide</div>
