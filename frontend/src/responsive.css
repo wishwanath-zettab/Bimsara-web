@@ -3545,3 +3545,11 @@
     height: 50vh !important;
   }
 }
+
+/* About logo size: match live/home (200x56, was 150x42). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container .logo {
+    width: 200px !important;
+    height: auto !important;
+  }
+}
