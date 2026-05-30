@@ -3665,3 +3665,14 @@
     width: 100% !important;
   }
 }
+
+/* About "COMPANY OVERVIEW": left column flex overrides its 60% width, making it
+   full-width (so the description wraps too wide). Honor the 60% so it matches
+   live (~553px) and the text wraps the same. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFive .inner-content-five .left-inner-content {
+    flex: 0 0 60% !important;
+    width: 60% !important;
+    max-width: 60% !important;
+  }
+}
