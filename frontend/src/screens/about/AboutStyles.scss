@@ -710,7 +710,8 @@
           width: 100%;
           display: block;
           padding-left: 0;
-          margin-top: 10%;
+          padding-top: 5%;
+          margin-top: 6%;
 
           .who-header {
             font-size: 15px;
@@ -719,6 +720,7 @@
             display: flex;
             justify-content: center;
             letter-spacing: 1em;
+            text-align: center;
           }
 
           .inner-who {
@@ -731,11 +733,13 @@
               order: -1;
               width: 100%;
               text-align: center;
+              padding-left: 0;
+              margin-top: 0;
 
               img {
                 width: 136px;
                 height: auto;
-                margin-bottom: 16px;
+                margin-bottom: 0;
               }
 
               .real-estate-header {
@@ -751,14 +755,14 @@
 
               .bottom-left-container {
                 padding-right: 0;
-                width: 85%;
-                margin: 20px auto 0;
+                width: 80%;
+                margin: 12px auto 0;
 
                 .heder-content {
                   text-align: center;
                   text-align-last: center;
                   font-size: 20px;
-                  line-height: 32px;
+                  line-height: 40px;
                 }
 
                 .button-container {
@@ -771,14 +775,14 @@
                   text-align: center !important;
                   font-size: 15px;
                   font-weight: 600;
-                  line-height: 24px;
+                  line-height: 29px;
                 }
 
                 .sub-content-two {
                   text-align: center !important;
                   font-size: 15px;
                   font-weight: 300;
-                  line-height: 24px;
+                  line-height: 29px;
                 }
               }
             }
