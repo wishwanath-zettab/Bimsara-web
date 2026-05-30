@@ -3434,6 +3434,7 @@
   .buyers .buyers-card-container,
   .tenants .tenants-card-container {
     margin-left: -6vw !important;
+    margin-right: -6vw !important; /* widen symmetrically so the centered text matches live */
   }
 
   .buyers .buyers-card-container .right-content,
