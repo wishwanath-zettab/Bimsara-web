@@ -3452,3 +3452,15 @@
     padding-left: 8vw !important;
   }
 }
+
+/* Floating ISO/Safetynet/contact-circle badge (.top-content-arrow) shows on
+   live at tab view but the <=1024 block hides it. Restore it at tab view. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Services .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: flex !important;
+  }
+}
