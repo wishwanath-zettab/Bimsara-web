@@ -89,20 +89,26 @@
   .sellerCardContainer {
     .sellerCard {
       width: 66vw;
-      height: 110px;
+      min-height: 90px;
+      height: auto;
       display: flex;
+      align-items: center;
       border-radius: 35px;
       margin-bottom: 30px;
+      padding: 12px 20px 12px 24px;
 
       .content {
-        font-size: 25px;
-        width: 500px;
+        font-size: 20px;
+        line-height: 28px;
+        white-space: normal;
+        flex: 1;
       }
 
       img {
-        height: 40px;
-        width: 40px;
+        height: 36px;
+        width: 36px;
         align-self: center;
+        flex-shrink: 0;
       }
     }
   }

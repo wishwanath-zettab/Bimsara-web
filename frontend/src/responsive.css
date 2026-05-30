@@ -3102,3 +3102,24 @@
     font-size: 15px !important;
   }
 }
+
+/* Sellers page fixes at iPad Pro portrait (769-1024). Scoped to tab view only;
+   mobile (<=768) and desktop (>=1025) keep their existing styles. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Service card labels: restore a readable line-height. At exactly 1024px the
+     min-width:1024 desktop block bleeds in line-height:15px, collapsing the two
+     wrapped lines on top of each other. */
+  .Sellers .seller-card-container .sellerCard .content {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+
+  /* Seller's Guide content: the cnt-form-div is a 2-column grid, so the
+     collapsible content only filled the left half. Make it span full width. */
+  .Sellers .sellers-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
