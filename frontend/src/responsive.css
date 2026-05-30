@@ -3553,3 +3553,22 @@
     height: auto !important;
   }
 }
+
+/* About logo top: match live (5vw padding-top, was 3vw -> sat 20px too high). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container {
+    padding-top: 5vw !important;
+  }
+}
+
+/* About tagline: match the home tagline (commit 60a7976) — content-aligned
+   (102->932), equal thirds, no gap. About lacks the home's left padding, so
+   add margin-left:10vw to start at the same gutter. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .tagline-bar {
+    width: auto !important;
+    margin-left: 10vw !important;
+    margin-right: 10% !important;
+    column-gap: 0 !important;
+  }
+}
