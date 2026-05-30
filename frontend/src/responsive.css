@@ -3333,3 +3333,78 @@
     transform: rotateY(180deg) !important;
   }
 }
+
+/* Landlords page — same treatment as the sellers page (SellerCard + modal). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Screen-center the card grid + heading + OUR SERVICES (left-inner adds 12vw
+     padding on an already-centered container; pull back half of it). */
+  .landlords .landlordsContentOne .left-inner .landlords-card-container,
+  .landlords .landlordsContentOne .left-inner .header,
+  .landlords .landlordsContentOne .left-inner .sub {
+    margin-left: -6vw !important;
+  }
+
+  /* Service card labels: stop the two wrapped lines colliding (desktop block
+     bleeds line-height:15px under a 25px font). */
+  .landlords .landlords-card-container .sellerCard .content {
+    font-size: 20px !important;
+    line-height: 28px !important;
+    align-self: center !important;
+  }
+
+  /* Vertically center the label + arrow and add right padding. */
+  .landlords .landlords-card-container .sellerCard {
+    height: auto !important;
+    min-height: 90px !important;
+    align-items: center !important;
+    padding: 12px 24px !important;
+  }
+
+  .landlords .landlords-card-container .sellerCard img {
+    align-self: center !important;
+    margin-top: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live. */
+  .landlords .landlordsContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+
+  /* Hero services list center-aligned. */
+  .landlords .landlordsContentOne .right-content {
+    text-align: center !important;
+  }
+
+  /* Guide: cnt-form-div was a 2-col grid; make it full-width. */
+  .landlords .landlords-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* Tenants page — same treatment as the buyers page (flip cards). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Show the flip cards like live; hide the SellerCard + modal fallback. */
+  .tenants .grid-component {
+    display: flex !important;
+  }
+
+  .tenants .card-compo {
+    display: none !important;
+  }
+
+  /* Guide: full-width (cnt-form-div was a 2-col grid). */
+  .tenants .tenants-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live. */
+  .tenants .tenantsContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+}
