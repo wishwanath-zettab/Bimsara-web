@@ -3441,3 +3441,12 @@
     text-align: center !important;
   }
 }
+
+/* Service pages logo: match live (8vw left, was 5vw) so it aligns with the
+   hero content gutter instead of sitting too far left. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .logo-container,
+  .tenants .logo-container {
+    padding-left: 8vw !important;
+  }
+}
