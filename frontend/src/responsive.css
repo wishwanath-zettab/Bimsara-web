@@ -3616,10 +3616,15 @@
 /* About "WE LOVE TO FOLLOW SYSTEMS": 2-column row (text left, ISO cert right)
    like live, instead of stacked column. */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Content gutter 5vw each side (51px) like live (was 4vw). */
+  .About .AboutContentFour {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
   .About .AboutContentFour .inner-content-four {
     flex-direction: row !important;
     align-items: center !important;
-    gap: 40px !important;
+    gap: 0 !important; /* live has no gap; the 35/65 split defines the columns */
   }
   .About .AboutContentFour .left-inner-content {
     flex: 1 1 0 !important;
