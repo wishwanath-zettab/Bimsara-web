@@ -3117,6 +3117,21 @@
 /* Sellers page fixes at iPad Pro portrait (769-1024). Scoped to tab view only;
    mobile (<=768) and desktop (>=1025) keep their existing styles. */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Center the service-card grid on screen. .left-inner adds padding-left:12vw
+     on top of an already-centered .top-containr, pushing the grid right by ~6vw;
+     pull it back by half the padding so the grid is screen-centered. The heading
+     and "OUR SERVICES" get the same shift so they start at the cards' left edge. */
+  .Sellers .sellersContentOne .left-inner .seller-card-container,
+  .Sellers .sellersContentOne .left-inner .header,
+  .Sellers .sellersContentOne .left-inner .sub {
+    margin-left: -6vw !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live (1em); local was clamped to 0.45em. */
+  .Sellers .sellersContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+
   /* Service card labels: restore a readable line-height. At exactly 1024px the
      min-width:1024 desktop block bleeds in line-height:15px, collapsing the two
      wrapped lines on top of each other. */
