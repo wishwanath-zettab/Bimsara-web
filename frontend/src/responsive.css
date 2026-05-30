@@ -3528,5 +3528,8 @@
   }
   .Services .top-bottom-container .want-content .want-inner a {
     line-height: 1.2 !important;
+    min-height: 0 !important; /* drop the 44px touch min-height so the text box
+                                 isn't taller than the text; otherwise the text
+                                 sits at the top and the centered arrow looks low */
   }
 }
