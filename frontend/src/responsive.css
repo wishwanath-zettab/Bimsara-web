@@ -3612,3 +3612,25 @@
     max-width: none !important;
   }
 }
+
+/* About "WE LOVE TO FOLLOW SYSTEMS": 2-column row (text left, ISO cert right)
+   like live, instead of stacked column. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFour .inner-content-four {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 40px !important;
+  }
+  .About .AboutContentFour .left-inner-content {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+  .About .AboutContentFour .right-inner-content {
+    flex: 0 0 35% !important;
+    max-width: 35% !important;
+  }
+  .About .AboutContentFour .right-inner-content img {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
