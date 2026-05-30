@@ -948,6 +948,7 @@
         .AboutContentSix {
           width: 100%;
           padding-left: 0;
+          padding-right: 0;
 
           .top-container {
             display: flex;
@@ -972,11 +973,12 @@
 
               .heder-content {
                 text-align: center;
+                color: #000;
               }
 
               .sub-content {
                 font-size: 15px;
-                line-height: 24px;
+                line-height: 30px;
                 text-align: center !important;
               }
             }
@@ -986,6 +988,15 @@
               margin: auto;
               display: flex;
               margin-top: 32px;
+              padding-left: 0;
+
+              // The global ".Rate-card { width:100% !important }" reset balloons
+              // the first card and squashes the second; restore the 40vw width
+              // (≈half the container) so both cards are equal like live.
+              .Rate-card {
+                width: 40vw !important;
+                max-width: none !important;
+              }
 
               .margin-top {
                 margin-top: 0;
