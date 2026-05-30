@@ -3426,3 +3426,18 @@
     width: min(100%, 850px) !important;
   }
 }
+
+/* Buyers & Tenants "Our Secret..."/"It's Been Made Easy" heading + paragraph
+   block: remove the extra left padding (align to ~live gutter) and center the
+   paragraph (was justified; live centers it). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyers-card-container,
+  .tenants .tenants-card-container {
+    margin-left: -6vw !important;
+  }
+
+  .buyers .buyers-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    text-align: center !important;
+  }
+}
