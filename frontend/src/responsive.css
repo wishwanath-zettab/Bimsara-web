@@ -3636,6 +3636,7 @@
   }
   .About .AboutContentFour .right-inner-content img {
     width: 100% !important;
+    max-width: none !important; /* base caps it at 300px, shrinking it below the column */
     height: auto !important;
   }
 }
