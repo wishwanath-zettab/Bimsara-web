@@ -3487,3 +3487,11 @@
     padding-left: 8vw !important;
   }
 }
+
+/* Landlords hero right column: add bottom padding (live 62px) so the services
+   list doesn't touch the hero bottom edge. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .landlordsContentOne .top-conatiner-right {
+    padding-bottom: 62px !important;
+  }
+}
