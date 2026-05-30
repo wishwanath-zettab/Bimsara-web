@@ -264,3 +264,63 @@
     }
   }
 }
+
+/* iPad Pro portrait (769-1024): show the close button (the 481-1024 block only
+   showed the inner img, leaving the button itself display:none) and size the
+   modal to fit its content instead of a near-full-height panel. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .gradient-modal-container {
+    .gradient-modal-content {
+      width: min(72vw, 620px);
+      height: auto;
+      max-height: 82vh;
+      min-height: auto;
+      top: 10vh;
+      bottom: auto;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 48px 44px;
+
+      .close-icon-btn {
+        display: flex;
+      }
+
+      .close-icon {
+        width: 28px;
+        height: 28px;
+        display: block;
+      }
+
+      /* Professional content layout: clear type hierarchy, readable body,
+         no bottom fade, full-width text block. */
+      .gradient-cont {
+        width: 100%;
+        align-self: stretch;
+        font-size: 16px;
+        line-height: 1.65;
+        text-align: left;
+        color: #434343;
+        overflow-y: auto;
+        height: auto;
+        padding-bottom: 0;
+        mask-image: none;
+        -webkit-mask-image: none;
+
+        .head {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 1.3;
+          color: #0f64fa;
+          margin-bottom: 14px;
+          padding-right: 36px; /* keep the title clear of the close button */
+        }
+
+        .margin-top-20 {
+          margin-top: 14px;
+        }
+      }
+    }
+  }
+}

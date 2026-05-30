@@ -3114,6 +3114,25 @@
     line-height: 28px !important;
   }
 
+  /* Vertically center the label + arrow. The min-width:1024 desktop block bleeds
+     in at exactly 1024px with height:110px, padding-top:30px (no bottom) and
+     img margin-top:20px, pushing both to the bottom of the card. */
+  .Sellers .seller-card-container .sellerCard {
+    height: auto !important;
+    min-height: 90px !important;
+    align-items: center !important;
+    padding: 12px 24px !important; /* incl. right padding so the arrow isn't flush to the edge */
+  }
+
+  .Sellers .seller-card-container .sellerCard .content {
+    align-self: center !important;
+  }
+
+  .Sellers .seller-card-container .sellerCard img {
+    align-self: center !important;
+    margin-top: 0 !important;
+  }
+
   /* Seller's Guide content: the cnt-form-div is a 2-column grid, so the
      collapsible content only filled the left half. Make it span full width. */
   .Sellers .sellers-background-bottom .cnt-form-div {
