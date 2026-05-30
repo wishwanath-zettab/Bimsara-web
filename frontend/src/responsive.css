@@ -3408,3 +3408,21 @@
     letter-spacing: 1em !important;
   }
 }
+
+/* Buyers & Tenants hero: align the top-conatiner-left header + "OUR SERVICES"
+   and the flip-card grid to the same ~content-gutter as live (local had extra
+   left padding pushing the header in to ~145 while the cards sat at ~62). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyersContentOne .top-conatiner-left .header,
+  .buyers .buyersContentOne .top-conatiner-left .sub,
+  .tenants .tenantsContentOne .top-conatiner-left .header,
+  .tenants .tenantsContentOne .top-conatiner-left .sub {
+    margin-left: -6vw !important;
+  }
+
+  .buyers .buyersContentOne .top-conatiner-right .grid-component,
+  .tenants .tenantsContentOne .top-conatiner-right .grid-component {
+    margin-left: 2.4vw !important;
+    width: min(100%, 850px) !important;
+  }
+}
