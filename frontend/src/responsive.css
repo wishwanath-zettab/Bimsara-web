@@ -3295,3 +3295,41 @@
     margin-top: 18px !important;
   }
 }
+
+/* Buyers page fixes at iPad Pro portrait (769-1024) — mirrors the sellers-page
+   fixes. Scoped to tab view only; mobile and desktop are unaffected. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Show the flip cards (.grid-component) like live — clicking a card flips it
+     to reveal the content. Local was hiding them and showing the SellerCard +
+     modal fallback instead. */
+  .buyers .top-conatiner-right .grid-component {
+    display: flex !important;
+  }
+
+  .buyers .top-conatiner-right .card-compo {
+    display: none !important;
+  }
+
+  /* Buyer's Guide: the cnt-form-div is a 2-column grid, so the collapsible
+     content only filled the left half. Make it span full width. */
+  .buyers .buyers-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live (1em); local was clamped. */
+  .buyers .buyersContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+}
+
+/* Flip cards (tab/mobile): click/tap toggle must win over the (pointer:coarse)
+   hover-disable rule above (equal specificity + !important, so source order
+   decides — keep this last). Scoped <=1024 so desktop keeps hover-flip. */
+@media screen and (max-width: 1024px) {
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg) !important;
+  }
+}
