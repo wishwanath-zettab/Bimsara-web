@@ -3424,7 +3424,14 @@
   .tenants .tenantsContentOne .top-conatiner-right .grid-component {
     margin-left: 2.4vw !important;
     width: min(100%, 850px) !important;
-    margin-top: -28px !important; /* tighten the paragraph-to-cards gap to live's ~37px */
+  }
+
+  /* Reduce the heading-block bottom margin to tighten the paragraph-to-cards
+     gap to live's ~37px (done here instead of shifting the grid, so the grid's
+     62px bottom padding stays correct). */
+  .buyers .buyers-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    margin-bottom: 9px !important;
   }
 }
 
@@ -3462,5 +3469,14 @@
   .landlords .top-content-arrow,
   .tenants .top-content-arrow {
     display: flex !important;
+  }
+}
+
+/* Flip-card hero column: add bottom padding so the cards don't touch the hero
+   bottom edge (live uses 62px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyersContentOne .top-conatiner-right,
+  .tenants .tenantsContentOne .top-conatiner-right {
+    padding-bottom: 62px !important;
   }
 }
