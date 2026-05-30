@@ -3505,3 +3505,10 @@
     margin-right: auto !important;
   }
 }
+
+/* Sellers logo: match live (8vw, was 5vw). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Sellers .logo-container {
+    padding-left: 8vw !important;
+  }
+}
