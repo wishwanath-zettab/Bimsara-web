@@ -3634,3 +3634,28 @@
     height: auto !important;
   }
 }
+
+/* About ISO section text: match live sizes/leading (was smaller). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFour .we-header {
+    line-height: 45px !important;
+  }
+  .About .AboutContentFour .heder-content {
+    font-size: 35px !important;
+    line-height: 60px !important;
+  }
+  .About .AboutContentFour .sub-content {
+    font-size: 20px !important;
+    line-height: 50px !important;
+  }
+}
+
+/* About ISO section: remove the large inner margin so the row uses the full
+   content width (left text ~599, ISO ~323 like live) instead of being inset. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFour .inner-content-four {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
