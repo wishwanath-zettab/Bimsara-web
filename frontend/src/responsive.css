@@ -3519,3 +3519,14 @@
     padding-left: 8vw !important;
   }
 }
+
+/* Home "I want to" links: tighten line-height to match live (~1.2, was ~44px)
+   and vertically center the arrow with the text. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Services .top-bottom-container .want-content .want-inner {
+    align-items: center !important;
+  }
+  .Services .top-bottom-container .want-content .want-inner a {
+    line-height: 1.2 !important;
+  }
+}
