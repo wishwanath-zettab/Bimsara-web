@@ -3743,3 +3743,26 @@
     margin-bottom: 0 !important;
   }
 }
+
+/* About hero (AboutContentOne) on mobile: perfect match to live.
+   Live renders the hero as a background-image on .AboutContentOne-inner with
+   background-size:cover, background-position:0% 100% (left bottom), in a 50vh
+   box, and the logo at exactly 160x42. Replicate that on the local <img>. */
+@media screen and (max-width: 480px) {
+  .About .AboutContentOne .AboutContentOne-inner {
+    height: 50vh !important;
+  }
+  .About .AboutContentOne .AboutContentOne-inner .about-hero-img {
+    object-fit: cover !important;
+    object-position: 0% 100% !important;
+  }
+  .About .logo-container {
+    padding-top: 12px !important;
+    padding-left: 8% !important;
+    padding-right: 0 !important;
+  }
+  .About .logo-container .logo {
+    width: 160px !important;
+    height: 42px !important;
+  }
+}
