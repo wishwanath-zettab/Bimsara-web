@@ -3570,5 +3570,6 @@
     margin-left: 10vw !important;
     margin-right: 10% !important;
     column-gap: 0 !important;
+    margin-top: 32px !important; /* live's hero-to-tagline gap (home uses 61px) */
   }
 }
