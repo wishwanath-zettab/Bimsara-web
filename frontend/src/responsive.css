@@ -3480,3 +3480,10 @@
     padding-bottom: 62px !important;
   }
 }
+
+/* Landlords logo: match live (8vw, was 5vw). Header/cards already align at live's position. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .logo-container {
+    padding-left: 8vw !important;
+  }
+}
