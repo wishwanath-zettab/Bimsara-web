@@ -3574,9 +3574,10 @@
   }
 }
 
-/* About "WHO WE ARE" heading: center it like live (was left-aligned). */
+/* About "WHO WE ARE" heading: keep left-aligned on tab view (aligns with the
+   left-aligned content below). */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .About .who-header {
-    text-align: center !important;
+    text-align: left !important;
   }
 }
