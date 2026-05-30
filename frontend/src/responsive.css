@@ -3581,3 +3581,19 @@
     text-align: left !important;
   }
 }
+
+/* About: increase gap between tagline and "WHO WE ARE" to match live (~84px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentTwo .who-header {
+    margin-top: 29px !important;
+  }
+}
+
+/* About "WHO WE ARE" logo: a base max-height:110px capped/squished it; remove
+   the cap so it shows at natural height (~129px like live). Width matches (289px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .about-content-two-right img {
+    height: auto !important;
+    max-height: none !important;
+  }
+}
