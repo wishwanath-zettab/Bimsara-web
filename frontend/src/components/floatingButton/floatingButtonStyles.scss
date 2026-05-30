@@ -32,7 +32,22 @@
 
 @media screen and (max-width: 480px) {
   .floating-button {
-    display: none;
+    display: flex;
+    width: auto;
+    right: 16px;
+    bottom: 16px;
+
+    // Only the chat (circle) button on mobile — hide the ISO/Safetynet logos.
+    .fb-iso,
+    .fb-safetynet {
+      display: none;
+    }
+
+    .fb-circle {
+      height: 48px;
+      width: 48px;
+      margin: 0;
+    }
   }
 }
 
