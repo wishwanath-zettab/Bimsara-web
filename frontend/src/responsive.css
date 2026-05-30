@@ -3533,3 +3533,15 @@
                                  sits at the top and the centered arrow looks low */
   }
 }
+
+/* About page (tab view): logo to 8vw like other pages, and reduce the hero
+   height to 50vh (live) so the cover image isn't over-zoomed (was 60vh). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container {
+    padding-left: 8vw !important;
+  }
+
+  .About .AboutContentOne .AboutContentOne-inner {
+    height: 50vh !important;
+  }
+}
