@@ -2718,6 +2718,17 @@
     margin-top: 61px !important; /* matches live's hero-image-to-tagline gap */
   }
 
+  /* Match live: items sit within the content area (Trusted Advisor starts at
+     the content-left, by "go-to"), as three equal touching blocks. The section
+     has padding-left:10% and no right padding, so add an equal right inset for
+     symmetry (so the row is also visually screen-centered). */
+  .ServicesContentTwo .tagline-bar {
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 10% !important;
+    column-gap: 0 !important;
+  }
+
   .ServicesContentTwo .tagline-bar .tagline-item,
   .tagline-bar .tagline-item {
     width: auto !important;
@@ -3100,5 +3111,51 @@
   .tenants .tenantsContentOne .sub {
     letter-spacing: 6px !important;
     font-size: 15px !important;
+  }
+}
+
+/* Sellers page fixes at iPad Pro portrait (769-1024). Scoped to tab view only;
+   mobile (<=768) and desktop (>=1025) keep their existing styles. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Service card labels: restore a readable line-height. At exactly 1024px the
+     min-width:1024 desktop block bleeds in line-height:15px, collapsing the two
+     wrapped lines on top of each other. */
+  .Sellers .seller-card-container .sellerCard .content {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+
+  /* Vertically center the label + arrow. The min-width:1024 desktop block bleeds
+     in at exactly 1024px with height:110px, padding-top:30px (no bottom) and
+     img margin-top:20px, pushing both to the bottom of the card. */
+  .Sellers .seller-card-container .sellerCard {
+    height: auto !important;
+    min-height: 90px !important;
+    align-items: center !important;
+    padding: 12px 24px !important; /* incl. right padding so the arrow isn't flush to the edge */
+  }
+
+  .Sellers .seller-card-container .sellerCard .content {
+    align-self: center !important;
+  }
+
+  .Sellers .seller-card-container .sellerCard img {
+    align-self: center !important;
+    margin-top: 0 !important;
+  }
+
+  /* Seller's Guide content: the cnt-form-div is a 2-column grid, so the
+     collapsible content only filled the left half. Make it span full width. */
+  .Sellers .sellers-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Hero services list ("Regular Updates to Sellers" ...): center-align
+     (the .Sellers .right-content rule otherwise justifies it). */
+  .Sellers .sellersContentOne .right-content {
+    text-align: center !important;
   }
 }
