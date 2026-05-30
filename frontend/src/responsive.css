@@ -3573,3 +3573,10 @@
     margin-top: 32px !important; /* live's hero-to-tagline gap (home uses 61px) */
   }
 }
+
+/* About "WHO WE ARE" heading: center it like live (was left-aligned). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .who-header {
+    text-align: center !important;
+  }
+}
