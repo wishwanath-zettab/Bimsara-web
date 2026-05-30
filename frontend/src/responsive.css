@@ -3597,3 +3597,18 @@
     max-height: none !important;
   }
 }
+
+/* About "We Value," cards: let them grow to fill the row (equal thirds ~253px)
+   so the width matches live (251px) — they were 221px and under-filled. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .bottm-content .div-content .inner-div {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+    padding-left: 1px !important;  /* was ~12px each side, narrowing the card */
+    padding-right: 1px !important;
+  }
+  .About .bottm-content .div-content .inner-div .gradientCard {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
