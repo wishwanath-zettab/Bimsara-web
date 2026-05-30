@@ -3424,6 +3424,7 @@
   .tenants .tenantsContentOne .top-conatiner-right .grid-component {
     margin-left: 2.4vw !important;
     width: min(100%, 850px) !important;
+    margin-top: -28px !important; /* tighten the paragraph-to-cards gap to live's ~37px */
   }
 }
 
