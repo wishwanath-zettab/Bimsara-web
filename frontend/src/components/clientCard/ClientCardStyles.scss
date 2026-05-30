@@ -125,6 +125,33 @@
     }
   }
 }
+/* iPad Pro portrait (769–1024): carousel card matches live — centered text,
+   larger review, generous line/text spacing. Mobile (<=768) and HD untouched. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .ClientCard {
+    .cont-dv {
+      .client-name {
+        text-align: center;
+        font-size: 20px;
+        line-height: 45px;
+        letter-spacing: 0.3em; // 6px @20px, matches live
+      }
+      .client-rev {
+        text-align: center;
+        font-size: 25px;
+        line-height: 35px;
+        margin-top: 18px;
+        margin-bottom: 0;
+      }
+      .client-des {
+        text-align: center;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
 @media screen and (min-width: 1919px){
   .ClientCard {
     padding: 40px;

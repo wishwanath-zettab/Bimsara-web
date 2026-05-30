@@ -2642,6 +2642,194 @@
 
 }
 
+/* iPad Pro portrait (769–1024): center the OUR PRESENCE section to match live,
+   mirroring the <=768 stacked/centered layout. Mobile and HD are untouched. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .ServicesContentSeven .inner-presense {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  /* Map above the office/social block, like live. */
+  .ServicesContentSeven .inner-presense-right {
+    order: -1 !important;
+  }
+
+  /* "OUR PRESENCE" header: match live (25px, wider letter-spacing).
+     Restore 5vh bottom gap (the 481–1024 SCSS block forces 32px). */
+  .ServicesContentSeven .presennse-header {
+    font-size: 25px !important;
+    letter-spacing: 15px !important;
+    margin-bottom: 5vh !important;
+  }
+
+  .ServicesContentSeven .inner-presense-left,
+  .ServicesContentSeven .inner-presense-right,
+  .ServicesContentSeven .map {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .ServicesContentSeven .offices-container,
+  .ServicesContentSeven .social-container {
+    margin: 0 auto !important;
+  }
+
+  .ServicesContentSeven .social-container {
+    margin-top: 34px !important;
+  }
+
+  .ServicesContentSeven .content-social {
+    width: 100% !important;
+    max-width: 380px;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(34px, 1fr)) !important;
+    gap: clamp(14px, 5vw, 28px) !important;
+    justify-items: center;
+  }
+
+  .ServicesContentSeven .content-social img {
+    width: clamp(34px, 8vw, 40px) !important;
+    height: clamp(34px, 8vw, 40px) !important;
+    margin: 0 !important;
+  }
+
+  .ServicesContentSeven .map iframe {
+    width: 100% !important;
+    height: clamp(260px, 52vw, 380px) !important;
+    border-radius: 18px;
+  }
+
+  /* Tagline bar: keep all three items on one row and centered — local was
+     cutting off "Expert Facilitator" due to the base 82px padding + 150px gaps. */
+  .ServicesContentTwo .tagline-bar,
+  .tagline-bar {
+    width: 100% !important;
+    padding-left: 0 !important;
+    column-gap: 24px !important;
+    justify-content: center !important;
+    margin-top: 61px !important; /* matches live's hero-image-to-tagline gap */
+  }
+
+  .ServicesContentTwo .tagline-bar .tagline-item,
+  .tagline-bar .tagline-item {
+    width: auto !important;
+    flex: 1 1 0 !important;
+    font-size: 24px !important; /* matches live */
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* "Your go-to partner..." heading + paragraphs: justify (left-aligned, filling
+     the width) to match live. The shared <=1199 block centers them. */
+  .ServicesContentTwo .heder-content,
+  .ServicesContentTwo .sub-content,
+  .ServicesContentTwo .sub-content-two {
+    text-align: justify !important;
+  }
+
+  /* Full-bleed the section like live (local was 90% width, centered) so the text
+     block width + left inset match — the ~102px section-width gap was the cause. */
+  .ServicesContentTwo {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Match live's text/stats column split so the paragraph wraps identically:
+     text column 67.6% (-> 623px), stats column 32.4% (-> 299px), no left pad
+     on stats so the 20+/1000+ numbers align with live. */
+  .ServicesContentTwo .bottom-left-container {
+    width: 67.6% !important;
+  }
+
+  .ServicesContentTwo .bottom-right-container {
+    width: 32.4% !important;
+    padding-left: 0 !important;
+  }
+
+  /* "Our Services are for..." header: match live (40px, centered). The shared
+     <=1199 block shrinks it to 20px/left with an 80px line-height. */
+  .ServicesContentThree .inner-container .header {
+    font-size: 40px !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  /* Service buttons: match live's 20px label text (was 18px). */
+  .ServicesContentThree .GradientButton .GradientButton-inner {
+    font-size: 20px !important;
+  }
+
+  /* "Our client testimonials are proof of" block (.ServicesContentFour): match
+     live — header left-aligned, body justified, full-bleed section inset to the
+     same gutter, wider text column. The <=1199 block centers it in a narrow box. */
+  .ServicesContentFour {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 10% !important;
+    padding-right: 0 !important;
+  }
+
+  .ServicesContentFour .top-content {
+    letter-spacing: 6.4px !important; /* matches live (was 0.45em ~ 11.25px) */
+  }
+
+  /* Align header with the stats column (both 41px, like live) and drop the
+     extra 80px container padding so the gap under CLIENT TESTIMONIALS matches. */
+  .ServicesContentFour .bottom-container {
+    padding-top: 0 !important;
+  }
+
+  .ServicesContentFour .heder-content {
+    text-align: left !important;
+    margin-top: 41px !important;
+  }
+
+  .ServicesContentFour .sub-content-two {
+    text-align: justify !important;
+  }
+
+  .ServicesContentFour .bottom-left-container {
+    width: 67.6% !important;
+    padding-right: 19% !important; /* narrows text to ~451px so it wraps like live */
+  }
+
+  .ServicesContentFour .bottom-right-container {
+    width: 32.4% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Contact form: scale type up for tablet — the matched-to-live sizes read
+     small at 1024px. Inputs/selects kept >=16px to avoid tap-to-zoom. */
+  .contactForm .contact-form-header {
+    font-size: 22px !important;
+  }
+
+  .contactForm .input-container .label,
+  .contactForm .radio-container .label,
+  .contactForm .radio-cont .lbl {
+    font-size: 16px !important;
+  }
+
+  .contactForm .input,
+  .contactForm input,
+  .contactForm select,
+  .contactForm .custom-select select {
+    font-size: 18px !important;
+  }
+}
+
 
 @media screen and (max-width: 768px) {
   .ServicesContentFour #reviews_btn_1 {
@@ -2710,8 +2898,8 @@
   }
 }
 
-/* Mobile carousel for client video testimonials */
-@media screen and (max-width: 768px) {
+/* Carousel for client video testimonials — mobile through iPad Pro portrait (<=1024). */
+@media screen and (max-width: 1024px) {
   .ServicesContentFiveMain .ServicesContentFive {
     width: 90% !important;
     padding: 0 !important;
@@ -2733,6 +2921,13 @@
   .client-cards-swiper .swiper-slide {
     height: auto !important;
     display: flex !important;
+  }
+
+  /* The flex slide makes .ClientCard a flex item that sizes to its content;
+     the shortest-text card (last one) under-fills and hugs the left. Force it
+     to fill the slide width. */
+  .client-cards-swiper .swiper-slide .ClientCard {
+    width: 100% !important;
   }
 
   .arrow-btn-container {
@@ -2769,6 +2964,58 @@
   .arrow-div-2.swiper-button-disabled {
     opacity: 0.35 !important;
     cursor: default !important;
+  }
+}
+
+/* Footer at iPad Pro portrait (769–1024): match live's larger typography.
+   The shared <=1199 block applies phone-sized fonts/logo, too small for tablet.
+   Mobile (<=768) and HD (>=1025) keep their existing sizes. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Carousel: match live's gap between the card and the prev/next arrows
+     (~102px). The shared <=1024 carousel block sets only 16px (kept for mobile). */
+  .arrow-btn-container {
+    margin-top: 102px !important;
+  }
+
+  /* Arrow buttons: match live's larger size (72x54; mobile keeps 44x44). */
+  .arrow-div-1,
+  .arrow-div-2 {
+    width: 72px !important;
+    height: 54px !important;
+  }
+
+  /* Align footer to the page content gutter (matches live's ~56px inset and
+     the rest of the page); the <=1199 block otherwise forces a 12px gutter. */
+  .responsive-footer,
+  .designer-foot {
+    width: calc(100% - 2 * var(--page-gutter)) !important;
+  }
+
+  .footer-brand .logo {
+    width: clamp(200px, 23vw, 243px) !important;
+  }
+
+  .footer-brand {
+    font-size: 20px !important;
+    line-height: 45px !important; /* matches live's airy brand text */
+  }
+
+  .footer-group .hed {
+    font-size: 25px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+  }
+
+  .footer-group .sub,
+  .footer-link,
+  .footer-muted {
+    font-size: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  .designer-foot,
+  .designer-foot a {
+    font-size: 16px !important;
   }
 }
 
