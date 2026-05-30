@@ -3495,3 +3495,13 @@
     padding-bottom: 62px !important;
   }
 }
+
+/* Landlords hero paragraph/services list: match live's 850px width (centered)
+   so the line breaks match (local was 900px wide -> different wrapping). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .landlordsContentOne .top-conatiner-right .right-content {
+    width: min(100%, 850px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
