@@ -129,6 +129,7 @@
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
   .flip-card-back {
     display: block;
+    height: 100%;        /* match the front face size when flipped (was auto) */
 
     .content-back {
       font-size: 20px;
@@ -153,6 +154,8 @@
 
 @media screen and (min-width:1441px) and (max-width: 1720px) {
   .flip-card-back {
+    height: 100%;        /* match the front face size when flipped (was auto) */
+
     .back-content {
       font-size: 18px;
       line-height: 30px;
