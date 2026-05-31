@@ -3727,6 +3727,7 @@
   .About .AboutContentSix .bottom-right-container .Rate-card {
     width: 160px !important;
     max-width: none !important;
+    text-align: center !important;
   }
   /* Live renders this heading in pure black; local uses the $text navy. */
   .About .AboutContentSix .bottom-left-container .heder-content {
