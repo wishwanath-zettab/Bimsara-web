@@ -29,6 +29,16 @@
   transform: rotateY(180deg);
 }
 
+/* Click/tap toggle. !important so it wins over the (pointer:coarse) hover-disable
+   rule in responsive.css that otherwise forces transform:none on a tapped card. */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg) !important;
+}
+
+.flip-card {
+  cursor: pointer;
+}
+
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -92,6 +102,8 @@
 @media screen and (min-width: 481px) and (max-width: 1024px) {
   .flip-card-back {
     display: block;
+    height: 100%;        /* match the front face size when flipped (was auto) */
+    overflow-y: auto;
 
     .content-back {
       font-size: 20px;

@@ -1111,17 +1111,17 @@
     justify-content: center !important;
     padding: 0 !important;
     margin-top: 6% !important;
-    margin-bottom: 26px !important;
+    margin-bottom: 1.8% !important;
     gap: 0 !important;
   }
 
   .tagline-bar .tagline-item {
     width: 100% !important;
     font-size: 25px !important;
-    line-height: 40px !important;
+    line-height: normal !important;
     text-align: center !important;
     justify-content: center !important;
-    margin-bottom: 7.4px !important;
+    margin-bottom: 15.6px !important;
   }
 
   .ServicesContentTwo .top-container,
@@ -3117,6 +3117,21 @@
 /* Sellers page fixes at iPad Pro portrait (769-1024). Scoped to tab view only;
    mobile (<=768) and desktop (>=1025) keep their existing styles. */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Center the service-card grid on screen. .left-inner adds padding-left:12vw
+     on top of an already-centered .top-containr, pushing the grid right by ~6vw;
+     pull it back by half the padding so the grid is screen-centered. The heading
+     and "OUR SERVICES" get the same shift so they start at the cards' left edge. */
+  .Sellers .sellersContentOne .left-inner .seller-card-container,
+  .Sellers .sellersContentOne .left-inner .header,
+  .Sellers .sellersContentOne .left-inner .sub {
+    margin-left: -6vw !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live (1em); local was clamped to 0.45em. */
+  .Sellers .sellersContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+
   /* Service card labels: restore a readable line-height. At exactly 1024px the
      min-width:1024 desktop block bleeds in line-height:15px, collapsing the two
      wrapped lines on top of each other. */
@@ -3157,5 +3172,597 @@
      (the .Sellers .right-content rule otherwise justifies it). */
   .Sellers .sellersContentOne .right-content {
     text-align: center !important;
+  }
+}
+
+/* Navbar at iPad Pro portrait (769-1024): the <=1199 "mobile nav" applies the
+   phone-sized rail (80px, 21px labels) and a cramped 300px flyout with 16/13px
+   text. Scale the rail and flyout up so they suit the tablet. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Wider rail with larger rotated labels. */
+  .Nav-bar .main-nav {
+    width: 104px !important;
+  }
+
+  /* Distribute the rail items evenly down the full height (like live), instead
+     of bunching them at the top with fixed gaps. */
+  .Nav-bar .main-nav .nav {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly !important;
+    padding-top: 0 !important;
+  }
+
+  .Nav-bar .main-nav .nav .homeNav,
+  .Nav-bar .main-nav .nav .servicesNav,
+  .Nav-bar .main-nav .nav .testimonialsNav,
+  .Nav-bar .main-nav .nav .aboutNav,
+  .Nav-bar .main-nav .nav .contactNav {
+    padding-bottom: 0 !important;
+  }
+
+  .Nav-bar .main-nav .nav .rotate {
+    margin-top: 0 !important;
+  }
+
+  .Nav-bar .main-nav .nav .homeNav,
+  .Nav-bar .main-nav .nav .servicesNav,
+  .Nav-bar .main-nav .nav .testimonialsNav,
+  .Nav-bar .main-nav .nav .aboutNav,
+  .Nav-bar .main-nav .nav .contactNav {
+    width: 104px !important;
+  }
+
+  .Nav-bar .main-nav .nav .rotate {
+    font-size: 29px !important;
+  }
+
+  /* Flyout panel: sit left of the rail, full height like live, readable. */
+  .Nav-bar .main-nav .hovercontent,
+  .Nav-bar .main-nav .hovercontent-2,
+  .Nav-bar .main-nav .hovercontent-3 {
+    right: 104px !important;
+    width: 440px !important;
+    height: 100vh !important;
+  }
+
+  /* "Read the Guides" / download / social links were spread out (44px touch
+     min-height + 20px margins). Tighten them so they group under the heading
+     like live. */
+  .Nav-bar .service-cont .div-b .sub-2 .nav-action,
+  .Nav-bar .service-cont .div-b .sub-2 > a {
+    min-height: 0 !important;
+  }
+
+  .Nav-bar .service-cont {
+    padding: 48px 28px 48px 20px !important;
+  }
+
+  .Nav-bar .service-layout .head {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+
+  .Nav-bar .service-layout .sub,
+  .Nav-bar .service-cont .sub-2,
+  .Nav-bar .service-cont .hdr,
+  .Nav-bar .service-cont .hdr-t {
+    font-size: 19px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* "Read the Guides" heading a touch larger/spaced. */
+  .Nav-bar .service-cont .hdr,
+  .Nav-bar .service-cont .hdr-t {
+    font-size: 21px !important;
+    margin-bottom: 7px !important;
+  }
+
+  /* Reset letter-spacing bleed: .Sellers .sub (OUR SERVICES, 0.45em) leaks into
+     the navbar flyout subtitles on the sellers page. The existing reset only
+     covered <=768px, so tab view inherited the wide spacing. */
+  .Nav-bar .sub,
+  .Nav-bar .sub-n,
+  .Nav-bar .service-cont .sub-2 {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+  }
+
+  /* Larger service icons (+10%). */
+  .Nav-bar .service-layout .img-cont {
+    width: 66px !important;
+    height: 66px !important;
+    min-width: 66px !important;
+    margin-right: 22px !important;
+  }
+
+  .Nav-bar .service-layout .img-cont img {
+    width: 66px !important;
+    height: 66px !important;
+  }
+
+  /* Top items spaced to match live (margin-bottom 56px). */
+  .Nav-bar .service-cont .div-c .service-layout {
+    margin-bottom: 56px !important;
+  }
+
+  .Nav-bar .service-cont .div-b {
+    margin-top: 13px !important;
+  }
+
+  .Nav-bar .service-cont .div-b .sub-2 {
+    margin-top: 18px !important;
+  }
+}
+
+/* Buyers page fixes at iPad Pro portrait (769-1024) — mirrors the sellers-page
+   fixes. Scoped to tab view only; mobile and desktop are unaffected. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Show the flip cards (.grid-component) like live — clicking a card flips it
+     to reveal the content. Local was hiding them and showing the SellerCard +
+     modal fallback instead. */
+  .buyers .top-conatiner-right .grid-component {
+    display: flex !important;
+  }
+
+  .buyers .top-conatiner-right .card-compo {
+    display: none !important;
+  }
+
+  /* Buyer's Guide: the cnt-form-div is a 2-column grid, so the collapsible
+     content only filled the left half. Make it span full width. */
+  .buyers .buyers-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live (1em); local was clamped. */
+  .buyers .buyersContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+}
+
+/* Flip cards (tab/mobile): click/tap toggle must win over the (pointer:coarse)
+   hover-disable rule above (equal specificity + !important, so source order
+   decides — keep this last). Scoped <=1024 so desktop keeps hover-flip. */
+@media screen and (max-width: 1024px) {
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg) !important;
+  }
+}
+
+/* Landlords page — same treatment as the sellers page (SellerCard + modal). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Screen-center the card grid + heading + OUR SERVICES (left-inner adds 12vw
+     padding on an already-centered container; pull back half of it). */
+  .landlords .landlordsContentOne .left-inner .landlords-card-container,
+  .landlords .landlordsContentOne .left-inner .header,
+  .landlords .landlordsContentOne .left-inner .sub {
+    margin-left: -6vw !important;
+  }
+
+  /* Service card labels: stop the two wrapped lines colliding (desktop block
+     bleeds line-height:15px under a 25px font). */
+  .landlords .landlords-card-container .sellerCard .content {
+    font-size: 20px !important;
+    line-height: 28px !important;
+    align-self: center !important;
+  }
+
+  /* Vertically center the label + arrow and add right padding. */
+  .landlords .landlords-card-container .sellerCard {
+    height: auto !important;
+    min-height: 90px !important;
+    align-items: center !important;
+    padding: 12px 24px !important;
+  }
+
+  .landlords .landlords-card-container .sellerCard img {
+    align-self: center !important;
+    margin-top: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live. */
+  .landlords .landlordsContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+
+  /* Hero services list center-aligned. */
+  .landlords .landlordsContentOne .right-content {
+    text-align: center !important;
+  }
+
+  /* Guide: cnt-form-div was a 2-col grid; make it full-width. */
+  .landlords .landlords-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* Tenants page — same treatment as the buyers page (flip cards). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Show the flip cards like live; hide the SellerCard + modal fallback. */
+  .tenants .grid-component {
+    display: flex !important;
+  }
+
+  .tenants .card-compo {
+    display: none !important;
+  }
+
+  /* Guide: full-width (cnt-form-div was a 2-col grid). */
+  .tenants .tenants-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* "OUR SERVICES" letter-spacing to match live. */
+  .tenants .tenantsContentOne .sub {
+    letter-spacing: 1em !important;
+  }
+}
+
+/* Buyers & Tenants hero: align the top-conatiner-left header + "OUR SERVICES"
+   and the flip-card grid to the same ~content-gutter as live (local had extra
+   left padding pushing the header in to ~145 while the cards sat at ~62). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyersContentOne .top-conatiner-left .header,
+  .buyers .buyersContentOne .top-conatiner-left .sub,
+  .tenants .tenantsContentOne .top-conatiner-left .header,
+  .tenants .tenantsContentOne .top-conatiner-left .sub {
+    margin-left: -6vw !important;
+  }
+
+  .buyers .buyersContentOne .top-conatiner-right .grid-component,
+  .tenants .tenantsContentOne .top-conatiner-right .grid-component {
+    margin-left: 2.4vw !important;
+    width: min(100%, 850px) !important;
+  }
+
+  /* Reduce the heading-block bottom margin to tighten the paragraph-to-cards
+     gap to live's ~37px (done here instead of shifting the grid, so the grid's
+     62px bottom padding stays correct). */
+  .buyers .buyers-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    margin-bottom: 9px !important;
+  }
+}
+
+/* Buyers & Tenants "Our Secret..."/"It's Been Made Easy" heading + paragraph
+   block: remove the extra left padding (align to ~live gutter) and center the
+   paragraph (was justified; live centers it). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyers-card-container,
+  .tenants .tenants-card-container {
+    margin-left: -6vw !important;
+    margin-right: -6vw !important; /* widen symmetrically so the centered text matches live */
+  }
+
+  .buyers .buyers-card-container .right-content,
+  .tenants .tenants-card-container .right-content {
+    text-align: center !important;
+  }
+}
+
+/* Service pages logo: match live (8vw left, was 5vw) so it aligns with the
+   hero content gutter instead of sitting too far left. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .logo-container,
+  .tenants .logo-container {
+    padding-left: 8vw !important;
+  }
+}
+
+/* Floating ISO/Safetynet/contact-circle badge (.top-content-arrow) shows on
+   live at tab view but the <=1024 block hides it. Restore it at tab view. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Services .top-content-arrow,
+  .Sellers .top-content-arrow,
+  .buyers .top-content-arrow,
+  .landlords .top-content-arrow,
+  .tenants .top-content-arrow {
+    display: flex !important;
+  }
+}
+
+/* Flip-card hero column: add bottom padding so the cards don't touch the hero
+   bottom edge (live uses 62px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .buyers .buyersContentOne .top-conatiner-right,
+  .tenants .tenantsContentOne .top-conatiner-right {
+    padding-bottom: 62px !important;
+  }
+}
+
+/* Landlords logo: match live (8vw, was 5vw). Header/cards already align at live's position. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .logo-container {
+    padding-left: 8vw !important;
+  }
+}
+
+/* Landlords hero right column: add bottom padding (live 62px) so the services
+   list doesn't touch the hero bottom edge. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .landlordsContentOne .top-conatiner-right {
+    padding-bottom: 62px !important;
+  }
+}
+
+/* Landlords hero paragraph/services list: match live's 850px width (centered)
+   so the line breaks match (local was 900px wide -> different wrapping). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .landlords .landlordsContentOne .top-conatiner-right .right-content {
+    width: min(100%, 850px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Sellers logo: match live (8vw, was 5vw). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Sellers .logo-container {
+    padding-left: 8vw !important;
+  }
+}
+
+/* Home page logo: match live (8vw, was 5vw). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Services .logo-container {
+    padding-left: 8vw !important;
+  }
+}
+
+/* Home "I want to" links: tighten line-height to match live (~1.2, was ~44px)
+   and vertically center the arrow with the text. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Services .top-bottom-container .want-content .want-inner {
+    align-items: center !important;
+  }
+  .Services .top-bottom-container .want-content .want-inner a {
+    line-height: 1.2 !important;
+    min-height: 0 !important; /* drop the 44px touch min-height so the text box
+                                 isn't taller than the text; otherwise the text
+                                 sits at the top and the centered arrow looks low */
+  }
+}
+
+/* About page (tab view): logo to 8vw like other pages, and reduce the hero
+   height to 50vh (live) so the cover image isn't over-zoomed (was 60vh). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container {
+    padding-left: 8vw !important;
+  }
+
+  .About .AboutContentOne .AboutContentOne-inner {
+    height: 50vh !important;
+  }
+}
+
+/* About logo size: match live/home (200x56, was 150x42). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container .logo {
+    width: 200px !important;
+    height: auto !important;
+  }
+}
+
+/* About logo top: match live (5vw padding-top, was 3vw -> sat 20px too high). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .logo-container {
+    padding-top: 5vw !important;
+  }
+}
+
+/* About tagline: match the home tagline (commit 60a7976) — content-aligned
+   (102->932), equal thirds, no gap. About lacks the home's left padding, so
+   add margin-left:10vw to start at the same gutter. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .tagline-bar {
+    width: auto !important;
+    margin-left: 10vw !important;
+    margin-right: 10% !important;
+    column-gap: 0 !important;
+    margin-top: 32px !important; /* live's hero-to-tagline gap (home uses 61px) */
+  }
+}
+
+/* About "WHO WE ARE" heading: keep left-aligned on tab view (aligns with the
+   left-aligned content below). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .who-header {
+    text-align: left !important;
+  }
+}
+
+/* About: increase gap between tagline and "WHO WE ARE" to match live (~84px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentTwo .who-header {
+    margin-top: 29px !important;
+  }
+}
+
+/* About "WHO WE ARE" logo: a base max-height:110px capped/squished it; remove
+   the cap so it shows at natural height (~129px like live). Width matches (289px). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .about-content-two-right img {
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
+/* About "We Value," cards: let them grow to fill the row (equal thirds ~253px)
+   so the width matches live (251px) — they were 221px and under-filled. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .bottm-content .div-content .inner-div {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+    padding-left: 1px !important;  /* was ~12px each side, narrowing the card */
+    padding-right: 1px !important;
+  }
+  .About .bottm-content .div-content .inner-div .gradientCard {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+/* About "WE LOVE TO FOLLOW SYSTEMS": 2-column row (text left, ISO cert right)
+   like live, instead of stacked column. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Content gutter 5vw each side (51px) like live (was 4vw). */
+  .About .AboutContentFour {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  .About .AboutContentFour .inner-content-four {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0 !important; /* live has no gap; the 35/65 split defines the columns */
+  }
+  .About .AboutContentFour .left-inner-content {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+  .About .AboutContentFour .right-inner-content {
+    flex: 0 0 35% !important;
+    max-width: 35% !important;
+  }
+  .About .AboutContentFour .right-inner-content img {
+    width: 100% !important;
+    max-width: none !important; /* base caps it at 300px, shrinking it below the column */
+    height: auto !important;
+  }
+}
+
+/* About ISO section text: match live sizes/leading (was smaller). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFour .we-header {
+    line-height: 45px !important;
+  }
+  .About .AboutContentFour .heder-content {
+    font-size: 35px !important;
+    line-height: 60px !important;
+  }
+  .About .AboutContentFour .sub-content {
+    font-size: 20px !important;
+    line-height: 50px !important;
+  }
+}
+
+/* About ISO section: remove the large inner margin so the row uses the full
+   content width (left text ~599, ISO ~323 like live) instead of being inset. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentFour .inner-content-four {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* About "COMPANY OVERVIEW": left column flex overrides its 60% width, making it
+   full-width (so the description wraps too wide). Honor the 60% so it matches
+   live (~553px) and the text wraps the same. Also drop the inner padding and
+   center the content block + text so the logo and text are centered across the
+   full column (like live) instead of left-pushed/justified. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Drop the base 5% padding-left so "COMPANY OVERVIEW" aligns to the column
+     left edge like live (text starts at ~102px, not ~154px). */
+  .About .AboutContentFive .company-header {
+    padding-left: 0 !important;
+  }
+  /* Live insets the content 5% from the card's top/bottom via padding on the
+     card itself (columns have no padding), so the logo isn't flush to the top. */
+  .About .AboutContentFive .inner-content-five {
+    padding: 5% 0 !important;
+  }
+  .About .AboutContentFive .inner-content-five .left-inner-content {
+    flex: 0 0 60% !important;
+    width: 60% !important;
+    max-width: 60% !important;
+    padding: 0 !important;
+  }
+  .About .AboutContentFive .inner-content-five .right-inner-content {
+    padding: 0 !important;
+  }
+  .About .AboutContentFive .inner-content-five .left-inner-content .bottom-left-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .About .AboutContentFive .inner-content-five .left-inner-content .sub-content,
+  .About .AboutContentFive .inner-content-five .left-inner-content .sub-content-two {
+    text-align: center !important;
+  }
+}
+
+/* About "OUR TEAM" (AboutContentSix): live uses the full content width (no 4%
+   right inset) so the header/intro/rate-cards aren't shifted left, and centers
+   the intro sub-content (not justified like the shared .About .sub-content rule). */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About .AboutContentSix {
+    padding-right: 0 !important;
+  }
+  .About .AboutContentSix .bottom-container .bottom-left-container .sub-content {
+    text-align: center !important;
+  }
+  /* The generic ".Rate-card { width:100% }" reset (for the Services grids) leaks
+     into AboutContentSix's flex rate-card row, ballooning the first card to
+     ~391px and squashing the second to ~69px. Restore the fixed 160px width so
+     the two cards are equal and the pair centers like live. */
+  .About .AboutContentSix .bottom-right-container .Rate-card {
+    width: 160px !important;
+    max-width: none !important;
+  }
+  /* Live renders this heading in pure black; local uses the $text navy. */
+  .About .AboutContentSix .bottom-left-container .heder-content {
+    color: #000 !important;
+  }
+}
+
+/* About "Our Service Providers" (AboutContentSeven): the tab override turns the
+   logo row into a 2-column grid with enlarged/stretched 108x102 items. Live keeps
+   a single row (4 columns) of 100x100 logos. Restore that. */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Live insets the section ~3% from the top. */
+  .About .AboutContentSeven {
+    padding-top: 3% !important;
+  }
+  .About .AboutContentSeven .image-container {
+    grid-template-columns: repeat(4, auto) !important;
+    padding-top: 0 !important;
+  }
+  .About .AboutContentSeven .image-container .image-item {
+    width: 100px !important;
+    height: 100px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* About hero (AboutContentOne) on mobile: perfect match to live.
+   Live renders the hero as a background-image on .AboutContentOne-inner with
+   background-size:cover, background-position:0% 100% (left bottom), in a 50vh
+   box, and the logo at exactly 160x42. Replicate that on the local <img>. */
+@media screen and (max-width: 480px) {
+  .About .AboutContentOne .AboutContentOne-inner {
+    height: 50vh !important;
+  }
+  .About .AboutContentOne .AboutContentOne-inner .about-hero-img {
+    object-fit: cover !important;
+    object-position: 0% 100% !important;
+  }
+  .About .logo-container {
+    padding-top: 12px !important;
+    padding-left: 8% !important;
+    padding-right: 0 !important;
+  }
+  .About .logo-container .logo {
+    width: 160px !important;
+    height: 42px !important;
   }
 }
