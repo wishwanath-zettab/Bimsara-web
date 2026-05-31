@@ -88,6 +88,15 @@
   margin-bottom: 8px;
 }
 
+/* On desktop/HD (6-column grid), reserve column 1 for the brand across both
+   rows so the 2nd row of link groups starts under "For Sellers" (column 2),
+   matching live. Only applies where the multi-column grid is active. */
+@media screen and (min-width: 1025px) {
+  .footer-brand {
+    grid-row: 1 / span 2;
+  }
+}
+
 .footer-group .hed,
 .footer-group .sub {
   line-height: 1.6 !important;
@@ -3718,6 +3727,7 @@
   .About .AboutContentSix .bottom-right-container .Rate-card {
     width: 160px !important;
     max-width: none !important;
+    text-align: center !important;
   }
   /* Live renders this heading in pure black; local uses the $text navy. */
   .About .AboutContentSix .bottom-left-container .heder-content {

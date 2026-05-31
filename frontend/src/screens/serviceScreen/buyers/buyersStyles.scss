@@ -711,17 +711,20 @@
                 .div-2 {
                   width: 55%;
 
+                  // Heights rebalanced so the column (with the image shown)
+                  // totals 885px and aligns with div-1: 285 + 35 + 235 + 45 + 285.
                   .div-t {
-                    height: 369px;
+                    height: 285px;
                     margin-bottom: 35px;
                   }
 
                   .div-b {
-                    height: 369px;
-                    margin-bottom: 35px;
+                    height: 285px;
+                    margin-bottom: 0;
                   }
 
                   .img-container {
+                    display: block;
                     width: 100%;
                     height: 235px;
                     margin-bottom: 45px;
@@ -737,7 +740,9 @@
                 }
               }
 
-              .img-container {
+              // Hide only the standalone image card (direct child of
+              // top-conatiner-right), not the one inside the grid's div-2.
+              & > .img-container {
                 display: none;
               }
 
