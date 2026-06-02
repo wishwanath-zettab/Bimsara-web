@@ -3184,6 +3184,23 @@
   }
 }
 
+/* Guide pages at iPad Mini portrait (481-768, e.g. 768px/744px). Same issue
+   the 769-1024 blocks below fix: .cnt-form-div is a 2-column grid (rule in the
+   max-width:1024 block), so the guide collapsible only filled the left half and
+   its 2-column button grid squeezed labels into mid-word wraps ("Marketi ng").
+   Make it span full width. <=480 (1fr grid) and >=769 (existing fixes) untouched. */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .Sellers .sellers-background-bottom .cnt-form-div,
+  .buyers .buyers-background-bottom .cnt-form-div,
+  .landlords .landlords-background-bottom .cnt-form-div,
+  .tenants .tenants-background-bottom .cnt-form-div {
+    display: block !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
 /* Navbar at iPad Pro portrait (769-1024): the <=1199 "mobile nav" applies the
    phone-sized rail (80px, 21px labels) and a cramped 300px flyout with 16/13px
    text. Scale the rail and flyout up so they suit the tablet. */
