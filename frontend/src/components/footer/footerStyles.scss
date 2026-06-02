@@ -601,17 +601,7 @@
 
 @media screen and (min-width: 480px) and (max-width: 1024px) {
 
-  #footer_desktop {
-    display: none;
-  }
-
-  #footer_mobile {
-    display: block;
-  }
-
   .footer {
-    padding-top: 10vh;
-    margin-top: 15vh;
 
     .inner-footer {
       display: block;
