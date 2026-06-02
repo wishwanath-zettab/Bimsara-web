@@ -3201,6 +3201,15 @@
   }
 }
 
+/* Sellers hero services list: breathing room below the list at iPad Pro
+   portrait only (834px 11" / 1024px 12.9"). Tab A7 (800) and iPad Mini (768)
+   are intentionally outside this range. */
+@media screen and (min-width: 834px) and (max-width: 1024px) {
+  .Sellers .sellers-background .sellersContentOne .sellersContentOne-inner .top-containr .top-conatiner-right .right-content {
+    margin-bottom: 5%;
+  }
+}
+
 /* Navbar at iPad Pro portrait (769-1024): the <=1199 "mobile nav" applies the
    phone-sized rail (80px, 21px labels) and a cramped 300px flyout with 16/13px
    text. Scale the rail and flyout up so they suit the tablet. */
