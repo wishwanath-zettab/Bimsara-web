@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "80:3001"
+      - "80:80"
     volumes:
       - app-data:/app/data
     environment:
