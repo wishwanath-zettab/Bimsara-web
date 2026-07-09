@@ -11,7 +11,7 @@ dotenv.config();
 
 const db = require('./database');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 80;
 const HOST = process.env.HOST || '0.0.0.0';
 const JWT_SECRET = process.env.JWT_SECRET || 'bimsara-admin-dev-secret';
 
