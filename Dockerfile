@@ -29,7 +29,7 @@ RUN chmod +x entrypoint.sh
 # Ensure persistent data dirs exist at build time
 RUN mkdir -p /app/data/uploads
 
-EXPOSE 3001
+EXPOSE 80
 
 ENV NODE_ENV=production
 
