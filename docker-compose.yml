@@ -3,14 +3,18 @@ services:
     build: .
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - app-data:/app/data
+      - /opt/devops/certs/new_cert:/app/certs:ro
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
       - DB_PATH=/app/data/bimsara_admin.db
       - UPLOADS_PATH=/app/data/uploads
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - SSL_CERT_PATH=/app/certs/STAR.bimsara.com.crt
+      - SSL_KEY_PATH=/app/certs/STAR.bimsara.com.key
     restart: unless-stopped
 
 volumes:

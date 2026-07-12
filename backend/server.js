@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const https = require('https');
 const path = require('path');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
@@ -609,7 +610,33 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 db.ready.then(() => {
-  app.listen(PORT, HOST, () => {
-    console.log(`Server is running on http://${HOST}:${PORT}`);
-  });
+  const certPath = process.env.SSL_CERT_PATH;
+  const keyPath = process.env.SSL_KEY_PATH;
+
+  if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
+    const httpsServer = https.createServer(
+      {
+        cert: fs.readFileSync(certPath),
+        key: fs.readFileSync(keyPath),
+      },
+      app
+    );
+    httpsServer.listen(443, HOST, () => {
+      console.log(`HTTPS server is running on https://${HOST}:443`);
+    });
+
+    // Redirect plain HTTP to HTTPS
+    express()
+      .use((req, res) => {
+        const host = (req.headers.host || '').split(':')[0];
+        res.redirect(301, `https://${host}${req.url}`);
+      })
+      .listen(PORT, HOST, () => {
+        console.log(`HTTP redirect server is running on http://${HOST}:${PORT}`);
+      });
+  } else {
+    app.listen(PORT, HOST, () => {
+      console.log(`Server is running on http://${HOST}:${PORT}`);
+    });
+  }
 });
