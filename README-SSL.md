@@ -2,6 +2,14 @@
 
 This document describes the HTTPS support added to `backend/server.js` and how to configure it for deployment.
 
+> **On the shared VM (187.127.209.34), this in-container HTTPS path is switched
+> off.** The host nginx terminates TLS and proxies to the container over plain
+> HTTP — see `nginx/bimsaraweb.conf` in the **propertyweb-infra** repo, which is
+> the source of truth for `www.bimsara.com`. nginx owns ports 80 and 443 there
+> (Property Web qa/prod share the host), so the container cannot bind them
+> anyway. What follows applies when running this image **without** a proxy in
+> front of it.
+
 ## How it works
 
 At startup (`db.ready.then(...)` at the bottom of `backend/server.js`), the server checks two environment variables:
@@ -66,9 +74,35 @@ Notes on the implementation:
 - The HTTP redirect server is a separate bare Express app so the main app's routes are never reachable over plain HTTP in production.
 - The redirect strips any port from the incoming `Host` header and relies on the browser's default 443 for HTTPS.
 
-## Server deployment
+## Server deployment (current: TLS at nginx)
 
-The certificate files live on the host at `/opt/devops/certs/new_cert/` and are bind-mounted read-only into the container by `docker-compose.yml`:
+On the VM the shipped `docker-compose.yml` leaves `SSL_CERT_PATH` /
+`SSL_KEY_PATH` **unset** and mounts no certificates, so `server.js` takes the
+plain-HTTP branch on container port 80:
+
+```yaml
+ports:
+  - "127.0.0.1:${HTTP_HOST_PORT:-8080}:80"
+volumes:
+  - app-data:/app/data
+```
+
+nginx on the host holds the certificate and proxies `www.bimsara.com` /
+`bimsara.com` to `127.0.0.1:8080`. The vhost is `nginx/bimsaraweb.conf` in the
+**propertyweb-infra** repo (cert at `/etc/ssl/propweb/STAR.bimsara.com.*`, via
+`snippets/propweb-tls.conf`); that repo's README covers installing and renewing
+it. Publishing on `127.0.0.1` keeps the app unreachable except through nginx.
+
+Deploy with `sudo /opt/bimsara-web/bweb-deploy`, or directly:
+
+```bash
+docker compose up -d --build
+```
+
+### Running it the other way (TLS inside the container)
+
+Only when nothing is proxying in front of it — the two cannot be combined, as
+the app turns port 80 into a bare redirector as soon as the cert vars are set:
 
 ```yaml
 ports:
@@ -79,12 +113,6 @@ volumes:
 environment:
   - SSL_CERT_PATH=/app/certs/STAR.bimsara.com.crt
   - SSL_KEY_PATH=/app/certs/STAR.bimsara.com.key
-```
-
-Deploy with:
-
-```bash
-docker compose up -d --build
 ```
 
 Verify:

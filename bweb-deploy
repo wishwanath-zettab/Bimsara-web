@@ -1,8 +1,38 @@
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/opt/devops/bweb/Bimsara-web"
-LOG_FILE="/var/log/bimsara-deploy.log"
+# ==============================================================================
+# bweb-deploy — deploy Bimsara-web. Run this ON the VM (187.127.209.34).
+#
+# Syncs the repo at $APP_DIR (cloning it on first run), then rebuilds and
+# restarts the Docker stack.
+#
+# Layout on the VM:
+#   /opt/bimsara-web/bweb-deploy   this script
+#   /opt/bimsara-web/repo          the git checkout ($APP_DIR)
+#
+# The script deliberately lives outside the checkout: the sync below runs
+# `git clean -fd`, so anything inside $APP_DIR is disposable.
+#
+# Usage:
+#   sudo /opt/bimsara-web/bweb-deploy
+#
+# Optional environment overrides:
+#   APP_DIR         git checkout dir     (default: /opt/bimsara-web/repo)
+#   BRANCH          branch to deploy     (default: main)
+#   REPO_URL        clone URL, first run (default: this repo's origin)
+#   BUILD_NO_CACHE  1 = --no-cache build (default: 1)
+#   LOG_FILE        log path             (default: /var/log/bimsara-deploy.log)
+#
+# Example:
+#   BUILD_NO_CACHE=0 sudo -E /opt/bimsara-web/bweb-deploy
+# ==============================================================================
+
+APP_DIR="${APP_DIR:-/opt/bimsara-web/repo}"
+BRANCH="${BRANCH:-main}"
+REPO_URL="${REPO_URL:-https://github.com/wishwanath-zettab/Bimsara-web.git}"
+BUILD_NO_CACHE="${BUILD_NO_CACHE:-1}"
+LOG_FILE="${LOG_FILE:-/var/log/bimsara-web-deploy.log}"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
@@ -16,109 +46,121 @@ fail() {
 # Trap unexpected errors
 trap 'fail "Script failed at line $LINENO. Check $LOG_FILE for details."' ERR
 
+# --- Privilege check ---
+# $APP_DIR and the docker socket normally require root.
+if [ "$(id -u)" -eq 0 ]; then
+    SUDO=""
+else
+    command -v sudo >/dev/null 2>&1 || fail "Not running as root and sudo is unavailable. Re-run with: sudo $0"
+    SUDO="sudo"
+    sudo -n true 2>/dev/null || fail "Root privileges required. Re-run with: sudo $0"
+fi
+
+# Make sure the log file is writable before the first log() call.
+$SUDO touch "$LOG_FILE" 2>/dev/null || LOG_FILE=/tmp/bimsara-deploy.log
+$SUDO chmod 644 "$LOG_FILE" 2>/dev/null || true
+
 log "========== Deployment Started =========="
 
 # --- Prerequisite checks ---
 command -v git    >/dev/null 2>&1 || fail "git is not installed."
 command -v docker >/dev/null 2>&1 || fail "docker is not installed."
 
-docker info >/dev/null 2>&1 || fail "Docker daemon is not running. Start it with: sudo systemctl start docker"
+$SUDO docker info >/dev/null 2>&1 \
+    || fail "Docker daemon is not running. Start it with: sudo systemctl start docker"
+$SUDO docker compose version >/dev/null 2>&1 \
+    || fail "The 'docker compose' plugin is not available."
+
+# --- Clone on first run ---
+if [ ! -d "$APP_DIR/.git" ]; then
+    if [ -d "$APP_DIR" ] && [ -n "$(ls -A "$APP_DIR" 2>/dev/null)" ]; then
+        fail "$APP_DIR exists and is not empty, but is not a git repository. Move it aside and re-run."
+    fi
+    log "No repository at $APP_DIR — cloning $REPO_URL (branch $BRANCH)..."
+    $SUDO mkdir -p "$(dirname "$APP_DIR")"
+    $SUDO git clone --branch "$BRANCH" "$REPO_URL" "$APP_DIR" 2>&1 | tee -a "$LOG_FILE" \
+        || fail "git clone failed. Check the URL and this machine's git credentials."
+    log "Clone complete."
+fi
 
 # --- Validate app directory ---
-[ -d "$APP_DIR" ] || fail "App directory not found: $APP_DIR"
 [ -f "$APP_DIR/docker-compose.yml" ] || [ -f "$APP_DIR/compose.yml" ] \
     || fail "No docker-compose.yml found in $APP_DIR"
 
 cd "$APP_DIR" || fail "Cannot cd into $APP_DIR"
 
-cd "$APP_DIR" || fail "Cannot cd into $APP_DIR"
+# Git refuses to operate on a repo owned by another user unless it is trusted.
+$SUDO git config --global --get-all safe.directory 2>/dev/null | grep -qx "$APP_DIR" \
+    || $SUDO git config --global --add safe.directory "$APP_DIR"
 
-# Always deploy from main, regardless of what the server checkout is on
-BRANCH="main"
-
-REMOTE_URL=$(git config --get remote.origin.url)
-UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "no-upstream")
+REMOTE_URL=$($SUDO git config --get remote.origin.url)
 REPO_NAME=$(basename -s .git "$REMOTE_URL")
 
 log "Repo Name      : $REPO_NAME"
 log "Remote URL     : $REMOTE_URL"
 log "Branch         : $BRANCH"
-log "Upstream       : $UPSTREAM"
-
-# --- Git pull ---
-#log "Pulling latest changes..."
-
-#git rev-parse --is-inside-work-tree >/dev/null 2>&1 || fail "Not a git repository: $APP_DIR"
-
-#BEFORE_HASH=$(git rev-parse HEAD)
-
-#git fetch origin 2>&1 | tee -a "$LOG_FILE" || fail "git fetch failed. Check network/SSH keys."
-#git pull         2>&1 | tee -a "$LOG_FILE" || fail "git pull failed. Resolve conflicts manually."
-
-#AFTER_HASH=$(git rev-parse HEAD)
-
-#if [ "$BEFORE_HASH" = "$AFTER_HASH" ]; then
-#    log "No new changes detected (already up to date)."
-#else
-#    log "Updated: ${BEFORE_HASH:0:7} -> ${AFTER_HASH:0:7}"
-#fi
+log "Checkout dir   : $APP_DIR"
+log "No-cache build : $BUILD_NO_CACHE"
 
 # --- Git sync (force clean and pull fresh code) ---
 log "Cleaning local repository and pulling fresh code..."
 
-git rev-parse --is-inside-work-tree >/dev/null 2>&1 || fail "Not a git repository: $APP_DIR"
-
-BEFORE_HASH=$(git rev-parse HEAD)
+BEFORE_HASH=$($SUDO git rev-parse HEAD)
 
 # Fetch latest from remote
-git fetch origin "$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
+$SUDO git fetch origin "$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
     || fail "git fetch failed."
 
 # Switch to the deploy branch (force, discarding any local edits)
-git checkout -f "$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
+$SUDO git checkout -f "$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
     || fail "git checkout $BRANCH failed."
 
 # Reset tracked files to remote branch
-git reset --hard "origin/$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
+$SUDO git reset --hard "origin/$BRANCH" 2>&1 | tee -a "$LOG_FILE" \
     || fail "git reset failed."
 
 # Remove untracked files/folders
-git clean -fd 2>&1 | tee -a "$LOG_FILE" \
+$SUDO git clean -fd 2>&1 | tee -a "$LOG_FILE" \
     || fail "git clean failed."
 
-AFTER_HASH=$(git rev-parse HEAD)
+AFTER_HASH=$($SUDO git rev-parse HEAD)
 
 if [ "$BEFORE_HASH" = "$AFTER_HASH" ]; then
-    log "Repository refreshed. No new commits."
+    log "Repository refreshed. No new commits (at ${AFTER_HASH:0:7})."
 else
     log "Updated: ${BEFORE_HASH:0:7} -> ${AFTER_HASH:0:7}"
 fi
 
 # --- Docker rebuild ---
 log "Bringing down existing containers..."
-docker compose down 2>&1 | tee -a "$LOG_FILE" \
+$SUDO docker compose down 2>&1 | tee -a "$LOG_FILE" \
     || fail "docker compose down failed."
 
-log "Building Docker image (no cache)..."
-docker compose build --no-cache 2>&1 | tee -a "$LOG_FILE" \
-    || fail "docker compose build failed."
+if [ "$BUILD_NO_CACHE" = "1" ]; then
+    log "Building Docker image (no cache)..."
+    $SUDO docker compose build --no-cache 2>&1 | tee -a "$LOG_FILE" \
+        || fail "docker compose build failed."
+else
+    log "Building Docker image..."
+    $SUDO docker compose build 2>&1 | tee -a "$LOG_FILE" \
+        || fail "docker compose build failed."
+fi
 
 log "Starting containers..."
-docker compose up -d 2>&1 | tee -a "$LOG_FILE" \
+$SUDO docker compose up -d 2>&1 | tee -a "$LOG_FILE" \
     || fail "docker compose up failed."
 
 # --- Health check ---
 log "Waiting for containers to become healthy..."
 sleep 5
 
-RUNNING=$(docker compose ps --status running -q | wc -l)
+RUNNING=$($SUDO docker compose ps --status running -q | wc -l)
 if [ "$RUNNING" -eq 0 ]; then
     log "Container logs (last 50 lines):"
-    docker compose logs --tail=50 2>&1 | tee -a "$LOG_FILE"
+    $SUDO docker compose logs --tail=50 2>&1 | tee -a "$LOG_FILE"
     fail "No containers are running after startup. See logs above."
 fi
 log "$RUNNING container(s) running."
 
 log "========== Deployment Complete =========="
 log "Logs: $LOG_FILE"
-

@@ -1,20 +1,29 @@
 services:
   app:
     build: .
+    # TLS terminates at the host nginx, not here — see nginx/bimsaraweb.conf in
+    # the propertyweb-infra repo. nginx owns 80/443 on this VM, so the container
+    # publishes plain HTTP on 127.0.0.1 only: bound to loopback because nginx is
+    # the sole consumer and the app must not be reachable un-proxied.
+    #
+    # The container port stays 80 so one image works everywhere; HTTP_HOST_PORT
+    # is the only thing that moves per host.
     ports:
-      - "80:80"
-      - "443:443"
+      - "127.0.0.1:${HTTP_HOST_PORT:-8080}:80"
     volumes:
       - app-data:/app/data
-      - /opt/devops/certs/new_cert:/app/certs:ro
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
       - DB_PATH=/app/data/bimsara_admin.db
       - UPLOADS_PATH=/app/data/uploads
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      - SSL_CERT_PATH=/app/certs/STAR.bimsara.com.crt
-      - SSL_KEY_PATH=/app/certs/STAR.bimsara.com.key
+      # SSL_CERT_PATH / SSL_KEY_PATH are deliberately unset: with them the app
+      # starts its own HTTPS listener on 443 and turns port 80 into a bare
+      # 301-to-https redirector, which behind a TLS-terminating proxy would
+      # bounce every proxied request straight back out. Leaving them unset makes
+      # server.js serve the app itself over plain HTTP. Set them (and re-add the
+      # cert mount) only when running this container WITHOUT a proxy in front.
     restart: unless-stopped
 
 volumes:
