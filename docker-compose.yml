@@ -1,6 +1,16 @@
+# Compose project name. Without it the project is named after the directory the
+# checkout happens to sit in — on the VM that is /opt/bimsara-web/repo, which
+# produced containers, images and volumes called "repo-*".
+name: bimsara-web
+
 services:
   app:
     build: .
+    # Pinned so the built image is bimsara-web:latest rather than <project>-app.
+    image: bimsara-web:latest
+    # Single instance, so a fixed name is safe and makes docker ps / logs /
+    # exec read as "bimsara-web" instead of bimsara-web-app-1.
+    container_name: bimsara-web
     # TLS terminates at the host nginx, not here — see nginx/bimsaraweb.conf in
     # the propertyweb-infra repo. nginx owns 80/443 on this VM, so the container
     # publishes plain HTTP on 127.0.0.1 only: bound to loopback because nginx is
@@ -27,4 +37,8 @@ services:
     restart: unless-stopped
 
 volumes:
+  # Named explicitly rather than taking the <project>_app-data prefix: this
+  # volume holds the SQLite DB and uploads, so it must survive the project ever
+  # being renamed again. Migrated from the old repo_app-data by hand.
   app-data:
+    name: bimsara-web-data

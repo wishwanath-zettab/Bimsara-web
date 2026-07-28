@@ -131,6 +131,18 @@ else
     log "Updated: ${BEFORE_HASH:0:7} -> ${AFTER_HASH:0:7}"
 fi
 
+# --- Retire the pre-rename stack ---
+# docker-compose.yml now sets an explicit project name (bimsara-web). Before it
+# did, the project was named after the checkout directory — "repo" — and that
+# stack is invisible to every compose command below, including the `down`. Its
+# container keeps the published port, so the renamed stack would fail to start
+# with "address already in use". Harmless no-op once it is gone.
+if [ -n "$($SUDO docker ps -aq --filter 'label=com.docker.compose.project=repo' 2>/dev/null)" ]; then
+    log "Removing legacy 'repo' compose stack (superseded by 'bimsara-web')..."
+    $SUDO docker compose -p repo down --remove-orphans 2>&1 | tee -a "$LOG_FILE" \
+        || log "WARNING: could not remove the legacy stack; continuing."
+fi
+
 # --- Docker rebuild ---
 log "Bringing down existing containers..."
 $SUDO docker compose down 2>&1 | tee -a "$LOG_FILE" \
