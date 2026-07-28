@@ -82,7 +82,7 @@ plain-HTTP branch on container port 80:
 
 ```yaml
 ports:
-  - "127.0.0.1:${HTTP_HOST_PORT:-8080}:80"
+  - "${HTTP_HOST_PORT:-8080}:80"
 volumes:
   - app-data:/app/data
 ```
@@ -91,7 +91,9 @@ nginx on the host holds the certificate and proxies `www.bimsara.com` /
 `bimsara.com` to `127.0.0.1:8080`. The vhost is `nginx/bimsaraweb.conf` in the
 **propertyweb-infra** repo (cert at `/etc/ssl/propweb/STAR.bimsara.com.*`, via
 `snippets/propweb-tls.conf`); that repo's README covers installing and renewing
-it. Publishing on `127.0.0.1` keeps the app unreachable except through nginx.
+it. The port is published on all interfaces, as the propertyweb containers on
+this host are, so plain HTTP on `:8080` answers directly too — keep that port
+closed at the firewall if the app should only be reachable through nginx.
 
 Deploy with `sudo /opt/bimsara-web/bweb-deploy`, or directly:
 

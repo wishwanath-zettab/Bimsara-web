@@ -12,14 +12,19 @@ services:
     # exec read as "bimsara-web" instead of bimsara-web-app-1.
     container_name: bimsara-web
     # TLS terminates at the host nginx, not here — see nginx/bimsaraweb.conf in
-    # the propertyweb-infra repo. nginx owns 80/443 on this VM, so the container
-    # publishes plain HTTP on 127.0.0.1 only: bound to loopback because nginx is
-    # the sole consumer and the app must not be reachable un-proxied.
+    # the propertyweb-infra repo. nginx owns 80/443 on this VM, so the app is
+    # published on HTTP_HOST_PORT and proxied to from there.
+    #
+    # Published on all interfaces (0.0.0.0 + [::]), matching the propertyweb
+    # containers on this host. That means the app also answers directly on
+    # :8080 over plain HTTP for anyone who can reach the VM on that port, so
+    # keep 8080 closed at the firewall / security group if it should only be
+    # served through nginx.
     #
     # The container port stays 80 so one image works everywhere; HTTP_HOST_PORT
     # is the only thing that moves per host.
     ports:
-      - "127.0.0.1:${HTTP_HOST_PORT:-8080}:80"
+      - "${HTTP_HOST_PORT:-8080}:80"
     volumes:
       - app-data:/app/data
     environment:
