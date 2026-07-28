@@ -13,6 +13,10 @@ dotenv.config();
 const db = require('./database');
 const app = express();
 const PORT = process.env.PORT || 80;
+// Configurable because the host this runs on already has nginx on 443; the
+// container publishes 8443 and must listen on the same number for a
+// host-port == container-port mapping.
+const HTTPS_PORT = process.env.HTTPS_PORT || 443;
 const HOST = process.env.HOST || '0.0.0.0';
 const JWT_SECRET = process.env.JWT_SECRET || 'bimsara-admin-dev-secret';
 
@@ -621,8 +625,8 @@ db.ready.then(() => {
       },
       app
     );
-    httpsServer.listen(443, HOST, () => {
-      console.log(`HTTPS server is running on https://${HOST}:443`);
+    httpsServer.listen(HTTPS_PORT, HOST, () => {
+      console.log(`HTTPS server is running on https://${HOST}:${HTTPS_PORT}`);
     });
 
     // Redirect plain HTTP to HTTPS

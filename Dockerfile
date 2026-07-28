@@ -29,7 +29,9 @@ RUN chmod +x entrypoint.sh
 # Ensure persistent data dirs exist at build time
 RUN mkdir -p /app/data/uploads
 
-EXPOSE 80 443
+# Informational only. The listeners follow PORT / HTTPS_PORT at runtime; the
+# compose file sets them to 8080/8443 so the published ports can match.
+EXPOSE 8080 8443
 
 ENV NODE_ENV=production
 
