@@ -613,6 +613,52 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// Every listener this process owns, so the signal handlers below can close all
+// of them. In the TLS branch there are two (the app on HTTPS_PORT and the
+// redirector on PORT).
+const servers = [];
+
+// Without this the process ignores SIGTERM entirely: `docker compose down`
+// waits out its grace period and then SIGKILLs, which is exit code 137 and a
+// non-zero `down`. bweb-deploy treats that as fatal and aborts BEFORE
+// `docker compose up -d`, so a routine deploy would leave the site off.
+function shutdown(signal) {
+  console.log(`${signal} received — closing servers.`);
+
+  let pending = servers.length;
+  if (pending === 0) {
+    process.exit(0);
+  }
+
+  // Docker force-kills after its grace period; give up well before that rather
+  // than being killed mid-write.
+  const force = setTimeout(() => {
+    console.warn('Graceful shutdown timed out — forcing connections closed.');
+    servers.forEach((server) => server.closeAllConnections());
+    process.exit(1);
+  }, 5000);
+
+  const closed = () => {
+    if (--pending > 0) return;
+    clearTimeout(force);
+    // Checkpoints the WAL and releases the file cleanly. Exit regardless: a
+    // failed close must not keep the container alive.
+    db.close(() => process.exit(0));
+  };
+
+  servers.forEach((server) => {
+    server.close(closed);
+    // nginx proxies with HTTP/1.1 keep-alive, so it holds idle sockets open to
+    // this upstream. close() alone waits on them and never completes — this is
+    // what actually made the container un-stoppable.
+    server.closeIdleConnections();
+  });
+}
+
+['SIGTERM', 'SIGINT'].forEach((signal) => {
+  process.on(signal, () => shutdown(signal));
+});
+
 db.ready.then(() => {
   const certPath = process.env.SSL_CERT_PATH;
   const keyPath = process.env.SSL_KEY_PATH;
@@ -628,9 +674,10 @@ db.ready.then(() => {
     httpsServer.listen(HTTPS_PORT, HOST, () => {
       console.log(`HTTPS server is running on https://${HOST}:${HTTPS_PORT}`);
     });
+    servers.push(httpsServer);
 
     // Redirect plain HTTP to HTTPS
-    express()
+    const redirectServer = express()
       .use((req, res) => {
         const host = (req.headers.host || '').split(':')[0];
         res.redirect(301, `https://${host}${req.url}`);
@@ -638,9 +685,12 @@ db.ready.then(() => {
       .listen(PORT, HOST, () => {
         console.log(`HTTP redirect server is running on http://${HOST}:${PORT}`);
       });
+    servers.push(redirectServer);
   } else {
-    app.listen(PORT, HOST, () => {
-      console.log(`Server is running on http://${HOST}:${PORT}`);
-    });
+    servers.push(
+      app.listen(PORT, HOST, () => {
+        console.log(`Server is running on http://${HOST}:${PORT}`);
+      })
+    );
   }
 });

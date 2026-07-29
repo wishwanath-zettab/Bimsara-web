@@ -144,9 +144,16 @@ if [ -n "$($SUDO docker ps -aq --filter 'label=com.docker.compose.project=repo' 
 fi
 
 # --- Docker rebuild ---
+# NOT fatal. `up -d` below recreates the container anyway, so a failed `down`
+# is at worst noise — but treating it as fatal took the site down for real:
+# the app used to ignore SIGTERM, so `down` timed out, force-killed the
+# container (exit 137) and returned non-zero, and the script aborted here with
+# the old container stopped and the new one never started. server.js now shuts
+# down on SIGTERM, so this should not trigger; the warning is the safety net
+# that keeps any future stop hiccup from leaving the site off.
 log "Bringing down existing containers..."
 $SUDO docker compose down 2>&1 | tee -a "$LOG_FILE" \
-    || fail "docker compose down failed."
+    || log "WARNING: 'docker compose down' failed; continuing to recreate the stack."
 
 if [ "$BUILD_NO_CACHE" = "1" ]; then
     log "Building Docker image (no cache)..."
