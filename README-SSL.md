@@ -2,12 +2,14 @@
 
 This document describes the HTTPS support added to `backend/server.js` and how to configure it for deployment.
 
-> **On the shared VM (187.127.209.34) this path is ON, but on ports 8080/8443,
-> not 80/443.** nginx owns 80/443 there (Property Web qa/prod share the host and
-> the VM has one public address), so it fronts `www.bimsara.com` / `bimsara.com`
-> and re-encrypts to the container's own HTTPS listener on 8443 — see
-> `nginx/bimsaraweb.conf` in the **propertyweb-infra** repo. Both terminators
-> serve the same wildcard, mounted read-only from `/etc/ssl/propweb`.
+> **On the shared VM (187.127.209.34) this path is OFF.** nginx owns 80/443
+> there (Property Web qa/prod share the host and the VM has one public address),
+> so it terminates TLS for `www.bimsara.com` / `bimsara.com` and proxies to the
+> container's plain-HTTP listener on **8100** — the same shape as every
+> propertyweb vhost. See `nginx/bimsaraweb.conf` in the **propertyweb-infra**
+> repo. The certificate and key stay on the host; nothing is mounted into the
+> container. The rest of this document applies only when running WITHOUT a
+> proxy in front.
 
 ## How it works
 
@@ -25,8 +27,8 @@ Ports are configurable so they can match the published host ports 1:1:
 
 | Variable | Default | On the VM |
 |---|---|---|
-| `PORT` | `80` | `8080` — HTTP, only 301-redirects while TLS is on |
-| `HTTPS_PORT` | `443` | `8443` — the app itself; nginx proxies here |
+| `PORT` | `80` | `8100` — the app itself over plain HTTP; nginx proxies here |
+| `HTTPS_PORT` | `443` | unused — the container terminates no TLS on this host |
 
 ## Code changes in `backend/server.js`
 
@@ -82,37 +84,36 @@ Notes on the implementation:
 
 ## Server deployment
 
-The shipped `docker-compose.yml` mounts the wildcard and moves both listeners
-off 80/443 so the published ports can match the container's 1:1:
+The shipped `docker-compose.yml` sets **none** of the TLS variables and mounts
+no certificate, so the app serves itself over plain HTTP on a single port that
+nginx proxies to:
 
 ```yaml
 ports:
-  - "${HTTP_HOST_PORT:-8080}:8080"
-  - "${HTTPS_HOST_PORT:-8443}:8443"
+  - "${HTTP_HOST_PORT:-8100}:8100"
 volumes:
   - app-data:/app/data
-  - /etc/ssl/propweb:/app/certs:ro
 environment:
-  - PORT=8080
-  - HTTPS_PORT=8443
-  - SSL_CERT_PATH=/app/certs/STAR.bimsara.com.crt
-  - SSL_KEY_PATH=/app/certs/STAR.bimsara.com.key
+  - PORT=8100
+  # SSL_CERT_PATH / SSL_KEY_PATH deliberately unset
 ```
 
-Note the cert source: `/etc/ssl/propweb`, the same files nginx serves —
-**not** `/opt/devops/certs/new_cert`, which is an empty directory on the VM.
-Mounted there, both `fs.existsSync` checks fail and the app quietly falls back
-to plain HTTP, which looks like the TLS config being ignored.
-
 nginx fronts `www.bimsara.com` / `bimsara.com` on 443 and proxies to
-`https://127.0.0.1:8443`, so the connection is re-encrypted over loopback. The
-vhost is `nginx/bimsaraweb.conf` in the **propertyweb-infra** repo; that repo's
-README covers installing and renewing the certificate.
+`http://127.0.0.1:8100` — identical in shape to the propertyweb frontend and
+backend vhosts. The vhost is `nginx/bimsaraweb.conf` in the
+**propertyweb-infra** repo; that repo's README covers installing and renewing
+the certificate.
 
-Ports are published on all interfaces, like the propertyweb containers on this
-host, so `:8443` also answers directly — keep it closed at the firewall if the
-app should only be reachable through nginx. `:8080` is harmless by comparison:
-with TLS on it serves nothing but 301s.
+Keeping TLS out of the container means the private key never leaves the host,
+and the certificate is renewed in exactly one place: replace the files in
+`/etc/ssl/propweb` and `systemctl reload nginx`. No container restart, and no
+chance of the two terminators drifting to different certificates.
+
+Port 8100 is chosen to sit outside the 8081-8096 block that propertyweb qa/prod
+reserve, so adding another propertyweb environment cannot collide with it. It is
+published on all interfaces like the propertyweb containers, so `:8100` also
+answers directly over plain HTTP — keep it closed at the firewall if the app
+should only be reachable through nginx.
 
 Deploy with `sudo /opt/bimsara-web/bweb-deploy`, or directly:
 
@@ -122,8 +123,9 @@ docker compose up -d --build
 
 ### Running it without a proxy
 
-Drop `PORT`/`HTTPS_PORT` (or set them to 80/443) and publish those ports
-directly. Only possible where nothing else holds 80/443 — not this VM.
+Set `SSL_CERT_PATH` / `SSL_KEY_PATH`, mount the certificate into the container,
+set `PORT`/`HTTPS_PORT` to 80/443 and publish those ports directly. Only
+possible where nothing else holds 80/443 — not this VM.
 
 Verify:
 
@@ -149,7 +151,13 @@ curl -I http://www.bimsara.com/api/health    # should return 301 → https://
 
 ## Certificate renewal
 
-Node reads the cert files **once at startup**. After replacing the files in `/opt/devops/certs/new_cert/`, restart the container:
+**On the VM this does not involve the container at all.** nginx is the only TLS
+terminator, so renewal is: replace the two files in `/etc/ssl/propweb`, then
+`sudo nginx -t && sudo systemctl reload nginx`. See the propertyweb-infra README.
+
+Only when running *without* a proxy does the container hold the certificate. In
+that case Node reads the files **once at startup**, so restart it after
+replacing them:
 
 ```bash
 docker compose restart app

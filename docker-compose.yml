@@ -11,34 +11,40 @@ services:
     # Single instance, so a fixed name is safe and makes docker ps / logs /
     # exec read as "bimsara-web" instead of bimsara-web-app-1.
     container_name: bimsara-web
-    # Host port == container port on both stacks (0.0.0.0 and ::), matching the
-    # propertyweb containers on this host. 8080/8443 rather than 80/443 because
-    # nginx holds 80/443 on the VM's only public address — publishing 80 here is
-    # what produced "failed to bind host port 0.0.0.0:80: address already in
-    # use". PORT/HTTPS_PORT below move the app's listeners to match.
+    # One plain-HTTP port, host == container, matching how the propertyweb
+    # frontend/backend containers are published on this host. TLS terminates at
+    # nginx, which proxies to http://127.0.0.1:8100 — see nginx/bimsaraweb.conf
+    # in the propertyweb-infra repo.
+    #
+    # 8100 rather than 80: nginx owns 80/443 on the VM's only public address.
+    # It also sits outside the 8081-8096 block that propertyweb qa/prod reserve
+    # in infra/env/*/{frontend,backend}.env, so adding another propertyweb
+    # environment later cannot collide with this one.
+    #
+    # Published on all interfaces (0.0.0.0 + ::), like the propertyweb
+    # containers, so the app also answers directly on :8100 over plain HTTP for
+    # anyone who can reach the VM there. Keep it closed at the firewall if it
+    # should only be served through nginx.
     ports:
-      - "${HTTP_HOST_PORT:-8080}:8080"
-      - "${HTTPS_HOST_PORT:-8443}:8443"
+      - "${HTTP_HOST_PORT:-8100}:8100"
     volumes:
       - app-data:/app/data
-      # The wildcard cert nginx also serves, read-only. NOT /opt/devops/certs/
-      # new_cert — that directory is empty on the VM, so the app silently fell
-      # back to plain HTTP when it was mounted there.
-      - /etc/ssl/propweb:/app/certs:ro
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
       - DB_PATH=/app/data/bimsara_admin.db
       - UPLOADS_PATH=/app/data/uploads
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      - PORT=8080
-      - HTTPS_PORT=8443
-      # With these set, server.js serves the app over HTTPS on HTTPS_PORT and
-      # turns PORT into a 301-to-https redirector. nginx must therefore proxy to
-      # https://127.0.0.1:8443 — pointed at 8080 it would receive a redirect to
-      # the same URL it just requested and loop.
-      - SSL_CERT_PATH=/app/certs/STAR.bimsara.com.crt
-      - SSL_KEY_PATH=/app/certs/STAR.bimsara.com.key
+      - PORT=8100
+      # SSL_CERT_PATH / SSL_KEY_PATH are deliberately unset, and no certificate
+      # is mounted. With them, server.js starts its own HTTPS listener and turns
+      # PORT into a bare 301-to-https redirector — behind a TLS-terminating
+      # proxy that bounces every proxied request straight back out. Unset,
+      # server.js serves the app itself over plain HTTP on PORT, and the private
+      # key never enters the container.
+      #
+      # Set them (and re-add a cert mount) only when running this container
+      # WITHOUT a proxy in front.
     restart: unless-stopped
 
 volumes:
