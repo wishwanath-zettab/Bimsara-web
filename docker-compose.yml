@@ -29,17 +29,19 @@ services:
       - "${HTTP_HOST_PORT:-8100}:8100"
     volumes:
       - app-data:/app/data
+    env_file:
+      - backend/.env
     environment:
       - NODE_ENV=production
       - JWT_SECRET=${JWT_SECRET:-bimsara-local-secret-change-me}
       - DB_PATH=/app/data/bimsara_admin.db
       - UPLOADS_PATH=/app/data/uploads
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      # Contact form email (POST /api/contact): the sending mailbox, its Google
-      # App Password, and the group address that receives each enquiry.
-      - SMTP_USER=${SMTP_USER:-}
-      - SMTP_PASS=${SMTP_PASS:-}
-      - CONTACT_TO=${CONTACT_TO:-}
+      # Contact form email (SMTP_USER / SMTP_PASS / CONTACT_TO) comes from
+      # backend/.env via env_file below. Do not list them here as
+      # SMTP_USER=${SMTP_USER:-}: that sets them to "" whenever the root .env
+      # lacks them, and dotenv never overrides a variable that is already set,
+      # so POST /api/contact fails with "Contact email not configured".
       - PORT=8100
       # SSL_CERT_PATH / SSL_KEY_PATH are deliberately unset, and no certificate
       # is mounted. With them, server.js starts its own HTTPS listener and turns
