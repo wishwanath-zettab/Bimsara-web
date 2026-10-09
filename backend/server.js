@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config();
 
@@ -25,6 +27,9 @@ if (!process.env.JWT_SECRET) {
 }
 
 // Middleware
+// Behind nginx every request arrives from the proxy; trusting one hop lets the
+// rate limiter see the real visitor IP instead of treating everyone as one.
+app.set('trust proxy', 1);
 app.use(cors());
 app.use(express.json());
 
@@ -603,6 +608,73 @@ app.delete('/api/admin/other-settings/company-profile-pdf', authenticateToken, (
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
+});
+
+// Contact form: emails each enquiry to the group address over SMTP.
+// SMTP_USER = sending mailbox, SMTP_PASS = its Google App Password,
+// CONTACT_TO = group address (SMTP_HOST / SMTP_PORT override Gmail's defaults).
+const smtpPort = Number(process.env.SMTP_PORT) || 465;
+const mailer = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: smtpPort,
+  secure: smtpPort === 465,
+  auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+});
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please try again later.' },
+});
+
+const escapeHtml = (s) =>
+  s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const cleanText = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+
+app.post('/api/contact', contactLimiter, async (req, res) => {
+  const body = req.body || {};
+  // Honeypot: a hidden field real visitors never fill. Pretend success to bots.
+  if (body.website) {
+    return res.json({ ok: true });
+  }
+
+  const name = cleanText(body.name, 100);
+  const email = cleanText(body.email, 150);
+  const number = cleanText(body.number, 20);
+  const type = cleanText(body.type, 50);
+  const purpose = cleanText(body.purpose, 50);
+
+  if (
+    !/^[a-z ,.'-]+$/i.test(name) ||
+    !/\S+@\S+\.\S+/.test(email) ||
+    !number ||
+    !type ||
+    !purpose
+  ) {
+    return res.status(400).json({ error: 'Invalid input' });
+  }
+
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS || !process.env.CONTACT_TO) {
+    console.error('Contact email not configured: set SMTP_USER, SMTP_PASS and CONTACT_TO.');
+    return res.status(500).json({ error: 'Failed to send' });
+  }
+
+  try {
+    await mailer.sendMail({
+      from: `"Bimsara Website" <${process.env.SMTP_USER}>`,
+      to: process.env.CONTACT_TO,
+      replyTo: email,
+      subject: `New website enquiry: ${purpose} (${type})`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${number}\nProperty type: ${type}\nWants to: ${purpose}`,
+      html: `<p><b>Name:</b> ${escapeHtml(name)}<br><b>Email:</b> ${escapeHtml(email)}<br><b>Phone:</b> ${escapeHtml(number)}<br><b>Property type:</b> ${escapeHtml(type)}<br><b>Wants to:</b> ${escapeHtml(purpose)}</p>`,
+    });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('Contact email failed:', err.message);
+    res.status(500).json({ error: 'Failed to send' });
+  }
 });
 
 // Serve React frontend in production

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 import hamburger from "../../assets/icons/hamburger.webp";
-import config from "../../config";
+import API_URL from "../../apiConfig";
 import "./ContactFromStyles.scss";
 
 const ContactFrom = (props) => {
@@ -11,6 +11,7 @@ const ContactFrom = (props) => {
   const [number2, setNumber2] = useState("");
   const [want, setWant] = useState("");
   const [type, setType] = useState("");
+  const [website, setWebsite] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -66,16 +67,11 @@ const ContactFrom = (props) => {
               type: type,
               purpose: want,
             };
-            emailjs
-              .send(
-                config.emailJs.SERVICE_ID,
-                config.emailJs.TEMPLATE_ID,
-                value,
-                config.emailJs.PUBLIC_KEY
-              )
+            axios
+              .post(`${API_URL}/api/contact`, { ...value, website })
               .then(
                 function (response) {
-                  console.log("SUCCESS!", response.status, response.text);
+                  console.log("SUCCESS!", response.status);
                   setName("");
                   setEmail("");
                   setType("");
@@ -117,6 +113,16 @@ const ContactFrom = (props) => {
     <div className="contactForm">
       <div className="contact-form-header">{getContent()}</div>
       <div className="form" ref={form}>
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", opacity: 0 }}
+        />
         <div className="input-container">
           <div className="label">
             {props?.from && props?.from === "home" ? "Name" : "Name"}
