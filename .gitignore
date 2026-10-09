@@ -13,7 +13,7 @@
 /frontend/build
 
 # Local secrets for running the backend on your own machine
-backend/.env
+#backend/.env
 
 # Misc
 .DS_Store
