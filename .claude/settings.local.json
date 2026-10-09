@@ -17,5 +17,8 @@
       "Bash(wc:*)",
       "Bash(awk 'NR==390,NR==396 {for \\(i=1;i<=length\\($0\\);i++\\) {c=substr\\($0,i,1\\); printf \"%s\\(%d\\)\", c, ord[c]?ord[c]:+sprintf\\(\"%d\",c\\)} print \"\"; next} {print NR\": \"$0}' \"D:/Work/ZettaB/Bimsara/Bimsara-webz/src/pages/Home.jsx\")"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "zettab-jira"
+  ]
 }
